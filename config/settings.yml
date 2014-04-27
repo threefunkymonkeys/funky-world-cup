@@ -1,0 +1,14 @@
+defaults: &defaults
+  username: funky_wc
+  password: funkyw0rldcup
+  host: localhost
+  port: 5432
+
+development:
+  db:
+    <<: *defaults
+    database: funky_wc_dev
+test:
+  db:
+    <<: *defaults
+    database: funky_wc_test

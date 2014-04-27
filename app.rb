@@ -1,13 +1,12 @@
 require 'cuba'
 require 'cuba/render'
 require 'sequel'
-require_relative 'lib/funky_world_cup'
+require_relative 'helpers/environment'
 
-ENV["RACK_ENV"] ||= :development
-settings_file = File.join(File.dirname(__FILE__), "config/settings.yml")
+ENV['RACK_ENV'] ||= :development
 
-FunkyWorldCupApp::Settings.load(settings_file, ENV["RACK_ENV"])
-DB = FunkyWorldCupApp::Database.connect FunkyWorldCupApp::Settings.get('db')
+
+FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
 Cuba.use Rack::Static,
           root: File.expand_path(File.dirname(__FILE__)) + "/public",
