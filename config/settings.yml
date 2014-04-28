@@ -11,7 +11,7 @@ development:
     host: '127.0.0.1'
     port: '5432'
     user: 'fwc'
-    password: 'changepasswordplease'
+    password: 'qwe123'
     db_name: 'funky_world_cup'
 
 test:
