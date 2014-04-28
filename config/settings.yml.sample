@@ -1,0 +1,23 @@
+production:
+  db:
+    host: ''
+    port: ''
+    user: ''
+    password: ''
+    db_name: ''
+
+development:
+  db:
+    host: ''
+    port: ''
+    user: ''
+    password: ''
+    db_name: ''
+
+test:
+  db:
+    host: ''
+    port: ''
+    user: ''
+    password: ''
+    db_name: ''
