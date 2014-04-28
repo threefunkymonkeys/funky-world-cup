@@ -2,8 +2,8 @@ Sequel.migration do
   up do
     create_table :matches do
       primary_key :id
-      foreign_key :host_id,  :teams
-      foreign_key :rival_id, :teams
+      foreign_key :host_id,  :teams, type: String
+      foreign_key :rival_id, :teams, type: String
       DateTime :start_datetime, null: false
       String   :place, null: false
       String   :stadium, null: false

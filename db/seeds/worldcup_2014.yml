@@ -106,449 +106,450 @@ worldcup:
       teams: [BR, HR, MX, CM]
       matches:
         - date: '2014-06-12 17:00'
-        host: BR
-        rival: HR
-        place: Sao Paulo
-        stadium: Arena de Sao Paulo
-        local_timezone: GMT-3
+          host: BR
+          rival: HR
+          place: Sao Paulo
+          stadium: Arena de Sao Paulo
+          local_timezone: GMT-3
         - date: '2014-06-13 13:00'
-        host: MX
-        rival: CM
-        place: Natal
-        stadium: Estadio das Dunas
-        local_timezone: GMT-3
+          host: MX
+          rival: CM
+          place: Natal
+          stadium: Estadio das Dunas
+          local_timezone: GMT-3
         - date: '2014-06-17 16:00'
-        host: BR
-        rival: MX
-        place: Fortaleza
-        stadium: Estadio Castelao
-        local_timezone: GMT-3
+          host: BR
+          rival: MX
+          place: Fortaleza
+          stadium: Estadio Castelao
+          local_timezone: GMT-3
         - date: '2014-06-18 18:00'
-        host: CM
-        rival: HR
-        place: Manaous
-        stadium: Arena Amazonia
-        local_timezone: GMT-4
+          host: CM
+          rival: HR
+          place: Manaous
+          stadium: Arena Amazonia
+          local_timezone: GMT-4
         - date: '2014-06-23 17:00'
-        host: CM
-        rival: BR
-        place: Brasilia
-        stadium: Estadio Nacional
-        local_timezone: GMT-3
+          host: CM
+          rival: BR
+          place: Brasilia
+          stadium: Estadio Nacional
+          local_timezone: GMT-3
         - date: '2014-06-23 17:00'
-        host: HR
-        rival: MX
-        place: Recife
-        stadium: Arena Pernambuco
-        local_timezone: GMT-3
+          host: HR
+          rival: MX
+          place: Recife
+          stadium: Arena Pernambuco
+          local_timezone: GMT-3
     B:
       teams: [ES, NL, CL, AU]
       matches:
         - date: '2014-06-13 16:00'
-        host: ES
-        rival: NL
-        place: Salvador
-        stadium: Arena Fonte Nova
-        local_timezone: GMT-3
+          host: ES
+          rival: NL
+          place: Salvador
+          stadium: Arena Fonte Nova
+          local_timezone: GMT-3
         - date: '2014-06-13 18:00'
-        host: CL
-        rival: AU
-        place: Cuiaba
-        stadium: Arena Pantanal
-        local_timezone: GMT-4
+          host: CL
+          rival: AU
+          place: Cuiaba
+          stadium: Arena Pantanal
+          local_timezone: GMT-4
         - date: '2014-06-18 16:00'
-        host: ES
-        rival: CL
-        place: Rio de Janeiro
-        stadium: Estadio Maracana
-        local_timezone: GMT-3
+          host: ES
+          rival: CL
+          place: Rio de Janeiro
+          stadium: Estadio Maracana
+          local_timezone: GMT-3
         - date: '2014-06-18 13:00'
-        host: AU
-        rival: NL
-        place: Porto Alegre
-        stadium: Estadio Beira-Rio
-        local_timezone: GMT-3
+          host: AU
+          rival: NL
+          place: Porto Alegre
+          stadium: Estadio Beira-Rio
+          local_timezone: GMT-3
         - date: '2014-06-23 13:00'
-        host: AU
-        rival: ES
-        place: Curitiba
-        stadium: Arena de Baixada
-        local_timezone: GMT-3
+          host: AU
+          rival: ES
+          place: Curitiba
+          stadium: Arena de Baixada
+          local_timezone: GMT-3
         - date: '2014-06-23 13:00'
-        host: NL
-        rival: CL
-        place: Sao Paulo
-        stadium: Arena de Sao Paulo
-        local_timezone: GMT-3
+          host: NL
+          rival: CL
+          place: Sao Paulo
+          stadium: Arena de Sao Paulo
+          local_timezone: GMT-3
     C:
       teams: [CO, GR, CI, JP]
       matches:
         - date: '2014-06-14 13:00'
-        host: CO
-        rival: GR
-        place: Belo Horizonte
-        stadium: Estadio Mineirao
-        local_timezone: GMT-3
+          host: CO
+          rival: GR
+          place: Belo Horizonte
+          stadium: Estadio Mineirao
+          local_timezone: GMT-3
         - date: '2014-06-14 22:00'
-        host: CI
-        rival: JP
-        place: Recife
-        stadium: Arena Pernambuco
-        local_timezone: GMT-3
+          host: CI
+          rival: JP
+          place: Recife
+          stadium: Arena Pernambuco
+          local_timezone: GMT-3
         - date: '2014-06-19 13:00'
-        host: CO
-        rival: CI
-        place: Brasilia
-        stadium: Estadio Nacional
-        local_timezone: GMT-3
+          host: CO
+          rival: CI
+          place: Brasilia
+          stadium: Estadio Nacional
+          local_timezone: GMT-3
         - date: '2014-06-19 19:00'
-        host: JP
-        rival: GR
-        place: Natal
-        stadium: Estadio das Dunas
-        local_timezone: GMT-3
+          host: JP
+          rival: GR
+          place: Natal
+          stadium: Estadio das Dunas
+          local_timezone: GMT-3
         - date: '2014-06-24 16:00'
-        host: JP
-        rival: CO
-        place: Cuiaba
-        stadium: Arena Pantanal
-        local_timezone: GMT-4
+          host: JP
+          rival: CO
+          place: Cuiaba
+          stadium: Arena Pantanal
+          local_timezone: GMT-4
         - date: '2014-06-24 17:00'
-        host: GR
-        rival: CI
-        place: Fortaleza
-        stadium: Estadio Castelao
-        local_timezone: GMT-3
+          host: GR
+          rival: CI
+          place: Fortaleza
+          stadium: Estadio Castelao
+          local_timezone: GMT-3
     D:
       teams: [UY, CR, GB, IT]
       matches:
         - date: '2014-06-14 16:00'
-        host: UY
-        rival: CR
-        place: Fortaleza
-        stadium: Estadio Castelao
-        local_timezone: GMT-3
+          host: UY
+          rival: CR
+          place: Fortaleza
+          stadium: Estadio Castelao
+          local_timezone: GMT-3
         - date: '2014-06-14 18:00'
-        host: GB
-        rival: IT
-        place: Manaous
-        stadium: Arena Amazonia
-        local_timezone: GMT-4
+          host: GB
+          rival: IT
+          place: Manaous
+          stadium: Arena Amazonia
+          local_timezone: GMT-4
         - date: '2014-06-19 16:00'
-        host: UY
-        rival: GB
-        place: Sao Paulo
-        stadium: Arena de Sao Paulo
-        local_timezone: GMT-3
+          host: UY
+          rival: GB
+          place: Sao Paulo
+          stadium: Arena de Sao Paulo
+          local_timezone: GMT-3
         - date: '2014-06-20 13:00'
-        host: IT
-        rival: CR
-        place: Recife
-        stadium: Arena Pernambuco
-        local_timezone: GMT-3
+          host: IT
+          rival: CR
+          place: Recife
+          stadium: Arena Pernambuco
+          local_timezone: GMT-3
         - date: '2014-06-24 13:00'
-        host: IT
-        rival: UY
-        place: Natal
-        stadium: Estadio das Dunas
-        local_timezone: GMT-3
+          host: IT
+          rival: UY
+          place: Natal
+          stadium: Estadio das Dunas
+          local_timezone: GMT-3
         - date: '2014-06-24 13:00'
-        host: CR
-        rival: GB
-        place: Belo Horizonte
-        stadium: Estadio Mineirao
-        local_timezone: GMT-3
+          host: CR
+          rival: GB
+          place: Belo Horizonte
+          stadium: Estadio Mineirao
+          local_timezone: GMT-3
     E:
       teams: [CH, EC, FR, HN]
       matches:
         - date: '2014-06-15 13:00'
-        host: CH
-        rival: EC
-        place: Brasilia
-        stadium: Estadio Nacional
-        local_timezone: GMT-3
+          host: CH
+          rival: EC
+          place: Brasilia
+          stadium: Estadio Nacional
+          local_timezone: GMT-3
         - date: '2014-06-15 16:00'
-        host: FR
-        rival: HN
-        place: Porto Alegre
-        stadium: Estadio Beira-Rio
-        local_timezone: GMT-3
+          host: FR
+          rival: HN
+          place: Porto Alegre
+          stadium: Estadio Beira-Rio
+          local_timezone: GMT-3
         - date: '2014-06-20 16:00'
-        host: CH
-        rival: FR
-        place: Salvador
-        stadium: Arena Fonte Nova
-        local_timezone: GMT-3
+          host: CH
+          rival: FR
+          place: Salvador
+          stadium: Arena Fonte Nova
+          local_timezone: GMT-3
         - date: '2014-06-20 19:00'
-        host: HN
-        rival: EC
-        place: Curitiba
-        stadium: Arena de Baixada
-        local_timezone: GMT-3
+          host: HN
+          rival: EC
+          place: Curitiba
+          stadium: Arena de Baixada
+          local_timezone: GMT-3
         - date: '2014-06-25 16:00'
-        host: HN
-        rival: CH
-        place: Manaous
-        stadium: Arena Amazonia
-        local_timezone: GMT-4
+          host: HN
+          rival: CH
+          place: Manaous
+          stadium: Arena Amazonia
+          local_timezone: GMT-4
         - date: '2014-06-25 17:00'
-        host: EC
-        rival: FR
-        place: Rio de Janeiro
-        stadium: Estadio Maracana
-        local_timezone: GMT-3
+          host: EC
+          rival: FR
+          place: Rio de Janeiro
+          stadium: Estadio Maracana
+          local_timezone: GMT-3
     F:
       teams: [AR, BA, IR, NG]
       matches:
         - date: '2014-06-15 19:00'
-        host: AR
-        rival: BA
-        place: Rio de Janeiro
-        stadium: Estadio Maracana
-        local_timezone: GMT-3
+          host: AR
+          rival: BA
+          place: Rio de Janeiro
+          stadium: Estadio Maracana
+          local_timezone: GMT-3
         - date: '2014-06-16 16:00'
-        host: IR
-        rival: NG
-        place: Curitiba
-        stadium: Arena de Baixada
-        local_timezone: GMT-3
+          host: IR
+          rival: NG
+          place: Curitiba
+          stadium: Arena de Baixada
+          local_timezone: GMT-3
         - date: '2014-06-21 13:00'
-        host: AR
-        rival: IR
-        place: Belo Horizonte
-        stadium: Estadio Mineirao
-        local_timezone: GMT-3
+          host: AR
+          rival: IR
+          place: Belo Horizonte
+          stadium: Estadio Mineirao
+          local_timezone: GMT-3
         - date: '2014-06-21 18:00'
-        host: NG
-        rival: BA
-        place: Cuiaba
-        stadium: Arena Pantanal
-        local_timezone: GMT-4
+          host: NG
+          rival: BA
+          place: Cuiaba
+          stadium: Arena Pantanal
+          local_timezone: GMT-4
         - date: '2014-06-25 13:00'
-        host: NG
-        rival: AR
-        place: Porto Alegre
-        stadium: Estadio Beira-Rio
-        local_timezone: GMT-3
+          host: NG
+          rival: AR
+          place: Porto Alegre
+          stadium: Estadio Beira-Rio
+          local_timezone: GMT-3
         - date: '2014-06-25 13:00'
-        host: BA
-        rival: IR
-        place: Salvador
-        stadium: Arena Fonte Nova
-        local_timezone: GMT-3
+          host: BA
+          rival: IR
+          place: Salvador
+          stadium: Arena Fonte Nova
+          local_timezone: GMT-3
     G:
       teams: [DE, PT, GH, US]
+      matches:
         - date: '2014-06-16 13:00'
-        host: DE
-        rival: PT
-        place: Salvador
-        stadium: Arena Fonte Nova
-        local_timezone: GMT-3
+          host: DE
+          rival: PT
+          place: Salvador
+          stadium: Arena Fonte Nova
+          local_timezone: GMT-3
         - date: '2014-06-16 19:00'
-        host: GH
-        rival: US
-        place: Natal
-        stadium: Estadio das Dunas
-        local_timezone: GMT-3
+          host: GH
+          rival: US
+          place: Natal
+          stadium: Estadio das Dunas
+          local_timezone: GMT-3
         - date: '2014-06-21 16:00'
-        host: DE
-        rival: GH
-        place: Fortaleza
-        stadium: Estadio Castelao
-        local_timezone: GMT-3
+          host: DE
+          rival: GH
+          place: Fortaleza
+          stadium: Estadio Castelao
+          local_timezone: GMT-3
         - date: '2014-06-22 18:00'
-        host: US
-        rival: PT
-        place: Manaous
-        stadium: Arena Amazonia
-        local_timezone: GMT-4
+          host: US
+          rival: PT
+          place: Manaous
+          stadium: Arena Amazonia
+          local_timezone: GMT-4
         - date: '2014-06-26 13:00'
-        host: US
-        rival: DE
-        place: Recife
-        stadium: Arena Pernambuco
-        local_timezone: GMT-3
+          host: US
+          rival: DE
+          place: Recife
+          stadium: Arena Pernambuco
+          local_timezone: GMT-3
         - date: '2014-06-26 13:00'
-        host: PT
-        rival: GH
-        place: Brasilia
-        stadium: Estadio Nacional
-        local_timezone: GMT-3
+          host: PT
+          rival: GH
+          place: Brasilia
+          stadium: Estadio Nacional
+          local_timezone: GMT-3
     H:
       teams: [BE, DZ, RU, KR]
       matches:
         - date: '2014-06-17 13:00'
-        host: BE
-        rival: DZ
-        place: Belo Horizonte
-        stadium: Estadio Mineirao
-        local_timezone: GMT-3
+          host: BE
+          rival: DZ
+          place: Belo Horizonte
+          stadium: Estadio Mineirao
+          local_timezone: GMT-3
         - date: '2014-06-17 18:00'
-        host: RU
-        rival: KR
-        place: Cuiaba
-        stadium: Arena Pantanal
-        local_timezone: GMT-4
+          host: RU
+          rival: KR
+          place: Cuiaba
+          stadium: Arena Pantanal
+          local_timezone: GMT-4
         - date: '2014-06-22 13:00'
-        host: BE
-        rival: RU
-        place: Rio de Janeiro
-        stadium: Estadio Maracana
-        local_timezone: GMT-3
+          host: BE
+          rival: RU
+          place: Rio de Janeiro
+          stadium: Estadio Maracana
+          local_timezone: GMT-3
         - date: '2014-06-22 16:00'
-        host: KR
-        rival: DZ
-        place: Porto Alegre
-        stadium: Estadio Beira-Rio
-        local_timezone: GMT-3
+          host: KR
+          rival: DZ
+          place: Porto Alegre
+          stadium: Estadio Beira-Rio
+          local_timezone: GMT-3
         - date: '2014-06-26 17:00'
-        host: KR
-        rival: BE
-        place: Sao Paulo
-        stadium: Arena de Sao Paulo
-        local_timezone: GMT-3
+          host: KR
+          rival: BE
+          place: Sao Paulo
+          stadium: Arena de Sao Paulo
+          local_timezone: GMT-3
         - date: '2014-06-26 17:00'
-        host: DZ
-        rival: RU
-        place: Curitiba
-        stadium: Arena de Baixada
-        local_timezone: GMT-3
+          host: DZ
+          rival: RU
+          place: Curitiba
+          stadium: Arena de Baixada
+          local_timezone: GMT-3
 
   16_round:
     matches:
       - date: '2014-06-28 13:00'
-      host_description: First of Group A
-      rival_description: Second of Group B
-      host_code: 'A:1'
-      rival_code: 'B:2'
-      place: Belo Horizonte
-      stadium: Estadio Mineirao
-      local_timezone: GMT-3
+        host_description: First of Group A
+        rival_description: Second of Group B
+        host_code: 'A:1'
+        rival_code: 'B:2'
+        place: Belo Horizonte
+        stadium: Estadio Mineirao
+        local_timezone: GMT-3
       - date: '2014-06-28 17:00'
-      host_description: First of Group C
-      rival_description: Second of Group D
-      host_code: 'C:1'
-      rival_code: 'D:2'
-      place: Rio de Janeiro
-      stadium: Estadio Maracana
-      local_timezone: GMT-3
+        host_description: First of Group C
+        rival_description: Second of Group D
+        host_code: 'C:1'
+        rival_code: 'D:2'
+        place: Rio de Janeiro
+        stadium: Estadio Maracana
+        local_timezone: GMT-3
       - date: '2014-06-29 13:00'
-      host_description: First of Group B
-      rival_description: Second of Group A
-      host_code: 'B:1'
-      rival_code: 'A:2'
-      place: Fortaleza
-      stadium: Estadio Castelao
-      local_timezone: GMT-3
+        host_description: First of Group B
+        rival_description: Second of Group A
+        host_code: 'B:1'
+        rival_code: 'A:2'
+        place: Fortaleza
+        stadium: Estadio Castelao
+        local_timezone: GMT-3
       - date: '2014-06-29 17:00'
-      host_description: First of Group D
-      rival_description: Second of Group C
-      host_code: 'D:1'
-      rival_code: 'C:2'
-      place: Recife
-      stadium: Arena Pernambuco
-      local_timezone: GMT-3
+        host_description: First of Group D
+        rival_description: Second of Group C
+        host_code: 'D:1'
+        rival_code: 'C:2'
+        place: Recife
+        stadium: Arena Pernambuco
+        local_timezone: GMT-3
       - date: '2014-06-30 13:00'
-      host_description: First of Group E
-      rival_description: Second of Group F
-      host_code: 'E:1'
-      rival_code: 'F:2'
-      place: Brasilia
-      stadium: Estadio Nacional
-      local_timezone: GMT-3
+        host_description: First of Group E
+        rival_description: Second of Group F
+        host_code: 'E:1'
+        rival_code: 'F:2'
+        place: Brasilia
+        stadium: Estadio Nacional
+        local_timezone: GMT-3
       - date: '2014-06-30 17:00'
-      host_description: First of Group G
-      rival_description: Second of Group H
-      host_code: 'G:1'
-      rival_code: 'H:2'
-      place: Porto Alegre
-      stadium: Estadio Beira-Rio
-      local_timezone: GMT-3
+        host_description: First of Group G
+        rival_description: Second of Group H
+        host_code: 'G:1'
+        rival_code: 'H:2'
+        place: Porto Alegre
+        stadium: Estadio Beira-Rio
+        local_timezone: GMT-3
       - date: '2014-07-01 13:00'
-      host_description: First of Group F
-      rival_description: Second of Group E
-      host_code: 'F:1'
-      rival_code: 'E:2'
-      place: Sao Paulo
-      stadium: Arena de Sao Paulo
-      local_timezone: GMT-3
+        host_description: First of Group F
+        rival_description: Second of Group E
+        host_code: 'F:1'
+        rival_code: 'E:2'
+        place: Sao Paulo
+        stadium: Arena de Sao Paulo
+        local_timezone: GMT-3
       - date: '2014-07-01 17:00'
-      host_description: First of Group H
-      rival_description: Second of Group G
-      host_code: 'H:1'
-      rival_code: 'G:2'
-      place: Salvador
-      stadium: Arena Fonte Nova
-      local_timezone: GMT-3
+        host_description: First of Group H
+        rival_description: Second of Group G
+        host_code: 'H:1'
+        rival_code: 'G:2'
+        place: Salvador
+        stadium: Arena Fonte Nova
+        local_timezone: GMT-3
 
   quarter_finals:
     matches:
       - date: '2014-07-04 13:00'
-      host_description: Winner of 1E vs 2F
-      rival_description: Winner of 1G vs 2H
-      host_code: '5'
-      rival_code: '6'
-      place: Rio de Janeiro
-      stadium: Maracana
-      local_timezone: GMT-3
+        host_description: Winner of 1E vs 2F
+        rival_description: Winner of 1G vs 2H
+        host_code: '5'
+        rival_code: '6'
+        place: Rio de Janeiro
+        stadium: Maracana
+        local_timezone: GMT-3
       - date: '2014-07-04 17:00'
-      host_description: Winner of 1A vs 2B
-      rival_description: Winner of 1C vs 2D
-      host_code: '1'
-      rival_code: '2'
-      place: Fortaleza
-      stadium: Estadio Castelao
-      local_timezone: GMT-3
+        host_description: Winner of 1A vs 2B
+        rival_description: Winner of 1C vs 2D
+        host_code: '1'
+        rival_code: '2'
+        place: Fortaleza
+        stadium: Estadio Castelao
+        local_timezone: GMT-3
       - date: '2014-07-05 13:00'
-      host_description: Winner of 1F vs 2E
-      rival_description: Winner of 1H vs 2G
-      host_code: '7'
-      rival_code: '8'
-      place: Brasilia
-      stadium: Estadio Nacional
-      local_timezone: GMT-3
+        host_description: Winner of 1F vs 2E
+        rival_description: Winner of 1H vs 2G
+        host_code: '7'
+        rival_code: '8'
+        place: Brasilia
+        stadium: Estadio Nacional
+        local_timezone: GMT-3
       - date: '2014-07-05 17:00'
-      host_description: Winner of 1B vs 2A
-      rival_description: Winner of 1D vs 2C
-      host_code: '3'
-      rival_code: '4'
-      place: Salvador
-      stadium: Arena Fonte Nova
-      local_timezone: GMT-3
+        host_description: Winner of 1B vs 2A
+        rival_description: Winner of 1D vs 2C
+        host_code: '3'
+        rival_code: '4'
+        place: Salvador
+        stadium: Arena Fonte Nova
+        local_timezone: GMT-3
 
   semi_finals:
     matches:
       - date: '2014-07-08 17:00'
-      host_description: Winner of Q1
-      rival_description: Winner of Q2
-      host_code: '1'
-      rival_code: '2'
-      place: Belo Horizonte
-      stadium: Estadio Mineirao
-      local_timezone: GMT-3
+        host_description: Winner of Q1
+        rival_description: Winner of Q2
+        host_code: '1'
+        rival_code: '2'
+        place: Belo Horizonte
+        stadium: Estadio Mineirao
+        local_timezone: GMT-3
       - date: '2014-07-09 17:00'
-      host_description: Winner of Q1
-      rival_description: Winner of Q2
-      host_code: '3'
-      rival_code: '4'
-      place: Sao Paulo
-      stadium: Arena de Sao Paulo
-      local_timezone: GMT-3
+        host_description: Winner of Q1
+        rival_description: Winner of Q2
+        host_code: '3'
+        rival_code: '4'
+        place: Sao Paulo
+        stadium: Arena de Sao Paulo
+        local_timezone: GMT-3
 
   final:
     matches:
       - date: '2014-07-13 16:00'
-      host_description: Winner of S1
-      rival_description: Winner of S2
-      place: Rio de Janeiro
-      stadium: Maracana
-      local_timezone: GMT-3
+        host_description: Winner of S1
+        rival_description: Winner of S2
+        place: Rio de Janeiro
+        stadium: Maracana
+        local_timezone: GMT-3
 
   third_place:
     matches:
       - date: '2014-07-12 17:00'
-      host_description: Loser of S1
-      rival_description: Loser of S2
-      place: Brasilia
-      stadium: Estadio Nacional
-      local_timezone: GMT-3
+        host_description: Loser of S1
+        rival_description: Loser of S2
+        place: Brasilia
+        stadium: Estadio Nacional
+        local_timezone: GMT-3
