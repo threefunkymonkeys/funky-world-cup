@@ -1,5 +1,11 @@
 Sequel.migration do
   change do
+    create_table(:cup_groups) do
+      primary_key :id
+      String :name, :text=>true, :null=>false
+      String :phase, :default=>"groups", :text=>true
+    end
+    
     create_table(:schema_info) do
       Integer :version, :default=>0, :null=>false
     end
@@ -16,12 +22,14 @@ Sequel.migration do
       primary_key :id
       foreign_key :host_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]
       foreign_key :rival_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]
+      foreign_key :group_id, :cup_groups, :key=>[:id]
       DateTime :start_datetime, :null=>false
       String :place, :text=>true, :null=>false
       String :stadium, :text=>true, :null=>false
       String :local_timezone, :text=>true, :null=>false
       String :host_description, :text=>true
       String :rival_description, :text=>true
+      TrueClass :enabled, :default=>true
     end
     
     create_table(:results) do
