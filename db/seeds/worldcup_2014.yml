@@ -541,6 +541,8 @@ worldcup:
       - date: '2014-07-13 16:00'
         host_description: Winner of S1
         rival_description: Winner of S2
+        host_code: 'W:1'
+        rival_code: 'W:2'
         place: Rio de Janeiro
         stadium: Maracana
         local_timezone: GMT-3
@@ -550,6 +552,8 @@ worldcup:
       - date: '2014-07-12 17:00'
         host_description: Loser of S1
         rival_description: Loser of S2
+        host_code: 'L:1'
+        rival_code: 'L:2'
         place: Brasilia
         stadium: Estadio Nacional
         local_timezone: GMT-3

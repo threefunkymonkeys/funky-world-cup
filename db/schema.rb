@@ -29,6 +29,8 @@ Sequel.migration do
       String :local_timezone, :text=>true, :null=>false
       String :host_description, :text=>true
       String :rival_description, :text=>true
+      String :host_code, :text=>true
+      String :rival_code, :text=>true
       TrueClass :enabled, :default=>true
     end
     

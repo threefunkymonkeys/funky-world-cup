@@ -11,6 +11,8 @@ Sequel.migration do
       String   :local_timezone, null: false
       String   :host_description
       String   :rival_description
+      String   :host_code
+      String   :rival_code
       Boolean  :enabled, default: true
     end
   end
