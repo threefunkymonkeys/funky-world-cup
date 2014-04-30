@@ -67,29 +67,29 @@ class SeedLoader
     end
 
     def seed_round_of_16(matches)
-      seed_single_group('Round of 16', matches)
+      seed_single_group('Round of 16', matches, '16_round')
     end
 
     def seed_quarter_finals(matches)
-      seed_single_group('Quarter-Finals', matches)
+      seed_single_group('Quarter-Finals', matches, 'quater_finals')
     end
 
     def seed_semi_finals(matches)
-      seed_single_group('Semi-Finals', matches)
+      seed_single_group('Semi-Finals', matches, 'semi_finals')
     end
 
     def seed_final(matches)
-      seed_single_group('Final', matches)
+      seed_single_group('Final', matches, 'final')
     end
 
     def seed_third_place(matches)
-      seed_single_group('Play-Off for Third Place', matches)
+      seed_single_group('Play-Off for Third Place', matches, 'third_place')
     end
 
-    def seed_single_group(name, matches)
+    def seed_single_group(name, matches, phase)
       begin
         DB.transaction do
-          group = CupGroup.create(name: name)
+          group = CupGroup.create(name: name, phase: phase)
           matches.each do |match|
             Match.create(
               host_description: match['host_description'],
