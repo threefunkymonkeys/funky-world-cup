@@ -1,0 +1,23 @@
+production:
+  db:
+    host: ''
+    port: ''
+    user: ''
+    password: ''
+    db_name: ''
+
+development:
+  db:
+    host: '127.0.0.1'
+    port: '5432'
+    user: 'fwc'
+    password: 'changepasswordplease'
+    db_name: 'funky_world_cup'
+
+test:
+  db:
+    host: '127.0.0.1'
+    port: '5432'
+    user: 'fwc'
+    password: 'changepasswordplease'
+    db_name: 'funky_world_cup_test'

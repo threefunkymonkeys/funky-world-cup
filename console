@@ -1,0 +1,3 @@
+#!/bin/bash
+RACK_ENV=${RACK_ENV-"development"}
+RACK_ENV=$RACK_ENV irb -r./app
