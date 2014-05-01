@@ -1,17 +1,16 @@
-@env = ARGV[1].nil? ? 'development' : ARGV[1]
-task @env do ;  end unless ARGV[1].nil?
+require_relative 'helpers/environment'
 
 namespace :db do
   desc "Run DB migrations on db/migrate directory"
   task :migrate do
     require 'sequel'
-    require_relative 'lib/funky_world_cup'
 
     Sequel.extension :migration
 
     env      ||= ENV['RACK_ENV'] || :development
-    FunkyWorldCupApp::Settings.load(File.dirname(__FILE__) + '/config/settings.yml', env)
-    DB       = FunkyWorldCupApp::Database.connect(FunkyWorldCupApp::Settings.get('db'))
+
+    FunkyWorldCup::Helpers.init_environment(env)
+    DB = FunkyWorldCup::Helpers.database
 
     puts 'Running migrations...'
 
@@ -24,11 +23,11 @@ namespace :db do
     desc "Dump the DB schema to db/schema.rb"
     task :dump do
       require 'sequel'
-      require_relative 'lib/funky_world_cup'
 
       env      ||= ENV['RACK_ENV'] || :development
-      FunkyWorldCupApp::Settings.load( File.dirname(__FILE__) + '/config/settings.yml', env)
-      db       = FunkyWorldCupApp::Database.connect(FunkyWorldCupApp::Settings.get('db'))
+
+      FunkyWorldCup::Helpers.init_environment(env)
+      db = FunkyWorldCup::Helpers.database
 
       db.extension :schema_dumper
 
@@ -44,14 +43,14 @@ namespace :db do
     desc "Load the DB schema defined in db/schema.rb"
     task :load do
       require 'sequel'
-      require_relative 'lib/funky_world_cup'
 
       Sequel.extension :migration
 
       puts "Loading schema..."
       env      ||= ENV['RACK_ENV'] || :test
-      FunkyWorldCupApp::Settings.load(  File.dirname(__FILE__) + '/config/settings.yml', env)
-      db       = FunkyWorldCupApp::Database.connect(FunkyWorldCupApp::Settings.get('db'))
+
+      FunkyWorldCup::Helpers.init_environment(env)
+      db = FunkyWorldCup::Helpers.database
 
       migration = eval(File.read('./db/schema.rb'))
 
@@ -69,7 +68,6 @@ namespace :db do
     desc "Prepares test DB by copying current dev schema"
     task :prepare do
       require 'sequel'
-      require_relative 'lib/funky_world_cup'
 
       env_val = ENV['RACK_ENV']
 

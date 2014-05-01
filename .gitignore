@@ -1,1 +1,4 @@
 config/settings.yml
+development.env.sh
+test.env.sh
+production.env.sh

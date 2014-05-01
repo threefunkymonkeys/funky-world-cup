@@ -1,28 +1,71 @@
 require 'cuba'
 require 'cuba/render'
 require 'sequel'
-require_relative 'lib/funky_world_cup'
+require "rack/protection"
+require 'omniauth-twitter'
+require_relative 'helpers/environment'
 
-ENV["RACK_ENV"] ||= :development
-settings_file = File.join(File.dirname(__FILE__), "config/settings.yml")
+ENV['RACK_ENV'] ||= :development
 
-FunkyWorldCupApp::Settings.load(settings_file, ENV["RACK_ENV"])
-DB = FunkyWorldCupApp::Database.connect FunkyWorldCupApp::Settings.get('db')
+
+FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
 Cuba.use Rack::Static,
           root: File.expand_path(File.dirname(__FILE__)) + "/public",
           urls: %w[/img /css /js]
 
-Cuba.plugin Cuba::Render
+Cuba.use Rack::Session::Cookie, :secret => "67569f63912747f4a11a6fd579a39c888054a984542a42568574f5bce3ceba5a"
+Cuba.use Rack::Protection
+Cuba.use Rack::MethodOverride
 
-Dir["./models/**/*.rb"].each     { |rb| require rb }
+Cuba.use OmniAuth::Builder do
+  provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+end
+
+Dir["./helpers/**/*.rb"].each { |file| require file }
+Dir["./models/**/*.rb"].each { |file| require file }
+
+Cuba.plugin Cuba::Render
+Cuba.plugin FunkyWorldCup::Helpers
 
 Cuba.define do
   on get do
+    on current_user do
+      on root do
+        res.redirect "/dashboard"
+      end
+
+      on "logout" do
+        logout
+      end
+
+      on "dashboard" do
+        res.write render("./views/layouts/application.html.erb") {
+          render("./views/pages/dashboard.html.erb")
+        }
+      end
+    end
+
     on root do
       res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/home.html.erb")
       }
     end
+
+    on "auth/:provider/callback" do |provider|
+      uid  = env['omniauth.auth']['uid']
+      info = env['omniauth.auth']['info']
+
+      unless user = User["#{provider}_user".to_sym => info["nickname"]]
+        user = User.create("#{provider}_user" => uid,
+                           "nickname" => info['nickname'],
+                           "name" => info['name'],
+                           "image" => info['image'])
+      end
+
+      authenticate(user)
+      res.redirect "/dashboard"
+    end
+
   end
 end
