@@ -2,10 +2,14 @@ Sequel.migration do
   up do
     create_table :users do
       primary_key :id
-      String :username, :null => true
+      String :name, :null => true
       String :twitter_user, :null => true
       String :facebook_user, :null => true
+      String :image, :null => true
     end
+
+    add_index :users, :twitter_user
+    add_index :users, :facebook_user
   end
 
   down do

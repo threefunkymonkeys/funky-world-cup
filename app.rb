@@ -22,14 +22,21 @@ Cuba.use OmniAuth::Builder do
   provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
 end
 
+Dir["./helpers/**/*.rb"].each { |file| require file }
+Dir["./models/**/*.rb"].each { |file| require file }
 
 Cuba.plugin Cuba::Render
+Cuba.plugin FunkyWorldCup::Helpers
 
 Dir["./models/**/*.rb"].each     { |rb| require rb }
 
 Cuba.define do
   on get do
     on root do
+      on user_authenticated? do
+        res.redirect "/dashboard"
+      end
+
       res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/home.html.erb")
       }
@@ -37,6 +44,24 @@ Cuba.define do
 
     on "auth/:provider/callback" do |provider|
       info = env['omniauth.auth']['info']
+
+      unless user = User["#{provider}_user".to_sym => info["nickname"]]
+        user = User.create("#{provider}_user" => info['nickname'],
+                           "name" => info['name'],
+                           "image" => info['image'])
+      end
+      authenticate(user)
+      res.redirect "/dashboard"
+    end
+
+    on "logout" do
+      logout
+    end
+
+    on "dashboard" do
+      res.write render("./views/layouts/application.html.erb") {
+        render("./views/pages/dashboard.html.erb")
+      }
     end
   end
 end
