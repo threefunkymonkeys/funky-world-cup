@@ -53,10 +53,12 @@ Cuba.define do
     end
 
     on "auth/:provider/callback" do |provider|
+      uid  = env['omniauth.auth']['uid']
       info = env['omniauth.auth']['info']
 
       unless user = User["#{provider}_user".to_sym => info["nickname"]]
-        user = User.create("#{provider}_user" => info['nickname'],
+        user = User.create("#{provider}_user" => uid,
+                           "nickname" => info['nickname'],
                            "name" => info['name'],
                            "image" => info['image'])
       end

@@ -3,6 +3,7 @@ Sequel.migration do
     create_table :users do
       primary_key :id
       String :name, :null => true
+      String :nickname, :null => true
       String :twitter_user, :null => true
       String :facebook_user, :null => true
       String :image, :null => true
