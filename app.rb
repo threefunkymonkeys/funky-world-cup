@@ -28,8 +28,6 @@ Dir["./models/**/*.rb"].each { |file| require file }
 Cuba.plugin Cuba::Render
 Cuba.plugin FunkyWorldCup::Helpers
 
-Dir["./models/**/*.rb"].each     { |rb| require rb }
-
 Cuba.define do
   on get do
     on current_user do
