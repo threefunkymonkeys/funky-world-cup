@@ -1,5 +1,5 @@
 require 'yaml'
-require_relative File.join(File.dirname(__FILE__) + '/../lib/funky_world_cup'
+require_relative File.join(File.dirname(__FILE__)) + '/../lib/funky_world_cup'
 
 module FunkyWorldCup
   module Helpers
