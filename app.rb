@@ -32,11 +32,23 @@ Dir["./models/**/*.rb"].each     { |rb| require rb }
 
 Cuba.define do
   on get do
-    on root do
-      on user_authenticated? do
+    on current_user do
+      on root do
         res.redirect "/dashboard"
       end
 
+      on "logout" do
+        logout
+      end
+
+      on "dashboard" do
+        res.write render("./views/layouts/application.html.erb") {
+          render("./views/pages/dashboard.html.erb")
+        }
+      end
+    end
+
+    on root do
       res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/home.html.erb")
       }
@@ -50,18 +62,10 @@ Cuba.define do
                            "name" => info['name'],
                            "image" => info['image'])
       end
+
       authenticate(user)
       res.redirect "/dashboard"
     end
 
-    on "logout" do
-      logout
-    end
-
-    on "dashboard" do
-      res.write render("./views/layouts/application.html.erb") {
-        render("./views/pages/dashboard.html.erb")
-      }
-    end
   end
 end
