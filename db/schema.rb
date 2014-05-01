@@ -18,6 +18,17 @@ Sequel.migration do
       primary_key [:iso_code]
     end
     
+    create_table(:users, :ignore_index_errors=>true) do
+      primary_key :id
+      String :name, :text=>true
+      String :twitter_user, :text=>true
+      String :facebook_user, :text=>true
+      String :image, :text=>true
+
+      index [:facebook_user]
+      index [:twitter_user]
+    end
+
     create_table(:matches) do
       primary_key :id
       foreign_key :host_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]
