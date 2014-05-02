@@ -4,4 +4,6 @@ class Match < Sequel::Model
 
   one_to_one :result
   one_to_one :cup_group
+
+  one_to_many :match_predictions
 end
