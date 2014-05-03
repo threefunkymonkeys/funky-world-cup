@@ -45,7 +45,7 @@ class SeedLoader
     def seed_groups_phase(groups)
       groups.each do |name, group|
         begin
-          DB.transaction do
+          FunkyWorldCup::Helpers.database.transaction do
             cup_group = CupGroup.create(name: name)
             group['matches'].each do |match|
               Match.create(
@@ -88,7 +88,7 @@ class SeedLoader
 
     def seed_single_group(name, matches, phase)
       begin
-        DB.transaction do
+        FunkyWorldCup::Helpers.database.transaction do
           group = CupGroup.create(name: name, phase: phase)
           matches.each do |match|
             Match.create(
