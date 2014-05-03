@@ -3,6 +3,7 @@ require 'cuba/render'
 require 'sequel'
 require "rack/protection"
 require 'omniauth-twitter'
+require 'omniauth-facebook'
 require_relative 'helpers/environment'
 
 ENV['RACK_ENV'] ||= :development
@@ -20,6 +21,7 @@ Cuba.use Rack::MethodOverride
 
 Cuba.use OmniAuth::Builder do
   provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+  provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
 end
 
 Dir["./helpers/**/*.rb"].each { |file| require file }
@@ -55,8 +57,9 @@ Cuba.define do
     on "auth/:provider/callback" do |provider|
       uid  = env['omniauth.auth']['uid']
       info = env['omniauth.auth']['info']
+      info['nickname'] ||= info['name']
 
-      unless user = User["#{provider}_user".to_sym => info["nickname"]]
+      unless user = User["#{provider}_user".to_sym => uid]
         user = User.create("#{provider}_user" => uid,
                            "nickname" => info['nickname'],
                            "name" => info['name'],
