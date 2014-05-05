@@ -2,8 +2,9 @@ require 'yaml'
 
 class SeedLoader
 
-  def initialize(file = 'db/seeds/worldcup_2014.yml')
+  def initialize(verbose = true, file = 'db/seeds/worldcup_2014.yml')
     @cup_data = YAML.load_file(file)['worldcup']
+    @verbose = verbose
   end
 
   def seed(empty = true)
@@ -34,9 +35,9 @@ class SeedLoader
             name: hash['name'],
             flag: hash['flag']
           )
-          puts "Team #{code} created"
+          puts "Team #{code} created" if @verbose
         rescue => e
-          puts "Team #{code} not loaded. Error: #{e.message}"
+          puts "Team #{code} not loaded. Error: #{e.message}" if @verbose
         end
       end
       Team.restrict_primary_key
@@ -59,9 +60,9 @@ class SeedLoader
               )
             end
           end
-          puts "Group: #{name} created"
+          puts "Group: #{name} created" if @verbose
         rescue => e
-          puts "Group: #{name} not loaded. Error: #{e.message}"
+          puts "Group: #{name} not loaded. Error: #{e.message}" if @verbose
         end
       end
     end
@@ -103,10 +104,10 @@ class SeedLoader
               local_timezone: match['local_timezone']
             )
           end
-          puts "Group: #{name} created"
+          puts "Group: #{name} created" if @verbose
         end
       rescue => e
-        puts "Group: #{name} not loaded. Error: #{e.message}"
+        puts "Group: #{name} not loaded. Error: #{e.message}" if @verbose
       end
     end
 end
