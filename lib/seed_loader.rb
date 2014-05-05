@@ -59,6 +59,12 @@ class SeedLoader
                 local_timezone: match['local_timezone']
               )
             end
+            cup_group.teams.each do |team|
+              GroupPosition. create(
+                group_id: cup_group.id,
+                team_id: team.iso_code
+              )
+            end
           end
           puts "Group: #{name} created" if @verbose
         rescue => e
