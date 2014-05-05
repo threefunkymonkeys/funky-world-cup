@@ -6,7 +6,11 @@ class CupGroup < Sequel::Model
     matches.map { |match| [match.host_team, match.rival_team] }.flatten.uniq
   end
 
-  def positions
+  def positions_table
     GroupPosition.select.select_append{ Sequel.as(goals - received_goals, :diff)}.where(group_id: id).order(:points, :diff).all
+  end
+
+  def matches_table
+    Match.where(group_id: id).order(:start_datetime).all
   end
 end
