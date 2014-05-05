@@ -7,7 +7,7 @@ class Match < Sequel::Model
 
   one_to_many :match_predictions
 
-  def update_score
+  def update_predictions_score
     match_predictions.each do |prediction|
       prediction.update_score(result)
     end

@@ -4,6 +4,6 @@ class Result < Sequel::Model
   def before_update
     old = Result[id]
     return false if old.status == 'final' && status != 'final'
-    match.update_score if old.status == 'partial' && status == 'final'
+    match.update_predictions_score if old.status == 'partial' && status == 'final'
   end
 end
