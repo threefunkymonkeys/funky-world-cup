@@ -6,4 +6,10 @@ class Match < Sequel::Model
   one_to_one :cup_group
 
   one_to_many :match_predictions
+
+  def update_score
+    match_predictions.each do |prediction|
+      prediction.update_score(result)
+    end
+  end
 end
