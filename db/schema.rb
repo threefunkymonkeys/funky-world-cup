@@ -41,6 +41,18 @@ Sequel.migration do
       index [:twitter_user]
     end
 
+    create_table(:group_positions) do
+      primary_key :id
+      foreign_key :group_id, :cup_groups, :key=>[:id]
+      foreign_key :team_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]
+      Integer :won, :default=>0
+      Integer :tied, :default=>0
+      Integer :lost, :default=>0
+      Integer :goals, :default=>0
+      Integer :points, :default=>0
+      Integer :received_goals, :default=>0
+    end
+
     create_table(:matches) do
       primary_key :id
       foreign_key :host_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]

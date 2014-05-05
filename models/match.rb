@@ -1,6 +1,6 @@
 class Match < Sequel::Model
-  one_to_one :team, key: :host_id
-  one_to_one :team, key: :rival_id
+  many_to_one :host_team,  class: :Team, key: :host_id
+  many_to_one :rival_team, class: :Team, key: :rival_id
 
   one_to_one :result
   one_to_one :cup_group
@@ -11,5 +11,9 @@ class Match < Sequel::Model
     match_predictions.each do |prediction|
       prediction.update_score(result)
     end
+  end
+
+  def finalized?
+    result != nil && result.status == 'final'
   end
 end
