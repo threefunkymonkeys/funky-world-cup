@@ -25,6 +25,21 @@
         <h3 class="panel-title">Prizes</h3>
       </div>
       <div class="panel-body">
+        <% if prizes.any? %>
+          <ul class="list-group">
+          <% prizes.each do |prize| %>
+          <li class="list-group-item">
+            <span class="label label-success">#<%= prize.order %></span>
+            <span><%= prize.name %></span>
+          </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <p>There are not any prizes yet</p>
+        <% end %>
+        <% if group.user_id == current_user.id %>
+          <a href="/groups/<%= group.id %>/prizes" class="btn btn-success btn-full-width">Edit Prizes</a>
+        <% end %>
       </div>
     </div>
   </div>

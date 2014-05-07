@@ -17,9 +17,8 @@ module FunkyWorldCup
 
         on ":id" do |group_id|
           if group = Group[group_id.to_i]
-            puts group.participants.inspect
             res.write render("./views/layouts/application.html.erb") {
-              render("./views/pages/groups/show.html.erb", group: group, participants: group.participants)
+              render("./views/pages/groups/show.html.erb", group: group, participants: group.participants, prizes: group.group_prizes)
             }
           else
             not_found!
