@@ -2,6 +2,7 @@ Sequel.migration do
   up do
     create_table :groups do
       primary_key :id
+      foreign_key :user_id, :users
       String :name, null: false
       String :description
     end
