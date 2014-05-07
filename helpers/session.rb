@@ -16,5 +16,10 @@ module FunkyWorldCup
     def user_authenticated?
       !session[:user].nil?
     end
+
+    def flash
+      session['fwc.flash'] = (@env['rack.session']['fwc.flash'] || {})
+      session['fwc.flash']
+    end
   end
 end
