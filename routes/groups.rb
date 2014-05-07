@@ -16,9 +16,10 @@ module FunkyWorldCup
         end
 
         on ":id" do |group_id|
-          if group = Group[group_id]
+          if group = Group[group_id.to_i]
+            puts group.participants.inspect
             res.write render("./views/layouts/application.html.erb") {
-              render("./views/pages/groups/show.html.erb", group: group)
+              render("./views/pages/groups/show.html.erb", group: group, participants: group.participants)
             }
           else
             not_found!
@@ -43,6 +44,7 @@ module FunkyWorldCup
             )
 
             GroupsUser.create(group_id: new_group.id, user_id: current_user.id)
+            authenticate(User[current_user.id])
 
             flash[:success] = "The group '#{group['name']}' was created"
             res.redirect "/groups/#{new_group.id}"

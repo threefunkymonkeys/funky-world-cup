@@ -1,1 +1,31 @@
 <h2>Group: <%= group.name %> (<%= group.user.nickname %>)</h2> 
+<br/>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Participants</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <% participants.each_with_index do |participant, index| %>
+          <li class="list-group-item">
+            <span class="badge"><%=participant[:score] || 0 %></span>
+            <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
+            <span><%= participant[:nickname] %></span>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Prizes</h3>
+      </div>
+      <div class="panel-body">
+      </div>
+    </div>
+  </div>
+</div>
