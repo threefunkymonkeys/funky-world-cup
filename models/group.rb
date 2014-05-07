@@ -3,6 +3,8 @@ class Group < Sequel::Model
 
   many_to_one :user
 
+  one_to_many :group_prizes, order: :order
+
   def participants
     GroupsUser.select(:nickname)
               .select_append{ Sequel.as(sum(prediction_score), :score)}
