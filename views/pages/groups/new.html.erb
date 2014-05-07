@@ -1,0 +1,17 @@
+<h2>Create new Group</h2>
+<form method="post" action="/groups">
+  <div class="form-group">
+    <label class="control-label" for="name">Name</label>
+    <input class="form-control" id="name" name="group[name]" type="text" value="<%= params.has_key?('name') ? params['name'] : '' %>" required>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="description">Description</label>
+    <textarea class="form-control" rows="3" id="description" name="group[description]"><%= params.has_key?('description') ? params['description'] : '' %></textarea>
+  </div>
+  <div class="form-group">
+    <div class="pull-right">
+      <button class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-success">Create Group</button>
+    </div>
+  </div>
+</form>

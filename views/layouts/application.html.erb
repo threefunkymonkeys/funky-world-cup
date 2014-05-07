@@ -20,7 +20,10 @@
     <%= render("views/shared/_header.html.erb") %>
     <div id="container" class="container">
       <div id="content" class="row">
-        <%= yield %>
+        <div class="col-md-9">
+          <%= show_flash_message %>
+          <%= yield %>
+        </div>
         <%= render("views/shared/_sidebar.html.erb") %>
       </div>
     </div>

@@ -4,6 +4,7 @@ require 'sequel'
 require "rack/protection"
 require 'omniauth-twitter'
 require 'omniauth-facebook'
+require 'hatch'
 require_relative 'helpers/environment'
 
 ENV['RACK_ENV'] ||= :development
@@ -26,12 +27,31 @@ end
 
 Dir["./helpers/**/*.rb"].each { |file| require file }
 Dir["./models/**/*.rb"].each { |file| require file }
+Dir["./routes/**/*.rb"].each { |file| require file }
+Dir["./validators/**/*.rb"].each { |file| require file }
+Dir["./lib/**/*.rb"].each { |file| require file }
 
 Cuba.plugin Cuba::Render
 Cuba.plugin FunkyWorldCup::Helpers
+Cuba.plugin FunkyWorldCup::Validators
+
+include Cuba::Render::Helper
 
 Cuba.define do
+
+  on "groups" do
+    on current_user do
+      run FunkyWorldCup::Groups
+    end
+
+    not_found!
+  end
+
   on get do
+    on "404" do
+      res.write "404"
+    end
+
     on current_user do
       on root do
         res.redirect "/dashboard"
@@ -69,6 +89,5 @@ Cuba.define do
       authenticate(user)
       res.redirect "/dashboard"
     end
-
   end
 end
