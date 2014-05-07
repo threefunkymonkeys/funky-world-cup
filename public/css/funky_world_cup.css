@@ -28,3 +28,50 @@
 #home-description .social-link {
   text-align: center;
 }
+
+.navbar-right .dropdown-toggle, .navbar-right .dropdown-toggle:hover {
+  padding: 5px 0;
+}
+.navbar-right .dropdown-toggle img {
+  max-width: 40px;
+}
+
+#content {
+}
+#sidebar {
+  margin-top: 62px;
+}
+  #score-rank .panel { 
+    width: 45%;
+  }
+  #score-rank .panel-body {
+    font-size: 3em;
+    text-align: center;
+  }
+
+  #create-group {
+    width: 100%;
+  }
+
+.matches-table {
+  
+}
+  .matches-table td {
+    background-color: white !important;
+    vertical-align: middle !important;
+  }
+    .matches-table td img {
+      max-width: 70px;
+    }
+    .matches-table td .team {
+      font-size: 1.2em;
+      padding: 0 10px;
+      text-transform: uppercase;
+    }
+    .matches-table td .time {
+      font-size: 1.2em;
+    }
+    .matches-table td.text-primary {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
