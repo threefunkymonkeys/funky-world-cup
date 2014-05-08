@@ -24,6 +24,12 @@ module FunkyWorldCup
             end
 
             on group.user_id == current_user.id do
+              on "edit" do
+                res.write render("./views/layouts/application.html.erb") {
+                  render("./views/pages/groups/edit.html.erb", group: group, params: session.delete('fwc.group_params_edit') || {} )
+                }
+              end
+
               on "prizes" do
                 res.write render("./views/layouts/application.html.erb") {
                   render("./views/pages/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
@@ -75,6 +81,26 @@ module FunkyWorldCup
         on ":id" do |group_id|
           on (group = Group[group_id.to_i]) do
             on group.user_id == current_user.id do
+              on root do
+                begin
+                  group_params = req.params['group'].strip
+                  group_form = FunkyWorldCup::Validators::GroupForm.hatch(group_params)
+                  raise ArgumentError.new(group_form.errors.full_messages.join(', ')) unless group_form.valid?
+                  raise ArgumentError.new("Name can not be repeated") unless Group.where(name: group_params['name']).and(user_id: current_user.id).all.empty?
+
+                  group.name = group_params['name']
+                  group.description = group_params['description']
+                  group.save
+
+                  flash[:success] = "The group '#{group.name}' was updated"
+                  res.redirect "/groups/#{group.id}"
+                rescue => e
+                  flash[:error] = e.message
+                  session['fwc.group_params_edit'] = group
+                  res.redirect "/groups/#{group.id}/edit"
+                end
+              end
+
               on "prizes" do
                 old = group.group_prizes
 

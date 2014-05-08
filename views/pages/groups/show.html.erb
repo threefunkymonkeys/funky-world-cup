@@ -1,4 +1,9 @@
-<h2>Group: <%= group.name %> (<%= group.user.nickname %>)</h2> 
+<h2>
+  Group: <%= group.name %> (<%= group.user.nickname %>)
+  <% if group.user_id == current_user.id %>
+    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right">Edit</a>
+  <% end %>
+</h2> 
 <br/>
 <div class="row">
   <div class="col-md-8">
