@@ -5,3 +5,4 @@ pg -v 0.17.1
 omniauth-twitter -v 1.0.1
 omniauth-facebook -v 1.6.0
 rack-protection -v 1.5.3
+hatch -v 0.1.3

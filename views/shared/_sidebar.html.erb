@@ -5,7 +5,7 @@
         <h3 class="panel-title">Score</h3>
       </div>
       <div class="panel-body">
-        <a href="/score">45</a>
+        <a href="/score"><%= current_user.score %></a>
       </div>
     </div>
     <div class="panel panel-primary pull-right">
@@ -21,21 +21,19 @@
   <div class="panel panel-default">
     <div class="panel-heading">Your groups</div>
     <div class="panel-body">
+      <% if current_user.groups.any? %>
       <ul class="list-group">
-          <li class="list-group-item">
-            <span class="badge">#1</span>
-            <a href="/groups/id/rank">School Friends</a>
-          </li>
-          <li class="list-group-item">
-            <span class="badge">#4</span>
-            <a href="/groups/id/rank">Work</a>
-          </li>
-          <li class="list-group-item">
-            <span class="badge">#15</span>
-            <a href="/groups/id/rank">Others</a>
-          </li>
-        </ul>
-        <a href="/groups/new" class="btn btn-success" id="create-group">Create Group</a>
+        <% current_user.groups.each do |user_group| %>
+        <li class="list-group-item">
+          <span class="badge">#1</span>
+          <a href="/groups/<%= user_group.id %>"><%= "#{user_group.name} (#{user_group.user.nickname})" %></a>
+        </li>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>You don't participate in any group yet</p>
+      <% end %>
+      <a href="/groups/new" class="btn btn-success" id="create-group">Create Group</a>
     </div>
   </div>
 </div>
