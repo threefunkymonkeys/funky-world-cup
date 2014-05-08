@@ -57,20 +57,28 @@
   
 }
   .matches-table td {
-    background-color: white !important;
     vertical-align: middle !important;
   }
     .matches-table td img {
       max-width: 70px;
+    }
+    .matches-table td.team-column {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .matches-table td.text-center {
+      width: 100px;
+    }
+    .matches-table td.info-column {
+      width: 200px;
     }
     .matches-table td .team {
       display: inline-block;
       font-size: 1.2em;
       padding: 0 10px;
       text-transform: uppercase;
-      min-width: 144px;
-      max-width: 144px;
-      vertical-align: middle;
+      line-height: 35px;
     }
     .matches-table td .time {
       font-size: 1.2em;

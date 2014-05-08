@@ -3,14 +3,15 @@
   <tbody>
     <% group.matches.each do |match| %>
       <tr>
-        <td>
+        <td class="info-column">
           <p><%= match.start_datetime.strftime("%d %^b %Y") %></br>
           <%= match.stadium %></br>
           <%= match.place %>
           </p>
         </td>
-        <td>
+        <td class="team-column">
           <img src="/img/flags/<%= match.host_team.flag %>">
+          <br>
           <span class="team host-team"><%= match.host_team.name %></span>
         </td>
         <td class="text-center">
@@ -19,9 +20,10 @@
             <%= match.local_timezone %>
           </span>
         </td>
-        <td>
-          <span class="team"><%= match.rival_team.name %></span>
+        <td class="team-column">
           <img src="/img/flags/<%= match.rival_team.flag %>">
+          <br>
+          <span class="team"><%= match.rival_team.name %></span>
         </td>
         <td class="text-center">
           <button type="button" class="btn btn-primary btn-sm">Predict</button>
