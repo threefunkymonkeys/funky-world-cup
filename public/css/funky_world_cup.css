@@ -64,9 +64,13 @@
       max-width: 70px;
     }
     .matches-table td .team {
+      display: inline-block;
       font-size: 1.2em;
       padding: 0 10px;
       text-transform: uppercase;
+      min-width: 144px;
+      max-width: 144px;
+      vertical-align: middle;
     }
     .matches-table td .time {
       font-size: 1.2em;
