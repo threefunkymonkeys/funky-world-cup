@@ -30,5 +30,14 @@ module FunkyWorldCupApp
   end
 
   class LoginException < StandardError; end;
+
+  def self.generate_group_link(id = 0)
+    new_link = id.to_s + SecureRandom.hex(10)
+
+    if Group.where(:link => new_link).count > 0
+      return FunkyWorldCupApp::generate_group_link(id)
+    end
+    new_link
+  end
 end
 

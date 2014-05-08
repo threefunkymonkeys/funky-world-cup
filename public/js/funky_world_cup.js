@@ -103,3 +103,6 @@ body.on("click", ".modal .modal-close", function(event) {
 
   $("#modal-delete").hide();
 });
+
+// Group link
+$("#sharecode").select();
