@@ -16,13 +16,27 @@ module FunkyWorldCup
         end
 
         on ":id" do |group_id|
-          if group = Group[group_id.to_i]
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/pages/groups/show.html.erb", group: group, participants: group.participants, prizes: group.group_prizes)
-            }
-          else
+          on (group = Group[group_id.to_i]) do
+            on root do
+              res.write render("./views/layouts/application.html.erb") {
+                render("./views/pages/groups/show.html.erb", group: group, participants: group.participants, prizes: group.group_prizes)
+              }
+            end
+
+            on group.user_id == current_user.id do
+              on "prizes" do
+                res.write render("./views/layouts/application.html.erb") {
+                  render("./views/pages/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
+                }
+              end
+
+              not_found!
+            end
+
             not_found!
           end
+
+          not_found!
         end
 
         not_found!
@@ -52,6 +66,45 @@ module FunkyWorldCup
             session['fwc.group_params'] = group
             res.redirect '/groups/new'
           end
+        end
+
+        not_found!
+      end
+
+      on put do
+        on ":id" do |group_id|
+          on (group = Group[group_id.to_i]) do
+            on group.user_id == current_user.id do
+              on "prizes" do
+                old = group.group_prizes
+
+                new = Array.new
+                begin
+                  FunkyWorldCup::Helpers.database.transaction(rollback: :reraise) do
+                    req.params['prizes'].each_with_index do |prize, index|
+                      GroupPrize.create(name: prize, group_id: group.id, order: index +1)
+                    end
+
+                    old.each do |prize|
+                      prize.delete
+                    end
+                  end
+                  flash[:success] = "Prizes list was updated"
+                  res.redirect "/groups/#{group.id}"
+                rescue Sequel::Rollback
+                  flash[:error] = "There was an error saving prizes, please try again"
+                  session['fwc.pizes'] = req.params['prizes']
+                  res.redirect "/groups/#{group.id}/prizes"
+                end
+              end
+
+              not_found!
+            end
+
+            not_found!
+          end
+
+          not_found!
         end
 
         not_found!

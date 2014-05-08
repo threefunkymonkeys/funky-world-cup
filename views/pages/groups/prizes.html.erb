@@ -1,0 +1,29 @@
+<h2><%= group.name %> Prizes</h2> 
+<% unless prizes.any? %>
+  <p id="no-prize">There are not any prizes yet</p>
+<% end %>
+
+<form method="post" action="/groups/<%= group.id %>/prizes" id="prize-form">
+  <input type="hidden" name="_method" value="PUT">
+  <ul class="list-group" id="prizes-list">
+    <% prizes.each_with_index do |prize, index| %>
+      <li class="list-group-item">
+        <%= prize.name %>
+        <input type="hidden" name="prizes[]" value="<%= prize.name %>">
+        <button type="button" class="close pull-right">×</button>
+        <ul class="pager pull-right">
+          <li class="<%= index == 0 ? 'disabled' : '' %>"><a class="up" href="#" >up</a></li>
+          <li class="<%= prizes[index+1].nil? ? 'disabled' : '' %>"><a class="down" href="#">down</a></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</form>
+
+<div class="form-group" id="new-prize-box">
+  <div class="col-lg-5">
+    <input type="text" class="form-control" id="new-prize">
+  </div>
+  <button type="submit" class="btn btn-primary" id="new-prize-btn">Add Prize</button>
+  <button type="submit" class="btn btn-success pull-right <%= prizes.empty? ? "hide" : "" %>" id="edit-prize-btn">Save</button>
+</div>
