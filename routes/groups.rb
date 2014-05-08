@@ -136,6 +136,32 @@ module FunkyWorldCup
         not_found!
       end
 
+      on delete do
+        on ":id" do |group_id|
+          on (group = Group[group_id.to_i]) do
+            on group.user_id == current_user.id do
+              begin
+                #cascade is enabled
+                group.delete
+                authenticate(User[current_user.id])
+
+                flash[:success] = "Group was deleted."
+                res.redirect "/groups"
+              rescue => e
+                flash[:error] = "There was an error deleting the group, please try again"
+                res.redirect "/groups/#{group.id}"
+              end
+            end
+
+            not_found!
+          end
+
+          not_found!
+        end
+
+        not_found!
+      end
+
       not_found!
     end
   end

@@ -2,6 +2,7 @@
   Group: <%= group.name %> (<%= group.user.nickname %>)
   <% if group.user_id == current_user.id %>
     <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right">Edit</a>
+    <a href="#" class="btn btn-danger pull-right" id="delete-group">Delete</a>
   <% end %>
 </h2> 
 <br/>
@@ -49,3 +50,6 @@
     </div>
   </div>
 </div>
+<% if group.user_id == current_user.id %>
+  <%= render("views/pages/groups/_delete_popup.html.erb", id: group.id) %>
+<% end %>

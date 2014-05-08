@@ -85,3 +85,21 @@ window.update_prizes_list = function() {
   $(items[0]).find('.pager .up').parent().addClass('disabled');
   $(items[items.length - 1]).find('.pager .down').parent().addClass('disabled');
 }
+
+// Group Delete Modal
+
+body.on("click", "#delete-group", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  $("#modal-delete").show();
+});
+
+// General Popup close bind
+
+body.on("click", ".modal .modal-close", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  $("#modal-delete").hide();
+});
