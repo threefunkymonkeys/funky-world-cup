@@ -4,6 +4,6 @@ Sequel.migration do
   end
 
   down do
-    remoce_column :groups, :link
+    remove_column :groups, :link
   end
 end
