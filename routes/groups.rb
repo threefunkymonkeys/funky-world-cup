@@ -19,7 +19,12 @@ module FunkyWorldCup
           on (group = Group[group_id.to_i]) do
             on root do
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/pages/groups/show.html.erb", group: group, participants: group.participants, prizes: group.group_prizes)
+                render("./views/pages/groups/show.html.erb",
+                       group: group,
+                       participants: group.participants,
+                       prizes: group.group_prizes,
+                       url: ENV['FWC_URL']
+                      )
               }
             end
 
@@ -59,7 +64,8 @@ module FunkyWorldCup
             new_group = Group.create(
               name: group['name'],
               description: group['description'],
-              user_id: current_user.id
+              user_id: current_user.id,
+              link: FunkyWorldCupApp::generate_group_link
             )
 
             GroupsUser.create(group_id: new_group.id, user_id: current_user.id)
@@ -124,7 +130,45 @@ module FunkyWorldCup
                 end
               end
 
+              on "reset_link" do
+                begin
+                  group.link = FunkyWorldCupApp::generate_group_link(group.id)
+                  group.save
+                  flash[:success] = "The link was updated."
+                rescue => e
+                  puts e.inspect
+                  flash[:error] = "There was an error reseting the link, please try again"
+                end
+                res.redirect "/groups/#{group.id}"
+              end
+
               not_found!
+            end
+
+            not_found!
+          end
+
+          not_found!
+        end
+
+        not_found!
+      end
+
+      on delete do
+        on ":id" do |group_id|
+          on (group = Group[group_id.to_i]) do
+            on group.user_id == current_user.id do
+              begin
+                #cascade is enabled
+                group.delete
+                authenticate(User[current_user.id])
+
+                flash[:success] = "Group was deleted."
+                res.redirect "/groups"
+              rescue => e
+                flash[:error] = "There was an error deleting the group, please try again"
+                res.redirect "/groups/#{group.id}"
+              end
             end
 
             not_found!

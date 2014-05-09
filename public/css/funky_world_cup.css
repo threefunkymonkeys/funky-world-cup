@@ -109,3 +109,11 @@
   padding: 2px 10px;
   font-size: 0.9em;
 }
+
+#delete-group {
+  margin-right: 10px;
+}
+
+.form-inline {
+  display: inline;
+}

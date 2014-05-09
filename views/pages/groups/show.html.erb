@@ -2,11 +2,34 @@
   Group: <%= group.name %> (<%= group.user.nickname %>)
   <% if group.user_id == current_user.id %>
     <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right">Edit</a>
+    <a href="#" class="btn btn-danger pull-right" id="delete-group">Delete</a>
   <% end %>
 </h2> 
 <br/>
 <div class="row">
   <div class="col-md-8">
+    <% if group.user_id == current_user.id %>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Invite your friends! Share this link with them.</h3>
+      </div>
+      <div class="panel-body">
+        <form method="post" action="/groups/<%= group.id %>/reset_link">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">#</span>
+              <input type="text" class="form-control" id="sharecode" value="<%= url + (group.link || "")%>" readonly="readonly">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Reset</button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <% end %>
+
     <div class="panel panel-success">
       <div class="panel-heading">
         <h3 class="panel-title">Participants</h3>
@@ -49,3 +72,6 @@
     </div>
   </div>
 </div>
+<% if group.user_id == current_user.id %>
+  <%= render("views/pages/groups/_delete_popup.html.erb", id: group.id) %>
+<% end %>
