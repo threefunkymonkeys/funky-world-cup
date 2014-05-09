@@ -100,6 +100,13 @@ Cuba.define do
         }
       end
 
+      on "rank" do
+        @rank = UserScore.order(Sequel.desc(:score), :id).all
+        res.write render("./views/layouts/application.html.erb") {
+          render("./views/pages/rank.html.erb")
+        }
+      end
+
       not_found!
     end
 
