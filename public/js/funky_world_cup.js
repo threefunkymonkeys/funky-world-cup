@@ -101,7 +101,7 @@ body.on("click", ".modal .modal-close", function(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  $("#modal-delete").hide();
+  $(this).parents(".modal").hide();
 });
 
 // Group link
@@ -110,3 +110,22 @@ $("#sharecode").select().on('click', function(event) {
   event.stopPropagation();
   $(this).select();
 });
+
+//Group kick participant
+
+body.on("click", ".kick-participant", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var _this = $(this),
+      name = _this.attr('data-name'),
+      id = _this.attr('data-id'),
+      group_id = _this.parents(".panel-body").attr('data-group');
+
+  modal = $("#modal-kick");
+  modal.find('form').attr('action', "/groups/" + group_id + "/kick/" + id);
+  modal.find('#popup-participant-name').text(name);
+
+  modal.show();
+});
+
+>>>>>>> Implement kick from group

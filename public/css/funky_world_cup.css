@@ -117,3 +117,14 @@
 .form-inline {
   display: inline;
 }
+
+#group-participants-list.by-owner {
+  width: 90%;
+}
+  #group-participants-list.by-owner li {
+    position: relative;
+  }
+  #group-participants-list.by-owner button.btn-xs {
+    position: absolute;
+    right: -50px;
+  }

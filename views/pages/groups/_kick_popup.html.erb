@@ -1,0 +1,20 @@
+<div class="modal" id="modal-kick">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Kick Participant</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to kick participant <strong id="popup-participant-name" class="text-danger"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+        <form method="post" action="/groups/<%= id %>/kick" class="form-inline" role="form">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-primary">Yes, kick it.</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

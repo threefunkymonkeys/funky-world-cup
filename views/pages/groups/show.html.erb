@@ -1,12 +1,12 @@
 <h2>
   Group: <%= group.name %> (<%= group.user.nickname %>)
   <% if group.user_id == current_user.id %>
-    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right">Edit</a>
-    <a href="#" class="btn btn-danger pull-right" id="delete-group">Delete</a>
+    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm">Edit</a>
+    <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group">Delete</a>
   <% end %>
 </h2> 
 <br/>
-<div class="row">
+<div class="row" style="margin-top:-20px;">
   <div class="col-md-8">
     <% if group.user_id == current_user.id %>
     <div class="panel panel-success">
@@ -34,13 +34,16 @@
       <div class="panel-heading">
         <h3 class="panel-title">Participants</h3>
       </div>
-      <div class="panel-body">
-        <ul class="list-group">
+      <div class="panel-body" data-group="<%= group.id %>">
+        <ul class="list-group <%= group.user_id == current_user.id ? 'by-owner' : ''%>" id="group-participants-list">
           <% participants.each_with_index do |participant, index| %>
           <li class="list-group-item">
             <span class="badge"><%=participant[:score] || 0 %></span>
             <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
             <span><%= participant[:nickname] %></span>
+            <% if group.user_id == current_user.id && current_user.id != participant[:id] %>
+              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>">kick</button>
+            <% end %>
           </li>
           <% end %>
         </ul>
@@ -74,4 +77,5 @@
 </div>
 <% if group.user_id == current_user.id %>
   <%= render("views/pages/groups/_delete_popup.html.erb", id: group.id) %>
+  <%= render("views/pages/groups/_kick_popup.html.erb", id: group.id) %>
 <% end %>
