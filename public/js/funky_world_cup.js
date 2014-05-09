@@ -105,4 +105,8 @@ body.on("click", ".modal .modal-close", function(event) {
 });
 
 // Group link
-$("#sharecode").select();
+$("#sharecode").select().on('click', function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  $(this).select();
+});

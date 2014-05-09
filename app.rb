@@ -40,6 +40,28 @@ include Cuba::Render::Helper
 Cuba.define do
 
   on "groups" do
+    on "join/:code" do |code|
+      on current_user do
+        if group = Group.find(link: code)
+          begin
+            GroupsUser.create(group_id: group.id, user_id: current_user.id)
+            authenticate(User[current_user.id])
+            flash[:success] = "You are now part of this group"
+            res.redirect "/groups/#{group.id}"
+          rescue => e
+            flash[:error] = "There was an error joining the group, please try again"
+            res.redirect "/dashboard"
+          end
+        else
+          not_found!
+        end
+      end
+
+      session['fwc.join_group_code'] = code
+      flash[:info] = "Please sign in first"
+      res.redirect "/"
+    end
+
     on current_user do
       run FunkyWorldCup::Groups
     end
@@ -67,6 +89,8 @@ Cuba.define do
           render("./views/pages/dashboard.html.erb")
         }
       end
+
+      not_found!
     end
 
     on root do
@@ -87,7 +111,21 @@ Cuba.define do
                            "image" => info['image'])
       end
 
+      if join_group_code = session.delete('fwc.join_group_code')
+        if group = Group.find(link: join_group_code)
+          begin
+            GroupsUser.create(group_id: group.id, user_id: user.id)
+            flash[:success] = "You are now part of group #{group.name}"
+          rescue => e
+            flash[:error] = "There was an error joining the group #{group.name}, please try again"
+          end
+        else
+          flash[:error] = "There was an error joining the group #{group.name}, please try again"
+        end
+      end
+
       authenticate(user)
+
       res.redirect "/dashboard"
     end
   end
