@@ -57,11 +57,9 @@ Cuba.define do
         end
       end
 
-      on true do
-        session['fwc.join_group_code'] = code
-        flash[:info] = "Please sign in first"
-        res.redirect "/"
-      end
+      session['fwc.join_group_code'] = code
+      flash[:info] = "Please sign in first"
+      res.redirect "/"
     end
 
     on current_user do
