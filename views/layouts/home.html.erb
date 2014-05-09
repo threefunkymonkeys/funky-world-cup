@@ -19,6 +19,7 @@
   <body>
     <%= render("views/shared/_header.html.erb") %>
     <div id="container" class="container">
+      <%= show_flash_message %>
       <%= yield %>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
