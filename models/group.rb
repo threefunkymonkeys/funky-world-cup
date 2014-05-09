@@ -6,12 +6,12 @@ class Group < Sequel::Model
   one_to_many :group_prizes, order: :order
 
   def participants
-    GroupsUser.select(:nickname)
+    GroupsUser.select(Sequel.qualify(:users, :id), :nickname)
               .select_append{ Sequel.as(sum(prediction_score), :score)}
               .join(:users, id: :user_id)
               .left_join(:match_predictions, user_id: :id)
               .where(group_id: id)
-              .group_by(:nickname)
+              .group_by(:nickname, Sequel.qualify(:users, :id))
               .order(:score, :nickname)
               .all
   end

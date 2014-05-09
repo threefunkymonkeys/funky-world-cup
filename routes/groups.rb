@@ -18,6 +18,13 @@ module FunkyWorldCup
         on ":id" do |group_id|
           on (group = Group[group_id.to_i]) do
             on root do
+              # when user is kicked from group refresh session and redirect
+              unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
+                authenticate(User[current_user.id])
+                flash[:warning] = "You are not a participant from this group"
+                res.redirect "/dashboard"
+              end
+
               res.write render("./views/layouts/application.html.erb") {
                 render("./views/pages/groups/show.html.erb",
                        group: group,
@@ -158,17 +165,34 @@ module FunkyWorldCup
         on ":id" do |group_id|
           on (group = Group[group_id.to_i]) do
             on group.user_id == current_user.id do
-              begin
-                #cascade is enabled
-                group.delete
-                authenticate(User[current_user.id])
+              on root do
+                begin
+                  #cascade is enabled
+                  group.delete
+                  authenticate(User[current_user.id])
 
-                flash[:success] = "Group was deleted."
-                res.redirect "/groups"
-              rescue => e
-                flash[:error] = "There was an error deleting the group, please try again"
+                  flash[:success] = "Group was deleted."
+                  res.redirect "/groups"
+                rescue => e
+                  flash[:error] = "There was an error deleting the group, please try again"
+                  res.redirect "/groups/#{group.id}"
+                end
+              end
+
+              on "kick/:user_id" do |user_id|
+                not_found! unless root
+
+                begin
+                  GroupsUser.find(user_id: user_id, group_id: group.id).delete
+
+                  flash[:success] = "The participant was kicked out from the group."
+                rescue => e
+                  flash[:error] = "There was an error kicking the participant from the group, please try again"
+                end
                 res.redirect "/groups/#{group.id}"
               end
+
+              not_found!
             end
 
             not_found!
