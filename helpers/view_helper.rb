@@ -29,5 +29,16 @@ class Cuba
 
       markup.join("<br/>")
     end
+
+    def class_for_index(index)
+     case index
+      when 0, 1
+        'success'
+      when 2
+        'warning'
+      else
+        'danger'
+      end
+    end
   end
 end
