@@ -40,5 +40,9 @@ class Cuba
         'danger'
       end
     end
+
+    def class_for_path(path)
+      'active' if path == req.path
+    end
   end
 end
