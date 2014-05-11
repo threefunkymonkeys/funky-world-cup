@@ -128,3 +128,12 @@
     position: absolute;
     right: -50px;
   }
+
+.position-table .team-column, .position-table .position-column {
+  vertical-align: middle;
+}
+
+.position-table img.flag {
+  border: solid 1px #DDDDDD;
+  width: 20%;
+}
