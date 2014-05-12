@@ -528,8 +528,8 @@ worldcup:
         stadium: Estadio Mineirao
         local_timezone: GMT-3
       - date: '2014-07-09 17:00'
-        host_description: Winner of Q1
-        rival_description: Winner of Q2
+        host_description: Winner of Q3
+        rival_description: Winner of Q4
         host_code: '3'
         rival_code: '4'
         place: Sao Paulo

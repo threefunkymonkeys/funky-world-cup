@@ -3,7 +3,7 @@ class Match < Sequel::Model
   many_to_one :rival_team, class: :Team, key: :rival_id
 
   one_to_one :result
-  one_to_one :cup_group
+  many_to_one :cup_group, key: :group_id
 
   one_to_many :match_predictions
 
