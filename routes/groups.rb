@@ -5,13 +5,13 @@ module FunkyWorldCup
         on root do
           groups = current_user.groups
           res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/groups/index.html.erb", groups: groups)
+            render("./views/groups/index.html.erb", groups: groups)
           }
         end
 
         on "new" do
           res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/groups/new.html.erb", params: session.delete('fwc.group_params') || {})
+            render("./views/groups/new.html.erb", params: session.delete('fwc.group_params') || {})
           }
         end
 
@@ -26,7 +26,7 @@ module FunkyWorldCup
               end
 
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/pages/groups/show.html.erb",
+                render("./views/groups/show.html.erb",
                        group: group,
                        participants: group.participants,
                        prizes: group.group_prizes,
@@ -38,13 +38,13 @@ module FunkyWorldCup
             on group.user_id == current_user.id do
               on "edit" do
                 res.write render("./views/layouts/application.html.erb") {
-                  render("./views/pages/groups/edit.html.erb", group: group, params: session.delete('fwc.group_params_edit') || {} )
+                  render("./views/groups/edit.html.erb", group: group, params: session.delete('fwc.group_params_edit') || {} )
                 }
               end
 
               on "prizes" do
                 res.write render("./views/layouts/application.html.erb") {
-                  render("./views/pages/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
+                  render("./views/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
                 }
               end
 
