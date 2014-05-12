@@ -53,9 +53,7 @@
     width: 100%;
   }
 
-.matches-table {
-  
-}
+.matches-table {}
   .matches-table td {
     vertical-align: middle !important;
   }
@@ -87,6 +85,37 @@
       font-size: 1.5em;
       font-weight: bold;
     }
+  
+  .matches-table.small-table {}
+    .matches-table.small-table td img {
+      max-width: 35px;
+    }
+    .matches-table.small-table td.team-column {
+      text-align: center;
+      padding-top: 10px;
+    }
+
+    .matches-table.small-table td.text-center {
+      width: 50px;
+    }
+    .matches-table.small-table td.info-column {
+      font-size: 0.8em;
+    }
+    .matches-table.small-table td .team {
+      display: inline-block;
+      font-size: 0.9em;
+      padding: 0 5px;
+      text-transform: uppercase;
+      line-height: 16px;
+    }
+    .matches-table.small-table td .time {
+      font-size: 0.7em;
+    }
+    .matches-table.small-table td.text-primary {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
 .fwc-separator {
   height: 1px;
   border-top: 1px solid #666666;
