@@ -56,6 +56,7 @@
 .matches-table {}
   .matches-table td {
     vertical-align: middle !important;
+    position: relative;
   }
     .matches-table td img {
       max-width: 70px;
@@ -84,6 +85,30 @@
     .matches-table td.text-primary {
       font-size: 1.5em;
       font-weight: bold;
+    }
+    .matches-table td .host-result {
+      font-size: 2em;
+      vertical-align: top;
+      position: absolute;
+      left: -40px;
+      top: 23px;
+      z-index: 999;
+    }
+    .matches-table td.result {
+      vertical-align: top !important;
+      padding-top: 35px;
+    }
+
+    .matches-table td .rival-result {
+      font-size: 2em;
+      vertical-align: top;
+      position: absolute;
+      right: -40px;
+      top: 23px;
+      z-index: 999;
+    }
+    .matches-table td .status {
+      vertical-align: top;
     }
   
   .matches-table.small-table {}
@@ -114,6 +139,32 @@
     .matches-table.small-table td.text-primary {
       font-size: 1.2em;
       font-weight: bold;
+    }
+    
+    .matches-table.small-table td .host-result {
+      font-size: 1em;
+      vertical-align: top;
+      position: absolute;
+      left: -20px;
+      top: 15px;
+      z-index: 999;
+    }
+    .matches-table.small-table td.result {
+      vertical-align: top !important;
+      padding-top: 9px;
+    }
+
+    .matches-table.small-table td .rival-result {
+      font-size: 1em;
+      vertical-align: top;
+      position: absolute;
+      right: -20px;
+      top: 15px;
+      z-index: 999;
+    }
+    .matches-table.small-table td .status {
+      vertical-align: top;
+      font-size: 0.8em;
     }
 
 .fwc-separator {
