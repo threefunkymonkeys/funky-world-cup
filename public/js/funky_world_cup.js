@@ -155,7 +155,7 @@ body.on('click', ".btn-predict", function(event) {
          .append($("<br>"))
          .append($("<span>").addClass("team").text(rival_name));
 
-  modal.show();
+  modal.modal('show');
 });
 
 body.on('click', "#modal-predict #submit-prediction", function(event) {
