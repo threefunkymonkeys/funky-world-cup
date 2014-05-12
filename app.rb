@@ -73,6 +73,12 @@ Cuba.define do
     run FunkyWorldCup::CupGroups
   end
 
+  on "users" do
+    run FunkyWorldCup::Users
+
+    not_found!
+  end
+
   on get do
     on "404" do
       res.write "404"

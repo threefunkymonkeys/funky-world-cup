@@ -128,4 +128,39 @@ body.on("click", ".kick-participant", function(event) {
   modal.show();
 });
 
->>>>>>> Implement kick from group
+// Predictions modal
+
+body.on('click', ".btn-predict", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var _this = $(this),
+      host_name  = _this.attr("data-host"),
+      host_flag  = _this.attr("data-host-flag"),
+      rival_name = _this.attr("data-rival"),
+      rival_flag = _this.attr("data-rival-flag"),
+      match_id   = _this.attr("data-match");
+
+  var modal = $("#modal-predict");
+
+  modal.find("#match-id").val(match_id);
+  modal.find("input[type=\"text\"]").val(0);
+
+  var host_td = modal.find("td.modal-host");
+  host_td.html($("<img>").attr("src", "/img/flags/" + host_flag))
+         .append($("<br>"))
+         .append($("<span>").addClass("team").text(host_name));
+
+  var rival_td = modal.find("td.modal-rival");
+  rival_td.html($("<img>").attr("src", "/img/flags/" + rival_flag))
+         .append($("<br>"))
+         .append($("<span>").addClass("team").text(rival_name));
+
+  modal.show();
+});
+
+body.on('click', "#modal-predict #submit-prediction", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  $("#prediction-form").submit();
+});
