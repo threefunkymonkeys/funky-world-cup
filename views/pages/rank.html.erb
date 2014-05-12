@@ -6,8 +6,7 @@
   <div class="panel-body">
     <ul class="list-group" id="rank-list">
       <% @rank.each_with_index do |rank, index| %>
-      <li class="list-group-item">
-        <a href="#" id="position-<%= index + 1 %>"></a>
+      <li class="list-group-item" id="position-<%= index+1 %>">
         <span class="badge"><%=rank.score || 0 %></span>
         <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
         <span><%= rank.user.nickname %></span>

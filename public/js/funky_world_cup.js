@@ -170,5 +170,5 @@ body.on('click', "#modal-predict #submit-prediction", function(event) {
 var anchor = window.location.hash
 
 if(anchor != "") {
-  $(anchor).parent().addClass("fwc-highlight");
+  $(anchor).addClass("fwc-highlight");
 }
