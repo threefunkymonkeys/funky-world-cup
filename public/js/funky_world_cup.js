@@ -125,7 +125,7 @@ body.on("click", ".kick-participant", function(event) {
   modal.find('form').attr('action', "/groups/" + group_id + "/kick/" + id);
   modal.find('#popup-participant-name').text(name);
 
-  modal.show();
+  modal.modal('show');
 });
 
 // Predictions modal
