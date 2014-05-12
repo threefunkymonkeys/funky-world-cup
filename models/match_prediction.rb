@@ -11,4 +11,8 @@ class MatchPrediction < Sequel::Model
     end
     self.save unless self.prediction_score == 0
   end
+
+  def self.prediction_for(user_id, match_id)
+    MatchPrediction.where(user_id: user_id, match_id: match_id).first
+  end
 end

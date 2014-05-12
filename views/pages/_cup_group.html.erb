@@ -2,7 +2,7 @@
 <table class="table table-striped table-hover matches-table">
   <tbody>
     <% group.matches.each do |match| %>
-      <tr>
+      <tr id="match-<%= match.id %>">
         <td class="info-column">
           <p><%= match.start_datetime.strftime("%d %^b %Y") %></br>
           <%= match.stadium %></br>
@@ -26,7 +26,18 @@
           <span class="team"><%= match.rival_team.name %></span>
         </td>
         <td class="text-center">
-          <button type="button" class="btn btn-primary btn-sm">Predict</button>
+          <% if prediction = MatchPrediction.prediction_for(current_user.id, match.id) %>
+            <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+          <% else %>
+            <button type="button"
+                    class="btn btn-primary btn-sm btn-predict"
+                    data-host="<%= match.host_team.name %>"
+                    data-host-flag="<%= match.host_team.flag %>"
+                    data-rival="<%= match.rival_team.name %>"
+                    data-rival-flag="<%= match.rival_team.flag %>"
+                    data-match="<%= match.id %>"
+            >Predict</button>
+          <% end %>
         </td>
       </tr>
     <% end %>

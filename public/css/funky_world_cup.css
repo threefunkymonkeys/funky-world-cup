@@ -141,3 +141,17 @@
 .navbar-nav > li.active {
   background-image: linear-gradient(#3e648d, #446e9b 30%, #6d94bf);
 }
+
+#modal-predict {}
+
+  #modal-predict form td {
+    width: 25%;
+    text-align: center;
+  }
+    #modal-predict form td.modal-host, #modal-predict form td.modal-rival {
+      padding-top: 20px;
+    }
+    #modal-predict form td input {
+      width: 60px;
+      text-align: center;
+    }
