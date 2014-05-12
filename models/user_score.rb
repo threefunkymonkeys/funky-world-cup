@@ -10,4 +10,12 @@ class UserScore < Sequel::Model
     rank
   end
 
+  def self.update_scores(match, result)
+    predictions = MatchPrediction.where(match_id: match.id).all
+    predictions.each do |prediction|
+      user_score = UserScore[prediction.user_id]
+      user_score.score = user_score.score + prediction.prediction_score
+      user.save
+    end
+  end
 end
