@@ -140,6 +140,9 @@
 
 .navbar-nav > li.active {
   background-image: linear-gradient(#3e648d, #446e9b 30%, #6d94bf);
+
+.fwc-highlight {
+  background-color: #fcf8e3 !important;
 }
 
 #modal-predict {}

@@ -1,0 +1,18 @@
+<h2>Rank</h2>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group" id="rank-list">
+      <% @rank.each_with_index do |rank, index| %>
+      <li class="list-group-item" id="position-<%= index+1 %>">
+        <span class="badge"><%=rank.score || 0 %></span>
+        <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
+        <span><%= rank.user.nickname %></span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

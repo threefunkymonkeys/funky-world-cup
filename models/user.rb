@@ -9,4 +9,8 @@ class User < Sequel::Model
   def self.all_by_score
     User.all.sort { |a,b| b.score <=> a.score }
   end
+
+  def after_create
+    UserScore.create(user_id: id)
+  end
 end

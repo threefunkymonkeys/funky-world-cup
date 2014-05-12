@@ -164,3 +164,11 @@ body.on('click', "#modal-predict #submit-prediction", function(event) {
 
   $("#prediction-form").submit();
 });
+
+// Anchor highlight
+
+var anchor = window.location.hash
+
+if(anchor != "") {
+  $(anchor).addClass("fwc-highlight");
+}

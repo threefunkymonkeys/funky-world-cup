@@ -6,13 +6,24 @@ class Group < Sequel::Model
   one_to_many :group_prizes, order: :order
 
   def participants
-    GroupsUser.select(Sequel.qualify(:users, :id), :nickname)
-              .select_append{ Sequel.as(sum(prediction_score), :score)}
+    GroupsUser.select(Sequel.qualify(:users, :id), :nickname, :score)
               .join(:users, id: :user_id)
-              .left_join(:match_predictions, user_id: :id)
+              .left_join(:user_scores, user_id: :id)
               .where(group_id: id)
-              .group_by(:nickname, Sequel.qualify(:users, :id))
-              .order(:score, :nickname)
+              .order(Sequel.desc(:score), Sequel.qualify(:groups_users, :id))
               .all
   end
+
+  def rank_for(user_id)
+    rank = 0
+    UserScore.join(:groups_users, user_id: :user_id, group_id: id)
+             .order(Sequel.desc(:score), Sequel.qualify(:user_scores, :id))
+             .all
+             .each_with_index do |position, index|
+                rank = index + 1 if position.user_id == user_id
+             end
+
+    rank
+  end
+
 end
