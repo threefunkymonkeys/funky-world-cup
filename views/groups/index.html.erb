@@ -4,18 +4,22 @@
     <h3 class="panel-title">Groups</h3>
   </div>
   <div class="panel-body">
-    <ul class="list-group">
-      <% groups.each_with_index do |user_group, index| %>
-      <li class="list-group-item">
-        <span class="badge pull-left">#1</span>
-        &nbsp;
-        <a href="/groups/<%= user_group.id %>"><%= "#{user_group.name} (#{user_group.user.nickname})" %></a>
-        <% if current_user.id == user_group.user_id %>
-          <a href="/groups/<%= user_group.id %>/edit" class="btn btn-warning btn-xs pull-right">edit</a>
-        <% else %>
+    <% if groups.any? %>
+      <ul class="list-group">
+        <% groups.each_with_index do |user_group, index| %>
+        <li class="list-group-item">
+          <span class="badge pull-left">#1</span>
+          &nbsp;
+          <a href="/groups/<%= user_group.id %>"><%= "#{user_group.name} (#{user_group.user.nickname})" %></a>
+          <% if current_user.id == user_group.user_id %>
+            <a href="/groups/<%= user_group.id %>/edit" class="btn btn-warning btn-xs pull-right">edit</a>
+          <% else %>
+          <% end %>
+        </li>
         <% end %>
-      </li>
-      <% end %>
-    </ul>
+      </ul>
+    <% else %>  
+      <p>You don't have and don't belong to any group yet. You can <a href="/groups/new">create a group</a> or wait until someone invite you.</p>
+    <% end %>
   </div>
 </div>
