@@ -16,4 +16,18 @@ class Match < Sequel::Model
   def finalized?
     result != nil && result.status == 'final'
   end
+
+  def self.for_dashboard
+    @@dashboard_matches ||= lambda {
+      start_date = min(:start_datetime).to_date
+
+      if Date.today < start_date #WC hasn't started yet
+        date = start_date
+      else
+        date = Date.today
+      end
+
+      join(:cup_groups, :id => :group_id).where("cup_groups.phase LIKE 'groups' AND DATE(matches.start_datetime) BETWEEN ? AND ?", date - 1, date + 1).order(:start_datetime)
+    }.call
+  end
 end

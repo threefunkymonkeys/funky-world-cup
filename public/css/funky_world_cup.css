@@ -251,3 +251,22 @@
     #predictions-table td img {
       max-width: 30px;
     }
+
+.dashboard-matches h4 {
+  display: inline-block;
+  width: 49%;
+}
+
+.right {
+  text-align: right;
+}
+
+.dashboard-matches .group {
+  padding: 0.3em 0.5em;
+  color: #FEFEFE;
+  background-color: #3399f3;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 0.7em;
+  margin-right: 0.6em;
+}

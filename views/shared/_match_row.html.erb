@@ -1,10 +1,8 @@
 <% prediction = MatchPrediction.prediction_for(current_user.id, match.id) %>
 <tr id="match-<%= match.id %>">
   <td class="info-column">
-    <p><%= match.start_datetime.strftime("%d %^b %Y") %></br>
-    <%= match.stadium %></br>
-    <%= match.place %>
-    </p>
+    <div> <%= match.stadium %></br> </div>
+    <div> <%= match.place %> </div>
   </td>
   <td class="team-column">
     <img src="/img/<%= match.host_team ? "flags/#{match.host_team.flag}" : 'missing.png' %>">
