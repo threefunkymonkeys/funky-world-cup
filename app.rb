@@ -16,7 +16,7 @@ Cuba.use Rack::Static,
           root: File.expand_path(File.dirname(__FILE__)) + "/public",
           urls: %w[/img /css /js]
 
-Cuba.use Rack::Session::Cookie, :secret => "67569f63912747f4a11a6fd579a39c888054a984542a42568574f5bce3ceba5a"
+Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"]
 Cuba.use Rack::Protection
 Cuba.use Rack::MethodOverride
 
