@@ -1,5 +1,7 @@
-<h4 id="date-<%= match.start_datetime.to_date %>"><%= match.start_datetime.to_date %></h4>
-<h4 class="right"><span class="badge">Group <%= match.values[:name] %></span></h4>
+<h4 id="date-<%= match.start_datetime.to_date %>"><%= match.start_datetime.strftime("%d %^b %Y") %></h4>
+<h4 class="right">
+    <span class="group">Group <%= match.values[:name] %></span>
+  </h4>
 <table class="table table-striped table-hover matches-table">
   <tbody>
     <%= render("views/shared/_match_row.html.erb", match: match) %>
