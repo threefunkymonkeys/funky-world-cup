@@ -1,9 +1,9 @@
 <h2>Dashboard</h2>
-<div class="panel panel-default">
-  <div class="panel-heading">Next Matches</div>
+<div class="panel panel-default dashboard-matches">
+  <div class="panel-heading">Upcoming Matches</div>
   <div class="panel-body">
-    <% @groups.each do |group| %>
-      <%= partial("pages/_cup_group.html", :group => group) %>
+    <% @matches.each do |match| %>
+      <%= partial("pages/_match.html", :match => match) %>
     <% end %>
   </div>
 </div>

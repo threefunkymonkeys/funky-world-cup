@@ -94,7 +94,7 @@ Cuba.define do
       end
 
       on "dashboard" do
-        @groups = CupGroup.groups_phase.all
+        @matches = Match.for_dashboard.all
         res.write render("./views/layouts/application.html.erb") {
           render("./views/pages/dashboard.html.erb")
         }
