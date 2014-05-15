@@ -1,0 +1,65 @@
+<h2>Your Predictions</h2>
+<div class="panel panel-default" id="predictions-table">
+  <div class="panel-heading"></div>
+  <div class="panel-body">
+    <% if predictions.any? %>
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th colspan=3">Match</th>
+            <th>Group/Phase</th>
+            <th>Result</th>
+            <th>Your Prediction</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% predictions.each do |prediction| %>
+            <tr>
+              <td>
+                <img src="/img/<%= "flags/#{prediction.match.host_team.flag}" %>">
+                <br>
+                <span class="team host-team"><%= prediction.match.host_team.name %></span>
+              </td>
+              <td>VS</td>
+              <td class="team-column">
+                <img src="/img/<%= "flags/#{prediction.match.rival_team.flag}" %>">
+                <br>
+                <span class="team host-team"><%= prediction.match.rival_team.name %></span>
+              </td>
+              <td>
+                <span><%= prediction.match.cup_group.name %></span>
+              </td>
+              <td>
+                <% if prediction.match.result.nil? %>
+                  <strong class="text-warning">Not Played</strong>
+                <% elsif prediction.match.result.status == 'partial' %>
+                  <strong class="text-primary"><%= "#{prediction.match.result.host_score} - #{prediction.match.result.rival_score}" %></strong>
+                  <br>
+                  <strong class="status text-success">In Progress</strong>
+                <% else %>
+                  <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+                  <br>
+                  <strong class="status text-danger">Finished</strong>
+                <% end  %>
+              </td>
+              <td>
+                <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+              </td>
+              <td>
+                <strong class="score <%= prediction.prediction_score == 3 ? 'text-success' : (prediction.prediction_score == 1 ? 'text-warning' : 'text-danger')%>"><%= prediction.prediction_score %></strong>
+              </td>
+            </tr>
+          <% end %> 
+            <tr>
+              <td colspan="6"><strong>TOTAL</strong></td>
+              <td ><strong><%= predictions.inject(0) { |sum, prediction| sum + prediction.prediction_score } %></strong></td>
+            </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You didn't make any prediction yet. Please check your <a href="/dashboard">Dashboard</a> or the <a href="/cup-groups/fixture">Fixture</a> and make your predictions</p>
+    <% end  %>
+
+  </div>
+</div>

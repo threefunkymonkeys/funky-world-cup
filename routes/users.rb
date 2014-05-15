@@ -1,6 +1,27 @@
 module FunkyWorldCup
   class Users < Cuba
     define do
+      on get do
+        on current_user do
+          on :id do |user_id|
+
+            on "predictions" do
+              not_found unless root
+
+              res.write render("./views/layouts/application.html.erb") {
+                render("./views/users/predictions.html.erb", predictions: MatchPrediction.where(user_id: user_id).all)
+              }
+            end
+
+            not_found!
+          end
+
+          not_found!
+        end
+
+        not_found!
+      end
+
       on post do
         on current_user do
           on :id do |user_id|

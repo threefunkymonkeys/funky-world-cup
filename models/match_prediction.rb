@@ -1,5 +1,5 @@
 class MatchPrediction < Sequel::Model
-  many_to_one :match
+  many_to_one :match, key: :match_id
 
   def update_score(result)
     if host_score == result.host_score && rival_score == result.rival_score

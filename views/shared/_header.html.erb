@@ -13,6 +13,7 @@
           <li class="<%= class_for_path("/cup-groups/fixture") %>"><a href="/cup-groups/fixture">Fixture</a></li>
           <li class="<%= class_for_path("/dashboard") %>"><a href="/dashboard">Dashboard</a></li>
           <li class="<%= class_for_path("/rank") %>"><a href="/rank">Rank</a></li>
+          <li class="<%= class_for_path("/users/#{current_user.id}/predictions") %>"><a href="/users/<%= current_user.id%>/predictions">Your Predictions</a></li>
           <li class="<%= class_for_path("/cup-groups/positions") %>"><a href="/cup-groups/positions">Positions Table</a></li>
           <li class="<%= class_for_path("/groups") %>"><a href="/groups">Your Groups</a></li>
         </ul>
@@ -26,6 +27,7 @@
             <ul class="dropdown-menu">
               <li><a href="/dashboard">Dashboard</a></li>
               <li><a href="/groups">Groups</a></li>
+              <li><a href="/users/<%= current_user.id %>/predictions">Predictions</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>

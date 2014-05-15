@@ -239,3 +239,15 @@
       width: 60px;
       text-align: center;
     }
+
+#predictions-table {}
+  #predictions-table th {
+    text-align: center;
+  }
+  #predictions-table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+    #predictions-table td img {
+      max-width: 30px;
+    }
