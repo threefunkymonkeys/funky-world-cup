@@ -64,6 +64,7 @@
     .matches-table td.team-column {
       text-align: center;
       padding-top: 20px;
+      width: 180px;
     }
 
     .matches-table td.text-center {
