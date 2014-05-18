@@ -84,6 +84,12 @@ Cuba.define do
       res.write "404"
     end
 
+    on "disclaimer" do
+      res.write render("./views/layouts/application.html.erb") {
+        render("./views/pages/disclaimer.html.erb")
+      }
+    end
+
     on current_user do
       on root do
         res.redirect "/dashboard"
