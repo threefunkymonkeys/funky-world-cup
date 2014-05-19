@@ -36,6 +36,10 @@
   max-width: 40px;
 }
 
+.home-container {
+  margin-bottom: 53px;
+}
+
 #content {
 }
 #sidebar {
@@ -119,6 +123,7 @@
     .matches-table.small-table td.team-column {
       text-align: center;
       padding-top: 10px;
+      width: 170px;
     }
 
     .matches-table.small-table td.text-center {
@@ -279,3 +284,31 @@
 #positions-legend td {
   width: 10%;
 }
+
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  border-radius: 0 !important;
+  border: 0 !important;
+
+}
+  footer p {
+    color: white;
+    line-height: 40px;
+    font-size: 0.8em;
+  }
+  footer a.tfm-logo {
+    padding: 10px 5px;
+  }
+
+  footer #extra-footer {
+    float: right;
+  }
+    footer #extra-footer p {
+      float: left;
+    }
+    footer #extra-footer form {
+      float: left;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
