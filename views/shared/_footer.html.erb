@@ -6,9 +6,7 @@
       </div>
       <div class="col-md-6">
         <div id="extra-footer">
-        <%= begin 
-              render("views/shared/_extra_footer.html.erb")
-            rescue Errno::ENOENT; end %>
+          <%= render("views/shared/_extra_footer.html.erb") %>
         </div>
       </div>
     </div>
