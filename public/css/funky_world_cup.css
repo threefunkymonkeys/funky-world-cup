@@ -291,7 +291,20 @@ footer {
   footer p {
     color: white;
     line-height: 40px;
+    font-size: 0.8em;
   }
   footer a.tfm-logo {
     padding: 10px 5px;
   }
+
+  footer #extra-footer {
+    float: right;
+  }
+    footer #extra-footer p {
+      float: left;
+    }
+    footer #extra-footer form {
+      float: left;
+      margin-top: 10px;
+      margin-left: 20px;
+    }

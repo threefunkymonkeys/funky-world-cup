@@ -1,9 +1,16 @@
 <footer class="navbar navbar-inverse"> 
   <div class="container">
-    <p class="pull-left">threefunkymonkeys © <%= Time.now.year %> / all rights reserved</p>
-    <%= begin 
-          render("views/shared/_extra_footer.html.erb")
-        rescue Errno::ENOENT; end %>
-    <a href="http://threefunkymonkeys.com/" class="pull-right tfm-logo"><img src="/img/3fm_footer.png" title="Three Funky Monkeys" alt="Three Funky Monkeys"></a>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="pull-left"><a href="http://threefunkymonkeys.com/" class="tfm-logo"><img src="/img/3fm_footer.png" title="Three Funky Monkeys" alt="Three Funky Monkeys"></a> © <%= Time.now.year %></p>
+      </div>
+      <div class="col-md-6">
+        <div id="extra-footer">
+        <%= begin 
+              render("views/shared/_extra_footer.html.erb")
+            rescue Errno::ENOENT; end %>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
