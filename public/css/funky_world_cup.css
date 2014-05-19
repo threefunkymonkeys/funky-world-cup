@@ -279,3 +279,18 @@
 #positions-legend td {
   width: 10%;
 }
+
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  border-radius: 0 !important;
+  border: 0 !important;
+
+}
+  footer p {
+    color: white;
+    line-height: 40px;
+  }
+  footer a.tfm-logo {
+    padding: 10px 5px;
+  }
