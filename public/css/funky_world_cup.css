@@ -275,3 +275,7 @@
 .disclaimer {
   color: #121212;
 }
+
+#positions-legend td {
+  width: 10%;
+}
