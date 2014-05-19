@@ -3,3 +3,5 @@ development.env.sh
 test.env.sh
 production.env.sh
 .directory
+views/shared/_extra_footer.html.erb
+
