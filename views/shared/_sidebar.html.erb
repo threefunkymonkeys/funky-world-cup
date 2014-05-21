@@ -2,7 +2,7 @@
   <div id="score-rank">
     <div class="panel panel-primary pull-left">
       <div class="panel-heading">
-        <h3 class="panel-title">Score</h3>
+        <h3 class="panel-title"><%= I18n.t('.sidebar.score') %></h3>
       </div>
       <div class="panel-body">
         <a href="/users/<%= current_user.id %>/predictions"><%= current_user.score %></a>
@@ -10,16 +10,16 @@
     </div>
     <div class="panel panel-primary pull-right">
       <div class="panel-heading">
-        <h3 class="panel-title">Rank</h3>
+        <h3 class="panel-title"><%= I18n.t('.sidebar.rank') %></h3>
       </div>
       <div class="panel-body" >
-        <a href="/rank#position-<%= UserScore.rank_for(current_user.id) %>"><%= UserScore.rank_for(current_user.id) %></a>
+        <a href="/rank#position-<%= @user_rank %>"><%= @user_rank %></a>
       </div>
     </div>
     <div class="clearfix"></div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Your groups</div>
+    <div class="panel-heading"><%= I18n.t('.sidebar.your_groups') %></div>
     <div class="panel-body">
       <% if current_user.groups.any? %>
       <ul class="list-group">
@@ -31,9 +31,9 @@
         <% end %>
       </ul>
       <% else %>
-        <p>You don't participate in any group yet</p>
+        <p><%= I18n.t('.sidebar.no_groups') %></p>
       <% end %>
-      <a href="/groups/new" class="btn btn-success" id="create-group">Create Group</a>
+      <a href="/groups/new" class="btn btn-success" id="create-group"><%= I18n.t('.actions.create_group') %></a>
     </div>
   </div>
 </div>

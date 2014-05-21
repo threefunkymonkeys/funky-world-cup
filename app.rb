@@ -101,6 +101,8 @@ Cuba.define do
     end
 
     on current_user do
+      @user_rank ||= UserScore.rank_for(current_user.id)
+
       on root do
         res.redirect "/dashboard"
       end

@@ -44,5 +44,12 @@ class Cuba
     def class_for_path(path)
       'active' if path == req.path
     end
+
+    def translate_description(description)
+      rank, part = description.downcase.split(" of ")
+      part.gsub!("group", I18n.t('.common.group')) if part.include? "group"
+      rank = I18n.t(".common.#{rank}_of")
+      "#{rank} #{part}"
+    end
   end
 end
