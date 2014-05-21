@@ -116,6 +116,9 @@
       vertical-align: top;
     }
   
+  .matches-table tr.mobile-info {
+    display: none;
+  }
   .matches-table.small-table {}
     .matches-table.small-table td img {
       max-width: 35px;
@@ -312,3 +315,308 @@ footer {
       margin-top: 10px;
       margin-left: 20px;
     }
+
+.small-mobile {
+  display: none;
+}
+
+.mobile-result {
+  display: none;
+}
+
+/* responsive */
+@media (max-width: 479px) {
+  #nickname {
+    display: none;
+  }
+  #main-navbar {
+    display: none;
+  }
+  .small-mobile {
+    display: list-item;
+  }
+  #wc-logo {
+    display: none; 
+  }
+  #login {
+    text-align: center;
+  }
+  #login h3 {
+    margin-top: 10px; 
+  }
+  .social-link {
+    display: inline-block;
+  }
+
+  .panel-body {
+    padding: 5px 0;
+  }
+
+  .panel-body h4, .panel-body h3 {
+    padding-left: 10px;
+  }
+
+  footer #extra-footer p {
+    display: none; 
+  }
+
+  .mobile-result {
+    display: block;
+  }
+
+  .matches-table {
+    margin.left:1px;
+  }
+  .matches-table .info-column {
+    display: none;
+  }
+  .matches-table .prediction-column {
+    display: none;
+  }
+  .matches-table td img {
+    max-width: 35px;
+  }
+  .matches-table .team-column {
+    font-size: 0.7em;
+    padding: 5px 0;
+  }
+  .matches-table td .host-result, .matches-table td .rival-result {
+    display: none;
+  }
+  .matches-table td.result {
+    padding-top: 20px;
+  }
+
+  .matches-table tr.mobile-info {
+    display: table-row;
+  }
+    .matches-table tr.mobile-info td {
+      text-align: center;
+    }
+
+  .matches-table.small-table td.team-column {
+    width: 90px;
+  }
+
+  #modal-predict form td.modal-host, #modal-predict form td.modal-rival {
+    padding-top: 6px;
+  }
+  #modal-predict form td.modal-host img, #modal-predict form td.modal-rival img{
+    max-width: 45px;
+  }
+  #modal-predict form td .team {
+    display: none;
+  }
+
+  #group-participants-list.by-owner {
+    width: 80%;
+  }
+
+  .position-table th, .position-table td {
+    font-size: 0.7em;
+    font-weight: normal;
+  }
+  .position-table .team-name {
+    display: none;
+  }
+  .position-table .team-column {
+    width: 25px;
+  }
+  .position-table .team-column img {
+    width: 25px;
+  }
+  .position-table .position-column {
+    font-size: 60%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 991px) {
+  #wc-logo {
+    width: 60px; 
+    float: left;
+  }
+  #login {
+    float: left;
+    padding-left: 40px;
+    text-align: center;
+    max-width: 78%;
+  }
+  .social-link {
+    display: inline-block;
+  }
+  #login h3 {
+    margin-top: 5px;
+  }
+  .navbar-header {
+    float: left;
+  }
+  .navbar-collapse {
+    display: block;
+  }
+  .navbar-right {
+    float: right !important;
+    margin: 0 10px 0 0;
+  }
+  #nickname {
+    display: none;
+  }
+  #main-navbar {
+    display: none;
+  }
+  .user-menu {
+    display: none;
+  }
+  .small-mobile {
+    display: list-item;
+  }
+  .matches-table td .host-result, .matches-table td .rival-result {
+    display: none;
+  }
+  .matches-table td.result {
+    padding-top: 20px;
+  }
+  .mobile-result {
+    display: block;
+  }
+  .matches-table .info-column {
+    display: none;
+  }
+
+  .matches-table.small-table td.team-column {
+    width: 90px;
+  }
+}
+@media (max-width: 991px) {
+  .navbar-header {
+    float: left;
+  }
+  .navbar-collapse {
+    display: block;
+  }
+  .navbar-right {
+    float: right !important;
+    margin: 0 10px 0 0;
+  }
+  .user-menu {
+    display: none;
+  }
+  .navbar-nav .open .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: initial;
+    z-index: 1000;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  }
+  .navbar-nav .open .dropdown-menu.pull-right {
+    right: 0;
+    left: auto;
+  }
+  .navbar-nav .open .dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #428bca;
+    outline: 0;
+  }
+  .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #999;
+  }
+  .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  }
+  .open > .dropdown-menu {
+    display: block;
+  }
+  .open > a {
+    outline: 0;
+  }
+  .dropdown-menu-right {
+    right: 0;
+    left: auto;
+  }
+  .dropdown-menu-left {
+    right: auto;
+    left: 0;
+  }
+  .dropdown-header {
+    display: block;
+    padding: 3px 20px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #999;
+  }
+  .dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 990;
+  }
+  .pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  .dropup .caret,
+  .navbar-fixed-bottom .dropdown .caret {
+    content: "";
+    border-top: 0;
+    border-bottom: 4px solid;
+  }
+  .dropup .dropdown-menu,
+  .navbar-fixed-bottom .dropdown .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 1px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #nickname {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+}

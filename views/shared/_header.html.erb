@@ -9,7 +9,7 @@
     </div>
     <div class="collapse navbar-collapse">
       <% if user_authenticated? %>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" id="main-navbar">
           <li class="<%= class_for_path("/cup-groups/fixture") %>"><a href="/cup-groups/fixture">Fixture</a></li>
           <li class="<%= class_for_path("/dashboard") %>"><a href="/dashboard">Dashboard</a></li>
           <li class="<%= class_for_path("/rank") %>"><a href="/rank">Rank</a></li>
@@ -30,13 +30,20 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<%= current_user.image %>" />
-              <%= current_user.nickname %>
+              <span id="nickname"><%= current_user.nickname %></span>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="/dashboard">Dashboard</a></li>
-              <li><a href="/groups">Groups</a></li>
-              <li><a href="/users/<%= current_user.id %>/predictions">Predictions</a></li>
+              <li class="<%= class_for_path("/cup-groups/fixture") %> small-mobile"><a href="/cup-groups/fixture">Fixture</a></li>
+              <li class="<%= class_for_path("/dashboard") %> small-mobile"><a href="/dashboard">Dashboard</a></li>
+              <li class="<%= class_for_path("/rank") %> small-mobile"><a href="/rank">Rank</a></li>
+              <li class="<%= class_for_path("/users/#{current_user.id}/predictions") %> small-mobile"><a href="/users/<%= current_user.id%>/predictions">Your Predictions</a></li>
+              <li class="<%= class_for_path("/cup-groups/positions") %> small-mobile"><a href="/cup-groups/positions">Positions Table</a></li>
+              <li class="<%= class_for_path("/groups") %> small-mobile"><a href="/groups">Your Groups</a></li>
+              <li class="small-mobile"><a href="/disclaimer">Disclaimer</a></li>
+              <li class="user-menu"><a href="/dashboard">Dashboard</a></li>
+              <li class="user-menu"><a href="/groups">Groups</a></li>
+              <li class="user-menu"><a href="/users/<%= current_user.id %>/predictions">Predictions</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
