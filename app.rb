@@ -5,10 +5,13 @@ require "rack/protection"
 require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'hatch'
+require 'i18n'
+
 require_relative 'helpers/environment'
 
 ENV['RACK_ENV'] ||= :development
 
+I18n.load_path += Dir['./locale/**/*.yml']
 
 FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
@@ -38,6 +41,7 @@ Cuba.plugin FunkyWorldCup::Validators
 include Cuba::Render::Helper
 
 Cuba.define do
+  init_locale(req.env)
 
   on "groups" do
     on "join/:code" do |code|
