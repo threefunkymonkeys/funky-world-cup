@@ -106,10 +106,18 @@ Cuba.define do
       end
 
       on "dashboard" do
-        @matches = Match.for_dashboard.all
-        res.write render("./views/layouts/application.html.erb") {
-          render("./views/pages/dashboard.html.erb")
-        }
+        if current_user.show_rules?
+          current_user.update(:show_rules => false)
+          res.write render("./views/layouts/application.html.erb") {
+            render("./views/pages/first_view.html.erb")
+
+          }
+        else
+          @matches = Match.for_dashboard.all
+          res.write render("./views/layouts/application.html.erb") {
+            render("./views/pages/dashboard.html.erb")
+          }
+        end
       end
 
       on "rank" do
