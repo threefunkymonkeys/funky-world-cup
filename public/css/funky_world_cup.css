@@ -40,8 +40,10 @@
   margin-bottom: 53px;
 }
 
-#content {
+#container {
+  margin-bottom: 4em;
 }
+
 #sidebar {
   margin-top: 62px;
 }

@@ -90,6 +90,12 @@ Cuba.define do
       }
     end
 
+    on "rules" do
+      res.write render("./views/layouts/application.html.erb") {
+        render("./views/pages/rules.html.erb")
+      }
+    end
+
     on current_user do
       on root do
         res.redirect "/dashboard"
