@@ -13,4 +13,8 @@ class User < Sequel::Model
   def after_create
     UserScore.create(user_id: id)
   end
+
+  def show_rules?
+    !!self.show_rules
+  end
 end
