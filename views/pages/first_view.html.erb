@@ -1,15 +1,15 @@
-<h3>Welcome!</h3>
+<h3><%= I18n.t('.rules.title') %>!</h3>
 <p>
-  <span>Please, take a look at the rules.</span>
+  <span><%= I18n.t('.rules.text') %></span>
   <span>
-    or you can <a href="/dashboard">go to the dashboard</a> and read them later from the <strong>Help</strong> menu.
+    <%= I18n.t('.rules.skip_text') %>
   </span>
 </p>
 <br/>
-<%= render("./views/shared/_rules.html") %>
+<%= render("./views/shared/_rules_#{session[:locale]}.html") %>
 <div id="rules-action">
   <p class="text-success">
-    You can access these rules from the <strong>Help</strong> menu at any given time
+    <%= I18n.t('.rules.reminder_text') %>
   </p>
-  <a href="/dashboard" class="btn btn-success">I got it!</a>
+  <a href="/dashboard" class="btn btn-success"><%= I18n.t('.rules.button') %></a>
 </div>

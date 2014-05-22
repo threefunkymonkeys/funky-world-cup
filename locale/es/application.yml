@@ -35,3 +35,9 @@ es:
     second_of: 2do de
     winner_of: Ganador de
     loser_of: Perdedor de
+  rules:
+    title: Bienvenido
+    text: Por favor, dale una mirada a las reglas.
+    skip_text: o puedes <a href="/dashboard">ir directamente a tu panel</a> y leerlas luego desde el menú de <strong>Ayuda</strong>.
+    reminder_text: Recuerda que puedes acceder a las reglas en cualquier momento desde el menú de <strong>Ayuda</strong>
+    button: Vamos!

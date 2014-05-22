@@ -35,3 +35,9 @@ en:
     second_of: 2nd of
     winner_of: Winner of
     loser_of: Loser of
+  rules:
+    title: Welcome
+    text: Please, take a look at the rules.
+    skip_text: or you can <a href="/dashboard">go to the dashboard</a> and read them later from the <strong>Help</strong> menu.
+    reminder_text: You can access these rules from the <strong>Help</strong> menu at any given time
+    button: Yes, I got it!
