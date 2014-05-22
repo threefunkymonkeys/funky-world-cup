@@ -1,0 +1,14 @@
+es:
+  groups:
+    title: Tus Grupos
+    no_groups: Todavía no tienes ningún grupo, puedes crear un grupo con el botón a tu derecha o esperar a que alguien te invite a uno.
+    edit_title: Editar Grupo
+    confirm_title: Confirma el borrado del Grupo
+    confirm_text: Está seguro que desea borrar el grupo? Esta acción es irreversible.
+    kick_title: Expulsar integrante
+    kick_text: Está seguro de expulsar al participante
+    invite: Invita a tus amigos! Comparte este link con ellos.
+    participants: Integrantes
+    fields:
+      name: Nombre
+      desc: Descripción

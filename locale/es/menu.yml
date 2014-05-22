@@ -1,0 +1,13 @@
+es:
+  menu:
+    fixture: Fixture
+    dashboard: Panel
+    rank: Ranking
+    predictions: Tus predicciones
+    positions: Posiciones
+    your_groups: Tus Grupos
+    help: Ayuda
+    disclaimer: Aclaración
+    rules: Reglas
+    logout: Salir
+

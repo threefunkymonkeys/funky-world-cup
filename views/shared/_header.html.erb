@@ -10,20 +10,19 @@
     <div class="collapse navbar-collapse">
       <% if user_authenticated? %>
         <ul class="nav navbar-nav" id="main-navbar">
-          <li class="<%= class_for_path("/cup-groups/fixture") %>"><a href="/cup-groups/fixture">Fixture</a></li>
-          <li class="<%= class_for_path("/dashboard") %>"><a href="/dashboard">Dashboard</a></li>
-          <li class="<%= class_for_path("/rank") %>"><a href="/rank">Rank</a></li>
-          <li class="<%= class_for_path("/users/#{current_user.id}/predictions") %>"><a href="/users/<%= current_user.id%>/predictions">Your Predictions</a></li>
-          <li class="<%= class_for_path("/cup-groups/positions") %>"><a href="/cup-groups/positions">Positions Table</a></li>
-          <li class="<%= class_for_path("/groups") %>"><a href="/groups">Your Groups</a></li>
+          <li class="<%= class_for_path("/cup-groups/fixture") %>"><a href="/cup-groups/fixture"><%= I18n.t('.menu.fixture') %></a></li>
+          <li class="<%= class_for_path("/dashboard") %>"><a href="/dashboard"><%= I18n.t('.menu.dashboard') %></a></li>
+          <li class="<%= class_for_path("/users/#{current_user.id}/predictions") %>"><a href="/users/<%= current_user.id %>/predictions"><%= I18n.t('.menu.predictions') %></a></li>
+          <li class="<%= class_for_path("/cup-groups/positions") %>"><a href="/cup-groups/positions"><%= I18n.t('.menu.positions') %></a></li>
+          <li class="<%= class_for_path("/groups") %>"><a href="/groups"><%= I18n.t('.menu.your_groups') %></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Help
+              <%= I18n.t('.menu.help') %>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="/disclaimer">Disclaimer</a></li>
-              <li><a href="/rules">Rules</a></li>
+              <li><a href="/disclaimer"><%= I18n.t('.menu.disclaimer') %></a></li>
+              <li><a href="/rules"><%= I18n.t('.menu.rules') %></a></li>
             </ul>
           </li>
         </ul>
@@ -35,28 +34,22 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li class="<%= class_for_path("/cup-groups/fixture") %> small-mobile"><a href="/cup-groups/fixture">Fixture</a></li>
-              <li class="<%= class_for_path("/dashboard") %> small-mobile"><a href="/dashboard">Dashboard</a></li>
-              <li class="<%= class_for_path("/rank") %> small-mobile"><a href="/rank">Rank</a></li>
-              <li class="<%= class_for_path("/users/#{current_user.id}/predictions") %> small-mobile"><a href="/users/<%= current_user.id%>/predictions">Your Predictions</a></li>
-              <li class="<%= class_for_path("/cup-groups/positions") %> small-mobile"><a href="/cup-groups/positions">Positions Table</a></li>
-              <li class="<%= class_for_path("/groups") %> small-mobile"><a href="/groups">Your Groups</a></li>
-              <li class="small-mobile"><a href="/disclaimer">Disclaimer</a></li>
-              <li class="user-menu"><a href="/dashboard">Dashboard</a></li>
-              <li class="user-menu"><a href="/groups">Groups</a></li>
-              <li class="user-menu"><a href="/users/<%= current_user.id %>/predictions">Predictions</a></li>
+              <li class="small-mobile"><a href="/cup-groups/fixture"><%= I18n.t('.menu.fixture') %></a></li>
+              <li class="small-mobile"><a href="/dashboard"><%= I18n.t('.menu.dashboard') %></a></li>
+              <li class="small-mobile"><a href="/cup-groups/positions"><%= I18n.t('.menu.positions') %></a></li>
+              <li class="small-mobile"><a href="/groups"><%= I18n.t('.menu.your_groups') %></a></li>
+              <li class="small-mobile"><a href="/groups"><%= I18n.t('.menu.your_groups') %></a></li>
+              <li class="small-mobile"><a href="/users/<%= current_user.id %>/predictions"><%= I18n.t('.menu.predictions') %></a></li>
+              <li class="small-mobile"><a href="/disclaimer"><%= I18n.t('.menu.disclaimer') %></a></li>
+              <li class="user-menu"><a href="/dashboard"><%= I18n.t('.menu.dashboard') %></a></li>
               <li class="divider"></li>
-              <li><a href="/logout">Logout</a></li>
+              <li><a href="/logout"><%= I18n.t('.menu.logout') %></a></li>
             </ul>
           </li>
         </ul>
-            <ul class="dropdown-menu">
-              <li class="active"><a href="/">Home</a></li>
-            </ul>
           </a>
         </div>
       <% end %>
     </div>
-    
   </div>
 </div>

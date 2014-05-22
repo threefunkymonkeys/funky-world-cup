@@ -1,0 +1,5 @@
+en:
+  matches:
+    predict_title: Predict the result
+    warning_title: Warning
+    warning_text: Wait! Check your prediction twice! Once confirmed you will not be able to change it.

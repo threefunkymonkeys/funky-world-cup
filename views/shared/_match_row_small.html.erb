@@ -16,9 +16,9 @@
     <td class="text-center result">
       <span class="host-result"><%= match.result.host_score %></span>
       <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
-        <%= match.result.status == 'partial' ? "In Progress" : "Finished" %><br>
+        <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
         <% if match.result.status == 'final' %>
-          Score: <%= prediction ? prediction.prediction_score : 0 %>
+          <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
         <% end %>
       </strong>
       <div class="mobile-result">
@@ -45,7 +45,7 @@
               data-rival="<%= match.rival_team.name %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= defined?(match_id) ? match_id : match.id %>"
-      >Predict</button>
+      ><%= I18n.t('.actions.predict') %></button>
     <% end %>
   </td>
 </tr>

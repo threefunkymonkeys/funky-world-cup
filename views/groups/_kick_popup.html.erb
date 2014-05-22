@@ -3,16 +3,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Kick Participant</h4>
+        <h4 class="modal-title"><%= I18n.t('.groups.kick_title') %></h4>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to kick participant <strong id="popup-participant-name" class="text-danger"></strong>?</p>
+        <p><%= I18n.t('.groups.kick_text') %> <strong id="popup-participant-name" class="text-danger"></strong>?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default modal-close" data-dismiss="modal"><%= I18n.t('.actions.cancel') %></button>
         <form method="post" action="/groups/<%= id %>/kick" class="form-inline" role="form">
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-primary">Yes, kick it.</button>
+          <button type="submit" class="btn btn-primary"><%= I18n.t('.actions.kick') %></button>
         </form>
       </div>
     </div>

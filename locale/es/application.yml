@@ -1,0 +1,37 @@
+es:
+  footer:
+    donate: Te gusta? Cómpranos una cerveza!
+  sidebar:
+    score: Puntos
+    rank: Ranking
+    your_groups: Tus Grupos
+    no_groups: No estás en ningún grupo todavía
+  actions:
+    create_group: Crear Grupo
+    add_prize: Agregar Premio
+    predict: Arriesgar
+    edit: Editar
+    delete: Borrar
+    cancel: Cancelar
+    save: Guadar
+    reset: Regenerar
+    up: Subir
+    down: Bajar
+    kick: Expulsar
+    confirm: Confirmar
+  common:
+    group: Grupo
+    rules: Reglas
+    fixture: Fixture
+    in_progress: En Curso
+    finished: Finalizado
+    score: Puntos
+    round_of_16: Segunda Ronda
+    quarter_finals: Cuartos de Final
+    semi_finals: Semi Finales
+    final: Final
+    play_off_for_third_place: 3er y 4to puesto
+    first_of: 1ero de
+    second_of: 2do de
+    winner_of: Ganador de
+    loser_of: Perdedor de

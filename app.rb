@@ -5,10 +5,13 @@ require "rack/protection"
 require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'hatch'
+require 'i18n'
+
 require_relative 'helpers/environment'
 
 ENV['RACK_ENV'] ||= :development
 
+I18n.load_path += Dir['./locale/**/*.yml']
 
 FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
@@ -38,6 +41,7 @@ Cuba.plugin FunkyWorldCup::Validators
 include Cuba::Render::Helper
 
 Cuba.define do
+  init_locale(req.env)
 
   on "groups" do
     on "join/:code" do |code|
@@ -46,10 +50,10 @@ Cuba.define do
           begin
             GroupsUser.create(group_id: group.id, user_id: current_user.id)
             authenticate(User[current_user.id])
-            flash[:success] = "You are now part of this group"
+            flash[:success] = I18n.t('.messages.groups.joined')
             res.redirect "/groups/#{group.id}"
           rescue => e
-            flash[:error] = "There was an error joining the group, please try again"
+            flash[:error] = "#{I18n.t('.messages.groups.cant_join')} #{group.name}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
             res.redirect "/dashboard"
           end
         else
@@ -58,7 +62,7 @@ Cuba.define do
       end
 
       session['fwc.join_group_code'] = code
-      flash[:info] = "Please sign in first"
+      flash[:info] = I18n.t('.messages.common.sign_in_first')
       res.redirect "/"
     end
 
@@ -85,18 +89,20 @@ Cuba.define do
     end
 
     on "disclaimer" do
-      res.write render("./views/layouts/application.html.erb") {
-        render("./views/pages/disclaimer.html.erb")
+      res.write render("./views/layouts/home.html.erb") {
+        render("./views/pages/disclaimer_#{session[:locale]}.html")
       }
     end
 
     on "rules" do
-      res.write render("./views/layouts/application.html.erb") {
+      res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/rules.html.erb")
       }
     end
 
     on current_user do
+      @user_rank ||= UserScore.rank_for(current_user.id)
+
       on root do
         res.redirect "/dashboard"
       end
@@ -152,12 +158,12 @@ Cuba.define do
         if group = Group.find(link: join_group_code)
           begin
             GroupsUser.create(group_id: group.id, user_id: user.id)
-            flash[:success] = "You are now part of group #{group.name}"
+            flash[:success] = "#{I18n.t('.messages.groups.part_of')} #{group.name}"
           rescue => e
-            flash[:error] = "There was an error joining the group #{group.name}, please try again"
+            flash[:error] = "#{I18n.t('.messages.groups.cant_join')} #{group.name}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
           end
         else
-          flash[:error] = "There was an error joining the group #{group.name}, please try again"
+          flash[:error] = "#{I18n.t('.messages.groups.cant_join')} #{group.name}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
         end
       end
 

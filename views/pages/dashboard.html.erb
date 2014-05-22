@@ -1,6 +1,6 @@
-<h2>Dashboard</h2>
+<h3><%= I18n.t('.dashboard.title') %></h3>
 <div class="panel panel-default dashboard-matches">
-  <div class="panel-heading">Upcoming Matches</div>
+  <div class="panel-heading"><%= I18n.t('.dashboard.upcoming') %></div>
   <div class="panel-body">
     <% @matches.each do |match| %>
       <%= partial("pages/_match.html", :match => match) %>

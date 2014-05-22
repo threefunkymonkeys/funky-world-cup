@@ -1,0 +1,12 @@
+en:
+  menu:
+    fixture: Fixture
+    dashboard: Dashboard
+    rank: Ranking
+    predictions: Your Predictions
+    positions: Positions Table
+    your_groups: Your Groups
+    help: Help
+    disclaimer: Disclaimer
+    rules: Rules
+    logout: Logout

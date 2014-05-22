@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Predict the result</h4>
+        <h4 class="modal-title"><%= I18n.t('.matches.predict_title') %></h4>
       </div>
       <div class="modal-body">
         <form method="post" action="/users/<%= current_user.id %>/predictions" id="prediction-form">
@@ -28,13 +28,13 @@
         </form>
         
         <div class="alert alert-warning">
-          <h4>Warning!</h4>
-          <p>Wait! Check your prediction twice! Once confirmed you will not be able to change it.</p>
+          <h4><%= I18n.t('.matches.warning_title') %>!</h4>
+          <p><%= I18n.t('.matches.warning_text') %></p>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="submit-prediction">Confirm Prediction</button>
+        <button type="button" class="btn btn-default modal-close" data-dismiss="modal"><%= I18n.t('.actions.cancel') %></button>
+        <button type="button" class="btn btn-primary" id="submit-prediction"><%= I18n.t('.actions.confirm') %></button>
       </div>
     </div>
   </div>
