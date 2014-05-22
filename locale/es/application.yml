@@ -8,7 +8,17 @@ es:
     no_groups: No estás en ningún grupo todavía
   actions:
     create_group: Crear Grupo
+    add_prize: Agregar Premio
     predict: Arriesgar
+    edit: Editar
+    delete: Borrar
+    cancel: Cancelar
+    save: Guadar
+    reset: Regenerar
+    up: Subir
+    down: Bajar
+    kick: Expulsar
+    confirm: Confirmar
   common:
     group: Grupo
     fixture: Fixture

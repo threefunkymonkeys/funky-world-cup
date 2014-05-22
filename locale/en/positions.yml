@@ -1,0 +1,24 @@
+en:
+  positions:
+    title: Positions
+    headers:
+      pos: Pos
+      team: Team
+      points: Pts
+      played: P
+      won: W
+      draw: D
+      lost: L
+      goals: G
+      goals_against: GA
+      goal_difference: GD
+    legend:
+      title: Legend
+      points: Points
+      played: Played matches
+      won: Won
+      draw: Draw
+      lost: Lost
+      goals: Goals
+      goals_against: Goals Against
+      goal_difference: Goal Difference

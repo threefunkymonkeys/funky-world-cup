@@ -1,4 +1,4 @@
-<h4 id="group-<%= group.name.downcase %>">Group <%= group.name %></h4>
+<h4 id="group-<%= group.name.downcase %>"><%= "#{I18n.t('.common.group')} #{group.name}" %></h4>
 <table class="table table-striped table-hover matches-table">
   <tbody>
     <% group.matches.each do |match| %>

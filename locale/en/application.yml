@@ -8,7 +8,17 @@ en:
     no_groups: You don't participate in any group yet
   actions:
     create_group: Create Group
+    add_prize: Add Prize
     predict: Predict
+    edit: Edit
+    delete: Delete
+    cancel: Cancel
+    save: Save
+    reset: Reset
+    up: Up
+    down: Down
+    kick: Kick
+    confirm: Confirm
   common:
     group: Group
     fixture: Fixture

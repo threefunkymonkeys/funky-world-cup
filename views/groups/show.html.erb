@@ -1,8 +1,8 @@
 <h2>
-  Group: <%= group.name %> (<%= group.user.nickname %>)
+  <%= group.name %> (<%= group.user.nickname %>)
   <% if group.user_id == current_user.id %>
-    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group">Delete</a>
+    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm"><%= I18n.t('.actions.edit') %></a>
+  <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group"><%= I18n.t('.actions.delete') %></a>
   <% end %>
 </h2> 
 <br/>
@@ -11,7 +11,7 @@
     <% if group.user_id == current_user.id %>
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">Invite your friends! Share this link with them.</h3>
+        <h3 class="panel-title"><%= I18n.t('.groups.invite') %></h3>
       </div>
       <div class="panel-body">
         <form method="post" action="/groups/<%= group.id %>/reset_link">
@@ -21,7 +21,7 @@
               <span class="input-group-addon">#</span>
               <input type="text" class="form-control" id="sharecode" value="<%= url + "groups/join/" + (group.link || "")%>" readonly="readonly">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Reset</button>
+                <button class="btn btn-default" type="submit"><%= I18n.t('.actions.reset') %></button>
               </span>
             </div>
           </div>
@@ -32,7 +32,7 @@
 
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">Participants</h3>
+        <h3 class="panel-title"><%= I18n.t('.groups.participants') %></h3>
       </div>
       <div class="panel-body" data-group="<%= group.id %>">
         <ul class="list-group <%= group.user_id == current_user.id ? 'by-owner' : ''%>" id="group-participants-list">
@@ -42,7 +42,7 @@
             <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
             <span><%= participant[:nickname] %></span>
             <% if group.user_id == current_user.id && current_user.id != participant[:id] %>
-              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>">kick</button>
+              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
             <% end %>
           </li>
           <% end %>
@@ -53,7 +53,7 @@
   <div class="col-md-4">
     <div class="panel panel-warning">
       <div class="panel-heading">
-        <h3 class="panel-title">Prizes</h3>
+        <h3 class="panel-title"><%= I18n.t('.prizes.title') %></h3>
       </div>
       <div class="panel-body">
         <% if prizes.any? %>
@@ -66,10 +66,10 @@
           <% end %>
         </ul>
         <% else %>
-          <p>There are not any prizes yet</p>
+          <p><%= I18n.t('.prizes.no_prizes') %></p>
         <% end %>
         <% if group.user_id == current_user.id %>
-          <a href="/groups/<%= group.id %>/prizes" class="btn btn-success btn-full-width">Edit Prizes</a>
+          <a href="/groups/<%= group.id %>/prizes" class="btn btn-success btn-full-width"><%= "#{I18n.t('.actions.edit')} #{I18n.t('.prizes.title')}" %></a>
         <% end %>
       </div>
     </div>

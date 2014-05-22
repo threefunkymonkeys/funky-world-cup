@@ -1,0 +1,24 @@
+es:
+  positions:
+    title: Posiciones
+    headers:
+      pos: Pos
+      team: Equipo
+      points: Pts
+      played: J
+      won: G
+      draw: E
+      lost: P
+      goals: GF
+      goals_against: GC
+      goal_difference: DG
+    legend:
+      title: Leyenda
+      points: Puntos
+      played: Partidos Jugados
+      won: Partidos Ganados
+      draw: Partidos Empatados
+      lost: Partidos Perdidos
+      goals: Goles a Favor
+      goals_against: Goles En Contra
+      goal_difference: Diferencia de Gol

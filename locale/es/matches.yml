@@ -1,0 +1,5 @@
+es:
+  matches:
+    predict_title: Arriesga el resultado
+    warning_title: Cuidado
+    warning_text: Espera! Revisa tu resultado antes de confirmarlo. No podrás cambiarlo una vez que lo confirmes!

@@ -217,7 +217,8 @@
   }
   #group-participants-list.by-owner button.btn-xs {
     position: absolute;
-    right: -50px;
+    float: right;
+    left: 101%;
   }
 
 .position-table .team-column, .position-table .position-column {
