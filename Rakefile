@@ -1,3 +1,4 @@
+require 'i18n'
 require_relative 'helpers/environment'
 
 namespace :db do
