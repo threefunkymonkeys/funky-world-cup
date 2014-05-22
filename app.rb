@@ -89,13 +89,13 @@ Cuba.define do
     end
 
     on "disclaimer" do
-      res.write render("./views/layouts/application.html.erb") {
+      res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/disclaimer_#{session[:locale]}.html")
       }
     end
 
     on "rules" do
-      res.write render("./views/layouts/application.html.erb") {
+      res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/rules.html.erb")
       }
     end

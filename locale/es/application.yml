@@ -21,6 +21,7 @@ es:
     confirm: Confirmar
   common:
     group: Grupo
+    rules: Reglas
     fixture: Fixture
     in_progress: En Curso
     finished: Finalizado
