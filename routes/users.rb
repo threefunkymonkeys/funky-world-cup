@@ -40,15 +40,15 @@ module FunkyWorldCup
                       host_score:  params['host_score'].to_i,
                       rival_score: params['rival_score'].to_i
                     )
-                    flash[:success] = "Your prediction was added"
+                    flash[:success] = I18n.t('.messages.matches.prediction_added')
                   rescue => e
-                    flash[:error] = "There was an error adding the prediction for this match, please try again"
+                    flash[:error] = "#{I18n.t('.messages.matches.cant_predict')}, #{I18n.t('.messages.common.please')}, #{I18n.t('.messages.common.try_again')}"
                   end
                 else
-                  flash[:error] = "Trying to cheat? You can't"
+                  flash[:error] = I18n.t('.messages.matches.cant_cheat')
                 end
               else
-                flash[:error] = "You can not longer add a prediction for this match"
+                flash[:error] = I18n.t('.messages.matches.late_prediction')
               end
               res.redirect "/#{params.has_key?('back_to') ? params['back_to'] : "dashboard"}#match-#{match.id}"
             end

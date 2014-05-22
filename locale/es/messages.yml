@@ -1,0 +1,26 @@
+es:
+  messages:
+    common:
+      sign_in_first: Por favor, inicia sesión
+      try_again: Intenta nuevamente
+      please: Por favor
+    groups:
+      joined: Ya eres parte de este grupo
+      cant_join: Hubo un error al unirte al grupo
+      part_of: Eres parte del grupo
+      dont_belong: No perteneces a este grupo
+      created: Se ha creado el grupo
+      updated: Se ha actualizado el grupo
+      deleted: Se ha borrado el grupo
+      cant_delete: No se pudo borrar el grupo
+      link_updated: Se ha actualizado el enlace
+      cant_update_link: No se pudo actualizar el enlace
+      participant_kicked: Se ha expulsado al integrante del grupo
+      cant_kick: No se pudo expulsar al participante
+    prizes:
+      list_updated: Se ha actulizado la lista de premios
+      cant_save_list: No se ha podido actualizar la lista de premios
+    matches:
+      prediction_added: Se ha guardado el resultado
+      cant_cheat: Tratando de hacer trampa? No se puede!
+      late_prediction: Ya no puedes arriesgar para este partido

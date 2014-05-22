@@ -21,7 +21,7 @@ module FunkyWorldCup
               # when user is kicked from group refresh session and redirect
               unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
                 authenticate(User[current_user.id])
-                flash[:warning] = "You are not a participant from this group"
+                flash[:warning] = I18n.t('.messages.group.dont_belong')
                 res.redirect "/dashboard"
               end
 
@@ -78,7 +78,7 @@ module FunkyWorldCup
             GroupsUser.create(group_id: new_group.id, user_id: current_user.id)
             authenticate(User[current_user.id])
 
-            flash[:success] = "The group '#{group['name']}' was created"
+            flash[:success] = "#{group['name']} #{I18n.t('.messages.groups.created')}"
             res.redirect "/groups/#{new_group.id}"
           rescue => e
             flash[:error] = e.message
@@ -105,7 +105,7 @@ module FunkyWorldCup
                   group.description = group_params['description']
                   group.save
 
-                  flash[:success] = "The group '#{group.name}' was updated"
+                  flash[:success] = "#{group.name} #{I18n.t('.messages.groups.updated')}"
                   res.redirect "/groups/#{group.id}"
                 rescue => e
                   flash[:error] = e.message
@@ -128,10 +128,10 @@ module FunkyWorldCup
                       prize.delete
                     end
                   end
-                  flash[:success] = "Prizes list was updated"
+                  flash[:success] = I18n.t('.messages.prizes.list_updated')
                   res.redirect "/groups/#{group.id}"
                 rescue Sequel::Rollback
-                  flash[:error] = "There was an error saving prizes, please try again"
+                  flash[:error] = "#{I18n.t('.messages.prizes.cant_save_list')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
                   session['fwc.pizes'] = req.params['prizes']
                   res.redirect "/groups/#{group.id}/prizes"
                 end
@@ -141,10 +141,10 @@ module FunkyWorldCup
                 begin
                   group.link = FunkyWorldCupApp::generate_group_link(group.id)
                   group.save
-                  flash[:success] = "The link was updated."
+                  flash[:success] = I18n.t('.messages.groups.link_updated')
                 rescue => e
                   puts e.inspect
-                  flash[:error] = "There was an error reseting the link, please try again"
+                  flash[:error] = "#{I18n.t('.messages.groups.cant_update_link')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
                 end
                 res.redirect "/groups/#{group.id}"
               end
@@ -171,10 +171,10 @@ module FunkyWorldCup
                   group.delete
                   authenticate(User[current_user.id])
 
-                  flash[:success] = "Group was deleted."
+                  flash[:success] = I18n.t('.messages.groups.deleted')
                   res.redirect "/groups"
                 rescue => e
-                  flash[:error] = "There was an error deleting the group, please try again"
+                  flash[:error] = "#{I18n.t('.messages.groups.cant_delete')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
                   res.redirect "/groups/#{group.id}"
                 end
               end
@@ -185,9 +185,9 @@ module FunkyWorldCup
                 begin
                   GroupsUser.find(user_id: user_id, group_id: group.id).delete
 
-                  flash[:success] = "The participant was kicked out from the group."
+                  flash[:success] = I18n.t('.messages.groups.participant_kicked')
                 rescue => e
-                  flash[:error] = "There was an error kicking the participant from the group, please try again"
+                  flash[:error] = "#{I18n.t('.messages.groups.cant_kick')}, #{I18n.t('.messages.common.please')}, #{I18n.t('.messages.common.try_again')}"
                 end
                 res.redirect "/groups/#{group.id}"
               end

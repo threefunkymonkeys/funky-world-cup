@@ -1,0 +1,27 @@
+en:
+  messages:
+    common:
+      sign_in_first: Please sign in first
+      try_again: Try again
+      please: Please
+    groups:
+      joined: You are now part of this group
+      cant_join: There was an error joining the group, please try again
+      part_of: You are now part of group
+      dont_belong: You don't belong to this group
+      created: Group was created
+      updated: Group was updated
+      deleted: Group was deleted
+      cant_delete: There was an error deleting the group
+      link_updated: The link was updated
+      cant_update_link: There was an error resetting the link
+      participant_kicked: The participant was kicked out from the group
+      cant_kick: There was an error kicking the participant
+    prizes:
+      list_updated: Prizes list was updated
+      cant_save_list: There was an error saving prizes
+    matches:
+      prediction_added: Your prediction was added
+      cant_predict: There was an error adding the prediction for this match
+      cant_cheat: Trying to cheat? You can't
+      late_prediction: You can not longer add a prediction for this match
