@@ -78,7 +78,7 @@ def read_vars(file)
 end
 
 if File.exist?('env.sh')
-  current_env = read_vars("env.sh")
+  current_env = read_vars("production.env.sh")
   sample_env  = read_vars("development.env.sh.sample")
 
   current_env.each do |name, value|
@@ -95,7 +95,7 @@ if File.exist?('env.sh')
     end
   end
 
-  open("#{ROOT}/env.sh", "w") do |fp|
+  open("#{ROOT}/production.env.sh", "w") do |fp|
     current_env.each do |name, value|
       fp.write "#{name}=#{value}\n"
     end
