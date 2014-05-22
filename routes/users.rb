@@ -2,6 +2,7 @@ module FunkyWorldCup
   class Users < Cuba
     define do
       on get do
+        @user_rank ||= UserScore.rank_for(current_user.id)
         on current_user do
           on :id do |user_id|
 

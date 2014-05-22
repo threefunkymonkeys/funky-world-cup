@@ -2,6 +2,7 @@ module FunkyWorldCup
   class Groups < Cuba
     define do
       on get do
+        @user_rank ||= UserScore.rank_for(current_user.id)
         on root do
           groups = current_user.groups
           res.write render("./views/layouts/application.html.erb") {
