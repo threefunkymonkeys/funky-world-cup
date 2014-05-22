@@ -90,7 +90,7 @@ Cuba.define do
 
     on "disclaimer" do
       res.write render("./views/layouts/application.html.erb") {
-        render("./views/pages/disclaimer.html.erb")
+        render("./views/pages/disclaimer_#{session[:locale]}.html")
       }
     end
 
