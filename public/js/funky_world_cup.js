@@ -28,7 +28,7 @@ body.on('click', '#new-prize-btn', function(event) {
   new_prize = $("<li>").addClass("list-group-item")
                        .text(prize.trim())
                        .append($("<input type='hidden' name='prizes[]'>").val(prize.trim()))
-                       .append($("<button type='button' class='close pull-right'>").text("×"))
+                       .append($("<button type='button' class='close pull-right'>").html("&times;"))
                        .append(
                          $("<ul class='pager pull-right'>").append($("<li><a href='#' class='up'>up</a></li>"))
                                                            .append($("<li class='disabled'><a href='#' class='down'>down</a></li>"))

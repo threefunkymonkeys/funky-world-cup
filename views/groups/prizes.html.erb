@@ -10,7 +10,7 @@
       <li class="list-group-item">
         <%= prize.name %>
         <input type="hidden" name="prizes[]" value="<%= prize.name %>">
-        <button type="button" class="close pull-right">×</button>
+        <button type="button" class="close pull-right">&times;</button>
         <ul class="pager pull-right">
           <li class="<%= index == 0 ? 'disabled' : '' %>"><a class="up" href="#" ><%= I18n.t('.actions.up') %></a></li>
           <li class="<%= prizes[index+1].nil? ? 'disabled' : '' %>"><a class="down" href="#"><%= I18n.t('.actions.down') %></a></li>
