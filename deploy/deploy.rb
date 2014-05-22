@@ -79,7 +79,7 @@ end
 
 if File.exist?('env.sh')
   current_env = read_vars("env.sh")
-  sample_env  = read_vars("env.sh.sample")
+  sample_env  = read_vars("development.env.sh.sample")
 
   current_env.each do |name, value|
     unless sample_env[name]
