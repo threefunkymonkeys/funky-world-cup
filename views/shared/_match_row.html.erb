@@ -25,6 +25,11 @@
           Score: <%= prediction ? prediction.prediction_score : 0 %>
         <% end %>
       </strong>
+      <div class="mobile-result">
+        <span class="host-result-mobile"><%= match.result.host_score %></span>
+        -
+        <span class="rival-result-mobile"><%= match.result.rival_score %></span>
+      </div>
       <span class="rival-result"><%= match.result.rival_score %></span>
     </td>
   <% end %>
@@ -33,12 +38,28 @@
     <br>
     <span class="team"><%= match.rival_team ? match.rival_team.name : match.rival_description %></span>
   </td>
-  <td class="text-center">
+  <td class="text-center prediction-column">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
       <button type="button"
               class="btn btn-primary btn-sm btn-predict"
+              data-host="<%= match.host_team.name %>"
+              data-host-flag="<%= match.host_team.flag %>"
+              data-rival="<%= match.rival_team.name %>"
+              data-rival-flag="<%= match.rival_team.flag %>"
+              data-match="<%= match.id %>"
+      >Predict</button>
+    <% end %>
+  </td>
+</tr>
+<tr class="mobile-info">
+  <td colspan="3">
+    <% if prediction %>
+      <strong class="text-primary">Your Prediction: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+    <% elsif match.host_team && match.rival_team && match.result.nil? %>
+      <button type="button"
+              class="btn btn-primary btn-xs btn-predict"
               data-host="<%= match.host_team.name %>"
               data-host-flag="<%= match.host_team.flag %>"
               data-rival="<%= match.rival_team.name %>"

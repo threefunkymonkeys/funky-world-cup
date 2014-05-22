@@ -21,6 +21,11 @@
           Score: <%= prediction ? prediction.prediction_score : 0 %>
         <% end %>
       </strong>
+      <div class="mobile-result">
+        <span class="host-result-mobile"><%= match.result.host_score %></span>
+        -
+        <span class="rival-result-mobile"><%= match.result.rival_score %></span>
+      </div>
       <span class="rival-result"><%= match.result.rival_score %></span>
     </td>
   <% end %>
