@@ -1,0 +1,14 @@
+es:
+  predictions:
+    title: Tus Predicciones
+    headers:
+      match: Partido
+      group: Grupo/Fase
+      result: Resultado
+      your_prediction: Tu Resultado
+      score: Puntaje
+    statuses:
+      not_started: No comenzado
+      in_progress: Comenzado
+      finished: Finalizado
+    no_predictions: No has arriesgado ningún resultado aun. Revisa tu <a href="/dashboard">Panel</a> o el <a href="/cup-groups/fixture">Fixture</a> y comienza ahora!

@@ -1,0 +1,15 @@
+en:
+  predictions:
+    title: Your Predictions
+    headers:
+      match: Match
+      group: Group/Phase
+      result: Result
+      your_prediction: Your Prediction
+      score: Score
+    statuses:
+      not_started: Not started
+      in_progress: In Progress
+      finished: Finished
+    no_predictions: You didn't make any prediction yet. Please check your <a href="/dashboard">Dashboard</a> or the <a href="/cup-groups/fixture">Fixture</a> and make your predictions
+
