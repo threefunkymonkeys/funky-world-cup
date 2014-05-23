@@ -12,6 +12,7 @@ require_relative 'helpers/environment'
 ENV['RACK_ENV'] ||= :development
 
 I18n.load_path += Dir['./locale/**/*.yml']
+Encoding.default_internal, Encoding.default_external = ['utf-8'] * 2
 
 FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
