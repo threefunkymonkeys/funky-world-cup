@@ -1,4 +1,4 @@
-<h2>Your Predictions</h2>
+<h2><%= I18n.t('.predictions.title') %></h2>
 <div class="panel panel-default" id="predictions-table">
   <div class="panel-heading"></div>
   <div class="panel-body">
@@ -6,11 +6,11 @@
       <table class="table table-striped table-hover ">
         <thead>
           <tr>
-            <th colspan=3">Match</th>
-            <th>Group/Phase</th>
-            <th>Result</th>
-            <th>Your Prediction</th>
-            <th>Score</th>
+            <th colspan=3"><%= I18n.t('.predictions.headers.match') %></th>
+            <th><%= I18n.t('.predictions.headers.group') %></th>
+            <th><%= I18n.t('.predictions.headers.result') %></th>
+            <th><%= I18n.t('.predictions.headers.your_prediction') %></th>
+            <th><%= I18n.t('.predictions.headers.score') %></th>
           </tr>
         </thead>
         <tbody>
@@ -32,15 +32,15 @@
               </td>
               <td>
                 <% if prediction.match.result.nil? %>
-                  <strong class="text-warning">Not Played</strong>
+                  <strong class="text-warning"><%= I18n.t('.predictions.statuses.not_started') %></strong>
                 <% elsif prediction.match.result.status == 'partial' %>
                   <strong class="text-primary"><%= "#{prediction.match.result.host_score} - #{prediction.match.result.rival_score}" %></strong>
                   <br>
-                  <strong class="status text-success">In Progress</strong>
+                  <strong class="status text-success"><%= I18n.t('.predictions.statuses.in_progress') %></strong>
                 <% else %>
                   <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
                   <br>
-                  <strong class="status text-danger">Finished</strong>
+                  <strong class="status text-danger"><%= I18n.t('.predictions.statuses.finished') %></strong>
                 <% end  %>
               </td>
               <td>
@@ -58,7 +58,7 @@
         </tbody>
       </table>
     <% else %>
-      <p>You didn't make any prediction yet. Please check your <a href="/dashboard">Dashboard</a> or the <a href="/cup-groups/fixture">Fixture</a> and make your predictions</p>
+      <p><%= I18n.t('.predictions.no_predictions') %></p>
     <% end  %>
 
   </div>
