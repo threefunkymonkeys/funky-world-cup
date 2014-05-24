@@ -7,7 +7,7 @@
   <td class="team-column">
     <img src="/img/<%= match.host_team ? "flags/#{match.host_team.flag}" : 'missing.png' %>">
     <br>
-    <span class="team host-team"><%= match.host_team ? match.host_team.name : translate_description(match.host_description) %></span>
+    <span class="team host-team"><%= match.host_team ? I18n.t(".teams.#{match.host_team.iso_code}") : translate_description(match.host_description) %></span>
   </td>
   <% if match.result.nil? %>
     <td class="text-center">
@@ -36,7 +36,7 @@
   <td class="team-column">
     <img src="/img/<%= match.rival_team ? "flags/#{match.rival_team.flag}" : 'missing.png' %>">
     <br>
-    <span class="team"><%= match.rival_team ? match.rival_team.name : translate_description(match.rival_description) %></span>
+    <span class="team"><%= match.rival_team ? I18n.t(".teams.#{match.rival_team.iso_code}") : translate_description(match.rival_description) %></span>
   </td>
   <td class="text-center prediction-column">
     <% if prediction %>
