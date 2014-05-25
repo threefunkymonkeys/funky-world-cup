@@ -1,3 +1,14 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
 #navbar img#flag {
   width: 150px;
   vertical-align: top;
@@ -41,7 +52,7 @@
 }
 
 #container {
-  margin-bottom: 4em;
+  padding-bottom: 50px;
 }
 
 #sidebar {
@@ -292,6 +303,11 @@
 }
 
 footer {
+  height: 50px;
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   margin-bottom: 0 !important;
   padding-bottom: 0;
   border-radius: 0 !important;
