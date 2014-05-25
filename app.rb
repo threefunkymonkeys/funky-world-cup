@@ -86,7 +86,7 @@ Cuba.define do
 
   on get do
     on "404" do
-      res.write "404"
+      not_found!
     end
 
     on "disclaimer" do
