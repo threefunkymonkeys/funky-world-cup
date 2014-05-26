@@ -67,7 +67,7 @@ end
 
 $stdout.sync = true
 
-pids_dir = opts[:pids_dir] || File.dirname(__FILE__)
+pids_dir = opts[:pids_dir] || File.expand_path("jobs/pids")
 
 job = FWCJob.new(job_name, pids_dir)
 
