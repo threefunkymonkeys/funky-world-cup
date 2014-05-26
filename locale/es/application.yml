@@ -41,3 +41,6 @@ es:
     skip_text: o puedes <a href="/dashboard">ir directamente a tu panel</a> y leerlas luego desde el menú de <strong>Ayuda</strong>.
     reminder_text: Recuerda que puedes acceder a las reglas en cualquier momento desde el menú de <strong>Ayuda</strong>
     button: Vamos!
+  errors:
+    not_found: La página no fue encontrada (404)
+    not_found_description: La página que estás buscando no ha sido encontrada.
