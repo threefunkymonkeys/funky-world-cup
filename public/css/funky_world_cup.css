@@ -400,6 +400,9 @@ footer {
   .matches-table.small-table td.team-column {
     width: 90px;
   }
+  .matches-table.small-table .info-column {
+    display: table-cell;
+  }
 
   #modal-predict form td.modal-host, #modal-predict form td.modal-rival {
     padding-top: 6px;
@@ -483,6 +486,9 @@ footer {
   }
   .matches-table .info-column {
     display: none;
+  }
+  .matches-table.small-table .info-column {
+    display: table-cell;
   }
 
   .matches-table.small-table td.team-column {
