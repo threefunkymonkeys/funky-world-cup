@@ -1,0 +1,99 @@
+#! /usr/bin/env ruby
+require "clap"
+
+module FWCWorker
+  def self.print_help
+    $stdout.puts "Usage: fwc-worker [-d] [-p /path/to/pids] job_name (start|stop)"
+  end
+end
+
+class FWCJob
+  def initialize(job_name, pids_dir)
+    @name = job_name
+    @job_path = File.expand_path("jobs/#{job_name}")
+    @pid_path = File.expand_path("#{job_name}.pid", pids_dir)
+  end
+
+  def start
+    require @job_path
+  end
+  
+  def stop
+    if File.exists?(@pid_path)
+      Process.kill :TERM, File.open(@pid_path).read.strip.to_i
+      File.delete(@pid_path)
+      true
+    else
+      false
+    end
+  end
+
+  def daemonize!
+    Process.daemon(true)
+    File.open(@pid_path, File::RDWR|File::EXCL|File::CREAT, 0600) { |io| io.write(Process.pid) }
+  end
+
+  def clean
+    if File.exists?(@pid_path)
+      File.delete(@pid_path)
+    end
+  end
+end
+
+opts = {}
+
+args = Clap.run ARGV,
+  "-d" => -> {
+    opts[:daemonize] = true
+  },
+  "-p" => ->(dir) { 
+    opts[:pids_dir] = dir
+  }
+
+job_name = args.shift
+action   = args.shift
+
+unless job_name
+  $stderr.puts "Must indicate a worker name"
+  FWCWorker.print_help
+  exit 1
+end
+
+unless action
+  $stderr.puts "Must indicate an action"
+  FWCWorker.print_help
+  exit 1
+end
+
+$stdout.sync = true
+
+pids_dir = opts[:pids_dir] || File.dirname(__FILE__)
+
+job = FWCJob.new(job_name, pids_dir)
+
+case action
+when "start"
+  if opts[:daemonize]
+    job.daemonize!
+  end
+
+  $stdout.puts "Starting Job #{job_name} #{opts[:daemonize] ? "(daemonized)" : ""}"
+  job.start
+
+when "stop"
+  $stdout.puts "Stopping Job #{job_name}"
+  if job.stop
+    $stdout.puts "Stopped"
+  else
+    $stderr.puts "PID file not found"
+  end
+
+else
+  FWCWorker.print_help
+  exit 2
+end
+
+at_exit do
+  job.clean
+end
+
