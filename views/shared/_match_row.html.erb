@@ -56,7 +56,7 @@
 <tr class="mobile-info">
   <td colspan="3">
     <% if prediction %>
-      <strong class="text-primary">Your Prediction: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <strong class="text-primary"><%= I18n.t('dashboard.your_prediction')%>: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
       <button type="button"
               class="btn btn-primary btn-xs btn-predict"
@@ -65,7 +65,7 @@
               data-rival="<%= match.rival_team.name %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= match.id %>"
-      >Predict</button>
+      ><%= I18n.t('.actions.predict') %></button>
     <% end %>
   </td>
 </tr>
