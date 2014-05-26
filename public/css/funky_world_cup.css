@@ -645,3 +645,11 @@ footer {
 }
 @media (min-width: 1200px) {
 }
+
+.lang-flag-left {
+  padding-right: 5px !important;
+}
+
+.lang-flag-right {
+  padding-left: 5px !important;
+}
