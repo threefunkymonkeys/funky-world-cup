@@ -4,3 +4,4 @@ test.env.sh
 production.env.sh
 .directory
 jobs/logs/*
+jobs/pids/*
