@@ -45,33 +45,7 @@ Cuba.define do
   init_locale(req.env)
 
   on "groups" do
-    on "join/:code" do |code|
-      on current_user do
-        if group = Group.find(link: code)
-          begin
-            GroupsUser.create(group_id: group.id, user_id: current_user.id)
-            authenticate(User[current_user.id])
-            flash[:success] = I18n.t('.messages.groups.joined')
-            res.redirect "/groups/#{group.id}"
-          rescue => e
-            flash[:error] = "#{I18n.t('.messages.groups.cant_join')} #{group.name}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
-            res.redirect "/dashboard"
-          end
-        else
-          not_found!
-        end
-      end
-
-      session['fwc.join_group_code'] = code
-      flash[:info] = I18n.t('.messages.common.sign_in_first')
-      res.redirect "/"
-    end
-
-    on current_user do
-      run FunkyWorldCup::Groups
-    end
-
-    not_found!
+    run FunkyWorldCup::Groups
   end
 
   on "cup-groups" do
