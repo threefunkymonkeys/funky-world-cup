@@ -27,6 +27,12 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li class="small-mobile">
+            <a href="/lang/es" class="lang-flag-left small-mobile"><img src="/img/es_lang_flag.png" width="24" height="16" /></a>
+          </li>
+          <li class="small-mobile">
+            <a href="/lang/en" class="lang-flag-right small-mobile"><img src="/img/en_lang_flag.png" width="24" height="16" /></a>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<%= current_user.image %>" />
@@ -44,6 +50,15 @@
               <li class="divider"></li>
               <li><a href="/logout"><%= I18n.t('.menu.logout') %></a></li>
             </ul>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="small-mobile">
+            <a href="/lang/es" class="lang-flag-left small-mobile"><img src="/img/es_lang_flag.png" width="24" height="16" /></a>
+          </li>
+          <li class="small-mobile">
+            <a href="/lang/en" class="lang-flag-right small-mobile"><img src="/img/en_lang_flag.png" width="24" height="16" /></a>
           </li>
         </ul>
       <% end %>

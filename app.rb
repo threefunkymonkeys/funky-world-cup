@@ -101,6 +101,17 @@ Cuba.define do
       }
     end
 
+    on "lang/:locale" do |locale|
+      locale = locale.to_sym
+
+      if FunkyWorldCup::ALLOWED_LOCALES.include? locale
+        session[:locale] = locale
+        current_user.update(:locale => locale) if current_user
+      end
+
+      res.redirect (req.env["HTTP_REFERER"] || "/")
+    end
+
     on current_user do
       @user_rank ||= UserScore.rank_for(current_user.id)
 
