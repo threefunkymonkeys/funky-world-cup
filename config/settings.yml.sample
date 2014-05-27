@@ -4,7 +4,7 @@ production:
     port: ''
     user: ''
     password: ''
-    db_name: ''
+    database: ''
 
 development:
   db:
@@ -12,7 +12,7 @@ development:
     port: '5432'
     user: 'fwc'
     password: 'changepasswordplease'
-    db_name: 'funky_world_cup'
+    database: 'funky_world_cup'
 
 test:
   db:
@@ -20,4 +20,4 @@ test:
     port: '5432'
     user: 'fwc'
     password: 'changepasswordplease'
-    db_name: 'funky_world_cup_test'
+    database: 'funky_world_cup_test'
