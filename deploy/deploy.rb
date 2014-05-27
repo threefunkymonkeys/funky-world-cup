@@ -65,6 +65,8 @@ Dir.chdir(ROOT)
 
 run "sudo dep install"
 
+run "rake db:migrate"
+
 def read_vars(file)
   {}.tap do |h|
     open("#{ROOT}/#{file}") do |fp|

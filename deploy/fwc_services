@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+touch /srv/http/funky-world-cup/tmp/restart.txt
