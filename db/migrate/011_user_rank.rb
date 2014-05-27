@@ -5,6 +5,7 @@ Sequel.migration do
       foreign_key :user_id, :users, on_delete: :cascade
       Integer :score, default: 0
     end
+    add_index :user_scores, :score
   end
 
   down do
