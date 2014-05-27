@@ -5,7 +5,7 @@ Sequel.migration do
       String :name, :text=>true, :null=>false
       String :phase, :default=>"groups", :text=>true
     end
-    
+
     create_table(:match_predictions, :ignore_index_errors=>true) do
       primary_key :id
       Integer :user_id
@@ -13,22 +13,22 @@ Sequel.migration do
       Integer :host_score, :default=>0
       Integer :rival_score, :default=>0
       Integer :prediction_score, :default=>0
-      
+
       index [:user_id, :match_id], :unique=>true
     end
-    
+
     create_table(:schema_info) do
       Integer :version, :default=>0, :null=>false
     end
-    
+
     create_table(:teams) do
       String :iso_code, :text=>true, :null=>false
       String :name, :text=>true, :null=>false
       String :flag, :text=>true, :null=>false
-      
+
       primary_key [:iso_code]
     end
-    
+
     create_table(:users, :ignore_index_errors=>true) do
       primary_key :id
       String :name, :text=>true
@@ -37,11 +37,11 @@ Sequel.migration do
       String :facebook_user, :text=>true
       String :image, :text=>true
       TrueClass :show_rules, :default=>true
-      
+
       index [:facebook_user]
       index [:twitter_user]
     end
-    
+
     create_table(:group_positions) do
       primary_key :id
       foreign_key :group_id, :cup_groups, :key=>[:id]
@@ -53,7 +53,7 @@ Sequel.migration do
       Integer :points, :default=>0
       Integer :received_goals, :default=>0
     end
-    
+
     create_table(:groups) do
       primary_key :id
       foreign_key :user_id, :users, :key=>[:id]
@@ -61,7 +61,7 @@ Sequel.migration do
       String :description, :text=>true
       String :link, :text=>true
     end
-    
+
     create_table(:matches) do
       primary_key :id
       foreign_key :host_id, :teams, :type=>String, :text=>true, :key=>[:iso_code]
@@ -77,28 +77,28 @@ Sequel.migration do
       String :rival_code, :text=>true
       TrueClass :enabled, :default=>true
     end
-    
+
     create_table(:user_scores) do
       primary_key :id
       foreign_key :user_id, :users, :key=>[:id], :on_delete=>:cascade
       Integer :score, :default=>0
     end
-    
+
     create_table(:group_prizes) do
       primary_key :id
       foreign_key :group_id, :groups, :key=>[:id], :on_delete=>:cascade
       String :name, :text=>true, :null=>false
       Integer :order, :null=>false
     end
-    
+
     create_table(:groups_users, :ignore_index_errors=>true) do
       primary_key :id
       foreign_key :group_id, :groups, :key=>[:id], :on_delete=>:cascade
       foreign_key :user_id, :users, :key=>[:id]
-      
+
       index [:group_id, :user_id], :unique=>true
     end
-    
+
     create_table(:results) do
       primary_key :id
       foreign_key :match_id, :matches, :key=>[:id]

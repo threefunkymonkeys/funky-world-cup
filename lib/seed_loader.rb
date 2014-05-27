@@ -10,6 +10,8 @@ class SeedLoader
   def seed(empty = true)
     if empty
       Result.dataset.delete
+      GroupPosition.dataset.delete
+      MatchPrediction.dataset.delete
       Match.dataset.delete
       Team.dataset.delete
       CupGroup.dataset.delete
