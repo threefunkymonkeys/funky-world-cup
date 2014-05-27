@@ -32,7 +32,7 @@ module FunkyWorldCup
 
     def init_locale(env)
       if !session[:locale] && (env.has_key?("HTTP_ACCEPT_LANGUAGE") || current_user)
-        if current_user.locale
+        if current_user && current_user.locale
           locale = current_user.locale
         else
           locale = env["HTTP_ACCEPT_LANGUAGE"][0,2].to_sym #take first accepted language
