@@ -343,6 +343,15 @@ footer {
   display: none;
 }
 
+.lang-flag-left {
+  padding-right: 15px !important;
+}
+
+.lang-flag-right {
+  padding-left: 0px !important;
+  padding-right: 25px !important;
+}
+
 /* responsive */
 @media (max-width: 479px) {
   #nickname {
@@ -450,6 +459,16 @@ footer {
   .position-table .position-column {
     font-size: 60%;
   }
+  .nav > li {
+    display: inline-block;
+  }
+  .lang-flag-right {
+    padding-right: 10px !important;
+  }
+  .lang-flag-left {
+    padding-left: 0 !important;
+    padding-right: 10px !important;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 991px) {
@@ -510,6 +529,10 @@ footer {
   .matches-table.small-table td.team-column {
     width: 90px;
   }
+
+  .nav > li {
+    display: inline-block;
+  }
 }
 @media (max-width: 991px) {
   .navbar-header {
@@ -520,7 +543,7 @@ footer {
   }
   .navbar-right {
     float: right !important;
-    margin: 0 10px 0 0;
+    margin: 0 0 0 0;
   }
   .user-menu {
     display: none;
@@ -644,12 +667,4 @@ footer {
   }
 }
 @media (min-width: 1200px) {
-}
-
-.lang-flag-left {
-  padding-right: 5px !important;
-}
-
-.lang-flag-right {
-  padding-left: 5px !important;
 }
