@@ -37,6 +37,7 @@ Sequel.migration do
       String :facebook_user, :text=>true
       String :image, :text=>true
       TrueClass :show_rules, :default=>true
+      String :locale, :text=>true
 
       index [:facebook_user]
       index [:twitter_user]

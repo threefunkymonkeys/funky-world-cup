@@ -13,3 +13,8 @@ Result.extend(Spawn).spawner do |result|
   result.rival_score = (0..9).to_a.sample
   result.status = 'partial'
 end
+
+Group.extend(Spawn).spawner do |group|
+  group.name = Faker::Lorem.words(2)
+  group.description = Faker::Lorem.sentence
+end
