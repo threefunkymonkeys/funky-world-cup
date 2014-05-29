@@ -1,11 +1,10 @@
 module FunkyWorldCup
-  class GroupContext
+  class JoinGroupContext
     attr_reader :user, :group
 
-    def initialize(ctx, params = {})
+    def initialize(ctx)
       @ctx = ctx
       @user = ctx.current_user
-      @params = params
     end
     
     def join(group)
