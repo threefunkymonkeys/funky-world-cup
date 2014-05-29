@@ -4,6 +4,8 @@ require 'pp'
 require 'rack/test'
 require 'spawn'
 require 'faker'
+require 'mocha/mini_test'
+require 'pry-debugger'
 
 ENV["RACK_ENV"]  = "test"
 

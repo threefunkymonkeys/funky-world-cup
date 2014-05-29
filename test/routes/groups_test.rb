@@ -1,7 +1,5 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 include FunkyWorldCup::Helpers
-require 'mocha/mini_test'
-require 'pry-debugger'
 
 describe 'Users Groups' do
   before do
