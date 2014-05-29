@@ -84,27 +84,10 @@ module FunkyWorldCup
 
         on post do
           on root do
-            begin
-              group = req.params['group'].strip
-              group_form = FunkyWorldCup::Validators::GroupForm.hatch(group)
-              raise ArgumentError.new(group_form.errors.full_messages.join(', ')) unless group_form.valid?
-              raise ArgumentError.new("Name can not be repeated") unless Group.where(name: group['name']).and(user_id: current_user.id).all.empty?
-
-              new_group = Group.create(
-                name: group['name'],
-                description: group['description'],
-                user_id: current_user.id,
-                link: FunkyWorldCupApp::generate_group_link
-              )
-
-              GroupsUser.create(group_id: new_group.id, user_id: current_user.id)
-              authenticate(User[current_user.id])
-
-              flash[:success] = "#{group['name']} #{I18n.t('.messages.groups.created')}"
-              res.redirect "/groups/#{new_group.id}"
-            rescue => e
-              flash[:error] = e.message
-              session['fwc.group_params'] = group
+            attrs = req.params['group'].strip
+            if group = FunkyWorldCup::GroupCreate.new(self).execute(attrs)
+              res.redirect "/groups/#{group.id}"
+            else
               res.redirect '/groups/new'
             end
           end

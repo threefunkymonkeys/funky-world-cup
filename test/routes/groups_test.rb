@@ -23,6 +23,14 @@ describe 'Users Groups' do
       group.user_id.must_equal @user.id
     end
 
+    it 'should not create a duplicated group' do
+      group_name = "Test Group"
+      group = Group.spawn(:user_id => @user.id, :name => group_name)
+      response = post '/groups', :group => {:name => group_name}
+      response.status.must_equal 302
+      response.location.must_equal "/groups/new"
+    end
+
     it "should list current user's groups" do
       groups = [Group.spawn(:user_id => @user.id),
                 Group.spawn(:user_id => @user.id)]
