@@ -6,7 +6,7 @@ class Group < Sequel::Model
   one_to_many :group_prizes, order: :order
 
   def participants
-    GroupsUser.select(Sequel.qualify(:users, :id), :nickname, :score)
+    GroupsUser.select(Sequel.qualify(:users, :id), :nickname, :image, :score)
               .join(:users, id: :user_id)
               .left_join(:user_scores, user_id: :id)
               .where(group_id: id)
