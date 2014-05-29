@@ -32,6 +32,7 @@ end
 
 Dir["./helpers/**/*.rb"].each { |file| require file }
 Dir["./models/**/*.rb"].each { |file| require file }
+Dir["./contexts/**/*.rb"].each { |file| require file }
 Dir["./routes/**/*.rb"].each { |file| require file }
 Dir["./validators/**/*.rb"].each { |file| require file }
 Dir["./lib/**/*.rb"].each { |file| require file }
