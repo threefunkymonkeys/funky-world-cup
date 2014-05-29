@@ -1,5 +1,6 @@
 require 'cuba'
 require 'cuba/render'
+require 'tilt/erb'
 require 'sequel'
 require "rack/protection"
 require 'omniauth-twitter'
