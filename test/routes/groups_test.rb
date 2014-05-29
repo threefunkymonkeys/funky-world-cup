@@ -84,6 +84,41 @@ describe 'Users Groups' do
       get "/groups/join/test-group-link"
       @user.groups.must_include group
     end
+
+    describe 'when the user owns a group' do
+      before do
+      end
+
+      it 'should show edit page' do
+        group = Group.spawn(:user_id => @user.id)
+
+        response = get "/groups/#{group.id}/edit"
+        response.status.must_equal 200
+      end
+
+      it 'should show the prizes page' do
+        group = Group.spawn(:user_id => @user.id)
+
+        response = get "/groups/#{group.id}/prizes"
+        response.status.must_equal 200
+      end
+    end
+
+    describe "when the user doesn\'t own the group" do
+      it 'should not find the edit page' do
+        group = Group.spawn
+        response = get "/groups/#{group.id}/edit"
+
+        response.status.must_equal 404
+      end
+
+      it 'should not find the prizes page' do
+        group = Group.spawn
+        response = get "/groups/#{group.id}/prizes"
+
+        response.status.must_equal 404
+      end
+    end
   end
 
   describe 'when logged out' do
