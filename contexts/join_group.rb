@@ -12,7 +12,7 @@ module FunkyWorldCup
 
       begin
         GroupsUser.create(group_id: group.id, user_id: @user.id)
-        authenticate(User[@user.id])
+        @ctx.authenticate(User[@user.id])
         @ctx.flash[:success] = I18n.t('.messages.groups.joined')
         return :success
       rescue => e
