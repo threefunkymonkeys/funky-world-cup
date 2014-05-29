@@ -7,10 +7,9 @@ module FunkyWorldCup
           flash[:info] = I18n.t('.messages.common.sign_in_first')
           res.redirect "/"
         else
-          context = FunkyWorldCup::JoinGroupContext.new(self)
           group = Group.find(link: code)
 
-          case context.join(group)
+          case FunkyWorldCup::JoinGroup.new(self).execute(group)
           when :success
             res.redirect "/groups/#{group.id}"
           when :error

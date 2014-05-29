@@ -1,5 +1,5 @@
 module FunkyWorldCup
-  class JoinGroupContext
+  class JoinGroup
     attr_reader :user, :group
 
     def initialize(ctx)
@@ -7,7 +7,7 @@ module FunkyWorldCup
       @user = ctx.current_user
     end
     
-    def join(group)
+    def execute(group)
       return :not_found if group.nil?
 
       begin
