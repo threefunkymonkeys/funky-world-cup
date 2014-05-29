@@ -2,18 +2,24 @@ module FunkyWorldCup
   class Groups < Cuba
     define do
       on "join/:code" do |code|
-        context = FunkyWorldCup::GroupContext.new(self, {code: code})
-
-        case context.join_group
-        when :not_logged_in
+        unless current_user
+          session['fwc.join_group_code'] = code
+          flash[:info] = I18n.t('.messages.common.sign_in_first')
           res.redirect "/"
-        when :success
-          res.redirect "/groups/#{context.group.id}"
-        when :error
-          res.redirect "/dashboard"
-        when :not_found
-          not_found!
+        else
+          context = FunkyWorldCup::GroupContext.new(self)
+          group = Group.find(link: code)
+
+          case context.join(group)
+          when :success
+            res.redirect "/groups/#{group.id}"
+          when :error
+            res.redirect "/dashboard"
+          when :not_found
+            not_found!
+          end
         end
+
       end
 
       on current_user do
