@@ -220,6 +220,23 @@ html, body {
   display: inline;
 }
 
+#group-participants-list {
+}
+  .participant-img {
+    width: 25px;
+    height: 25px;
+    margin: 0 3px;
+  }
+  #group-participants-list .badge {
+    margin-top: 5px;
+  }
+  #group-participants-list .list-group-item .label {
+    display: inline-block;
+    padding: 5px;
+    min-width: 32px;
+    text-align: center;
+  }
+
 #group-participants-list.by-owner {
   width: 90%;
 }
