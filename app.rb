@@ -141,7 +141,7 @@ Cuba.define do
                            "name" => info['name'],
                            "image" => info['image'])
       else
-        if user.nickname != info['nickname'] || user.image != info['image'])
+        if (user.nickname != info['nickname'] || user.image != info['image'])
           user.update(:nickname => info['nickname'], :image => info['image'])
         end
       end
