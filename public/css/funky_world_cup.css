@@ -220,6 +220,13 @@ html, body {
   display: inline;
 }
 
+#group-title {
+  float: left;
+}
+#group-controls {
+  margin-top: 23px;
+}
+
 #group-participants-list {
 }
   .participant-img {
@@ -485,6 +492,11 @@ footer {
   .lang-flag-left {
     padding-left: 0 !important;
     padding-right: 10px !important;
+  }
+  #group-controls {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    float: left !important;
   }
 }
 

@@ -1,10 +1,13 @@
-<h2>
+<h2 id="group-title">
   <%= group.name %> (<%= group.user.nickname %>)
+</h2> 
+<div id="group-controls" class="pull-right">
   <% if group.user_id == current_user.id %>
     <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm"><%= I18n.t('.actions.edit') %></a>
   <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group"><%= I18n.t('.actions.delete') %></a>
   <% end %>
-</h2> 
+</div>
+<div class="clearfix"></div>
 <br/>
 <div class="row" style="margin-top:-20px;">
   <div class="col-md-8">
