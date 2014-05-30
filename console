@@ -1,9 +1,10 @@
 #!/bin/bash
 RACK_ENV=${RACK_ENV-"development"}
-pry_bin=`which pry`
 
-if [ -x $pry_bin ]; then
-  RACK_ENV=$RACK_ENV $pry_bin -r'./app.rb'
+if command -v pry 2>/dev/null; then
+  cmd=pry
 else
-  RACK_ENV=$RACK_ENV irb -r./app
+  cmd=irb
 fi
+
+RACK_ENV=$RACK_ENV $cmd -r'./app.rb'
