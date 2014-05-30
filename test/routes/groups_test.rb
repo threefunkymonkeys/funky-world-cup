@@ -68,11 +68,24 @@ describe 'Users Groups' do
       response = get "/groups/#{group.id}/edit"
       response.status.must_equal 200
 
-      put "/groups/#{group.id}", :group => {:name => "Name", :description => "Description"}
+      response = put "/groups/#{group.id}", :group => {:name => "Name", :description => "Description"}
 
+      response.status.must_equal 302
+      response.location.must_equal "/groups/#{group.id}"
       group.reload
       group.name.must_equal "Name"
       group.description.must_equal "Description"
+    end
+
+    it 'should not update to a duplicated name' do
+      group_name = "Test Group"
+      Group.spawn(:user_id => @user.id, :name => group_name)
+      group = Group.spawn(:user_id => @user.id)
+
+      response = put "/groups/#{group.id}", :group => {:name => group_name}
+
+      response.status.must_equal 302
+      response.location.must_equal "/groups/#{group.id}/edit"
     end
 
     it "should allow deletion" do

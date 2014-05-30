@@ -100,21 +100,10 @@ module FunkyWorldCup
             on (group = Group[group_id.to_i]) do
               on group.user_id == current_user.id do
                 on root do
-                  begin
-                    group_params = req.params['group'].strip
-                    group_form = FunkyWorldCup::Validators::GroupForm.hatch(group_params)
-                    raise ArgumentError.new(group_form.errors.full_messages.join(', ')) unless group_form.valid?
-                    raise ArgumentError.new("Name can not be repeated") unless Group.where(name: group_params['name']).and(user_id: current_user.id).all.empty?
-
-                    group.name = group_params['name']
-                    group.description = group_params['description']
-                    group.save
-
-                    flash[:success] = "#{group.name} #{I18n.t('.messages.groups.updated')}"
+                  attrs = req.params['group'].strip
+                  if FunkyWorldCup::GroupUpdate.new(self, group).execute(attrs)
                     res.redirect "/groups/#{group.id}"
-                  rescue => e
-                    flash[:error] = e.message
-                    session['fwc.group_params_edit'] = group
+                  else
                     res.redirect "/groups/#{group.id}/edit"
                   end
                 end
