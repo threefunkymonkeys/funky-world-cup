@@ -155,6 +155,12 @@ body.on('click', ".btn-predict", function(event) {
          .append($("<br>"))
          .append($("<span>").addClass("team").text(rival_name));
 
+  modal.on('click', "input[type=\"text\"]", function(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    $(this).select();
+  });
+
   modal.modal('show');
 });
 
