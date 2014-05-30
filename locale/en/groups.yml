@@ -3,6 +3,7 @@ en:
     title: Your Groups
     no_groups: You don't have and don't belong to any group yet. You can create a group with the button in the sidebar or wait until someone invite you.
     edit_title: Edit Group
+    create_title: Create Group
     confirm_title: Confirm Group Deletion
     confirm_text: Are you sure you want to delete this group? This change can not be reverted.
     kick_title: Kick Participant

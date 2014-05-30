@@ -1,17 +1,17 @@
-<h2>Create new Group</h2>
+<h2><%= I18n.t('.groups.create_title') %></h2>
 <form method="post" action="/groups">
   <div class="form-group">
-    <label class="control-label" for="name">Name</label>
+    <label class="control-label" for="name"><%= I18n.t('.groups.fields.name') %></label>
     <input class="form-control" id="name" name="group[name]" type="text" value="<%= params.has_key?('name') ? params['name'] : '' %>" required>
   </div>
   <div class="form-group">
-    <label class="control-label" for="description">Description</label>
+    <label class="control-label" for="description"><%= I18n.t('.groups.fields.desc') %></label>
     <textarea class="form-control" rows="3" id="description" name="group[description]"><%= params.has_key?('description') ? params['description'] : '' %></textarea>
   </div>
   <div class="form-group">
     <div class="pull-right">
-      <a href="/groups" class="btn btn-default">Cancel</a>
-      <button type="submit" class="btn btn-success">Create Group</button>
+      <a href="/groups" class="btn btn-default"><%= I18n.t('.actions.cancel') %></a>
+      <button type="submit" class="btn btn-success"><%= I18n.t('.actions.create_group') %></button>
     </div>
   </div>
 </form>
