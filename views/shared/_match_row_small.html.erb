@@ -40,9 +40,9 @@
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
       <button type="button"
               class="btn btn-primary btn-xs btn-predict"
-              data-host="<%= match.host_team.name %>"
+              data-host="<%= I18n.t(".teams.#{match.host_team.iso_code}") %>"
               data-host-flag="<%= match.host_team.flag %>"
-              data-rival="<%= match.rival_team.name %>"
+              data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= defined?(match_id) ? match_id : match.id %>"
       ><%= I18n.t('.actions.predict') %></button>
