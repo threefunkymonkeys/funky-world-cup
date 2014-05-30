@@ -140,6 +140,8 @@ Cuba.define do
                            "nickname" => info['nickname'],
                            "name" => info['name'],
                            "image" => info['image'])
+      elsif user.nickname != info['nickname'] || user.image != info['image'])
+        user.update(:nickname => info['nickname'], :image => info['image'])
       end
 
       if join_group_code = session.delete('fwc.join_group_code')
