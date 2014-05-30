@@ -24,7 +24,7 @@ module FunkyWorldCup
           link: FunkyWorldCupApp::generate_group_link
         )
 
-        GroupsUser.create(group_id: group.id, user_id: @user.id)
+        @user.add_group(group)
         @ctx.authenticate(@user)
 
         @ctx.flash[:success] = "#{group.name} #{I18n.t('.messages.groups.created')}"
