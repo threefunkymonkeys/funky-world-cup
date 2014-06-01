@@ -23,7 +23,8 @@ module FunkyWorldCup
 
       on current_user do
         on get do
-          @user_rank ||= UserScore.rank_for(current_user.id)
+          calculate_user_rank
+
           on root do
             groups = current_user.groups
             res.write render("./views/layouts/application.html.erb") {

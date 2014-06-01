@@ -1,7 +1,7 @@
 module FunkyWorldCup
   class CupGroups < Cuba
     define do
-      @user_rank ||= UserScore.rank_for(current_user.id)
+      calculate_user_rank
 
       on get, "positions" do
         res.write render("./views/layouts/application.html.erb") {
