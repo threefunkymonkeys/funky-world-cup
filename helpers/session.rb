@@ -21,5 +21,10 @@ module FunkyWorldCup
       session['fwc.flash'] = (@env['rack.session']['fwc.flash'] || {})
       session['fwc.flash']
     end
+
+    def calculate_user_rank
+      res.redirect "/" unless user_authenticated?
+      @user_rank ||= UserScore.rank_for(current_user.id)
+    end
   end
 end
