@@ -163,5 +163,10 @@ Cuba.define do
 
       res.redirect "/dashboard"
     end
+
+    on "auth/failure" do
+      flash[:error] = I18n.t(".errors.login_error")
+      res.redirect "/"
+    end
   end
 end
