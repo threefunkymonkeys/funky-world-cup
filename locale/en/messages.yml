@@ -17,6 +17,8 @@ en:
       cant_update_link: There was an error resetting the link
       participant_kicked: The participant was kicked out from the group
       cant_kick: There was an error kicking the participant
+      user_left: You left the group
+      cant_leave: There was an error leaving the group
     prizes:
       list_updated: Prizes list was updated
       cant_save_list: There was an error saving prizes

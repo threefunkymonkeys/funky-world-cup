@@ -17,6 +17,8 @@ es:
       cant_update_link: No se pudo actualizar el enlace
       participant_kicked: Se ha expulsado al integrante del grupo
       cant_kick: No se pudo expulsar al participante
+      user_left: Ha dejado el grupo
+      cant_leave: No se pudo dejar el grupo
     prizes:
       list_updated: Se ha actulizado la lista de premios
       cant_save_list: No se ha podido actualizar la lista de premios

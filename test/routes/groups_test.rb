@@ -104,6 +104,16 @@ describe 'Users Groups' do
       @user.groups.must_include group
     end
 
+    it "should allow leave" do
+      group = Group.spawn(:user_id => User.spawn.id)
+      GroupsUser.spawn(group_id: group.id, user_id: @user.id)
+
+      @user.groups.must_include group
+      get "/groups/#{group.id}/leave"
+      @user.reload
+      assert false, @user.groups.include?(group)
+    end
+
     describe 'when the user owns a group' do
       before do
       end

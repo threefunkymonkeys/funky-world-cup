@@ -190,6 +190,17 @@ module FunkyWorldCup
                 not_found!
               end
 
+              on 'leave' do
+                case FunkyWorldCup::LeaveGroup.new(self).execute(group)
+                when :success
+                  res.redirect "/"
+                when :error
+                  res.redirect "/groups/#{group.id}"
+                when :not_found
+                  not_found!
+                end
+              end
+
               not_found!
             end
 
