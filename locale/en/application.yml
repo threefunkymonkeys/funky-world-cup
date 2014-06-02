@@ -19,6 +19,7 @@ en:
     down: Down
     kick: Kick
     confirm: Confirm
+    leave: Leave Group
   common:
     group: Group
     rules: Rules

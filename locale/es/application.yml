@@ -19,6 +19,7 @@ es:
     down: Bajar
     kick: Expulsar
     confirm: Confirmar
+    leave: Dejar Grupo
   common:
     group: Grupo
     rules: Reglas
