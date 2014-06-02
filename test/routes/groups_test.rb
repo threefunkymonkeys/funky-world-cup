@@ -109,9 +109,9 @@ describe 'Users Groups' do
       GroupsUser.spawn(group_id: group.id, user_id: @user.id)
 
       @user.groups.must_include group
-      get "/groups/#{group.id}/leave"
-      @user.reload
-      assert false, @user.groups.include?(group)
+      response = delete "/groups/#{group.id}/leave"
+
+      assert_equal false, @user.reload.groups.include?(group)
     end
 
     describe 'when the user owns a group' do
