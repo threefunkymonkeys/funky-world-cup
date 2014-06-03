@@ -9,6 +9,7 @@ es:
     kick_title: Expulsar integrante
     kick_text: Está seguro de expulsar al participante
     invite: Invita a tus amigos! Comparte este link con ellos.
+    invite_fb: Comparte este link en Facebook!
     participants: Integrantes
     fields:
       name: Nombre
