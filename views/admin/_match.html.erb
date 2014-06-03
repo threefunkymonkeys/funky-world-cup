@@ -32,7 +32,7 @@
     <span class="team"><%= match.rival_team ? I18n.t(".teams.#{match.rival_team.iso_code}") : match.rival_description %></span>
   </td>
   <td class="text-center prediction-column">
-    <% if match.result %>
+    <% if match.result && match.result.status == 'partial' %>
       <a href="/admin/matches/<%= match.id %>/edit" class="btn btn-primary btn-sm" ><%= I18n.t('.actions.edit') %></a>
   <% end %>
   </td>
