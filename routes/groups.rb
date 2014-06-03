@@ -1,24 +1,17 @@
 module FunkyWorldCup
   class Groups < Cuba
     define do
-      on "join/:code" do |code|
-        unless current_user
-          session['fwc.join_group_code'] = code
-          flash[:info] = I18n.t('.messages.common.sign_in_first')
-          res.redirect "/"
-        else
-          group = Group.find(link: code)
-
-          case FunkyWorldCup::JoinGroup.new(self).execute(group)
-          when :success
-            res.redirect "/groups/#{group.id}"
-          when :error
-            res.redirect "/dashboard"
-          when :not_found
-            not_found!
+      on get, "join/:code" do |code|
+        on group = Group.find(link: code) do
+          unless current_user
+            session['fwc.join_group_code'] = code
           end
+          res.write render("./views/layouts/join.html.erb", group: group) {
+            render("./views/groups/join.html.erb", group: group)
+          }
         end
 
+        not_found!
       end
 
       on current_user do
@@ -97,6 +90,18 @@ module FunkyWorldCup
         end
 
         on put do
+          on "join/:code" do |code|
+            group = Group.find(link: code)
+            case FunkyWorldCup::JoinGroup.new(self).execute(group)
+            when :success
+              res.redirect "/groups/#{group.id}"
+            when :error
+              res.redirect "/dashboard"
+            when :not_found
+              not_found!
+            end
+          end
+
           on ":id" do |group_id|
             on (group = Group[group_id.to_i]) do
               on group.user_id == current_user.id do
