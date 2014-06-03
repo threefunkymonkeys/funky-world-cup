@@ -45,7 +45,7 @@
         </form>
         <div class="text-center">
           <span><%= I18n.t('.groups.invite_fb')%></span>
-          <div class="fb-send" data-href="<%= url + "groups/join/" + (group.link || "")%>" data-colorscheme="light"></div>
+          <div class="fb-send" data-href="<%= url + "groups/join/" + (group.link || "")%>?lang=<%= session[:locale] %>" data-colorscheme="light"></div>
         </div>
       </div>
     </div>
