@@ -6,3 +6,9 @@ en:
       group_count: Groups
       prediction_count: Predictions
       matches: Matches
+    matches:
+      match: Match
+      score: Score for 
+      status: Status
+      partial: In Progress
+      final: Finished

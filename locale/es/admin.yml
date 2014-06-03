@@ -6,3 +6,9 @@ es:
       group_count: Grupos
       prediction_count: Predicciones
       matches: Partidos
+    matches:
+      match: Partido
+      score: Goles de 
+      status: Estado
+      partial: En Juego
+      final: Finalizado

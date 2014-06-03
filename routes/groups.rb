@@ -166,7 +166,7 @@ module FunkyWorldCup
                     group.delete
                     authenticate(User[current_user.id])
 
-                    flash[:success] = I18n.t('.messages.groups.deleted')
+                    flash[:success] = I18n.t('.messages.groups.updated')
                     res.redirect "/groups"
                   rescue => e
                     flash[:error] = "#{I18n.t('.messages.groups.cant_delete')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
