@@ -60,6 +60,10 @@ Cuba.define do
     not_found!
   end
 
+  on "admin" do
+    run FunkyWorldCup::Admin
+  end
+
   on get do
     on "404" do
       not_found!

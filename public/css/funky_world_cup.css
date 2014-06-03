@@ -381,6 +381,11 @@ footer {
   padding-right: 25px !important;
 }
 
+#admin-dashboard-counts {}
+  #admin-dashboard-counts .panel-body {
+    font-size: 3em;
+    text-align: center;
+  }
 
 
 /* responsive */

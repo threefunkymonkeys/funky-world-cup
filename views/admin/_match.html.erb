@@ -1,0 +1,39 @@
+<tr id="match-<%= match.id %>">
+  <td class="team-column">
+    <img src="/img/<%= match.host_team ? "flags/#{match.host_team.flag}" : 'missing.png' %>">
+    <br>
+    <span class="team host-team"><%= match.host_team ? I18n.t(".teams.#{match.host_team.iso_code}") : match.host_description %></span>
+  </td>
+  <% if match.result.nil? %>
+    <td class="text-center">
+      <span class="time">
+        <%= match.start_datetime.strftime("%d %^b %Y") %></br>
+        <%= match.start_datetime.strftime("%H:%M") %></br>
+        <%= match.local_timezone %>
+      </span>
+    </td>
+  <% else %>
+    <td class="text-center result">
+      <span class="host-result"><%= match.result.host_score %></span>
+      <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
+        <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
+      </strong>
+      <div class="mobile-result">
+        <span class="host-result-mobile"><%= match.result.host_score %></span>
+        -
+        <span class="rival-result-mobile"><%= match.result.rival_score %></span>
+      </div>
+      <span class="rival-result"><%= match.result.rival_score %></span>
+    </td>
+  <% end %>
+  <td class="team-column">
+    <img src="/img/<%= match.rival_team ? "flags/#{match.rival_team.flag}" : 'missing.png' %>">
+    <br>
+    <span class="team"><%= match.rival_team ? I18n.t(".teams.#{match.rival_team.iso_code}") : match.rival_description %></span>
+  </td>
+  <td class="text-center prediction-column">
+    <% if match.result %>
+      <a href="/admin/groups/<%= match.id %>/edit" class="btn btn-primary btn-sm" ><%= I18n.t('.actions.edit') %></a>
+  <% end %>
+  </td>
+</tr>

@@ -1,0 +1,8 @@
+en:
+  admin:
+    dashboard:
+      title: Admin Dashboard
+      user_count: Users
+      group_count: Groups
+      prediction_count: Predictions
+      matches: Matches
