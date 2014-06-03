@@ -17,7 +17,7 @@ module FunkyWorldCup
                  users: User.count,
                  groups: Group.count,
                  predictions: MatchPrediction.count,
-                 matches: Match.where(start_datetime: (Time.now - 2*24*60*60)..(Time.now + 11*24*60*60)).all)
+                 matches: Match.where(start_datetime: (Time.now - 1*24*60*60)..(Time.now + 1*24*60*60)).all)
         }
       end
 
