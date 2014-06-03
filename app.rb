@@ -85,7 +85,7 @@ Cuba.define do
         current_user.update(:locale => locale) if current_user
       end
 
-      res.redirect (req.env["HTTP_REFERER"] || "/")
+      res.redirect (req.env["HTTP_REFERER"].gsub(/lang=(es|en)\&?/, "") || "/")
     end
 
     on current_user do
