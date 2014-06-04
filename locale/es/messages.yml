@@ -26,3 +26,6 @@ es:
       prediction_added: Se ha guardado el resultado
       cant_cheat: Tratando de hacer trampa? No se puede!
       late_prediction: Ya no puedes arriesgar para este partido
+      result_updated: Partido actualizado
+      cant_update: El Partido no pude ser actualizado
+      hook_error: No es posible cambiar el estado una vez finalizado.
