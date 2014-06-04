@@ -12,6 +12,7 @@
   <% if match.result.nil? %>
     <td class="text-center">
       <span class="time">
+        <%= match.start_datetime.strftime("%d %^b") %><br/>
         <%= match.start_datetime.strftime("%H:%M") %></br>
         <%= match.local_timezone %>
       </span>
