@@ -9,7 +9,14 @@ es:
     kick_title: Expulsar integrante
     kick_text: Está seguro de expulsar al participante
     invite: Invita a tus amigos! Comparte este link con ellos.
+    invite_fb: Comparte este link en Facebook!
     participants: Integrantes
     fields:
       name: Nombre
       desc: Descripción
+    join:
+      title: Únete al group %{name} en Funky World Cup
+      description: Juega al Prode del Mundial Brasil 2014 con tus amigos. Adivina los resultados y conquista el primer puesto de este grupo.
+      login_join: Ingresa y serás agregado a este grupo automáticamente
+      join: Únete ahora!
+      join_group: Únete a %{name}
