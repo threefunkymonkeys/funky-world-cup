@@ -387,6 +387,9 @@ footer {
     text-align: center;
   }
 
+.fb_iframe_widget{
+  z-index: 9999;
+}
 
 /* responsive */
 @media (max-width: 479px) {
