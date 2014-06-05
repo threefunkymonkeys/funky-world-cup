@@ -20,7 +20,7 @@ es:
       user_left: Ha dejado el grupo
       cant_leave: No se pudo dejar el grupo
     prizes:
-      list_updated: Se ha actulizado la lista de premios
+      list_updated: Se ha actualizado la lista de premios
       cant_save_list: No se ha podido actualizar la lista de premios
     matches:
       prediction_added: Se ha guardado el resultado
