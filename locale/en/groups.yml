@@ -9,7 +9,15 @@ en:
     kick_title: Kick Participant
     kick_text: Are you sure you want to kick participant
     invite: Invite your friends! Share this link with them.
+    invite_fb: Send this link through Facebook!
     participants: Participants
     fields:
       name: Name
       desc: Description
+    join:
+      title: Join group %{name} in Funky World Cup
+      description: Predict the result for the matches in the Brazil 2014 World Cup. Join this group and compete with your friends.
+      login_join: Login now and you will added to this group automatically
+      join: Join now!
+      join_group: Join %{name}
+

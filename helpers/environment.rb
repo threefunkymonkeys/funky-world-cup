@@ -31,7 +31,9 @@ module FunkyWorldCup
     end
 
     def init_locale(env)
-      if !session[:locale] && (env.has_key?("HTTP_ACCEPT_LANGUAGE") || current_user)
+      if req.params.has_key?('lang') && ALLOWED_LOCALES.include?(req.params['lang'].to_sym)
+        session[:locale] = req.params['lang'].to_sym
+      elsif !session[:locale] && (env.has_key?("HTTP_ACCEPT_LANGUAGE") || current_user)
         if current_user && current_user.locale
           locale = current_user.locale
         else

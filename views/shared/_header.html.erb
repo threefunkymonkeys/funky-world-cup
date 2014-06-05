@@ -47,6 +47,9 @@
               <li class="small-mobile"><a href="/users/<%= current_user.id %>/predictions"><%= I18n.t('.menu.predictions') %></a></li>
               <li class="small-mobile"><a href="/disclaimer"><%= I18n.t('.menu.disclaimer') %></a></li>
               <li class="user-menu"><a href="/dashboard"><%= I18n.t('.menu.dashboard') %></a></li>
+              <% if current_user.admin %>
+                <li class="user-menu"><a href="/admin/dashboard"><%= I18n.t('.menu.admin') %></a></li>
+              <% end %>
               <li class="divider"></li>
               <li><a href="/logout"><%= I18n.t('.menu.logout') %></a></li>
             </ul>

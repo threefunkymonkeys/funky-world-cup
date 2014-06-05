@@ -60,6 +60,10 @@ Cuba.define do
     not_found!
   end
 
+  on "admin" do
+    run FunkyWorldCup::Admin
+  end
+
   on get do
     on "404" do
       not_found!
@@ -85,7 +89,7 @@ Cuba.define do
         current_user.update(:locale => locale) if current_user
       end
 
-      res.redirect (req.env["HTTP_REFERER"] || "/")
+      res.redirect (req.env["HTTP_REFERER"].gsub(/lang=(es|en)\&?/, "") || "/")
     end
 
     on current_user do

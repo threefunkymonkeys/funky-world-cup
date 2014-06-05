@@ -27,3 +27,6 @@ en:
       cant_predict: There was an error adding the prediction for this match
       cant_cheat: Trying to cheat? You can't
       late_prediction: You can not longer add a prediction for this match
+      result_updated: Match updated
+      cant_update: Match can be updated
+      hook_error: Can't change status once finalized

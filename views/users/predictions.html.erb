@@ -38,7 +38,7 @@
                   <br>
                   <strong class="status text-success"><%= I18n.t('.predictions.statuses.in_progress') %></strong>
                 <% else %>
-                  <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+                  <strong class="text-primary"><%= "#{prediction.match.result.host_score} - #{prediction.match.result.rival_score}" %></strong>
                   <br>
                   <strong class="status text-danger"><%= I18n.t('.predictions.statuses.finished') %></strong>
                 <% end  %>

@@ -100,7 +100,7 @@ describe 'Users Groups' do
       another_user = User.spawn
       group = Group.spawn(:user_id => another_user.id, :link => "test-group-link")
 
-      get "/groups/join/test-group-link"
+      put "/groups/join/test-group-link"
       @user.groups.must_include group
     end
 
@@ -178,16 +178,6 @@ describe 'Users Groups' do
       response = delete "/groups/#{group.id}"
       response.status.must_equal 404
       Group[group.id].wont_be_nil
-    end
-
-    it "should be redirected to sign in" do
-      another_user = User.spawn
-      group = Group.spawn(:user_id => another_user.id, :link => "test-group-link")
-
-      response = get "/groups/join/test-group-link"
-
-      response.status.must_equal 302
-      response.location.must_equal "/"
     end
   end
 end

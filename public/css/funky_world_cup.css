@@ -381,7 +381,15 @@ footer {
   padding-right: 25px !important;
 }
 
+#admin-dashboard-counts {}
+  #admin-dashboard-counts .panel-body {
+    font-size: 3em;
+    text-align: center;
+  }
 
+.fb_iframe_widget{
+  z-index: 9999;
+}
 
 /* responsive */
 @media (max-width: 479px) {
