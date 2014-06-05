@@ -388,7 +388,7 @@ footer {
   }
 
 .fb_iframe_widget{
-  z-index: 9999;
+  z-index: 1000;
 }
 
 /* responsive */
