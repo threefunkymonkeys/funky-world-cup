@@ -217,6 +217,8 @@ module FunkyWorldCup
 
         not_found!
       end #current_user
+
+      not_found!
     end #define
   end
 end

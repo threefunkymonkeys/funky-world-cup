@@ -63,6 +63,8 @@ module FunkyWorldCup
 
         not_found!
       end
+
+      not_found!
     end
   end
 end
