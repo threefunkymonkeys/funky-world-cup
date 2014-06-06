@@ -172,5 +172,9 @@ Cuba.define do
       flash[:error] = I18n.t(".errors.login_error")
       res.redirect "/"
     end
+
+    not_found!
   end
+
+  not_found!
 end
