@@ -5,7 +5,15 @@ require 'logger'
 
 LOGGER= Logger.new('jobs/logs/add_result.log')
 
-module ResultsJob
+class AddResultJob < BaseJob
+  def self.interval
+    ENV['ADD_RESULT_INTERVAL'] || 60
+  end
+
+  def self.one_run_only
+    ENV.has_key?('ADD_RESULT_ONE_RUN')
+  end
+
   def self.run
     Match.all.each do |match|
       next unless match.result.nil?
@@ -23,18 +31,3 @@ module ResultsJob
     end
   end
 end
-
-Signal.trap("INT")  { EventMachine.stop }
-Signal.trap("TERM") { EventMachine.stop }
-
-EventMachine.run do
-  timer = EventMachine::PeriodicTimer.new(ENV['ADD_RESULT_INTERVAL'] || 60) do
-    LOGGER.info "running add_result job"
-    ResultsJob.run
-    if ENV['ADD_RESULT_ONE_RUN']
-      timer.cancel
-      EventMachine.stop
-    end
-  end
-end
-
