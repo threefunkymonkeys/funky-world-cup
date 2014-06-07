@@ -23,3 +23,10 @@ GroupsUser.extend(Spawn).spawner do |groupuser|
   groupuser.group_id ||= Group.spawn.id
   groupuser.user_id  ||= User.spawn.id
 end
+
+Match.extend(Spawn).spawner do |match|
+  match.start_datetime ||= Time.now
+  match.place          ||= "here"
+  match.stadium        ||= "there"
+  match.local_timezone ||= "GMT-3"
+end
