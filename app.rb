@@ -173,6 +173,10 @@ Cuba.define do
       res.redirect "/"
     end
 
+    on "dashboard" do
+      res.redirect "/"
+    end
+
     not_found!
   end
 
