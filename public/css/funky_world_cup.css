@@ -391,8 +391,17 @@ footer {
   z-index: 1000;
 }
 
+#score-title-sidebar {
+  display: inline-block;
+  width: 72%;
+}
+
 /* responsive */
 @media (max-width: 479px) {
+  #score-title-sidebar {
+    width: 79%;
+  }
+
   #nickname {
     display: none;
   }
@@ -516,6 +525,10 @@ footer {
 }
 
 @media (min-width: 480px) and (max-width: 991px) {
+  #score-title-sidebar {
+    width: 90%;
+  }
+
   #wc-logo {
     width: 60px; 
     float: left;
