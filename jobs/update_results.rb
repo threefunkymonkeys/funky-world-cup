@@ -10,14 +10,16 @@ module UpdateResultsJob
   RESULTS_URL = 'http://www.livescore.com/worldcup2014/'
 
   def self.run
-    page = self.fix_names(Net::HTTP.get_response(URI(RESULTS_URL)).body)
+    begin
+      page = self.fix_names(Net::HTTP.get_response(URI(RESULTS_URL)).body)
 
-    #info_matches = self.parse_fifa_page(page)
-    info_matches = self.parse_livescore_page(page)
-    today_matches = Match.today_matches
+      info_matches = self.parse_livescore_page(page)
+      today_matches = Match.today_matches
 
-    self.parse_livescore_matches(info_matches, today_matches)
-
+      self.parse_livescore_matches(info_matches, today_matches)
+    rescue => e
+      LOGGER.error("Failed to update results: #{e.message}")
+    end
   end
 
   def self.fix_names(page)
