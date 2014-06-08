@@ -5,3 +5,5 @@ production.env.sh
 .directory
 jobs/logs/*
 jobs/pids/*
+tags
+drafts
