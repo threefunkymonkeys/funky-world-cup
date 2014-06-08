@@ -6,8 +6,16 @@ require "./app"
 
 LOGGER= Logger.new('jobs/logs/update_results.log')
 
-module UpdateResultsJob
+class UpdateResultsJob < BaseJob
   RESULTS_URL = 'http://www.livescore.com/worldcup2014/'
+
+  def self.interval
+    ENV['UPDATE_RESULTS_INTERVAL'] || 300
+  end
+
+  def self.message
+    "Updating Results..."
+  end
 
   def self.run
     begin
@@ -65,16 +73,4 @@ module UpdateResultsJob
       end
     end
   end
-
 end
-
-Signal.trap("INT")  { EventMachine.stop }
-Signal.trap("TERM") { EventMachine.stop }
-
-EventMachine.run do
-  timer = EventMachine::PeriodicTimer.new(ENV['UPDATE_RESULTS_INTERVAL'] || 300) do
-    LOGGER.info "Updating Results..."
-    UpdateResultsJob.run
-  end
-end
-

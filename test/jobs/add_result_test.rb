@@ -21,9 +21,9 @@ describe "ResultsJob" do
 
     assert_equal nil, match.result
 
-    ENV['ADD_RESULT_ONE_RUN'] = "1"
-    ENV['ADD_RESULT_INTERVAL'] = "1"
     require_relative "../../jobs/add_result.rb"
+
+    AddResultJob.run
 
     match.reload
 
@@ -50,9 +50,9 @@ describe "ResultsJob" do
 
     assert_equal false, match.result.nil?
 
-    ENV['ADD_RESULT_ONE_RUN'] = "1"
-    ENV['ADD_RESULT_INTERVAL'] = "1"
     require_relative "../../jobs/add_result.rb"
+
+    AddResultJob.run
 
     assert_equal 1, Result.where(match_id: match.id).count
   end
