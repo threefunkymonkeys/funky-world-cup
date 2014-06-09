@@ -6,6 +6,9 @@ en:
     rank: Rank
     your_groups: Your Groups
     no_groups: You don't participate in any group yet
+    share: Share!
+    tweet: Predict the results of World Cup 2014 in
+    tweet_hashtag: worldcup2014,brazil2014
   actions:
     create_group: Create Group
     add_prize: Add Prize

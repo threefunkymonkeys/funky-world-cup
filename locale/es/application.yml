@@ -6,6 +6,9 @@ es:
     rank: Ranking
     your_groups: Tus Grupos
     no_groups: No estás en ningún grupo todavía
+    share: Compartir!
+    tweet: Adiviná los resultados del Mundial 2014 en
+    tweet_hashtag: mundial2014,brasil2014,ponóstico2014
   actions:
     create_group: Crear Grupo
     add_prize: Agregar Premio

@@ -400,6 +400,11 @@ footer {
   width: 72%;
 }
 
+.share-button {
+  text-align: center;
+  margin: 15px auto;
+}
+
 /* responsive */
 @media (max-width: 479px) {
   #score-title-sidebar {

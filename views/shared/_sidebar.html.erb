@@ -37,4 +37,15 @@
       <a href="/groups/new" class="btn btn-success" id="create-group"><%= I18n.t('.actions.create_group') %></a>
     </div>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= I18n.t('.sidebar.share') %></div>
+    <div class="panel-body">
+      <div class="share-button">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://funkyworldcup.com/" data-via="funkyworldcup" data-lang="<%= session[:locale] %>" data-size="large" data-related="funkyworldcup" data-hashtags="<%= I18n.t(".sidebar.tweet_hashtag") %>" data-text="<%= I18n.t(".sidebar.tweet") %>">Twittear</a>
+      </div>
+      <div class="share-button">
+        <div class="fb-share-button" data-href="http://funkyworldcup.com/" data-type="button_count"></div>
+      </div>
+    </div>
+  </div>
 </div>
