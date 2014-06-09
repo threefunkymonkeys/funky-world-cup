@@ -40,6 +40,10 @@ html, body {
   text-align: center;
 }
 
+#login {
+  margin-bottom: 35px;
+}
+
 .navbar-right .dropdown-toggle, .navbar-right .dropdown-toggle:hover {
   padding: 5px 0;
 }
