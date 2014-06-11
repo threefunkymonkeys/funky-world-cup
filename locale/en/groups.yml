@@ -20,4 +20,6 @@ en:
       login_join: Login now and you will added to this group automatically
       join: Join now!
       join_group: Join %{name}
+    leave_title: Leave Group
+    leave_text: Are you sure you want to leave this group?
 

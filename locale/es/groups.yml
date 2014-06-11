@@ -20,3 +20,5 @@ es:
       login_join: Ingresa y serás agregado a este grupo automáticamente
       join: Únete ahora!
       join_group: Únete a %{name}
+    leave_title: Dejar Grupo
+    leave_text: Estás seguro que deseas dejar este grupo?
