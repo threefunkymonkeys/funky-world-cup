@@ -6,10 +6,7 @@
     <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm"><%= I18n.t('.actions.edit') %></a>
     <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group"><%= I18n.t('.actions.delete') %></a>
   <% else %>
-    <form action="/groups/<%= group.id %>/leave" method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" class="btn btn-warning pull-right btn-sm" value="<%= I18n.t('.actions.leave')%>">
-    </form>
+    <a class="btn btn-warning pull-right btn-sm" href="" id="leave-group"><%= I18n.t('.actions.leave')%></a>
   <% end %>
 </div>
 <div class="clearfix"></div>
@@ -93,4 +90,6 @@
 <% if group.user_id == current_user.id %>
   <%= render("views/groups/_delete_popup.html.erb", id: group.id) %>
   <%= render("views/groups/_kick_popup.html.erb", id: group.id) %>
+<% else %>
+  <%= render("views/groups/_leave_popup.html.erb", id: group.id) %>
 <% end %>

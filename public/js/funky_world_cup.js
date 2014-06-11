@@ -128,6 +128,14 @@ body.on("click", ".kick-participant", function(event) {
   modal.modal('show');
 });
 
+//Group leave
+
+body.on("click", "#leave-group", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  $("#modal-leave").modal('show');
+});
+
 // Predictions modal
 
 body.on('click', ".btn-predict", function(event) {
