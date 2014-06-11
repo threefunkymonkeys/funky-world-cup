@@ -113,12 +113,15 @@ html, body {
       vertical-align: top;
       position: absolute;
       left: -40px;
-      top: 23px;
+      top: -13px;
       z-index: 999;
     }
     .matches-table td.result {
       vertical-align: top !important;
       padding-top: 35px;
+    }
+    .matches-table td.result .result-holder {
+      position: relative;
     }
 
     .matches-table td .rival-result {
@@ -126,7 +129,7 @@ html, body {
       vertical-align: top;
       position: absolute;
       right: -40px;
-      top: 23px;
+      top: -13px;
       z-index: 999;
     }
     .matches-table td .status {
@@ -172,7 +175,7 @@ html, body {
       vertical-align: top;
       position: absolute;
       left: -20px;
-      top: 15px;
+      top: 2px;
       z-index: 999;
     }
     .matches-table.small-table td.result {
@@ -185,7 +188,7 @@ html, body {
       vertical-align: top;
       position: absolute;
       right: -20px;
-      top: 15px;
+      top: 2px;
       z-index: 999;
     }
     .matches-table.small-table td .status {
@@ -395,9 +398,8 @@ footer {
   z-index: 1000;
 }
 
-#score-title-sidebar {
-  display: inline-block;
-  width: 72%;
+#score-title-help {
+  float: right;
 }
 
 .share-button {
