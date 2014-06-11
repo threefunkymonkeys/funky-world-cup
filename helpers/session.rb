@@ -23,7 +23,7 @@ module FunkyWorldCup
     end
 
     def calculate_user_rank
-      res.redirect "/" unless user_authenticated?
+      res.redirect "/" unless current_user
       @user_rank ||= UserScore.rank_for(current_user.id)
     end
   end
