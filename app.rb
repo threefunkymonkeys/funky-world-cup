@@ -94,6 +94,7 @@ Cuba.define do
 
     on current_user do
       @user_rank ||= UserScore.rank_for(current_user.id)
+      session[:notifications] = current_user.get_and_read_notifications
 
       on root do
         res.redirect "/dashboard"
