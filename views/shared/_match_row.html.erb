@@ -23,9 +23,6 @@
         <span class="host-result"><%= match.result.host_score %></span>
         <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
           <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
-          <% if match.result.status == 'final' %>
-            Score: <%= prediction ? prediction.prediction_score : 0 %>
-          <% end %>
         </strong>
         <div class="mobile-result">
           <span class="host-result-mobile"><%= match.result.host_score %></span>
@@ -44,6 +41,12 @@
   <td class="text-center prediction-column">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <% if match.result.status == 'final' %>
+        <br>
+        <strong class="text-danger">
+          <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
+        </strong>
+      <% end %>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
       <button type="button"
               class="btn btn-primary btn-sm btn-predict"
@@ -60,6 +63,11 @@
   <td colspan="3">
     <% if prediction %>
       <strong class="text-primary"><%= I18n.t('dashboard.your_prediction')%>: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <% if match.result.status == 'final' %>
+        <strong class="text-danger">
+           (<%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>)
+        </strong>
+      <% end %>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
       <button type="button"
               class="btn btn-primary btn-xs btn-predict"
