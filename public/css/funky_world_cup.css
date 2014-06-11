@@ -150,7 +150,7 @@ html, body {
     }
 
     .matches-table.small-table td.text-center {
-      width: 50px;
+      width: 85px;
     }
     .matches-table.small-table td.info-column {
       font-size: 0.8em;
@@ -192,7 +192,7 @@ html, body {
       z-index: 999;
     }
     .matches-table.small-table td .status {
-      vertical-align: top;
+      vertical-align: middle;
       font-size: 0.8em;
     }
 
