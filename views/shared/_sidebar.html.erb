@@ -2,8 +2,10 @@
   <div id="score-rank">
     <div class="panel panel-primary pull-left">
       <div class="panel-heading">
-        <h3 id="score-title-sidebar" class="panel-title"><%= I18n.t('.sidebar.score') %></h3>
-        <a href="/rules#score"><span class="badge">?</span></a>
+        <h3 id="score-title-sidebar" class="panel-title">
+          <%= I18n.t('.sidebar.score') %>
+          <a id="score-title-help" href="/rules#score"><span class="badge">?</span></a>
+        </h3>
       </div>
       <div class="panel-body">
         <a href="/users/<%= current_user.id %>/predictions"><%= current_user.score %></a>
