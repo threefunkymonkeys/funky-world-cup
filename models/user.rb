@@ -17,4 +17,11 @@ class User < Sequel::Model
   def show_rules?
     !!self.show_rules
   end
+
+  def get_and_read_notifications
+    notifications = UserNotification.where(user_id: id, read: false)
+    user_notifications = notifications.all
+    notifications.update(read: true)
+    user_notifications
+  end
 end

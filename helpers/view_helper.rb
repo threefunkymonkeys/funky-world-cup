@@ -30,6 +30,22 @@ class Cuba
       markup.join("<br/>")
     end
 
+    def show_notifications
+      markup = ""
+      if session.has_key?(:notifications) && session[:notifications].any?
+        markup = "<div class='alert alert-dismissable alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><ul>"
+        session[:notifications].each do |notification|
+          markup += "<li>#{I18n.t("notifications.#{notification.message}",
+                                    host: I18n.t(".teams.#{notification.match_prediction.match.host_team.iso_code}"),
+                                    rival: I18n.t(".teams.#{notification.match_prediction.match.rival_team.iso_code}")
+                                  )}</li>"
+        end
+        markup += "</ul></div>"
+        session.delete(:notifications)
+      end
+      markup
+    end
+
     def class_for_index(index)
      case index
       when 0, 1

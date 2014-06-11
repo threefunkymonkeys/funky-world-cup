@@ -49,3 +49,8 @@ es:
     not_found: La página no fue encontrada (404)
     not_found_description: La página que estás buscando no ha sido encontrada.
     login_error: Hubo un error en su ingreso. Por favor, intente nuevamente.
+  notifications:
+    exact_match: Has ganado 3 puntos por tu predicción exacta para %{host} VS. %{rival}
+    partial_match: Has ganado 1 punto por tu predicción para %{host} VS. %{rival}
+    exact_match_penalty:  Has ganado 3 puntos por tu predicción exacta en los penales de %{host} VS. %{rival}
+    partial_match_penalty: Has ganado 1 punto por tu predicción en los penales de %{host} VS. %{rival}
