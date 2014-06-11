@@ -45,6 +45,7 @@ include Cuba::Render::Helper
 
 Cuba.define do
   init_locale(req.env)
+  session[:notifications] = current_user.get_and_read_notifications if current_user
 
   on "groups" do
     run FunkyWorldCup::Groups
@@ -94,7 +95,6 @@ Cuba.define do
 
     on current_user do
       @user_rank ||= UserScore.rank_for(current_user.id)
-      session[:notifications] = current_user.get_and_read_notifications
 
       on root do
         res.redirect "/dashboard"
