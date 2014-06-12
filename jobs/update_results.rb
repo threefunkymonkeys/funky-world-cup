@@ -2,12 +2,20 @@ require 'eventmachine'
 require 'logger'
 require 'net/http'
 require 'nokogiri'
+require './lib/twitter_notifier'
 require "./app"
 
 LOGGER= Logger.new('jobs/logs/update_results.log')
 
 class UpdateResultsJob < BaseJob
   RESULTS_URL = 'http://www.livescore.com/worldcup2014/'
+  @@tw_notifier = FunkyWorldCup::TwitterNotifier.new(
+                    {:consumer_key => ENV["TWITTER_NOTIFY_KEY"],
+                    :consumer_secret => ENV["TWITTER_NOTIFY_SECRET"],
+                    :token => ENV["TWITTER_NOTIFY_TOKEN"],
+                    :token_secret => ENV["TWITTER_NOTIFY_TOKEN_SECRET"]},
+                    'jobs/logs/twitter_notifier.log'
+                  )
 
   def self.interval
     ENV['UPDATE_RESULTS_INTERVAL'] || 300
@@ -63,14 +71,39 @@ class UpdateResultsJob < BaseJob
 
             if match.result.nil?
               match.result = Result.create(attrs)
+              self.notify(match, :start)
             else
-              match.result.update(attrs)
+              if (match.result.host_score.to_s != attrs[:host_score].to_s ||
+                       match.result.rival_score != attrs[:rival_score].to_s)
+                match.result.update(attrs)
+                self.notify(match, :in_progress)
+              end
             end
+
+            self.notify(match, :finish) if match.result.status == "final"
 
             LOGGER.info({:match_id => match.id}.merge(attrs))
           end
         end
       end
     end
+  end
+
+  def self.notify(match, match_status)
+    status = ["#{match.host_team.name} #{match.result.host_score}"]
+    status << "#{match.result.rival_score} #{match.rival_team.name}"
+
+    case match_status
+    when :start
+      status << "Start"
+    when :in_progress
+      status << "Live"
+    when :finish
+      status << "End"
+    end
+
+    notification = "#{status.join(" - ")} #BR2014 #Results #Resultados"
+
+    @@tw_notifier.notify(notification)
   end
 end

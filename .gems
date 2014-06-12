@@ -10,3 +10,4 @@ i18n -v 0.6.9
 tzinfo -v 1.2.0
 clap -v 1.0.0
 eventmachine -v 1.0.3
+simple_oauth -v 0.2.0

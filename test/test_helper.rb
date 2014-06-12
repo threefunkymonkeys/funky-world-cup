@@ -20,5 +20,11 @@ class MiniTest::Spec
   end
 end
 
+class FunkyWorldCup::TwitterNotifier
+  def notify(status)
+    @logger.info("TwitterNotifier TEST MODE NOTIFYING: #{status}")
+  end
+end
+
 require File.dirname(__FILE__) + '/../lib/seed_loader'
 SeedLoader.new(false).seed
