@@ -8,7 +8,7 @@
       <ul class="list-group">
         <% groups.each_with_index do |user_group, index| %>
         <li class="list-group-item">
-          <span class="badge pull-left">#1</span>
+          <span class="badge pull-left">#<%= user_group.rank_for(current_user.id) %></span>
           &nbsp;
           <a href="/groups/<%= user_group.id %>"><%= "#{user_group.name} (#{user_group.user.nickname})" %></a>
           <% if current_user.id == user_group.user_id %>
