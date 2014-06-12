@@ -19,13 +19,13 @@
               <td>
                 <img src="/img/<%= "flags/#{prediction.match.host_team.flag}" %>">
                 <br>
-                <span class="team host-team"><%= prediction.match.host_team.name %></span>
+                <span class="team host-team"><a href="/teams/<%= prediction.match.host_team.iso_code %>"><%= prediction.match.host_team.name %></a></span>
               </td>
               <td>VS</td>
               <td class="team-column">
                 <img src="/img/<%= "flags/#{prediction.match.rival_team.flag}" %>">
                 <br>
-                <span class="team host-team"><%= prediction.match.rival_team.name %></span>
+                <span class="team host-team"><a href="/teams/<%= prediction.match.rival_team.iso_code %>"><%= prediction.match.rival_team.name %></a></span>
               </td>
               <td>
                 <span><%= prediction.match.cup_group.name %></span>

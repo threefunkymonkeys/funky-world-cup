@@ -34,4 +34,10 @@ class Match < Sequel::Model
   def self.today_matches
     Match.where("DATE(start_datetime) = DATE('#{Date.today}')")
   end
+
+  def self.for_team(iso_code)
+    @@matches_for_team ||= lambda {
+      select_all(:matches).select_append(:cup_groups__name).join(:cup_groups, :id => :group_id).where(host_id: iso_code).or(rival_id: iso_code).order(:start_datetime)
+    }.call
+  end
 end
