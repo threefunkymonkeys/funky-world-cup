@@ -18,7 +18,7 @@ class UpdateResultsJob < BaseJob
                   )
 
   def self.interval
-    ENV['UPDATE_RESULTS_INTERVAL'] || 300
+    ENV['UPDATE_RESULTS_INTERVAL'] || 60
   end
 
   def self.message
@@ -74,7 +74,7 @@ class UpdateResultsJob < BaseJob
               self.notify(match, :start)
             else
               if (match.result.host_score.to_s != attrs[:host_score].to_s ||
-                       match.result.rival_score != attrs[:rival_score].to_s)
+                       match.result.rival_score.to_s != attrs[:rival_score].to_s)
                 match.result.update(attrs)
                 self.notify(match, :in_progress)
               end
