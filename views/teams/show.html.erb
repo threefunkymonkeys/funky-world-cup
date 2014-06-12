@@ -1,0 +1,11 @@
+<h3><%= I18n.t('.teams_page.title') %> <%= I18n.t(".teams.#{team.iso_code}") %></h3>
+<div class="panel panel-default dashboard-matches">
+  <div class="panel-heading"></div>
+  <div class="panel-body">
+    <% matches.each do |match| %>
+      <%= render("views/pages/_match.html.erb", :match => match) %>
+    <% end %>
+  </div>
+</div>
+<%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
+

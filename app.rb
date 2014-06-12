@@ -65,6 +65,10 @@ Cuba.define do
     run FunkyWorldCup::Admin
   end
 
+  on "teams" do
+    run FunkyWorldCup::Teams
+  end
+
   on get do
     on "404" do
       not_found!
