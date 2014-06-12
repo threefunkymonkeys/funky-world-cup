@@ -36,12 +36,10 @@ class AddResultJob < BaseJob
 
       if local >= match.start_datetime
         begin
-          if match.result.nil?
-            Result.create(match_id: match.id)
-            notification = "#{match.host_team.name} 0 - 0 #{match.rival_team.name} - Start #BR2014 #Results #Resultados"
+          Result.create(match_id: match.id)
+          notification = "#{match.host_team.name} 0 - 0 #{match.rival_team.name} - Start #BR2014 #Results #Resultados"
 
-            @@tw_notifier.notify(notification)
-          end
+          @@tw_notifier.notify(notification)
         rescue => e
           LOGGER.error e.message + " " + e.backtrace
         end
