@@ -23,6 +23,10 @@ class AddResultJob < BaseJob
     ENV.has_key?('ADD_RESULT_ONE_RUN')
   end
 
+  def self.message
+    "Adding initial result..."
+  end
+
   def self.run
     Match.all.each do |match|
       next unless match.result.nil?
