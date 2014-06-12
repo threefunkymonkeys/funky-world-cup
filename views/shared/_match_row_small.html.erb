@@ -36,7 +36,7 @@
   <td class="text-center">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-      <% if match.result.status == 'final' %>
+      <% if !match.result.nil? && match.result.status == 'final' %>
         <br>
         <span class="text-danger">
           <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>

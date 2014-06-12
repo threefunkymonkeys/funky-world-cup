@@ -41,7 +41,7 @@
   <td class="text-center prediction-column">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-      <% if match.result.status == 'final' %>
+      <% if !match.result.nil? && match.result.status == 'final' %>
         <br>
         <strong class="text-danger">
           <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
@@ -63,7 +63,7 @@
   <td colspan="3">
     <% if prediction %>
       <strong class="text-primary"><%= I18n.t('dashboard.your_prediction')%>: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-      <% if match.result.status == 'final' %>
+      <% if !match.result.nil? && match.result.status == 'final' %>
         <strong class="text-danger">
            (<%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>)
         </strong>
