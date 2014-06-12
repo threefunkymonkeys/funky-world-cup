@@ -74,13 +74,17 @@ class UpdateResultsJob < BaseJob
               self.notify(match, :start)
             else
               if (match.result.host_score.to_s != attrs[:host_score].to_s ||
-                       match.result.rival_score.to_s != attrs[:rival_score].to_s)
+                       match.result.rival_score.to_s != attrs[:rival_score].to_s ||
+                       match.result.status != attrs[:status].to_s)
+
                 match.result.update(attrs)
-                self.notify(match, :in_progress)
+                if match.result.status == "final"
+                  self.notify(match, :finish)
+                else
+                  self.notify(match, :in_progress)
+                end
               end
             end
-
-            self.notify(match, :finish) if match.result.status == "final"
 
             LOGGER.info({:match_id => match.id}.merge(attrs))
           end
