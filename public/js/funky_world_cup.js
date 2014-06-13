@@ -179,6 +179,10 @@ body.on('click', "#modal-predict #submit-prediction", function(event) {
   $("#prediction-form").submit();
 });
 
+body.on('change', "#teams-filter", function(event){
+  window.location = "/teams/" + event.target.value;
+});
+
 // Anchor highlight
 
 var anchor = window.location.hash
@@ -186,3 +190,5 @@ var anchor = window.location.hash
 if(anchor != "") {
   $(anchor).addClass("fwc-highlight");
 }
+
+$('.chosen-select').chosen();

@@ -1,4 +1,11 @@
-<h3><%= I18n.t('.teams_page.title') %> <%= I18n.t(".teams.#{team.iso_code}") %></h3>
+<h3>
+  <%= I18n.t('.teams_page.title') %>
+  <select id="teams-filter" class="chosen-select">
+    <% teams.each do |v_team|%>
+      <option value="<%= v_team.iso_code %>" <%= v_team.iso_code == team.iso_code ? 'selected' : '' %>><%= I18n.t(".teams.#{v_team.iso_code}") %></option>
+    <% end %>
+  </select>
+</h3>
 <div class="panel panel-default dashboard-matches">
   <div class="panel-heading"></div>
   <div class="panel-body">
