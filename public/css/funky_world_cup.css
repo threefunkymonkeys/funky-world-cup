@@ -407,6 +407,20 @@ footer {
   margin: 15px auto;
 }
 
+.team-page-header {
+  min-height: 40px;
+  line-height: 40px;
+}
+
+.select-team {
+  float: right;
+}
+.select-team span.select {
+  font-size: 0.5em;
+  line-height: 40px;
+  font-weight: lighter;
+}
+
 /* responsive */
 @media (max-width: 479px) {
   #score-title-sidebar {
@@ -533,6 +547,16 @@ footer {
     margin-bottom: 15px;
     float: left !important;
   }
+
+  .select-team {
+    float: none;
+  }
+  .select-team span.select {
+    display: none;
+  }
+  #teams_filter_chosen {
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 991px) {
@@ -600,6 +624,10 @@ footer {
 
   .nav > li {
     display: inline-block;
+  }
+
+  .select-team span.select {
+    display: none;
   }
 }
 @media (max-width: 991px) {
