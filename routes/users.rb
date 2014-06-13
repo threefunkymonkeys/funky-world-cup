@@ -11,7 +11,7 @@ module FunkyWorldCup
               not_found unless root
 
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/users/predictions.html.erb", predictions: MatchPrediction.where(user_id: user_id).all)
+                render("./views/users/predictions.html.erb", predictions: MatchPrediction.join(:matches, :id => :match_id).eager(:match).where(user_id: user_id).order(:start_datetime))
               }
             end
 
