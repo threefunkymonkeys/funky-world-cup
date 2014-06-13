@@ -1,6 +1,7 @@
 es:
   teams_page:
     title: Partidos de
+    select: Elegir equipo
   teams:
     BR: Brasil
     HR: Croacia

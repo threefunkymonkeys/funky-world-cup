@@ -1,7 +1,7 @@
 <h3 class="team-page-header">
   <%= "#{I18n.t('.teams_page.title')} #{I18n.t(".teams.#{team.iso_code}")}" %>
   <div class="select-team">
-    <span class="select">Select your team</span>
+    <span class="select"><%= I18n.t('.teams_page.select') %></span>
     <select id="teams-filter" class="chosen-select">
       <% teams.each do |v_team|%>
         <option value="<%= v_team.iso_code %>" <%= v_team.iso_code == team.iso_code ? 'selected' : '' %>><%= I18n.t(".teams.#{v_team.iso_code}") %></option>

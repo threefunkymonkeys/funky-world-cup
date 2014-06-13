@@ -1,6 +1,7 @@
 en:
   teams_page:
     title: Matches for
+    select: Select your team
   teams:
     BR: Brazil
     HR: Croatia
