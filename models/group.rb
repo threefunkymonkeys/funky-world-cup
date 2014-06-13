@@ -10,7 +10,7 @@ class Group < Sequel::Model
               .join(:users, id: :user_id)
               .left_join(:user_scores, user_id: :id)
               .where(group_id: id)
-              .order(Sequel.desc(:score), Sequel.qualify(:groups_users, :id))
+              .order(Sequel.desc(:score), Sequel.qualify(:user_scores, :id))
               .all
   end
 
