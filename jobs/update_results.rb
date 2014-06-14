@@ -63,7 +63,7 @@ class UpdateResultsJob < BaseJob
         if match.host_team.name.downcase == host_name.downcase &&
             match.rival_team.name.downcase == rival_name.downcase
 
-          unless not_started
+          unless not_started || (match.result && match.result.status == "final")
             status = is_live ? :partial : :final
             attrs = {:host_score => score[0],
                       :rival_score => score[1],
