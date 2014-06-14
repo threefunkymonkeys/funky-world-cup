@@ -4,9 +4,8 @@ module FunkyWorldCup
       on get do
         calculate_user_rank
 
-        on current_user do
-          on :id do |user_id|
-
+        on :id do |user_id|
+          on current_user && current_user.id == user_id.to_i do
             on "predictions" do
               not_found unless root
 
