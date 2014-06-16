@@ -1,4 +1,8 @@
-<h2><%= I18n.t('.predictions.title') %></h2>
+<% if current_user.admin %>
+  <h2><%= I18n.t('.predictions.title_admin', name: user.name) %></h2>
+<% else %>
+  <h2><%= I18n.t('.predictions.title') %></h2>
+<% end %>
 <div class="panel panel-default" id="predictions-table">
   <div class="panel-heading"></div>
   <div class="panel-body">

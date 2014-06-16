@@ -1,6 +1,7 @@
 en:
   predictions:
     title: Your Predictions
+    title_admin: "%{name}'s Predictions"
     headers:
       match: Match
       group: Group/Phase

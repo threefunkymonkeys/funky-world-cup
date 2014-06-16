@@ -1,6 +1,7 @@
 es:
   predictions:
     title: Tus Predicciones
+    title_admin: Predicciones de %{name}
     headers:
       match: Partido
       group: Grupo/Fase

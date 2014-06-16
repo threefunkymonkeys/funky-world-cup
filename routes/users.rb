@@ -5,12 +5,13 @@ module FunkyWorldCup
         calculate_user_rank
 
         on :id do |user_id|
-          on current_user && current_user.id == user_id.to_i do
+          on current_user && (current_user.id == user_id.to_i || current_user.admin) && user = User[user_id] do
+
             on "predictions" do
               not_found unless root
 
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/users/predictions.html.erb", predictions: MatchPrediction.join(:matches, :id => :match_id).eager(:match).where(user_id: user_id).order(:start_datetime))
+                render("./views/users/predictions.html.erb", predictions: MatchPrediction.join(:matches, :id => :match_id).eager(:match).where(user_id: user_id).order(:start_datetime), user: User[user_id])
               }
             end
 
