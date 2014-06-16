@@ -32,7 +32,7 @@ class Match < Sequel::Model
   end
 
   def self.today_matches
-    Match.where("DATE(start_datetime) = DATE('#{Date.today}')")
+    Match.where("DATE(start_datetime) BETWEEN ?  AND ?",  Date.today - 1, Date.today + 1)
   end
 
   def self.for_team(iso_code)
