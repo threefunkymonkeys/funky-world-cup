@@ -14,7 +14,9 @@ class UserScore < Sequel::Model
     predictions = MatchPrediction.where(match_id: match.id).all
     predictions.each do |prediction|
       user_score = UserScore.where(user_id: prediction.user_id).first
-      user_score.update(score: user_score.score + prediction.prediction_score)
+      score = user_score.score + prediction.prediction_score
+      score += prediction.match_penalties_prediction.prediction_score unless prediction.match_penalties_prediction.nil?
+      user_score.update(score: score)
     end
   end
 end

@@ -10,6 +10,7 @@ class Match < Sequel::Model
   def update_predictions_score
     match_predictions.each do |prediction|
       prediction.update_score(result)
+      prediction.match_penalties_prediction.update_score(result) unless prediction.match_penalties_prediction.nil?
     end
   end
 
