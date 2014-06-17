@@ -80,6 +80,12 @@ Cuba.define do
       }
     end
 
+    on "tos" do
+      res.write render("./views/layouts/home.html.erb") {
+        render("./views/pages/tos.html.erb")
+      }
+    end
+
     on "rules" do
       res.write render("./views/layouts/home.html.erb") {
         render("./views/pages/rules.html.erb")
