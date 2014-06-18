@@ -36,12 +36,23 @@ module FunkyWorldCup
               if match.result.nil?
                 unless MatchPrediction.where(match_id: params['match_id'].to_i, user_id: current_user.id).any?
                   begin
-                    MatchPrediction.create(
-                      user_id:     current_user.id,
-                      match_id:    params['match_id'].to_i,
-                      host_score:  params['host_score'].to_i,
-                      rival_score: params['rival_score'].to_i
-                    )
+                    FunkyWorldCup::Helpers.database.transaction do
+                      prediction = MatchPrediction.create(
+                                    user_id:     current_user.id,
+                                    match_id:    params['match_id'].to_i,
+                                    host_score:  params['host_score'].to_i,
+                                    rival_score: params['rival_score'].to_i
+                                  )
+                      if match.allow_penalties? && (params['host_score'].to_i == params['rival_score'].to_i)
+                        MatchPenaltiesPrediction.create(
+                          user_id:     current_user.id,
+                          match_id:    params['match_id'].to_i,
+                          host_score:  params['host_score'].to_i,
+                          rival_score: params['rival_score'].to_i,
+                          match_prediction_id: prediction.id
+                        )
+                      end
+                    end
                     flash[:success] = I18n.t('.messages.matches.prediction_added')
                   rescue => e
                     flash[:error] = "#{I18n.t('.messages.matches.cant_predict')}, #{I18n.t('.messages.common.please')}, #{I18n.t('.messages.common.try_again')}"
