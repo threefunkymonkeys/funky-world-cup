@@ -9,9 +9,14 @@ module FunkyWorldCup
 
             on "predictions" do
               not_found unless root
+              predictions = MatchPrediction.select(Sequel.qualify(:match_predictions, :id), :host_score, :rival_score, :prediction_score, :match_id)
+                                           .join(:matches, :id => :match_id)
+                                           .eager(:match)
+                                           .where(user_id: user_id)
+                                           .order(:start_datetime)
 
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/users/predictions.html.erb", predictions: MatchPrediction.join(:matches, :id => :match_id).eager(:match).where(user_id: user_id).order(:start_datetime), user: User[user_id])
+                render("./views/users/predictions.html.erb", predictions: predictions, user: User[user_id])
               }
             end
 

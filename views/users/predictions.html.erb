@@ -54,10 +54,32 @@
                 <strong class="score <%= prediction.prediction_score == 3 ? 'text-success' : (prediction.prediction_score == 1 ? 'text-warning' : 'text-danger')%>"><%= prediction.prediction_score %></strong>
               </td>
             </tr>
+            <% unless prediction.match_penalties_prediction.nil? %>
+              <tr>
+                <td colspan="3">
+                </td>
+                <td>
+                  <span><%= I18n.t('.matches.penalties') %></span>
+                </td>
+                <td>
+                  <% if prediction.match.result.nil? %>
+                    <strong class="text-warning"><%= I18n.t('.predictions.statuses.not_started') %></strong>
+                  <% else %>
+                    <strong class="text-primary"><%= "#{prediction.match.result.host_penalties_score} - #{prediction.match.result.rival_penalties_score}" %></strong>
+                  <% end  %>
+                </td>
+                <td>
+                  <strong class="text-primary"><%= "#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score}" %></strong>
+                </td>
+                <td>
+                  <strong class="score <%= prediction.match_penalties_prediction.prediction_score == 3 ? 'text-success' : (prediction.match_penalties_prediction.prediction_score == 1 ? 'text-warning' : 'text-danger')%>"><%= prediction.match_penalties_prediction.prediction_score %></strong>
+                </td>
+              </tr>
+            <% end %>
           <% end %> 
             <tr>
               <td colspan="6"><strong>TOTAL</strong></td>
-              <td ><strong><%= predictions.inject(0) { |sum, prediction| sum + prediction.prediction_score } %></strong></td>
+              <td ><strong><%= predictions.inject(0) { |sum, prediction| sum + prediction.total_prediction_score } %></strong></td>
             </tr>
         </tbody>
       </table>
