@@ -20,6 +20,24 @@ class Match < Sequel::Model
     result != nil && result.status == 'final'
   end
 
+  def winner
+    if finalized?
+      return self.host_team if result.host_score > result.rival_score
+      return self.rival_team if result.host_score < result.rival_score
+    end
+  end
+
+  def loser
+    if finalized?
+      return self.host_team if result.host_score < result.rival_score
+      return self.rival_team if result.host_score > result.rival_score
+    end
+  end
+
+  def draw?
+    finalized? && result.host_score == result.rival_score
+  end
+
   def allow_penalties?
     cup_group.phase != 'groups'
   end
