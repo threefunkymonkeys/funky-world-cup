@@ -80,6 +80,7 @@ class UpdateResultsJob < BaseJob
                 match.result.update(attrs)
                 if match.result.status == "final"
                   self.notify(match, :finish)
+                  FunkyWorldCup::PhaseUpdater.check(match)
                 else
                   self.notify(match, :in_progress)
                 end
