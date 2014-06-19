@@ -67,14 +67,13 @@
   </td>
   <td class="text-center prediction-column">
     <% if prediction %>
-      <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <div><strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong></div>
       <% unless prediction.match_penalties_prediction.nil? %>
         <div>
           <strong class="text-primary"><%= "(#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score})" %></strong>
         </div>
       <% end %>
       <% if !match.result.nil? && match.result.status == 'final' %>
-        <br>
         <strong class="text-danger">
           <%= I18n.t('.common.score') %>: <%= prediction ? prediction.total_prediction_score : 0 %>
         </strong>
