@@ -67,6 +67,7 @@
               data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= match.id %>"
+              data-penalties="<%= match.allow_penalties? %>"
       ><%= I18n.t('.actions.predict') %></button>
     <% end %>
   </td>
@@ -88,6 +89,7 @@
               data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= match.id %>"
+              data-penalties="<%= match.allow_penalties? %>"
       ><%= I18n.t('.actions.predict') %></button>
     <% end %>
   </td>

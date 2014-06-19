@@ -3,3 +3,5 @@ es:
     predict_title: Arriesga el resultado
     warning_title: Cuidado
     warning_text: Espera! Revisa tu resultado antes de confirmarlo. No podrás cambiarlo una vez que lo confirmes!
+    penalties: Penales
+    penalties_text_html: Puedes predecir el resultado de los penales para este partido! Leer <a href="/rules#score" target="_blank">más</a>

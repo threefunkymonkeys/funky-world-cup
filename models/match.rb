@@ -21,7 +21,7 @@ class Match < Sequel::Model
   end
 
   def allow_penalties?
-    cup_group.phase =! 'groups'
+    cup_group.phase != 'groups'
   end
 
   def self.for_dashboard

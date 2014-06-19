@@ -23,9 +23,24 @@
                 </td>
                 <td class="modal-rival"></td>
               </tr>
+              <tr style="display: none;" class="modal-penalties">
+                <td class=""><%= I18n.t('.matches.penalties')%></td>
+                <td class="modal-host-score">
+                  <input type="text" class="input-lg" name="host_penalties_score">
+                </td>
+                <td class="modal-rival-score">
+                  <input type="text" class="input-lg" name="rival_penalties_score">
+                </td>
+                <td class="">
+                  <a class="penalties-info" target="_blank" href="/rules#score"><span class="badge">?</span></a>
+                </td>
+              </tr>
             </tbody>
           </table>
         </form>
+        <div class="alert-penalties alert alert-info" style="display:none">
+          <p><%= I18n.t('.matches.penalties_text_html') %></p>
+        </div>
         
         <div class="alert alert-warning">
           <h4><%= I18n.t('.matches.warning_title') %>!</h4>
