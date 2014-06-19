@@ -47,8 +47,8 @@ module FunkyWorldCup
                         MatchPenaltiesPrediction.create(
                           user_id:     current_user.id,
                           match_id:    params['match_id'].to_i,
-                          host_score:  params['host_score'].to_i,
-                          rival_score: params['rival_score'].to_i,
+                          host_score:  params['host_penalties_score'].to_i,
+                          rival_score: params['rival_penalties_score'].to_i,
                           match_prediction_id: prediction.id
                         )
                       end

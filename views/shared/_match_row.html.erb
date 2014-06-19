@@ -26,16 +26,31 @@
   <% else %>
     <td class="text-center result">
       <div class="result-holder">
-        <span class="host-result"><%= match.result.host_score %></span>
+        <span class="host-result">
+          <%= match.result.host_score %>
+          <% if match.result.host_penalties_score > 0 || match.result.rival_penalties_score > 0 %>
+            <span class="penalty-score">(<%= match.result.host_penalties_score %>)</span>
+          <% end %>
+        </span>
         <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
           <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
         </strong>
         <div class="mobile-result">
+          <% if match.result.host_penalties_score > 0 || match.result.rival_penalties_score > 0 %>
+            <span class="host-result-mobile">(<%= match.result.host_penalties_score %>)</span>
+          <% end %>
           <span class="host-result-mobile"><%= match.result.host_score %></span>
           -
           <span class="rival-result-mobile"><%= match.result.rival_score %></span>
+          <% if match.result.host_penalties_score > 0 || match.result.rival_penalties_score > 0 %>
+            <span class="host-result-mobile">(<%= match.result.rival_penalties_score %>)</span>
+          <% end %>
         </div>
-        <span class="rival-result"><%= match.result.rival_score %></span>
+        <span class="rival-result">
+          <% if match.result.host_penalties_score > 0 || match.result.rival_penalties_score > 0 %>
+            <span class="penalty-score">(<%= match.result.rival_penalties_score %>)</span>
+          <% end %>
+          <%= match.result.rival_score %></span>
       </div>
     </td>
   <% end %>
@@ -53,10 +68,15 @@
   <td class="text-center prediction-column">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <% unless prediction.match_penalties_prediction.nil? %>
+        <div>
+          <strong class="text-primary"><%= "(#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score})" %></strong>
+        </div>
+      <% end %>
       <% if !match.result.nil? && match.result.status == 'final' %>
         <br>
         <strong class="text-danger">
-          <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
+          <%= I18n.t('.common.score') %>: <%= prediction ? prediction.total_prediction_score : 0 %>
         </strong>
       <% end %>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>
@@ -76,9 +96,12 @@
   <td colspan="3">
     <% if prediction %>
       <strong class="text-primary"><%= I18n.t('dashboard.your_prediction')%>: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+      <% unless prediction.match_penalties_prediction.nil? %>
+        <strong class="text-primary"><%= "(#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score})" %></strong>
+      <% end %>
       <% if !match.result.nil? && match.result.status == 'final' %>
         <strong class="text-danger">
-           (<%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>)
+           (<%= I18n.t('.common.score') %>: <%= prediction ? prediction.total_prediction_score : 0 %>)
         </strong>
       <% end %>
     <% elsif match.host_team && match.rival_team && match.result.nil? %>

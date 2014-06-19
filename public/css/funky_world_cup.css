@@ -431,6 +431,11 @@ footer {
   font-weight: lighter;
 }
 
+.penalty-score {
+  font-size: 0.5em;
+  vertical-align: middle;
+}
+
 /* responsive */
 @media (max-width: 479px) {
   #score-title-sidebar {
