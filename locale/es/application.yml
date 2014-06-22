@@ -39,6 +39,12 @@ es:
     second_of: 2do de
     winner_of: Ganador de
     loser_of: Perdedor de
+    rounds:
+      Round of 16: 8vos de Final
+      Quarter-Finals: 4tos de Final
+      Semi-Finals: Semifinal
+      Play-Off for Third Place: 3er Puesto
+      Final: Final
   rules:
     title: Bienvenido
     text: Por favor, dale una mirada a las reglas.

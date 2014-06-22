@@ -39,6 +39,12 @@ en:
     second_of: 2nd of
     winner_of: Winner of
     loser_of: Loser of
+    rounds:
+      Round of 16: Round Of 16
+      Quarter-Finals: Quarter Finals
+      Semi-Finals: Semi-Final
+      Play-Off for Third Place: Play Off 3rd Place
+      Final: Final
   rules:
     title: Welcome
     text: Please, take a look at the rules.
