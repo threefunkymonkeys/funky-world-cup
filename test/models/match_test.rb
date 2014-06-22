@@ -21,10 +21,8 @@ describe 'Match' do
 
     it 'should retrurn 16 round matches when on 16 round stage' do
       group = CupGroup.find(:phase => "16_round")
-      today = Date.parse("2014-06-28")
 
       CupGroup.stubs(:now_playing).returns(group)
-      Date.stubs(:today).returns(today)
 
       dashboard_matches = Match.for_dashboard
 
@@ -35,10 +33,8 @@ describe 'Match' do
 
     it 'should return quarter final matches if quarter finals' do
       group = CupGroup.find(:phase => "quarter_finals")
-      today = Date.parse("2014-07-04")
 
       CupGroup.stubs(:now_playing).returns(group)
-      Date.stubs(:today).returns(today)
 
       dashboard_matches = Match.for_dashboard
 
@@ -49,10 +45,8 @@ describe 'Match' do
 
     it 'should return semi final matches if semi finals' do
       group = CupGroup.find(:phase => "semi_finals")
-      today = Date.parse("2014-07-08")
 
       CupGroup.stubs(:now_playing).returns(group)
-      Date.stubs(:today).returns(today)
 
       dashboard_matches = Match.for_dashboard
 
@@ -63,10 +57,8 @@ describe 'Match' do
 
     it 'should return final matches if finals' do
       group = CupGroup.find(:phase => "final")
-      today = Date.parse("2014-07-08")
 
       CupGroup.stubs(:now_playing).returns(group)
-      Date.stubs(:today).returns(today)
 
       dashboard_matches = Match.for_dashboard
 
