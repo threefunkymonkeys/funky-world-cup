@@ -3,15 +3,16 @@ module FunkyWorldCup
     def self.check(match)
       return unless match.winner
 
+
       case match.cup_group.phase
       when "groups"
         total_matches = Match.where(:group_id => match.group_id)
         finished_matches = Match.where(:group_id => match.group_id, :status => "final").join(:results, :match_id => :id)
 
-        if total_matches.count != finished_matches.count
+        if total_matches.count == finished_matches.count
           self.fill_round_of_sixteen_for(match.cup_group)
         end
-      when "round_16"
+      when "16_round"
         self.find_quarter_finals_for(match)
       when "quarter_finals"
         self.find_semi_finals_for(match)
@@ -28,7 +29,7 @@ module FunkyWorldCup
 
       match.update(:host_id => first.team_id)
 
-      match = Match.find(:host_code => "#{cup_group.name}:2")
+      match = Match.find(:rival_code => "#{cup_group.name}:2")
 
       raise RuntimeError.new("Invalid Match for rival") unless match
 
@@ -86,11 +87,11 @@ module FunkyWorldCup
       third_group = CupGroup.find(:phase => "third_place")
 
       if match_index == 1
-        final_group.matches.first.update(:host_id => match.winner)
-        third_group.matches.first.update(:host_id => match.loser)
+        final_group.matches.first.update(:host_id => match.winner.iso_code)
+        third_group.matches.first.update(:host_id => match.loser.iso_code)
       elsif match_index == 2
-        final_group.matches.first.update(:rival_id => match.winner)
-        third_group.matches.first.update(:rival_id => match.loser)
+        final_group.matches.first.update(:rival_id => match.winner.iso_code)
+        third_group.matches.first.update(:rival_id => match.loser.iso_code)
       else
         raise RuntimeError.new("Invalid semi final match")
       end
