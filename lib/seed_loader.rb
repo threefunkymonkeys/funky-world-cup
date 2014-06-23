@@ -80,7 +80,7 @@ class SeedLoader
     end
 
     def seed_quarter_finals(matches)
-      seed_single_group('Quarter-Finals', matches, 'quater_finals')
+      seed_single_group('Quarter-Finals', matches, 'quarter_finals')
     end
 
     def seed_semi_finals(matches)
