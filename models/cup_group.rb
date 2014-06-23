@@ -15,4 +15,16 @@ class CupGroup < Sequel::Model
   def matches_table
     Match.where(group_id: id).order(:start_datetime).all
   end
+
+  def self.now_playing
+    sql = 'WITH group_dates AS (SELECT DATE(MIN(start_datetime)) AS group_start, DATE(MAX(start_datetime)) AS group_end, DATE(NOW()) as today, group_id FROM matches GROUP BY group_id) SELECT group_dates.*, cup_groups.name, cup_groups.phase FROM group_dates INNER JOIN cup_groups ON cup_groups.id = group_dates.group_id WHERE today BETWEEN group_start AND group_end'
+
+    results = FunkyWorldCup::Helpers.database.fetch(sql).all
+
+    if results.empty?
+      CupGroup.find(:phase => "final")
+    else
+      CupGroup[results.first[:group_id]]
+    end
+  end
 end
