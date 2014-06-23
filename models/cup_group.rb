@@ -9,7 +9,7 @@ class CupGroup < Sequel::Model
   end
 
   def positions_table
-    GroupPosition.select.select_append{ Sequel.as(goals - received_goals, :diff)}.where(group_id: id).order(Sequel.desc(:points), Sequel.desc(:diff)).all
+    GroupPosition.select.select_append{ Sequel.as(goals - received_goals, :diff)}.where(group_id: id).order(Sequel.desc(:points), Sequel.desc(:diff), Sequel.desc(:goals)).all
   end
 
   def matches_table
