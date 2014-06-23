@@ -3,7 +3,7 @@ class User < Sequel::Model
   many_to_many :groups, left_key: :user_id, right_key: :group_id, join_table: :groups_users
 
   def score
-    MatchPrediction.where(user_id: id).sum(:prediction_score) || 0
+    (MatchPrediction.where(user_id: id).sum(:prediction_score) || 0) + (MatchPenaltiesPrediction.where(user_id: id).sum(:prediction_score) || 0)
   end
 
   def self.all_by_score

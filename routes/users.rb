@@ -9,9 +9,14 @@ module FunkyWorldCup
 
             on "predictions" do
               not_found unless root
+              predictions = MatchPrediction.select(Sequel.qualify(:match_predictions, :id), :host_score, :rival_score, :prediction_score, :match_id)
+                                           .join(:matches, :id => :match_id)
+                                           .eager(:match)
+                                           .where(user_id: user_id)
+                                           .order(:start_datetime)
 
               res.write render("./views/layouts/application.html.erb") {
-                render("./views/users/predictions.html.erb", predictions: MatchPrediction.join(:matches, :id => :match_id).eager(:match).where(user_id: user_id).order(:start_datetime), user: User[user_id])
+                render("./views/users/predictions.html.erb", predictions: predictions, user: User[user_id])
               }
             end
 
@@ -36,12 +41,23 @@ module FunkyWorldCup
               if match.result.nil?
                 unless MatchPrediction.where(match_id: params['match_id'].to_i, user_id: current_user.id).any?
                   begin
-                    MatchPrediction.create(
-                      user_id:     current_user.id,
-                      match_id:    params['match_id'].to_i,
-                      host_score:  params['host_score'].to_i,
-                      rival_score: params['rival_score'].to_i
-                    )
+                    FunkyWorldCup::Helpers.database.transaction do
+                      prediction = MatchPrediction.create(
+                                    user_id:     current_user.id,
+                                    match_id:    params['match_id'].to_i,
+                                    host_score:  params['host_score'].to_i,
+                                    rival_score: params['rival_score'].to_i
+                                  )
+                      if match.allow_penalties? && (params['host_score'].to_i == params['rival_score'].to_i)
+                        MatchPenaltiesPrediction.create(
+                          user_id:     current_user.id,
+                          match_id:    params['match_id'].to_i,
+                          host_score:  params['host_penalties_score'].to_i,
+                          rival_score: params['rival_penalties_score'].to_i,
+                          match_prediction_id: prediction.id
+                        )
+                      end
+                    end
                     flash[:success] = I18n.t('.messages.matches.prediction_added')
                   rescue => e
                     flash[:error] = "#{I18n.t('.messages.matches.cant_predict')}, #{I18n.t('.messages.common.please')}, #{I18n.t('.messages.common.try_again')}"

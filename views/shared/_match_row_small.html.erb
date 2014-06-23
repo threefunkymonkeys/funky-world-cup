@@ -62,6 +62,7 @@
               data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
               data-rival-flag="<%= match.rival_team.flag %>"
               data-match="<%= defined?(match_id) ? match_id : match.id %>"
+              data-penalties="<%= match.allow_penalties? %>"
       ><%= I18n.t('.actions.predict') %></button>
     <% end %>
   </td>

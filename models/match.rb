@@ -10,11 +10,18 @@ class Match < Sequel::Model
   def update_predictions_score
     match_predictions.each do |prediction|
       prediction.update_score(result)
+      if (result.host_score == result.rival_score) && result.match.allow_penalties? #ignore if cheating
+        prediction.match_penalties_prediction.update_score(result) unless prediction.match_penalties_prediction.nil?
+      end
     end
   end
 
   def finalized?
     result != nil && result.status == 'final'
+  end
+
+  def allow_penalties?
+    cup_group.phase != 'groups'
   end
 
   def self.for_dashboard

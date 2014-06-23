@@ -146,7 +146,8 @@ body.on('click', ".btn-predict", function(event) {
       host_flag  = _this.attr("data-host-flag"),
       rival_name = _this.attr("data-rival"),
       rival_flag = _this.attr("data-rival-flag"),
-      match_id   = _this.attr("data-match");
+      match_id   = _this.attr("data-match")
+      penalties  = _this.attr("data-penalties") === "true";
 
   var modal = $("#modal-predict");
 
@@ -168,6 +169,11 @@ body.on('click', ".btn-predict", function(event) {
     evt.stopPropagation();
     $(this).select();
   });
+  
+  if(penalties) {
+    modal.find(".modal-penalties").show()
+    modal.find(".alert-penalties").show()
+  }
 
   modal.modal('show');
 });

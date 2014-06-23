@@ -11,7 +11,7 @@ module FunkyWorldCup
 
       on get, "fixture" do
         res.write render("./views/layouts/application.html.erb") {
-          render("./views/cup_groups/fixture.html.erb", fixture: CupGroup.join(:matches, group_id: :id).to_hash_groups(:phase) )
+          render("./views/cup_groups/fixture.html.erb", fixture: CupGroup.join(:matches, group_id: :id).order(:start_datetime).to_hash_groups(:phase) )
         }
       end
 
