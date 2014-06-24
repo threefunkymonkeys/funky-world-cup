@@ -11,6 +11,7 @@ class SeedLoader
     if empty
       Result.dataset.delete
       GroupPosition.dataset.delete
+      UserNotification.dataset.destroy
       MatchPrediction.dataset.delete
       Match.dataset.delete
       Team.dataset.delete

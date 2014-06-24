@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
 describe 'Score' do
   def setup
+    UserNotification.dataset.destroy
     User.all.each { |user| user.delete }
     MatchPrediction.all.each { |predictions| predictions.delete }
     Result.all.each { |result| result.delete }

@@ -27,4 +27,5 @@ class FunkyWorldCup::TwitterNotifier
 end
 
 require File.dirname(__FILE__) + '/../lib/seed_loader'
+
 SeedLoader.new(false).seed
