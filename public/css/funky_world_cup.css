@@ -135,7 +135,12 @@ html, body {
     .matches-table td .status {
       vertical-align: top;
     }
-  
+
+    .matches-table td span.text-danger {
+        white-space: nowrap;
+    }
+
+
   .matches-table tr.mobile-info {
     display: none;
   }
@@ -161,6 +166,7 @@ html, body {
       padding: 0 5px;
       text-transform: uppercase;
       line-height: 16px;
+      white-space: nowrap;
     }
     .matches-table.small-table td .time {
       font-size: 0.7em;
