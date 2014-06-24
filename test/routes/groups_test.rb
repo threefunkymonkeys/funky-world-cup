@@ -4,6 +4,7 @@ include FunkyWorldCup::Helpers
 describe 'Users Groups' do
   before do
     Group.dataset.destroy
+    UserNotification.dataset.destroy
     User.dataset.destroy
     GroupPrize.dataset.destroy
   end
