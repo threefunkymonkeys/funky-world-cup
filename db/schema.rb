@@ -38,6 +38,7 @@ Sequel.migration do
       String :image, :text=>true
       TrueClass :show_rules, :default=>true
       String :locale, :text=>true
+      TrueClass :admin, :default=>false
 
       index [:facebook_user]
       index [:twitter_user]
@@ -100,12 +101,37 @@ Sequel.migration do
       index [:group_id, :user_id], :unique=>true
     end
 
+    create_table(:match_penalties_predictions, :ignore_index_errors=>true) do
+      primary_key :id
+      foreign_key :user_id, :users, :key=>[:id]
+      foreign_key :match_id, :matches, :key=>[:id]
+      foreign_key :match_prediction_id, :match_predictions, :key=>[:id]
+      Integer :host_score, :default=>0
+      Integer :rival_score, :default=>0
+      Integer :prediction_score, :default=>0
+
+      index [:user_id, :match_id, :match_prediction_id], :name=>:match_penalties_predictions_user_id_match_id_match_prediction_i, :unique=>true
+    end
+
     create_table(:results) do
       primary_key :id
       foreign_key :match_id, :matches, :key=>[:id]
       Integer :host_score, :default=>0
       Integer :rival_score, :default=>0
       String :status, :default=>"partial", :text=>true
+      Integer :host_penalties_score, :default=>0
+      Integer :rival_penalties_score, :default=>0
+    end
+
+    create_table(:user_notifications, :ignore_index_errors=>true) do
+      primary_key :id
+      foreign_key :user_id, :users, :key=>[:id]
+      foreign_key :match_prediction_id, :match_predictions, :key=>[:id]
+      String :message, :text=>true
+      TrueClass :read, :default=>false
+      foreign_key :match_penalties_prediction_id, :match_penalties_predictions, :key=>[:id]
+
+      index [:read]
     end
   end
 end
