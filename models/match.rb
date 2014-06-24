@@ -22,15 +22,21 @@ class Match < Sequel::Model
 
   def winner
     if finalized?
-      return self.host_team if result.host_score > result.rival_score
-      return self.rival_team if result.host_score < result.rival_score
+      if result.host_score > result.rival_score || result.host_penalties_score > result.rival_penalties_score
+        return self.host_team
+      elsif result.host_score < result.rival_score || result.host_penalties_score < result.rival_penalties_score
+        return self.rival_team
+      end
     end
   end
 
   def loser
     if finalized?
-      return self.host_team if result.host_score < result.rival_score
-      return self.rival_team if result.host_score > result.rival_score
+      if result.host_score < result.rival_score || result.host_penalties_score < result.rival_penalties_score
+        return self.host_team
+      elsif result.host_score > result.rival_score || result.host_penalties_score > result.rival_penalties_score
+        return self.rival_team
+      end
     end
   end
 
