@@ -3,8 +3,14 @@ class UserScore < Sequel::Model
 
   def self.rank_for(user_id)
     rank = 0
+    last_rank = 0
+    last_score = 0
     UserScore.order(Sequel.desc(:score), :id).all.each_with_index do |position, index|
-      rank = index + 1 if position.user_id == user_id
+      if last_score.zero? || position.score > last_score
+        last_score = position.score
+        last_rank += 1
+      end
+      rank = last_rank if position.user_id == user_id
     end
 
     rank

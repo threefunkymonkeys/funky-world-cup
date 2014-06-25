@@ -5,17 +5,19 @@
   </div>
   <div class="panel-body">
     <ul class="list-group" id="rank-list">
-      <% @rank.each_with_index do |rank, index| %>
-      <li class="list-group-item" id="position-<%= index+1 %>">
-          <span class="badge"><%=rank.score || 0 %></span>
-        <div class="rank-box">
-          <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
-        </div>
-        <span>
-          <img src="<%= rank.user.image %>" class="participant-img">
-          <%= rank.user.nickname %>
-        </span>
-      </li>
+      <% @rank.each do |key, rank_for_key| %>
+        <% rank_for_key.each do |rank| %>
+        <li class="list-group-item" id="position-<%= key %>">
+            <span class="badge"><%=rank.score || 0 %></span>
+          <div class="rank-box">
+            <span class="label label-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span>
+          </div>
+          <span>
+            <img src="<%= rank.user.image %>" class="participant-img">
+            <%= rank.user.nickname %>
+          </span>
+        </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
