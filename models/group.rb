@@ -22,7 +22,7 @@ class Group < Sequel::Model
              .order(Sequel.desc(:score), Sequel.qualify(:user_scores, :id))
              .all
              .each_with_index do |position, index|
-                if last_score.zero? || position.score > last_score
+                if last_score.zero? || position.score < last_score
                   last_score = position.score
                   last_rank += 1
                 end

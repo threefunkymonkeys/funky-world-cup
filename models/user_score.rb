@@ -6,7 +6,7 @@ class UserScore < Sequel::Model
     last_rank = 0
     last_score = 0
     UserScore.order(Sequel.desc(:score), :id).all.each_with_index do |position, index|
-      if last_score.zero? || position.score > last_score
+      if last_score.zero? || position.score < last_score
         last_score = position.score
         last_rank += 1
       end
