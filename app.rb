@@ -130,7 +130,20 @@ Cuba.define do
       end
 
       on "rank" do
-        @rank = UserScore.order(Sequel.desc(:score), :id).all
+        raw_rank = UserScore.order(Sequel.desc(:score), :id).all
+        key = 0
+        score = 0
+        @rank = Hash.new
+
+        raw_rank.each do |rank|
+          if score.zero? || score > rank.score
+            score = rank.score
+            key += 1
+          end
+          @rank[key] = Array.new unless @rank.has_key?(key)
+          @rank[key] << rank
+        end
+
         res.write render("./views/layouts/application.html.erb") {
           render("./views/pages/rank.html.erb")
         }

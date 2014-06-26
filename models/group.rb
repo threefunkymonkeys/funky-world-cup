@@ -16,11 +16,17 @@ class Group < Sequel::Model
 
   def rank_for(user_id)
     rank = 0
+    last_rank = 0
+    last_score = 0
     UserScore.join(:groups_users, user_id: :user_id, group_id: id)
              .order(Sequel.desc(:score), Sequel.qualify(:user_scores, :id))
              .all
              .each_with_index do |position, index|
-                rank = index + 1 if position.user_id == user_id
+                if last_score.zero? || position.score > last_score
+                  last_score = position.score
+                  last_rank += 1
+                end
+                rank = last_rank if position.user_id == user_id
              end
 
     rank
