@@ -60,3 +60,4 @@ en:
     partial_match: You won 1 point for your prediction for %{host} VS. %{rival}
     exact_match_penalty: You won 3 points for your exact penalty kicks prediction for %{host} VS. %{rival}
     partial_match_penalty: You won 1 point for your penalty kicks prediction for %{host} VS. %{rival}
+    group_positions: 'Update: All players with the same amount of points will share the position in the Rank'

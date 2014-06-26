@@ -40,11 +40,13 @@ class Cuba
                                       host: I18n.t(".teams.#{notification.match_prediction.match.host_team.iso_code}"),
                                       rival: I18n.t(".teams.#{notification.match_prediction.match.rival_team.iso_code}")
                                     )}</li>"
-          else
+          elsif notification.match_penalties_prediction
             markup += "<li>#{I18n.t("notifications.#{notification.message}",
                                       host: I18n.t(".teams.#{notification.match_penalties_prediction.match.host_team.iso_code}"),
                                       rival: I18n.t(".teams.#{notification.match_penalties_prediction.match.rival_team.iso_code}")
                                     )}</li>"
+          else
+            markup += "<li class='text-success'><strong>#{I18n.t("notifications.#{notification.message}")}</strong></li>"
           end
         end
         markup += "</ul></div>"

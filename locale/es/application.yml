@@ -60,3 +60,4 @@ es:
     partial_match: Has ganado 1 punto por tu predicción para %{host} VS. %{rival}
     exact_match_penalty:  Has ganado 3 puntos por tu predicción exacta en los penales de %{host} VS. %{rival}
     partial_match_penalty: Has ganado 1 punto por tu predicción en los penales de %{host} VS. %{rival}
+    group_positions: 'Actualización: Todos los usuarios con la misma cantidad de puntos compartiran la posición en el Rank'
