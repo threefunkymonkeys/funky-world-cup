@@ -22,7 +22,7 @@ class CupGroup < Sequel::Model
     results = FunkyWorldCup::Helpers.database.fetch(sql).all
 
     if results.empty?
-      CupGroup.find(:phase => "final")
+      CupGroup.find(:phase => "16_round")
     else
       CupGroup[results.first[:group_id]]
     end
