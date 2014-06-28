@@ -17,14 +17,53 @@ class CupGroup < Sequel::Model
   end
 
   def self.now_playing
-    sql = 'WITH group_dates AS (SELECT DATE(MIN(start_datetime)) AS group_start, DATE(MAX(start_datetime)) AS group_end, DATE(NOW()) as today, group_id FROM matches GROUP BY group_id) SELECT group_dates.*, cup_groups.name, cup_groups.phase FROM group_dates INNER JOIN cup_groups ON cup_groups.id = group_dates.group_id WHERE today BETWEEN group_start AND group_end'
+    sql =<<-EOF
+      WITH group_dates AS (
+        SELECT DATE(MIN(start_datetime)) AS group_start,
+          DATE(MAX(start_datetime)) AS group_end,
+          DATE(NOW()) as today,
+          group_id
+        FROM matches
+        GROUP BY group_id
+      )
+      SELECT group_dates.*, cup_groups.name, cup_groups.phase
+      FROM group_dates
+      INNER JOIN cup_groups ON cup_groups.id = group_dates.group_id
+      WHERE today BETWEEN group_start AND group_end
+    EOF
 
     results = FunkyWorldCup::Helpers.database.fetch(sql).all
 
     if results.empty?
-      CupGroup.find(:phase => "16_round")
+      CupGroup.find(:phase => self.next_stage)
     else
       CupGroup[results.first[:group_id]]
+    end
+  end
+
+  private
+
+  def self.next_stage
+    sql =<<-EOF
+      WITH groups_dates AS (
+        SELECT DATE(MIN(start_datetime)) AS group_start_date, group_id
+        FROM matches
+        GROUP BY group_id
+      )
+      SELECT groups_dates.*, cup_groups.phase
+      FROM groups_dates
+      INNER JOIN cup_groups ON cup_groups.id = groups_dates.group_id
+      WHERE DATE(NOW()) < group_start_date
+      ORDER BY group_start_date
+      LIMIT 1;
+    EOF
+
+    results = FunkyWorldCup::Helpers.database.fetch(sql).all
+
+    if results.any?
+      results.first[:phase]
+    else
+      "final"
     end
   end
 end
