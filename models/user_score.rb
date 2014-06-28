@@ -21,7 +21,7 @@ class UserScore < Sequel::Model
     predictions.each do |prediction|
       user_score = UserScore.where(user_id: prediction.user_id).first
       score = user_score.score + prediction.prediction_score
-      if (result.host_score == result.rival_score) && result.match.allow_penalties? #ignore if cheating
+      if (result.host_score == result.rival_score) && (prediction.host_score == predition.rival_score) && result.match.allow_penalties? #ignore if cheating
         score += prediction.match_penalties_prediction.prediction_score unless prediction.match_penalties_prediction.nil?
       end
       user_score.update(score: score)
