@@ -52,14 +52,18 @@ class UpdateResultsJob < BaseJob
 
   def self.parse_livescore_matches(info_matches, today_matches)
     info_matches.each do |node|
-      host_name = node.css(".fh").text.strip
-      rival_name = node.css(".fa").text.strip
+      host_name = node.css(".fh").text.gsub(/\*/, "").strip
+      rival_name = node.css(".fa").text.gsub(/\*/, "").strip
       score = node.css(".fs").text.strip.split(" - ")
+      details_node = node.css(".fs a")
+      match_details_link = details_node.any? ? details_node.attr("href").value : nil
       is_final = node.css(".fd").text.strip == "FT"
       is_live = node.css(".fd").text.strip == "HT" || node.css(".fd img").any?
+      had_extra_time = node.css(".fd").text.strip == "AET"
       not_started = score[0] == "?" && score[1] == "?"
 
       today_matches.each do |match|
+        next unless match.host_team && match.rival_team
         if match.host_team.name.downcase == host_name.downcase &&
             match.rival_team.name.downcase == rival_name.downcase
 
@@ -76,6 +80,17 @@ class UpdateResultsJob < BaseJob
               if (match.result.host_score.to_s != attrs[:host_score].to_s ||
                        match.result.rival_score.to_s != attrs[:rival_score].to_s ||
                        match.result.status != attrs[:status].to_s)
+
+                if status == :final && had_extra_time
+                  details_doc = Nokogiri::HTML(Net::HTTP.get_response(URI("http://www.livescore.com" + match_details_link)).body)
+                  result_details = details_doc.css(".content .fs div")
+
+                  if result_details.length >= 3 #if less than 3 there wasn't any penalty kick and the result has been read
+                    pk_score = result_details[2].text.strip.gsub(/\(|\)/, "").split(" - ")
+                    attrs[:host_penalties_score] = pk_score[0]
+                    attrs[:rival_penalties_score] = pk_score[1]
+                  end
+                end
 
                 match.result.update(attrs)
                 if match.result.status == "final"
