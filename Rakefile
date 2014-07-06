@@ -20,6 +20,17 @@ namespace :db do
     puts 'Done!'
   end
 
+  desc "Seed the database with the teams and matches for FIFA World Cup 2014"
+  task :seed do
+    require './lib/seed_loader'
+
+    puts 'Seeding...'
+
+    SeedLoader.new.seed
+
+    puts 'Done!'
+  end
+
   namespace :schema do
     desc "Dump the DB schema to db/schema.rb"
     task :dump do
