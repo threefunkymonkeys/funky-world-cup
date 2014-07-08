@@ -22,4 +22,21 @@ class GroupPosition < Sequel::Model
       points: result.rival_won? ? rival_team.points + 3 : (result.draw? ? rival_team.points + 1 : rival_team.points)
     )
   end
+
+  def self.regenerate_all
+    FunkyWorldCup::Helpers.database.transaction do
+      GroupPosition.dataset.destroy
+      CupGroup.groups_phase.all.each do |group|
+        group.teams.each do |team|
+          GroupPosition.create(
+            group_id: group.id,
+            team_id: team.iso_code
+          )
+        end
+        group.matches.each do |match|
+          GroupPosition.update_positions(match, match.result) unless match.result.nil?
+        end
+      end
+    end
+  end
 end
