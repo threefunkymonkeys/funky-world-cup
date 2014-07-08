@@ -6,7 +6,7 @@ class Result < Sequel::Model
     return false if old.status == 'final' && status != 'final'
     if old.status == 'partial' && status == 'final'
       match.update_predictions_score
-      GroupPosition.update_positions(match, self)
+      GroupPosition.update_positions(match, self) if match.cup_group.phase == 'groups'
       UserScore.update_scores(match, self)
     end
   end
