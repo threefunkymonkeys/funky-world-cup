@@ -122,9 +122,14 @@ Cuba.define do
 
           }
         else
-          @matches = Match.for_dashboard.all
+          if FunkyWorldCup.finalized?
+            winners = UserScore.winners
+            total_played = FunkyWorldCup.total_points
+          else
+            matches = Match.for_dashboard.all
+          end
           res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/dashboard.html.erb")
+            render("./views/pages/dashboard.html.erb", matches: matches || nil, winners: winners || nil, total_played: total_played || 0)
           }
         end
       end

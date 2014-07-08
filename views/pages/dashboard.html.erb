@@ -1,10 +1,29 @@
 <h3><%= I18n.t('.dashboard.title') %></h3>
-<div class="panel panel-default dashboard-matches">
-  <div class="panel-heading"><%= I18n.t('.dashboard.upcoming') %></div>
-  <div class="panel-body">
-    <% @matches.each do |match| %>
-      <%= partial("pages/_match.html", :match => match) %>
-    <% end %>
+<% if !matches.nil? %>
+  <div class="panel panel-default dashboard-matches">
+    <div class="panel-heading"><%= I18n.t('.dashboard.upcoming') %></div>
+    <div class="panel-body">
+      <% matches.each do |match| %>
+        <%= partial("pages/_match.html", :match => match) %>
+      <% end %>
+    </div>
   </div>
-</div>
-<%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
+  <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
+<% else %>
+  <div class="panel panel-default dashboard-end">
+    <div class="panel-heading"><%= I18n.t('.dashboard.winners') %></div>
+    <div class="panel-body">
+      <% winners.each do |key, winners_position| %>
+        <% winners_position.each do |winner| %>
+          <a href=""><%= winner.user.name %></a>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel panel-default dashboard-end-points">
+    <div class="panel-heading"><%= I18n.t('.dashboard.score') %></div>
+    <div class="panel-body">
+      <p><%= I18n.t('.dashboard.you_scored_html', score: current_user.score, total: total_played) %></p>
+    </div>
+  </div>
+<% end %>
