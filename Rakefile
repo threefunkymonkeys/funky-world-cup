@@ -153,6 +153,52 @@ namespace :positions do
   end
 end
 
+namespace :phase do
+  namespace :semifinals do
+    desc 'Fix inverted semifinals'
+    task :fix do
+      require './app'
+
+      puts "Starting..."
+      FunkyWorldCup::Helpers.database.transaction do
+        CupGroup.where(phase: 'semi_finals').first.matches.each do |match|
+          puts "Match: #{match.host_id} vs #{match.rival_id}"
+          puts "--> Invert match"
+          match.update(
+            rival_id: match.host_id,
+            rival_code: match.host_code,
+            rival_description: match.host_description,
+            host_id: match.rival_id,
+            host_code: match.rival_code,
+            host_description: match.rival_description
+          )
+          puts "<-- OK"
+          unless match.result.nil?
+            puts "--> Invert result"
+            match.result.update(
+              host_score: match.result.rival_score,
+              host_penalties_score: match.result.rival_penalties_score,
+              rival_score: match.result.host_score,
+              rival_penalties_score: match.result.host_penalties_score,
+            )
+            puts "<-- OK"
+          end
+          puts "--> Invert Predictions"
+          MatchPrediction.where(match_id: match.id).all.each do |prediction|
+            prediction.update(host_score: prediction.rival_score, rival_score: prediction.host_score)
+          end
+          puts "<-- OK"
+          puts "--> Invert Penalties Predictions"
+          MatchPenaltiesPrediction.where(match_id: match.id).all.each do |prediction|
+            prediction.update(host_score: prediction.rival_score, rival_score: prediction.host_score)
+          end
+          puts "<-- OK"
+        end
+      end
+    end
+  end
+end
+
 def load_files(dir)
   Dir[dir].each { |file| load file }
 end
