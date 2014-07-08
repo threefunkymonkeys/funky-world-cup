@@ -23,20 +23,4 @@ class GroupPosition < Sequel::Model
     )
   end
 
-  def self.regenerate_all
-    FunkyWorldCup::Helpers.database.transaction do
-      GroupPosition.dataset.destroy
-      CupGroup.groups_phase.all.each do |group|
-        group.teams.each do |team|
-          GroupPosition.create(
-            group_id: group.id,
-            team_id: team.iso_code
-          )
-        end
-        group.matches.each do |match|
-          GroupPosition.update_positions(match, match.result) unless match.result.nil?
-        end
-      end
-    end
-  end
 end

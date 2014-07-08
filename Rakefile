@@ -128,6 +128,31 @@ namespace :teams do
   end
 end
 
+namespace :positions do
+  desc "Regenerate first phase positions tables"
+  task :regenerate do
+    require './app'
+
+    puts "Renerating..."
+    FunkyWorldCup::Helpers.database.transaction do
+      GroupPosition.dataset.destroy
+      CupGroup.groups_phase.all.each do |group|
+        puts "Renerating...Group #{group.name}"
+        group.teams.each do |team|
+          GroupPosition.create(
+            group_id: group.id,
+            team_id: team.iso_code
+          )
+        end
+        group.matches.each do |match|
+          GroupPosition.update_positions(match, match.result) unless match.result.nil?
+        end
+      end
+    end
+    puts "Done!"
+  end
+end
+
 def load_files(dir)
   Dir[dir].each { |file| load file }
 end
