@@ -22,4 +22,5 @@ class GroupPosition < Sequel::Model
       points: result.rival_won? ? rival_team.points + 3 : (result.draw? ? rival_team.points + 1 : rival_team.points)
     )
   end
+
 end
