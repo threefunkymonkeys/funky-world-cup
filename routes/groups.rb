@@ -41,10 +41,22 @@ module FunkyWorldCup
                   res.redirect "/dashboard"
                 end
 
+                participants = Hash.new
+                key = 0
+                score = 0
+                group.participants.each do |participant|
+                  if score.zero? || score > (participant[:score] || 0)
+                    score = participant[:score] || 0
+                    key += 1
+                  end
+                  participants[key] = Array.new unless participants.has_key?(key)
+                  participants[key] << participant
+                end
+
                 res.write render("./views/layouts/application.html.erb") {
                   render("./views/groups/show.html.erb",
                         group: group,
-                        participants: group.participants,
+                        participants: participants,
                         prizes: group.group_prizes,
                         url: ENV['FWC_URL']
                         )

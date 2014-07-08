@@ -45,18 +45,20 @@
       </div>
       <div class="panel-body" data-group="<%= group.id %>">
         <ul class="list-group <%= group.user_id == current_user.id ? 'by-owner' : ''%>" id="group-participants-list">
-          <% participants.each_with_index do |participant, index| %>
-          <li class="list-group-item">
-            <span class="badge"><%=participant[:score] || 0 %></span>
-            <span class="label label-<%= index < 3 ? 'success' : 'warning' %>">#<%= index + 1 %></span>
-            <span>
-              <img src="<%= participant[:image] %>" class="participant-img">
-              <%= participant[:nickname] %>
-            </span>
-            <% if group.user_id == current_user.id && current_user.id != participant[:id] %>
-              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
+          <% participants.each do |key, rank_for_key| %>
+            <% rank_for_key.each do |participant| %>
+              <li class="list-group-item">
+                <span class="badge"><%=participant[:score] || 0 %></span>
+                <span class="label label-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span>
+                <span>
+                  <img src="<%= participant[:image] %>" class="participant-img">
+                  <%= participant[:nickname] %>
+                </span>
+                <% if group.user_id == current_user.id && current_user.id != participant[:id] %>
+                  <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
+                <% end %>
+              </li>
             <% end %>
-          </li>
           <% end %>
         </ul>
       </div>
