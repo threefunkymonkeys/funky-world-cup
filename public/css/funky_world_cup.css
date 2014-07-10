@@ -74,6 +74,17 @@ html, body {
     width: 100%;
   }
 
+  #wc-champion {
+  }
+  #wc-champion .panel-body{
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 25px;
+  }
+  #wc-champion .panel-body a:hover{
+    text-decoration: none;
+  }
+
 .matches-table {}
   .matches-table td {
     vertical-align: middle !important;
@@ -440,6 +451,63 @@ footer {
 .penalty-score {
   font-size: 0.5em;
   vertical-align: middle;
+}
+
+.dashboard-end li {
+  border: none;
+  border-top: 1px solid #dddddd;
+}
+.dashboard-end li:first-child{
+  border-top: none;
+}
+
+.list-group-item.label-1-place .rank-box span{
+  font-size: 1.2em;
+}
+.list-group-item.label-1-place span img {
+  width: 50px;
+  height: 50px;
+}
+.list-group-item.label-1-place span a {
+  font-size: 2em;
+}
+.list-group-item.label-1-place .badge {
+  margin: 15px 0;
+}
+
+.list-group-item.label-2-place .rank-box span{
+  font-size: 1.0em;
+}
+.list-group-item.label-2-place span img {
+  width: 35px;
+  height: 35px;
+}
+.list-group-item.label-2-place span a {
+  font-size: 1.5em;
+  padding-left: 9px;
+}
+.list-group-item.label-2-place .badge {
+  margin: 10px 0;
+}
+.list-group-item.label-3-place span img {
+  width: 25px;
+  height: 25px;
+}
+.list-group-item.label-3-place span a {
+  font-size: 1em;
+  padding-left: 14px;
+}
+
+.dashboard-end-points p {
+  font-size: 3.5em;
+  text-align: center;
+}
+.dashboard-end-points p .last-final-score{
+  font-size: 0.8em;
+}
+.dashboard-end-accuracy p {
+  font-size: 3.5em;
+  text-align: center;
 }
 
 /* responsive */

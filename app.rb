@@ -46,6 +46,7 @@ include Cuba::Render::Helper
 Cuba.define do
   init_locale(req.env)
   session[:notifications] = current_user.get_and_read_notifications if current_user
+  @@champion  ||= FunkyWorldCup.champion
 
   on "groups" do
     run FunkyWorldCup::Groups

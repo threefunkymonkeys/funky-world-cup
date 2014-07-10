@@ -1,4 +1,25 @@
 <div id="sidebar" class="col-md-3">
+  <% if !@@champion.nil? %>
+    <div id="wc-champion">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 id="score-title-sidebar" class="panel-title">
+            <%= I18n.t('.sidebar.world_cup_champion') %>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <a href="/teams/<%= @@champion.iso_code %>">
+            <img src="/img/flags/<%= @@champion.flag %>"
+          </a>
+          <br>
+          <a href="/teams/<%= @@champion.iso_code %>">
+            <span><%= I18n.t(".teams.#{@@champion.iso_code}") %></span>
+          </a>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  <% end %>
   <div id="score-rank">
     <div class="panel panel-primary pull-left">
       <div class="panel-heading">

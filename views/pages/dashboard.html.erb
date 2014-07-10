@@ -10,20 +10,47 @@
   </div>
   <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
 <% else %>
-  <div class="panel panel-default dashboard-end">
-    <div class="panel-heading"><%= I18n.t('.dashboard.winners') %></div>
-    <div class="panel-body">
-      <% winners.each do |key, winners_position| %>
-        <% winners_position.each do |winner| %>
-          <a href=""><%= winner.user.name %></a>
-        <% end %>
-      <% end %>
+  <div id="content" class="row">
+    <div class="col-md-12 pull-left">
+      <div class="panel panel-default dashboard-end">
+        <div class="panel-heading"><%= I18n.t('.dashboard.winners') %></div>
+        <div class="panel-body">
+          <ul class="list-group" id="rank-list">
+            <% winners.each do |key, winners_position| %>
+              <% winners_position.each do |winner| %>
+                <li class="list-group-item label-<%= key %>-place" id="position-<%= key %>">
+                  <span class="badge"><%=winner.score || 0 %></span>
+                  <div class="rank-box">
+                    <span class="label label-<%= key == 1 ? 'success' : (key == 2 ? 'info' : 'warning') %>">#<%= key %></span>
+                  </div>
+                  <span>
+                    <a href="/users/<%= winner.user.id %>/predictions">
+                      <img src="<%= winner.user.image %>" class="participant-img">
+                      <%= winner.user.nickname %>
+                    </a>
+                  </span>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="panel panel-default dashboard-end-points">
-    <div class="panel-heading"><%= I18n.t('.dashboard.score') %></div>
-    <div class="panel-body">
-      <p><%= I18n.t('.dashboard.you_scored_html', score: current_user.score, total: total_played) %></p>
+    <div class="col-md-6 pull-left">
+      <div class="panel panel-default dashboard-end-points">
+        <div class="panel-heading"><%= I18n.t('.dashboard.score') %></div>
+        <div class="panel-body">
+          <p class="text-warning"><span class="last-score"><a class="text-warning" href="/users/<%= current_user.id %>/predictions"><%= current_user.score %></a><span>/<span class="last-final-score"><%= total_played %></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 pull-left">
+      <div class="panel panel-default dashboard-end-accuracy">
+        <div class="panel-heading"><%= I18n.t('.dashboard.accuracy') %></div>
+        <div class="panel-body">
+          <p class="text-info"><%= (current_user.score.to_f / total_played.to_f * 100).round(2) %>%</p>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

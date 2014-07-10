@@ -9,6 +9,7 @@ en:
     share: Share!
     tweet: Predict the results of World Cup 2014 in
     tweet_hashtag: worldcup2014,brazil2014
+    world_cup_champion: World Cup Champion!
   actions:
     create_group: Create Group
     add_prize: Add Prize

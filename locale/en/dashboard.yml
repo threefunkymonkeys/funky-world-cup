@@ -5,4 +5,4 @@ en:
     your_prediction: Your prediction
     winners: Winners
     score: Your score
-    you_scored_html: "You won %{score} of %{total} points"
+    accuracy: Accuracy

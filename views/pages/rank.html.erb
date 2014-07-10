@@ -13,8 +13,15 @@
             <span class="label label-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span>
           </div>
           <span>
-            <img src="<%= rank.user.image %>" class="participant-img">
-            <%= rank.user.nickname %>
+            <% if FunkyWorldCup.finalized? %>
+              <a href="/users/<%= rank.user.id %>/predictions">
+                <img src="<%= rank.user.image %>" class="participant-img">
+                <%= rank.user.nickname %>
+              </a>
+            <% else %>
+              <img src="<%= rank.user.image %>" class="participant-img">
+              <%= rank.user.nickname %>
+            <% end %>
           </span>
         </li>
         <% end %>
