@@ -10,8 +10,8 @@
   </div>
   <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
 <% else %>
-  <div id="content" class="row">
-    <div class="col-md-12 pull-left">
+  <div class="row">
+    <div class="col-md-12">
       <div class="panel panel-default dashboard-end">
         <div class="panel-heading"><%= I18n.t('.dashboard.winners') %></div>
         <div class="panel-body">
@@ -36,7 +36,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 pull-left">
+  </div>
+  <div class="row">
+    <div class="col-md-6">
       <div class="panel panel-default dashboard-end-points">
         <div class="panel-heading"><%= I18n.t('.dashboard.score') %></div>
         <div class="panel-body">
@@ -44,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 pull-left">
+    <div class="col-md-6">
       <div class="panel panel-default dashboard-end-accuracy">
         <div class="panel-heading"><%= I18n.t('.dashboard.accuracy') %></div>
         <div class="panel-body">
