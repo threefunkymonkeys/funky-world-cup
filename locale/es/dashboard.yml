@@ -6,3 +6,22 @@ es:
     winners: Ganadores
     score: Tus puntos
     accuracy: Precisión
+    you_won: Has ganado un Premio!
+    prize_description: Felicitaciones! Has terminado dentro del los tres primeros puestos y por ellos has ganado un premio de FunkyWorldCup!
+    personal_drescription: Para poder enviarte nuestro premio es necesario que completes el siguiente formulario. Si no estás seguro y deseas contactarte con nosotros primero puedes enviar un email a code@threefunkymonkeys.com.
+
+    form:
+      address: Dirección
+      post_code: Código Postal
+      city: Ciudad
+      state: Provincia
+      country: País
+      comment: Comentario
+      email: E-mail
+      saved: Datos de contacto guardados
+      email_not_empty: Email no puede estar vacío
+      address_not_empty: Address no puede estar vacío
+      post_code_not_empty: Post Code no puede estar vacío
+      city_not_empty: City no puede estar vacío
+      state_not_empty: State no puede estar vacío
+      country_not_empty: Country no puede estar vacío

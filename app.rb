@@ -130,7 +130,7 @@ Cuba.define do
             matches = Match.for_dashboard.all
           end
           res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/dashboard.html.erb", matches: matches || nil, winners: winners || nil, total_played: total_played || 0)
+            render("./views/pages/dashboard.html.erb", matches: matches || nil, winners: winners || nil, total_played: total_played || 0, params: session.delete('fwc.contact_form') || {})
           }
         end
       end

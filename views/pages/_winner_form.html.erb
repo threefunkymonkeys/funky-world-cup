@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default dashboard-end">
+      <div class="panel-heading"><%= I18n.t('.dashboard.you_won') %></div>
+      <div class="panel-body">
+        <p><%= I18n.t('.dashboard.prize_description') %></p>
+        <p><%= I18n.t('.dashboard.personal_drescription') %></p>
+        <form method="post" action="/users/<%= id %>/contact">
+          <div class="form-group">
+            <label class="control-label" for="email"><%= I18n.t('.dashboard.form.email') %></label>
+            <input class="form-control" id="email" name="address[email]" type="text" value="<%= params.has_key?('email') ? params['email'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="address"><%= I18n.t('.dashboard.form.address') %></label>
+            <input class="form-control" id="address" name="address[address]" type="text" value="<%= params.has_key?('address') ? params['address'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="post_code"><%= I18n.t('.dashboard.form.post_code') %></label>
+            <input class="form-control" id="post_code" name="address[post_code]" type="text" value="<%= params.has_key?('post_code') ? params['post_code'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="city"><%= I18n.t('.dashboard.form.city') %></label>
+            <input class="form-control" id="city" name="address[city]" type="text" value="<%= params.has_key?('city') ? params['city'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="state"><%= I18n.t('.dashboard.form.state') %></label>
+            <input class="form-control" id="state" name="address[state]" type="text" value="<%= params.has_key?('state') ? params['state'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="country"><%= I18n.t('.dashboard.form.country') %></label>
+            <input class="form-control" id="country" name="address[country]" type="text" value="<%= params.has_key?('country') ? params['country'] : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="comment"><%= I18n.t('.dashboard.form.comment') %></label>
+            <textarea class="form-control" rows="3" id="comment" name="address[comment]"><%= params.has_key?('comment') ? params['comment'] : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <div class="pull-right">
+              <button type="submit" class="btn btn-success"><%= I18n.t('.actions.send') %></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

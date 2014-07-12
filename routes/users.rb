@@ -71,6 +71,12 @@ module FunkyWorldCup
               res.redirect "/#{params.has_key?('back_to') ? params['back_to'] : "dashboard"}#match-#{match.id}"
             end
 
+            on 'contact' do
+              attrs = req.params['address'].strip
+              FunkyWorldCup::ContactCreate.new(self).execute(attrs)
+              res.redirect "/"
+            end
+
             not_found!
           end
 

@@ -10,6 +10,9 @@
   </div>
   <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
 <% else %>
+  <% if @user_rank <= 3 && UserContact.where(user_id: current_user.id).count == 0 %>
+    <%= render("views/pages/_winner_form.html.erb", id: current_user.id, params: params) %>
+  <% end %>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default dashboard-end">

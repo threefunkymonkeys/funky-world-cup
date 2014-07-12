@@ -24,6 +24,7 @@ es:
     kick: Expulsar
     confirm: Confirmar
     leave: Dejar Grupo
+    send: Enviar
   common:
     group: Grupo
     rules: Reglas
