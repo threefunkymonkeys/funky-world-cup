@@ -3,3 +3,6 @@ en:
     title: Dashboard
     upcoming: Upcoming Matches
     your_prediction: Your prediction
+    winners: Winners
+    score: Your score
+    accuracy: Accuracy
