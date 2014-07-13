@@ -24,6 +24,7 @@ en:
     kick: Kick
     confirm: Confirm
     leave: Leave Group
+    send: Send
   common:
     group: Group
     rules: Rules
