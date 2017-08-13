@@ -9,5 +9,5 @@ hatch -v 0.1.3
 i18n -v 0.6.9
 tzinfo -v 1.2.0
 clap -v 1.0.0
-eventmachine -v 1.0.3
+eventmachine -v 1.2.5
 simple_oauth -v 0.2.0
