@@ -1,4 +1,4 @@
-##Funky World Cup
+## Funky World Cup
 
 [Funky World Cup](http://funkyworldcup.com) is a match predictions website for the FIFA World Cup, that allows you to create groups so you can play with your friends defining prices.
 
@@ -7,7 +7,7 @@ To play on it, you just need an account on Facebook or Twitter. As stated in the
 [Funky World Cup](http://funkyworlcup.com) is open source, so you can collaborate or base your work on it.
 
 
-###How to collaborate
+### How to collaborate
 
 There are two ways of collaboration:
 
@@ -38,9 +38,9 @@ There are two ways of collaboration:
   This is a real use case, reported on its [corresponding issue](https://github.com/threefunkymonkeys/funky-world-cup/issues/98).
 
 
-###Installation
+### Installation
 
-####Web Application
+#### Web Application
 
 The application is built on Ruby, using [Cuba](http://www.cuba.is) and a [PostgresSQL](http://postgresql.org) database.
 
@@ -68,7 +68,7 @@ CREATE DATABASE funky_wc_dev WITH OWNER funkywc ENCODING 'utf8';
 CREATE DATABASE funky_wc_test WITH OWNER funkywc ENCODING 'utf8';
 ```
 
-###Setup
+### Setup
 
 Once you have everything installed and your database created you need to set up the application.
 
@@ -100,7 +100,7 @@ rackup
 
 This will put an app server up and running in port 9292 by default, open your browser and point it to http://localhost:9292, you should be able to run the application.
 
-####Development environment
+#### Development environment
 
 If your planning on playing around with the code, you might want to run the tests, for this you need to install the tests gem dependencies:
 
