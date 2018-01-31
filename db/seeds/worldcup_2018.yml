@@ -1,0 +1,559 @@
+worldcup:
+  year: 2018
+  host_country:
+    name: Russia
+    country_code: RU
+  teams:
+    RU:
+      name: Russia
+      flag: ru_flag.png
+    SA:
+      name: Saudi Arabia
+      flag: sa_flag.png
+    EG:
+      name: Egypt
+      flag: eg_flag.png
+    UY:
+      name: Uruguay
+      flag: uy_flag.png
+    PT:
+      name: Portugal
+      flag: pt_flag.png
+    ES:
+      name: Spain
+      flag: es_flag.png
+    MA:
+      name: Morocco
+      flag: ma_flag.png
+    IR:
+      name: Iran
+      flag: ir_flag.png
+    FR:
+      name: France
+      flag: fr_flag.png
+    AU:
+      name: Australia
+      flag: au_flag.png
+    PE:
+      name: Peru
+      flag: pe_flag.png
+    DK:
+      name: Denmark
+      flag: dk_flag.png
+    AR:
+      name: Argentina
+      flag: ar_flag.png
+    IS:
+      name: Iceland
+      flag: is_flag.png
+    HR:
+      name: Croatia
+      flag: hr_flag.png
+    NG:
+      name: Nigeria
+      flag: ng_flag.png
+    BR:
+      name: Brazil
+      flag: br_flag.png
+    CH:
+      name: Switzerland
+      flag: ch_flag.png
+    CR:
+      name: Costa Rica
+      flag: cr_flag.png
+    RS:
+      name: Serbia
+      flag: rs_flag.png
+    DE:
+      name: Germany
+      flag: de_flag.png
+    MX:
+      name: Mexico
+      flag: mx_flag.png
+    SE:
+      name: Sweden
+      flag: se_flag.png
+    KR:
+      name: Korea Republic
+      flag: kr_flag.png
+    BE:
+      name: Belgium
+      flag: be_flag.png
+    PA:
+      name: Panama
+      flag: pa_flag.png
+    TN:
+      name: Tunisia
+      flag: tn_flag.png
+    GB:
+      name: United Kingdom
+      flag: gb_flag.png
+    PL:
+      name: Poland
+      flag: pl_flag.png
+    SN:
+      name: Senegal
+      flag: sn_flag.png
+    CO:
+      name: Colombia
+      flag: co_flag.png
+    JP:
+      name: Japan
+      flag: jp_flag.png
+
+  groups_phase:
+    A:
+      teams: [RU, SA, EG, UY]
+      matches:
+        - date: '2018-06-14 18:00'
+          host: RU
+          rival: SA
+          place: Moscow
+          stadium: Luzhniki Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-15 17:00'
+          host: EG
+          rival: UY
+          place: Ekaterinburg
+          stadium: Ekaterinburg Arena
+          local_timezone: GMT+5
+        - date: '2018-06-19 21:00'
+          host: RU
+          rival: EG
+          place: Saint Petersburg
+          stadium: Saint Petersburg Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-20 18:00'
+          host: UY
+          rival: SA
+          place: Rostov-On-Don
+          stadium: Rostov Arena
+          local_timezone: GMT+3
+        - date: '2018-06-25 18:00'
+          host: UY
+          rival: RU
+          place: Samara
+          stadium: Samara Arena
+          local_timezone: GMT+4
+        - date: '2018-06-25 17:00'
+          host: SA
+          rival: EG
+          place: Volgograd
+          stadium: Volgograd Arena
+          local_timezone: GMT+3
+    B:
+      teams: [PT, ES, MA, IR]
+      matches:
+        - date: '2018-06-15 18:00'
+          host: MA
+          rival: IR
+          place: Saint Petersburg
+          stadium: Saint Petersburg Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-15 21:00'
+          host: PT
+          rival: ES
+          place: Sochi
+          stadium: Fisht Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-20 15:00'
+          host: PT
+          rival: MA
+          place: Moscow
+          stadium: Luzhniki Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-20 21:00'
+          host: IR
+          rival: ES
+          place: Kazan
+          stadium: Kazan Arena
+          local_timezone: GMT+3
+        - date: '2018-06-25 21:00'
+          host: IR
+          rival: PT
+          place: Saransk
+          stadium: Mordovia Arena
+          local_timezone: GMT+3
+        - date: '2018-06-25 20:00'
+          host: ES
+          rival: MA
+          place: Kaliningrad
+          stadium: Kaliningrad Stadium
+          local_timezone: GMT+2
+    C:
+      teams: [FR, AU, PE, DK]
+      matches:
+        - date: '2018-06-16 13:00'
+          host: FR
+          rival: AU
+          place: Kazan
+          stadium: Kazan Arena
+          local_timezone: GMT+3
+        - date: '2018-06-16 19:00'
+          host: PE
+          rival: DK
+          place: Saransk
+          stadium: Mordovia Arena
+          local_timezone: GMT+3
+        - date: '2018-06-21 16:00'
+          host: DK
+          rival: AU
+          place: Samara
+          stadium: Samara Arena
+          local_timezone: GMT+4
+        - date: '2018-06-21 20:00'
+          host: FR
+          rival: PE
+          place: Ekaterinburg
+          stadium: Ekaterinburg Arena
+          local_timezone: GMT+3
+        - date: '2018-06-26 17:00'
+          host: DK
+          rival: FR
+          place: Moscow
+          stadium: Luzhniki Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-26 17:00'
+          host: AU
+          rival: PE
+          place: Sochi
+          stadium: Fisht Stadium
+          local_timezone: GMT+3
+    D:
+      teams: [AR, IS, HR, NG]
+      matches:
+        - date: '2018-06-16 16:00'
+          host: AR
+          rival: IS
+          place: Moscow
+          stadium: Spartak Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-16 21:00'
+          host: HR
+          rival: NG
+          place: Kaliningrad
+          stadium: Kaliningrad Stadium
+          local_timezone: GMT+2
+        - date: '2018-06-21 21:00'
+          host: AR
+          rival: HR
+          place: Nizhny Novgorod
+          stadium: Nizhny Novgorod Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-22 18:00'
+          host: NG
+          rival: IS
+          place: Volgograd
+          stadium: Volgograd Arena
+          local_timezone: GMT+3
+        - date: '2018-06-26 21:00'
+          host: NG
+          rival: AR
+          place: Saint Petersburg
+          stadium: Saint Petersburg Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-26 21:00'
+          host: IS
+          rival: HR
+          place: Rostov-On-Don
+          stadium: Rostov Arena
+          local_timezone: GMT+3
+    E:
+      teams: [BR, CH, CR, RS]
+      matches:
+        - date: '2018-06-17 16:00'
+          host: CR
+          rival: RS
+          place: Samara
+          stadium: Samara Arena
+          local_timezone: GMT+4
+        - date: '2018-06-17 21:00'
+          host: BR
+          rival: CH
+          place: Rostov-On-Don
+          stadium: Rostov Arena
+          local_timezone: GMT+3
+        - date: '2018-06-22 15:00'
+          host: BR
+          rival: CR
+          place: Saint Petersburg
+          stadium: Saint Petersburg Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-22 20:00'
+          host: RS
+          rival: CH
+          place: Kaliningrad
+          stadium: Kaliningrad Stadium
+          local_timezone: GMT+2
+        - date: '2018-06-27 21:00'
+          host: RS
+          rival: BR
+          place: Moscow
+          stadium: Spartak Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-27 21:00'
+          host: CH
+          rival: CR
+          place: Nizhny Novgorod
+          stadium: Nizhny Novgorod Stadium
+          local_timezone: GMT+3
+    F:
+      teams: [DE, MX, SE, KR]
+      matches:
+        - date: '2018-06-17 18:00'
+          host: DE
+          rival: MX
+          place: Moscow
+          stadium: Luzhniki Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-18 15:00'
+          host: SE
+          rival: KR
+          place: Nizhny Novgorod
+          stadium: Nizhny Novgorod Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-23 18:00'
+          host: KR
+          rival: MX
+          place: Rostov-On-Don
+          stadium: Rostov Arena
+          local_timezone: GMT+3
+        - date: '2018-06-23 21:00'
+          host: DE
+          rival: SE
+          place: Sochi
+          stadium: Fisht Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-27 19:00'
+          host: MX
+          rival: SE
+          place: Ekaterinburg
+          stadium: Ekaterinburg Arena
+          local_timezone: GMT+3
+        - date: '2018-06-27 17:00'
+          host: KR
+          rival: DE
+          place: Kazan
+          stadium: Kazan Arena
+          local_timezone: GMT+3
+    G:
+      teams: [BE, PA, TN, GB]
+      matches:
+        - date: '2018-06-18 18:00'
+          host: BE
+          rival: PA
+          place: Sochi
+          stadium: Fisht Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-18 21:00'
+          host: TN
+          rival: GB
+          place: Volgograd
+          stadium: Volgograd Arena
+          local_timezone: GMT+3
+        - date: '2018-06-23 15:00'
+          host: BE
+          rival: TN
+          place: Moscow
+          stadium: Spartak Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-24 15:00'
+          host: GB
+          rival: PA
+          place: Nizhny Novgorod
+          stadium: Nizhny Novgorod Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-28 21:00'
+          host: PA
+          rival: TN
+          place: Saransk
+          stadium: Mordovia Arena
+          local_timezone: GMT+3
+        - date: '2018-06-28 20:00'
+          host: GB
+          rival: BE
+          place: Kaliningrad
+          stadium: Kaliningrad Stadium
+          local_timezone: GMT+2
+    H:
+      teams: [PL, SN, CO, JP]
+      matches:
+        - date: '2018-06-19 15:00'
+          host: CO
+          rival: JP
+          place: Saransk
+          stadium: Mordovia Arena
+          local_timezone: GMT+3
+        - date: '2018-06-19 18:00'
+          host: PL
+          rival: SN
+          place: Moscow
+          stadium: Spartak Stadium
+          local_timezone: GMT+3
+        - date: '2018-06-24 20:00'
+          host: JP
+          rival: SN
+          place: Ekaterinburg
+          stadium: Ekaterinburg Arena
+          local_timezone: GMT+3
+        - date: '2018-06-24 21:00'
+          host: PL
+          rival: CO
+          place: Kazan
+          stadium: Kazan Arena
+          local_timezone: GMT+3
+        - date: '2018-06-28 17:00'
+          host: JP
+          rival: PL
+          place: Volgograd
+          stadium: Volgograd Arena
+          local_timezone: GMT+3
+        - date: '2018-06-28 18:00'
+          host: SN
+          rival: CO
+          place: Samara
+          stadium: Samara Arena
+          local_timezone: GMT+4
+
+  16_round:
+    matches:
+      - date: '2018-06-30 21:00'
+        host_description: First of Group A
+        rival_description: Second of Group B
+        host_code: 'A:1'
+        rival_code: 'B:2'
+        place: Sochi
+        stadium: Fisht Stadium
+        local_timezone: GMT+3
+      - date: '2018-06-30 17:00'
+        host_description: First of Group C
+        rival_description: Second of Group D
+        host_code: 'C:1'
+        rival_code: 'D:2'
+        place: Kazan
+        stadium: Kazan Arena
+        local_timezone: GMT+3
+      - date: '2018-07-01 17:00'
+        host_description: First of Group B
+        rival_description: Second of Group A
+        host_code: 'B:1'
+        rival_code: 'A:2'
+        place: Moscow
+        stadium: Luzhniki Stadium
+        local_timezone: GMT+3
+      - date: '2018-07-01 21:00'
+        host_description: First of Group D
+        rival_description: Second of Group C
+        host_code: 'D:1'
+        rival_code: 'C:2'
+        place: Nizhny Novgorod
+        stadium: Nizhny Novgorod Stadium
+        local_timezone: GMT+3
+      - date: '2018-07-02 18:00'
+        host_description: First of Group E
+        rival_description: Second of Group F
+        host_code: 'E:1'
+        rival_code: 'F:2'
+        place: Samara
+        stadium: Samara Arena
+        local_timezone: GMT+4
+      - date: '2018-07-02 21:00'
+        host_description: First of Group G
+        rival_description: Second of Group H
+        host_code: 'G:1'
+        rival_code: 'H:2'
+        place: Rostov-On-Don
+        stadium: Rostov Arena
+        local_timezone: GMT+3
+      - date: '2018-07-03 17:00'
+        host_description: First of Group F
+        rival_description: Second of Group E
+        host_code: 'F:1'
+        rival_code: 'E:2'
+        place: Saint Petersburg
+        stadium: Saint Petersburg Stadium
+        local_timezone: GMT+3
+      - date: '2018-07-03 21:00'
+        host_description: First of Group H
+        rival_description: Second of Group G
+        host_code: 'H:1'
+        rival_code: 'G:2'
+        place: Moscow
+        stadium: Spartak Stadium
+        local_timezone: GMT+3
+
+  quarter_finals:
+    matches:
+      - date: '2018-07-06 17:00'
+        host_description: Winner of 1A vs 2B
+        rival_description: Winner of 1C vs 2D
+        host_code: '1'
+        rival_code: '2'
+        place: Nizhny Novgorod
+        stadium: Nizhny Novgorod Stadium
+        local_timezone: GMT+3
+      - date: '2018-07-06 21:00'
+        host_description: Winner of 1E vs 2F
+        rival_description: Winner of 1G vs 2H
+        host_code: '5'
+        rival_code: '6'
+        place: Kazan
+        stadium: Kazan Arena
+        local_timezone: GMT+3
+      - date: '2018-07-07 18:00'
+        host_description: Winner of 1F vs 2E
+        rival_description: Winner of 1H vs 2G
+        host_code: '7'
+        rival_code: '8'
+        place: Samara
+        stadium: Samara Arena
+        local_timezone: GMT+4
+      - date: '2018-07-07 21:00'
+        host_description: Winner of 1B vs 2A
+        rival_description: Winner of 1D vs 2C
+        host_code: '3'
+        rival_code: '4'
+        place: Sochi
+        stadium: Fisht Stadium
+        local_timezone: GMT+3
+
+  semi_finals:
+    matches:
+      - date: '2018-07-10 21:00'
+        host_description: Winner of Q1
+        rival_description: Winner of Q2
+        host_code: '1'
+        rival_code: '2'
+        place: Saint Petersburg
+        stadium: Saint Petersburg Stadium
+        local_timezone: GMT+3
+      - date: '2018-07-11 21:00'
+        host_description: Winner of Q3
+        rival_description: Winner of Q4
+        host_code: '3'
+        rival_code: '4'
+        place: Moscow
+        stadium: Luzhniki Stadium
+        local_timezone: GMT+3
+
+  final:
+    matches:
+      - date: '2018-07-15 18:00'
+        host_description: Winner of S1
+        rival_description: Winner of S2
+        host_code: 'W:1'
+        rival_code: 'W:2'
+        place: Moscow
+        stadium: Luzhniki Stadium
+        local_timezone: GMT+3
+
+  third_place:
+    matches:
+      - date: '2018-07-14 17:00'
+        host_description: Loser of S1
+        rival_description: Loser of S2
+        host_code: 'L:1'
+        rival_code: 'L:2'
+        place: Saint Petersburg
+        stadium: Saint Petersburg Stadium
+        local_timezone: GMT+3
