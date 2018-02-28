@@ -1,4 +1,12 @@
 require 'yaml'
+require 'sequel'
+require_relative '../models/result'
+require_relative '../models/group_position'
+require_relative '../models/user_notification'
+require_relative '../models/match_prediction'
+require_relative '../models/match'
+require_relative '../models/team'
+require_relative '../models/cup_group'
 
 class SeedLoader
 
