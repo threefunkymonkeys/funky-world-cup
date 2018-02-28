@@ -1,4 +1,5 @@
 require 'yaml'
+require 'sequel'
 
 module FunkyWorldCupApp
   class Settings
@@ -35,4 +36,3 @@ module FunkyWorldCupApp
     new_link
   end
 end
-

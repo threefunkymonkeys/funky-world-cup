@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= I18n.t('seo.title') %></title>
+    <meta name="description" content="<%= I18n.t('seo.description') %>">
+    <meta name="keywords" content="<%= I18n.t('seo.keywords') %>">
+    <meta name="author" content="Three Funky Monkeys">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" >
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/funky_world_cup.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <%= render("views/shared/_analytics.html.erb") %>
+    <%= render("views/shared/_social.html.erb") %>
+  </head>
+  <body style="background-color: #781E20">
+    <div id="wrapper">
+      <div class="col-md-4 col-md-offset-4">
+        <img src="/img/funky-WC-02-white.png" style="width:100%">
+      </div>
+      <div class="col-md-12">
+        <p class="text-center" style="font-family: 'Dusha V5'; font-size: 4em; color: white;"><%= I18n.t(".teams.RU").upcase %> 2018</p>
+        <p class="text-center" style="font-family: 'Dusha V5'; font-size: 2em; color: white;"><%= I18n.t(".home.coming_soon") %></p>
+      </div>
+    </div>
+  </body>
+</html>

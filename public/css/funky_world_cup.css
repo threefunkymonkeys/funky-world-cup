@@ -880,3 +880,11 @@ footer {
 }
 @media (min-width: 1200px) {
 }
+
+@font-face {
+  font-family: 'Dusha V5';
+  src: url('/fonts/DushaV5-Regular.woff2') format('woff2'),
+       url('/fonts/DushaV5-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
