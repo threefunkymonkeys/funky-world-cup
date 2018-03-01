@@ -21,12 +21,19 @@ namespace :db do
   end
 
   desc "Seed the database with the teams and matches for FIFA World Cup 2014"
-  task :seed do
+  task :seed, [:year] do |t, args|
+    env ||= ENV['RACK_ENV'] || :development
+    FunkyWorldCup::Helpers.init_environment(env)
+
     require './lib/seed_loader'
 
     puts 'Seeding...'
 
-    SeedLoader.new.seed
+    if args[:year]
+      SeedLoader.new(true, "db/seeds/worldcup_#{args[:year]}.yml").seed true
+    else
+      SeedLoader.new.seed true
+    end
 
     puts 'Done!'
   end

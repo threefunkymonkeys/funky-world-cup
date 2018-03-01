@@ -19,7 +19,7 @@ FunkyWorldCup::Helpers.init_environment(ENV['RACK_ENV'])
 
 Cuba.use Rack::Static,
           root: File.expand_path(File.dirname(__FILE__)) + "/public",
-          urls: %w[/img /css /js]
+          urls: %w[/img /css /js /fonts]
 
 Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"]
 Cuba.use Rack::Protection
@@ -47,6 +47,10 @@ Cuba.define do
   init_locale(req.env)
   session[:notifications] = current_user.get_and_read_notifications if current_user
   @@champion  ||= FunkyWorldCup.champion
+
+  on default do
+    res.write render("./views/pages/coming_soon.html.erb")
+  end
 
   on "groups" do
     run FunkyWorldCup::Groups
