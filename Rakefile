@@ -27,6 +27,25 @@ namespace :db do
 
     Dir["./models/**/*.rb"].each { |file| require file }
 
+    puts "***** WARNING!!! *****"
+    puts "This will delete previous matches, results and predictions data."
+    puts "Make sure you have your data backed up!!"
+    puts
+    puts "Do you want to continue now? [y/N]"
+
+    cont = STDIN.gets
+
+    unless cont.strip == "y"
+      puts "Alright, back it up and I'll see you later!"
+      exit 0
+    end
+
+    puts "Deleting previous World Cup data..."
+
+    DB = FunkyWorldCup::Helpers.database
+
+    DB.execute "TRUNCATE user_notifications, match_predictions, match_penalties_predictions, matches, teams, results, cup_groups, group_positions"
+
     require './lib/seed_loader'
 
     puts 'Seeding...'
