@@ -25,6 +25,8 @@ namespace :db do
     env ||= ENV['RACK_ENV'] || :development
     FunkyWorldCup::Helpers.init_environment(env)
 
+    Dir["./models/**/*.rb"].each { |file| require file }
+
     require './lib/seed_loader'
 
     puts 'Seeding...'
