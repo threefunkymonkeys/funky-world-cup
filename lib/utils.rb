@@ -1,7 +1,7 @@
 module FunkyWorldCup
   def self.finalized?
     match = last_match
-    !match.result.nil? && match.result.status == 'final'
+    match && !match.result.nil? && match.result.status == 'final'
   end
 
   def self.total_points
