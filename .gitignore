@@ -7,3 +7,6 @@ jobs/logs/*
 jobs/pids/*
 tags
 drafts
+.DS_Store
+.sass-cache
+.ruby-gemset
