@@ -7,6 +7,7 @@ require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'hatch'
 require 'i18n'
+require 'sass/plugin/rack'
 
 require_relative 'helpers/environment'
 
@@ -40,6 +41,11 @@ Dir["./lib/**/*.rb"].each { |file| require file }
 Cuba.plugin Cuba::Render
 Cuba.plugin FunkyWorldCup::Helpers
 Cuba.plugin FunkyWorldCup::Validators
+
+Cuba.use Sass::Plugin::Rack
+
+Sass::Plugin.options[:style] = :compressed
+Sass::Plugin.options[:template_location] = { "./assets/sass" => "public/css" }
 
 include Cuba::Render::Helper
 
