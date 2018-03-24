@@ -11,3 +11,4 @@ tzinfo -v 1.2.0
 clap -v 1.0.0
 eventmachine -v 1.2.5
 simple_oauth -v 0.2.0
+sass -v 3.5.5
