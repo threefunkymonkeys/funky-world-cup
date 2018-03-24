@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,aAAO,CCrEP,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,GAAG,CACnB,IAAI,CAAE,CAAC,CACP,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,UAAU,CACtB,SAAS,CAAE,CAAC,CD8JV,yBAA4B,CC3J5B,cAAc,CAAE,MAAM",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/container.scss"],
-"names": [],
-"file": "container.css"
-}

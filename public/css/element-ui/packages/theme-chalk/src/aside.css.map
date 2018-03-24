@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,SAAO,CCrEP,QAAQ,CAAE,IAAI,CACd,UAAU,CAAE,UAAU,CACtB,WAAW,CAAE,CAAC",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/aside.scss"],
-"names": [],
-"file": "aside.css"
-}

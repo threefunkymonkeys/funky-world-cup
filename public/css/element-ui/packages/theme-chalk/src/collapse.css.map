@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,YAAO,CCpEP,UAAU,CAAE,iBAAkC,CAC9C,aAAa,CAAE,iBAAkC,CD0F7C,yBAAoB,CCtFtB,MAAM,CCgoBiB,IAAI,CD/nB3B,WAAW,CC+nBY,IAAI,CD9nB3B,gBAAgB,CCmoBM,IAAc,CDloBpC,KAAK,CCooBkB,OAAqB,CDnoB5C,MAAM,CAAE,OAAO,CACf,aAAa,CAAE,iBAAkC,CACjD,SAAS,CC8nBY,IAAI,CD7nBzB,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,uBAAuB,CACnC,OAAO,CAAE,IAAI,CD6EX,wBAAoB,CC3EpB,YAAY,CAAE,GAAG,CACjB,UAAU,CAAE,aAAa,CACzB,KAAK,CAAE,KAAK,CACZ,WAAW,CAAE,IAAI,CACjB,WAAW,CAAE,GAAG,CD8IlB,kCAA4B,CC5IxB,SAAS,CAAE,aAAa,CAG5B,oDAA4B,CAC1B,KAAK,CC+kBqB,OAAgB,CFvc5C,mCAA4B,CCrI1B,mBAAmB,CAAE,WAAW,CD8DhC,uBAAoB,CCzDtB,WAAW,CAAE,MAAM,CACnB,gBAAgB,CCumBM,IAAc,CDtmBpC,QAAQ,CAAE,MAAM,CAChB,UAAU,CAAE,UAAU,CACtB,aAAa,CAAE,iBAAkC,CDqD/C,0BAAoB,CCjDtB,cAAc,CAAE,IAAI,CACpB,SAAS,CCgmBa,IAAI,CD/lB1B,KAAK,CCgmBkB,OAAqB,CD/lB5C,WAAW,CAAE,iBAAiB,CAGhC,4BAAa,CACX,aAAa,CAAE,IAAI",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/collapse.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "collapse.css"
-}

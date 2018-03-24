@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,cAAO,CCnEP,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,CAAC,CCIZ,4CACoB,CAClB,OAAO,CAAE,KAAK,CACd,OAAO,CAAE,EAAE,CAEb,qBAAoB,CAClB,KAAK,CAAE,IAAI,CF+EX,yBAAoB,CCrFtB,MAAM,CAAE,KAAK,CACb,WAAW,CAAE,IAAI,CACjB,KAAK,CEwnBwB,OAAqB,CFtnBlD,sCAAe,CACb,MAAM,CAAE,KAAK,CACb,WAAW,CAAE,MAAM,CD+EnB,oBAAoB,CC1EtB,KAAK,CAAE,IAAI,CAGT,6CAAO,CACL,WAAW,CAAE,IAAI,CACjB,UAAU,CEjBQ,+CAAyC,CFkB3D,KAAK,CEqnBc,OAAqB,CFnnBxC,yDAAQ,CACN,KAAK,CE+kBiB,OAAgB,CF9kBtC,MAAM,CAAE,OAAO,CAQjB,uOAAW,CACT,WAAW,CAAE,MAAM,CACnB,KAAK,CE6jBa,OAAqB,CF5jBvC,MAAM,CAAE,IAAI,CAIhB,yDAA0B,CACxB,OAAO,CAAE,IAAI",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/breadcrumb.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/utils.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "breadcrumb.css"
-}

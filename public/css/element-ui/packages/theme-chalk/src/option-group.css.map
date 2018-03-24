@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,gBAAO,CClEP,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CDwFN,sBAAoB,CCrFtB,QAAQ,CAAE,QAAQ,CAClB,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CAEV,yCAAqB,CACnB,cAAc,CAAE,IAAI,CAEpB,gDAAS,CACP,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,KAAK,CACd,IAAI,CAlBJ,IAAI,CAmBJ,KAAK,CAnBL,IAAI,CAoBJ,MAAM,CAAE,IAAI,CACZ,MAAM,CAAE,GAAG,CACX,UAAU,CC8kBU,OAAuB,CFzgB7C,uBAAoB,CC/DtB,YAAY,CA5BR,IAAI,CA6BR,SAAS,CCuMc,IAAI,CDtM3B,KAAK,CCifU,OAAa,CDhf5B,WAAW,CCoMS,IAAI,CDjM1B,0CAA4B,CAC1B,YAAY,CAnCR,IAAI",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/option-group.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "option-group.css"
-}

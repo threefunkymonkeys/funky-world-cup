@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,SAAO,CCrEP,OAAO,CAAE,IAAI,CD2GX,iBAAoB,CCxGpB,OAAO,CAAE,OAAO,CAChB,aAAa,CAAE,GAAG,CAClB,UAAU,CCgpBuB,OAAwB,CF1iBzD,qBAAoB,CClGpB,WAAW,CAAE,MAAM,CDkGnB,mBAAoB,CC9FpB,MAAM,CAAE,IAAI,CACZ,SAAS,CAAE,MAAM",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/steps.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "steps.css"
-}

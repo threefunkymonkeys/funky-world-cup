@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,QAAO,CCpEP,aAAa,CCwjBQ,GAAG,CDvjBxB,MAAM,CAAE,iBAA8B,CACtC,gBAAgB,CCwoBQ,IAAc,CDvoBtC,QAAQ,CAAE,MAAM,CAChB,UAAU,CCqiBiB,4BAAmB,CDpiB9C,KAAK,CCuoBoB,OAAqB,CFjjB1C,gBAAoB,CCnFtB,OAAO,CAAE,SAAsC,CAC/C,aAAa,CAAE,iBAA8B,CAC7C,UAAU,CAAE,UAAU,CDiFpB,cAAoB,CC7EtB,OAAO,CC2iBM,IAAI",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/card.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "card.css"
-}

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,cAAe,CACb,SAAS,CAAE,mBAAmB,CAGhC,cAAe,CACb,SAAS,CAAE,6BAA6B,CAG1C,qBAMC,CALC,EAAG,CACD,OAAO,CAAE,CAAC,EAMd,sBAMC,CAHC,IAAK,CACH,OAAO,CAAE,CAAC,EAId,QAAS,CACP,QAAQ,CAAE,KAAK,CACf,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,GAAG,CACZ,UAAU,CAAE,IAAI",
-"sources": ["../../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/popup.scss"],
-"names": [],
-"file": "popup.css"
-}

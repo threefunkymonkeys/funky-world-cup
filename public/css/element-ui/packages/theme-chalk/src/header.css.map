@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAwEE,UAAO,CCpEP,OAAO,CC6pBU,MAAO,CD5pBxB,UAAU,CAAE,UAAU,CACtB,WAAW,CAAE,CAAC",
-"sources": ["../../../../../../assets/sass/element-ui/packages/theme-chalk/src/mixins/mixins.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/header.scss","../../../../../../assets/sass/element-ui/packages/theme-chalk/src/common/var.scss"],
-"names": [],
-"file": "header.css"
-}
