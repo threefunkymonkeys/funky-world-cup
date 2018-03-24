@@ -40,6 +40,7 @@ Dir["./lib/**/*.rb"].each { |file| require file }
 
 Cuba.plugin Cuba::Render
 Cuba.plugin FunkyWorldCup::Helpers
+Cuba.plugin FunkyWorldCup::Helpers::ContentFor
 Cuba.plugin FunkyWorldCup::Validators
 
 Cuba.use Sass::Plugin::Rack
