@@ -9,6 +9,8 @@ en:
     you_won: You won a Prize!
     prize_description: Congratulations! You have finished within the three best players of Funky World Cup and you have won a prize!
     personal_drescription: In order to send you our prize you have to complete the following form. If you are not sure and you want to contact us first, please send us an email to code@threefunkymonkeys.com.
+    rules_title: Rules
+    rules: your score and rank are based on your predictions. They are calculated like this...<a href="/rules">read more</a>
 
     form:
       address: Address

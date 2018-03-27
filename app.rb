@@ -99,7 +99,7 @@ Cuba.define do
     end
 
     on "rules" do
-      res.write render("./views/layouts/home.html.erb") {
+      res.write render("./views/layouts/application.html.erb") {
         render("./views/pages/rules.html.erb")
       }
     end
@@ -127,23 +127,15 @@ Cuba.define do
       end
 
       on "dashboard" do
-        if current_user.show_rules?
-          current_user.update(:show_rules => false)
-          res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/first_view.html.erb")
-
-          }
+        if FunkyWorldCup.finalized?
+          winners = UserScore.winners
+          total_played = FunkyWorldCup.total_points
         else
-          if FunkyWorldCup.finalized?
-            winners = UserScore.winners
-            total_played = FunkyWorldCup.total_points
-          else
-            matches = Match.for_dashboard.all
-          end
-          res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/dashboard.html.erb", matches: matches || nil, winners: winners || nil, total_played: total_played || 0, params: session.delete('fwc.contact_form') || {})
-          }
+          matches = Match.for_dashboard.all
         end
+        res.write render("./views/layouts/application.html.erb") {
+          render("./views/pages/dashboard.html.erb", matches: matches || nil, winners: winners || nil, total_played: total_played || 0, params: session.delete('fwc.contact_form') || {})
+        }
       end
 
       on "rank" do
