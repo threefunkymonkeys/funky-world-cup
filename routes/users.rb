@@ -1,6 +1,14 @@
 module FunkyWorldCup
   class Users < Cuba
     define do
+      on put, ":id/toggle_rules" do |user_id|
+        not_found! unless user_id == current_user.id || current_user.admin
+
+        current_user.update(show_rules: !current_user.show_rules)
+
+        no_content!
+      end
+
       on get do
         calculate_user_rank
 
@@ -8,7 +16,7 @@ module FunkyWorldCup
           on current_user && (current_user.id == user_id.to_i || current_user.admin || FunkyWorldCup.finalized?) && user = User[user_id] do
 
             on "predictions" do
-              not_found unless root
+              not_found! unless root
               predictions = MatchPrediction.select(Sequel.qualify(:match_predictions, :id), :host_score, :rival_score, :prediction_score, :match_id)
                                            .join(:matches, :id => :match_id)
                                            .eager(:match)

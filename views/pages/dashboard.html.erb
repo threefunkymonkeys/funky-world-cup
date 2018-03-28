@@ -1,13 +1,5 @@
 <% if current_user.show_rules? %>
-  <div class="alert alert-primary alert-with-icon" data-notify="container">
-    <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
-      <i class="nc-icon nc-simple-remove"></i>
-    </button>
-    <span data-notify="icon" class="nc-icon nc-bell-55"></span>
-    <span data-notify="message">
-     <strong><%= I18n.t(".dashboard.rules_title") %>: </strong><%= I18n.t(".dashboard.rules") %>
-    </span>
-  </div>
+  <%= partial("pages/_rules_alert.html", user: current_user) %>
 <% end %>
 
 <h3><%= I18n.t('.dashboard.title') %></h3>
