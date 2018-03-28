@@ -1,3 +1,7 @@
+<% if current_user.show_rules? %>
+  <%= partial("pages/_rules_alert.html", user: current_user) %>
+<% end %>
+
 <h3><%= I18n.t('.dashboard.title') %></h3>
 <% if !matches.nil? %>
   <div class="panel panel-default dashboard-matches">

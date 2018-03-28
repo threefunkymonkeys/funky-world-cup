@@ -5,4 +5,11 @@ module FunkyWorldCup::Helpers
       render("./views/pages/404.html.erb")
     }
   end
+
+  def no_content!
+    res.headers.delete(Rack::CONTENT_TYPE)
+
+    res.status = 204
+    halt res.finish
+  end
 end
