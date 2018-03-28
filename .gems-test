@@ -1,5 +1,6 @@
-faker -v 1.2.0
+faker -v 1.8.7
 spawn -v 0.1.4
-rack-test -v 0.6.2
-mocha -v 1.1.0
-pry-debugger -v 0.2.2
+rack-test -v 1.0.0
+mocha -v 1.4.0
+pry-byebug -v 3.6.0
+nokogiri -v 1.8.2
