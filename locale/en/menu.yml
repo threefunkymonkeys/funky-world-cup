@@ -12,3 +12,16 @@ en:
     logout: Logout
     admin: Admin
     terms: Terms of Service
+    mini:
+      fixture: FI
+      dashboard: DA
+      rank: RA
+      predictions: YP
+      positions: P
+      your_groups: YG
+      help: H
+      disclaimer: DI
+      rules: R
+      logout: LO
+      admin: AD
+      terms: TC

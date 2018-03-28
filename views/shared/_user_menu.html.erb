@@ -1,0 +1,76 @@
+<div id="user-menu" class="user">
+  <div class="photo">
+    <img src="<%= current_user.image %>"/>
+  </div>
+  <div class="info">
+    <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#">
+      <span>
+        <%= current_user.name %>
+        <b class="caret"></b>
+      </span>
+    </a>
+    <div class="clearfix"></div>
+    <div>
+        <ul class="nav" v-show="!isClosed">
+          <slot>
+            <% if current_user.admin %>
+              <li>
+                <a class="profile-dropdown" href="/admin/dashboard">
+                  <span class="sidebar-mini"><%= I18n.t('.menu.mini.admin') %></span>
+                  <span class="sidebar-normal"><%= I18n.t('.menu.admin') %>
+                </a>
+              </li>
+            <% end %>
+            <li>
+              <a class="profile-dropdown" href="/disclaimer">
+                <span class="sidebar-mini"><%= I18n.t('.menu.mini.disclaimer') %></span>
+                <span class="sidebar-normal"><%= I18n.t('.menu.disclaimer') %></span>
+              </a>
+            </li>
+            <li>
+              <a class="profile-dropdown" href="/rules">
+                <span class="sidebar-mini"><%= I18n.t('.menu.mini.rules') %></span>
+                <span class="sidebar-normal"><%= I18n.t('.menu.rules') %></span>
+              </a>
+            </li>
+            <li>
+              <a class="profile-dropdown" href="/tos">
+                <span class="sidebar-mini"><%= I18n.t('.menu.mini.terms') %></span>
+                <span class="sidebar-normal"><%= I18n.t('.menu.terms') %></span>
+              </a>
+            </li>
+            <li>
+              <a class="profile-dropdown" href="/logout">
+                <span class="sidebar-mini"><%= I18n.t('.menu.mini.logout') %></span>
+                <span class="sidebar-normal"><%= I18n.t('.menu.logout') %></span>
+              </a>
+            </li>
+          </slot>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    new Vue( {
+      el: '#user-menu',
+      props: {
+        title: {
+          type: String,
+          default: 'Tania Andrew'
+        }
+      },
+      data () {
+        return {
+          isClosed: true
+        }
+      },
+      methods: {
+        toggleMenu () {
+          this.isClosed = !this.isClosed
+        }
+      }
+    })
+  </script>
+<% end %>
