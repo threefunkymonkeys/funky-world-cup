@@ -140,19 +140,28 @@ namespace :teams do
     puts "Updating..."
     cote_ivory = Team.find(:iso_code => "CI")
     cote_ivory.update(:name => "Côte d'Ivoire") if cote_ivory
-    
+
     england = Team.find(:iso_code => "GB")
     england.update(:name => "England") if england
-    
+
     bosnia = Team.find(:iso_code => "BA")
     bosnia.update(:name => "Bosnia and Herzegovina") if bosnia
-    
+
     korea = Team.find(:iso_code => "KR")
     korea.update(:name => "Korea Republic") if korea
 
     usa = Team.find(:iso_code => "US")
     usa.update(:name => "USA") if usa
     puts "Done!"
+  end
+
+  desc "Update teams flags to SVG formate"
+  task :update_flags_files do
+    require "./app"
+
+    Team.each do |team|
+      team.update(flag: "#{team.flag[0..1]}.svg")
+    end
   end
 end
 
