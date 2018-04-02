@@ -6,100 +6,100 @@ worldcup:
   teams:
     RU:
       name: Russia
-      flag: ru_flag.png
+      flag: ru.svg
     SA:
       name: Saudi Arabia
-      flag: sa_flag.png
+      flag: sa.svg
     EG:
       name: Egypt
-      flag: eg_flag.png
+      flag: eg.svg
     UY:
       name: Uruguay
-      flag: uy_flag.png
+      flag: uy.svg
     PT:
       name: Portugal
-      flag: pt_flag.png
+      flag: pt.svg
     ES:
       name: Spain
-      flag: es_flag.png
+      flag: es.svg
     MA:
       name: Morocco
-      flag: ma_flag.png
+      flag: ma.svg
     IR:
       name: Iran
-      flag: ir_flag.png
+      flag: ir.svg
     FR:
       name: France
-      flag: fr_flag.png
+      flag: fr.svg
     AU:
       name: Australia
-      flag: au_flag.png
+      flag: au.svg
     PE:
       name: Peru
-      flag: pe_flag.png
+      flag: pe.svg
     DK:
       name: Denmark
-      flag: dk_flag.png
+      flag: dk.svg
     AR:
       name: Argentina
-      flag: ar_flag.png
+      flag: ar.svg
     IS:
       name: Iceland
-      flag: is_flag.png
+      flag: is.svg
     HR:
       name: Croatia
-      flag: hr_flag.png
+      flag: hr.svg
     NG:
       name: Nigeria
-      flag: ng_flag.png
+      flag: ng.svg
     BR:
       name: Brazil
-      flag: br_flag.png
+      flag: br.svg
     CH:
       name: Switzerland
-      flag: ch_flag.png
+      flag: ch.svg
     CR:
       name: Costa Rica
-      flag: cr_flag.png
+      flag: cr.svg
     RS:
       name: Serbia
-      flag: rs_flag.png
+      flag: rs.svg
     DE:
       name: Germany
-      flag: de_flag.png
+      flag: de.svg
     MX:
       name: Mexico
-      flag: mx_flag.png
+      flag: mx.svg
     SE:
       name: Sweden
-      flag: se_flag.png
+      flag: se.svg
     KR:
       name: Korea Republic
-      flag: kr_flag.png
+      flag: kr.svg
     BE:
       name: Belgium
-      flag: be_flag.png
+      flag: be.svg
     PA:
       name: Panama
-      flag: pa_flag.png
+      flag: pa.svg
     TN:
       name: Tunisia
-      flag: tn_flag.png
+      flag: tn.svg
     GB:
       name: United Kingdom
-      flag: gb_flag.png
+      flag: gb.svg
     PL:
       name: Poland
-      flag: pl_flag.png
+      flag: pl.svg
     SN:
       name: Senegal
-      flag: sn_flag.png
+      flag: sn.svg
     CO:
       name: Colombia
-      flag: co_flag.png
+      flag: co.svg
     JP:
       name: Japan
-      flag: jp_flag.png
+      flag: jp.svg
 
   groups_phase:
     A:
