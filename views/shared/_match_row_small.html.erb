@@ -21,16 +21,14 @@
   <% else %>
     <td class="text-center result">
       <div class="result-holder">
-        <span class="host-result"><%= match.result.host_score %></span>
         <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
           <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
         </strong>
-        <div class="mobile-result">
+        <div class="result">
           <span class="host-result-mobile"><%= match.result.host_score %></span>
           -
           <span class="rival-result-mobile"><%= match.result.rival_score %></span>
         </div>
-        <span class="rival-result"><%= match.result.rival_score %></span>
       </div>
     </td>
   <% end %>
@@ -54,7 +52,7 @@
           <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
         </span>
       <% end %>
-    <% elsif match.host_team && match.rival_team && match.result.nil? %>
+    <% elsif match.predictable? %>
       <button type="button"
               class="btn btn-primary btn-xs btn-predict"
               data-host="<%= I18n.t(".teams.#{match.host_team.iso_code}") %>"
@@ -68,10 +66,9 @@
   </td>
 </tr>
 <tr>
-  <td class="info-column" colspan="4">
-    <p><%= match.start_datetime.strftime("%d %^b %Y") %> - 
+  <td colspan="4" class="match-info text-center">
+    <%= match.start_datetime.strftime("%d %^b %Y") %> -
     <%= match.stadium %> - 
     <%= match.place %>
-    </p>
   </td>
 </tr>

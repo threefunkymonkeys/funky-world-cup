@@ -48,6 +48,10 @@ class Match < Sequel::Model
     cup_group.phase != 'groups'
   end
 
+  def predictable?
+    host_team && rival_team && result.nil?
+  end
+
   def self.for_dashboard
     group = CupGroup.now_playing
 

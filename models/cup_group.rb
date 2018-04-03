@@ -41,6 +41,10 @@ class CupGroup < Sequel::Model
     end
   end
 
+  def self.fixture_matches
+    CupGroup.join(:matches, group_id: :id).order(:start_datetime).to_hash_groups(:phase)
+  end
+
   private
 
   def self.next_stage
