@@ -1,0 +1,106 @@
+<div class="col-md-6">
+  <div class="card table-responsive">
+    <div id="group-<%= group.name.downcase %>" class="card-header">
+      <h4 class="card-title">
+        <%= "#{I18n.t('.common.group')} #{group.name}" %>
+      </h4>
+    </div>
+    <div class="card-body">
+      <table class="table position-table">
+        <thead>
+          <tr>
+            <th>
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.position')%>'">
+                <%= I18n.t('.positions.headers.pos') %>
+              </span>
+            </th>
+            <th><%= I18n.t('.positions.headers.team') %></th>
+            <th>
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.played')%>'">
+                <%= I18n.t('.positions.headers.played') %>
+              </span>
+            </th>
+            <th>
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.won')%>'">
+                <%= I18n.t('.positions.headers.won') %>
+              </span>
+            </th>
+            <th>
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.draw')%>'">
+                <%= I18n.t('.positions.headers.draw') %>
+              </span>
+            </th>
+            <th>
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.lost')%>'">
+                <%= I18n.t('.positions.headers.lost') %>
+              </span>
+            </th>
+            <th class="d-none d-sm-table-cell">
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.goals')%>'">
+                <%= I18n.t('.positions.headers.goals') %>
+              </span>
+            </th>
+            <th class="d-none d-sm-table-cell">
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.goals_against')%>'">
+                <%= I18n.t('.positions.headers.goals_against') %>
+              </span>
+            </th>
+            <th class="d-none d-sm-table-cell">
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.goal_difference')%>'">
+                <%= I18n.t('.positions.headers.goal_difference') %>
+              </span>
+            </th>
+            <th class="text-center">
+              <span v-tooltip.top-center="'<%= I18n.t('.positions.legend.points')%>'">
+                <%= I18n.t('.positions.headers.points') %>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% group.positions_table.each_with_index do |position, index| %>
+            <tr>
+              <td>
+                <span class="label label-<%= class_for_index(index) %>"><%= index + 1 %></span>
+              </td>
+              <td>
+                <a href="/teams/<%= position.team.iso_code %>"
+                   v-tooltip.right="'<%= position.team.name %>'"
+                >
+                  <img class="flag"
+                       width="40"
+                       src="/img/flags/<%= position.team.flag %>"
+                  >
+                </a>
+              </td>
+              <td>
+                <%= position.won + position.lost + position.tied %>
+              </td>
+              <td>
+                <%= position.won %>
+              </td>
+              <td>
+                <%= position.tied %>
+              </td>
+              <td>
+                <%= position.lost %>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <%= position.goals %>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <%= position.received_goals %>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <%= position.values[:diff] %>
+              </td>
+              <td class="points-column text-center">
+                <%= position.points %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

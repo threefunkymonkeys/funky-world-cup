@@ -1,12 +1,12 @@
 module FunkyWorldCup
   class CupGroups < Cuba
     define do
-      calculate_user_rank
-
       on get, "positions" do
-        res.write render("./views/layouts/application.html.erb") {
-          render("./views/cup_groups/positions.html.erb", groups: CupGroup.groups_phase.all)
-        }
+        res.write view(
+          "cup_groups/positions.html",
+          { groups: CupGroup.groups_phase.all },
+          "layouts/application.html",
+        )
       end
 
       on get, "fixture" do

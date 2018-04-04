@@ -8,3 +8,13 @@
     }
   }
 }
+
+.card {
+  .table {
+    &.position-table {
+      .points-column {
+        display: table-cell;
+      }
+    }
+  }
+}
