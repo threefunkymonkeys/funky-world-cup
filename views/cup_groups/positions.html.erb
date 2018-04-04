@@ -1,8 +1,4 @@
-<%
-content_for :page_title do
-  I18n.t('.positions.title')
-end
-%>
+<% content_for(:title) { I18n.t('.positions.title') } %>
 
 <div id="position-tables">
   <% groups.each_slice(2) do |group1, group2| %>
