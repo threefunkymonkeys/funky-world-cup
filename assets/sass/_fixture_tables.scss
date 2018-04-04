@@ -34,4 +34,13 @@
   td.prediction-column {
     width: 20%;
   }
+
+  td:last-of-type {
+    display: table-cell !important;
+    height: 100%;
+  }
+
+  span.time {
+    font-weight: 600;
+  }
 }
