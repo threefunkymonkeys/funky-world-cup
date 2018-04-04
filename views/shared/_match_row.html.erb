@@ -10,7 +10,7 @@
         <img src="/img/flags/<%=match.host_team.flag %>">
       </a>
     <% else %>
-      <img src="/img/missing.png">
+      <img class="flag" src="/img/flags/missing.svg">
     <% end %>
     <br>
     <span class="team host-team">
@@ -63,10 +63,10 @@
   <td class="team-column">
     <% if match.rival_team %>
       <a href="/teams/<%= match.rival_team.iso_code %>">
-        <img src="/img/flags/<%= match.rival_team.flag %>">
+        <img class="flag" src="/img/flags/<%= match.rival_team.flag %>">
       </a>
     <% else %>
-      <img src="/img/missing.png">
+      <img class="flag" src="/img/flags/missing.svg">
     <% end %>
     <br>
     <span class="team rival-team">
