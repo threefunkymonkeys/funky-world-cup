@@ -5,7 +5,7 @@
     <div class="col-xl-6 col-lg-12">
       <div class="card">
         <div class="card-header">
-          <h4>Group <%= group_name %></h4>
+          <h4 class="card-title">Group <%= group_name %></h4>
         </div>
         <div class="card-body table-full-width table-responsive">
           <table class="table table-striped match-table">
@@ -26,7 +26,7 @@
     <div class="col-md-12">
       <div id="phase-<%= phase %>" class="card">
         <div class="card-header">
-          <h3 class="card-title"><%= phase == 'groups' ? I18n.t('.common.group') + 's' : I18n.t(".common.#{matches.first.name.downcase.gsub(/ |-/,"_")}") %></h3>
+          <h4 class="card-title"><%= phase == 'groups' ? I18n.t('.common.group') + 's' : I18n.t(".common.#{matches.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
         </div>
         <div class="card-body">
           <table class="table table-striped table-hover match-table">

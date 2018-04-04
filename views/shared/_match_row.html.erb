@@ -5,11 +5,17 @@
     <div> <%= match.place %> </div>
   </td>
   <td class="team-column">
-    <img src="/img/<%= match.host_team ? "flags/#{match.host_team.flag}" : 'missing.png' %>">
+    <% if match.host_team %>
+      <a href="/teams/<%= match.host_team.iso_code %>">
+        <img src="/img/flags/<%=match.host_team.flag %>">
+      </a>
+    <% else %>
+      <img src="/img/missing.png">
+    <% end %>
     <br>
     <span class="team host-team">
       <% if match.host_team %>
-        <a href="/teams/<%= match.host_team.iso_code %>"><%= I18n.t(".teams.#{match.host_team.iso_code}") %>
+        <%= I18n.t(".teams.#{match.host_team.iso_code}") %>
       <% else %>
         <%= translate_description(match.host_description) %>
       <% end %>
@@ -55,11 +61,17 @@
     </td>
   <% end %>
   <td class="team-column">
-    <img src="/img/<%= match.rival_team ? "flags/#{match.rival_team.flag}" : 'missing.png' %>">
+    <% if match.rival_team %>
+      <a href="/teams/<%= match.rival_team.iso_code %>">
+        <img src="/img/flags/<%= match.rival_team.flag %>">
+      </a>
+    <% else %>
+      <img src="/img/missing.png">
+    <% end %>
     <br>
     <span class="team rival-team">
       <% if match.rival_team %>
-        <a href="/teams/<%= match.rival_team.iso_code %>"><%= I18n.t(".teams.#{match.rival_team.iso_code}") %>
+        <%= I18n.t(".teams.#{match.rival_team.iso_code}") %>
       <% else %>
         <%= translate_description(match.rival_description) %>
       <% end %>
