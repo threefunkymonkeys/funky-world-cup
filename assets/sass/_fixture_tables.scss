@@ -1,0 +1,46 @@
+.match-table {
+  margin-bottom: 0;
+
+  td.team-column {
+    width: 20%;
+    text-align: center;
+
+    img.flag {
+      width: 70px;
+      height: auto;
+    }
+  }
+
+  .team-column-groups {
+    width: 40% !important;
+  }
+
+  .match-location-info:hover {
+    background-color: none;
+  }
+
+  td.match-info {
+    display: table-cell !important;
+  }
+
+  td {
+    padding: 8px 6px;
+  }
+
+  td.info-column {
+    width: 25%;
+  }
+
+  td.prediction-column {
+    width: 20%;
+  }
+
+  td:last-of-type {
+    display: table-cell !important;
+    height: 100%;
+  }
+
+  span.time {
+    font-weight: 600;
+  }
+}
