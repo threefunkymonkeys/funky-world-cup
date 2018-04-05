@@ -10,3 +10,7 @@ drafts
 .DS_Store
 .sass-cache
 .ruby-gemset
+public/css/funky_world_cup.css
+public/css/funky_world_cup.css.map
+public/css/funky_world_cup_light.css
+public/css/funky_world_cup_light.css.map

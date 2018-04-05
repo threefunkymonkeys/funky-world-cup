@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAGM,0CAAe,CACb,OAAO,CAAE,UAAU,CCAvB,iCAAY,CACV,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,CAAC,CACZ,MAAM,CAAE,KAAK",
-"sources": ["../../assets/sass/_positions_tables.scss","../../assets/sass/custom.scss"],
-"names": [],
-"file": "custom.css"
-}
