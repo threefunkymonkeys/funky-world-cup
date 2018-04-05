@@ -1,5 +1,7 @@
 module FunkyWorldCup
   class Groups < Cuba
+    settings[:render][:layout] = "layouts/application.html"
+
     define do
       on get, "join/:code" do |code|
         on group = Group.find(link: code) do
@@ -16,19 +18,14 @@ module FunkyWorldCup
 
       on current_user do
         on get do
-          calculate_user_rank
-
           on root do
             groups = current_user.groups
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/groups/index.html.erb", groups: groups)
-            }
+
+            res.write view("groups/index.html", groups: groups, url: ENV["FWC_URL"])
           end
 
           on "new" do
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/groups/new.html.erb", params: session.delete('fwc.group_params') || {})
-            }
+            res.write view("groups/new.html", params: session.delete('fwc.group_params') || {})
           end
 
           on ":id" do |group_id|
@@ -53,27 +50,30 @@ module FunkyWorldCup
                   participants[key] << participant
                 end
 
-                res.write render("./views/layouts/application.html.erb") {
-                  render("./views/groups/show.html.erb",
-                        group: group,
-                        participants: participants,
-                        prizes: group.group_prizes,
-                        url: ENV['FWC_URL']
-                        )
-                }
+                res.write view(
+                  "groups/show.html",
+                  group:        group,
+                  participants: participants,
+                  prizes:       group.group_prizes,
+                  url:          ENV['FWC_URL'],
+                )
               end
 
               on group.user_id == current_user.id do
                 on "edit" do
-                  res.write render("./views/layouts/application.html.erb") {
-                    render("./views/groups/edit.html.erb", group: group, params: session.delete('fwc.group_params_edit') || {} )
-                  }
+                  res.write view(
+                    "groups/edit.html",
+                    group:  group,
+                    params: session.delete('fwc.group_params_edit') || {},
+                  )
                 end
 
                 on "prizes" do
-                  res.write render("./views/layouts/application.html.erb") {
-                    render("./views/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
-                  }
+                  res.write view(
+                    "groups/prizes.html",
+                    prizes: group.group_prizes,
+                    group:  group,
+                  )
                 end
 
                 not_found!

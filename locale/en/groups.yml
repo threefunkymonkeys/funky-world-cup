@@ -1,7 +1,7 @@
 en:
   groups:
     title: Your Groups
-    no_groups: You don't have and don't belong to any group yet. You can create a group with the button in the sidebar or wait until someone invite you.
+    no_groups: You don't have and don't belong to any group yet. You can create a group with the button below or wait until someone invites you.
     edit_title: Edit Group
     create_title: Create Group
     confirm_title: Confirm Group Deletion
