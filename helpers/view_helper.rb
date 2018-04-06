@@ -67,7 +67,7 @@ class Cuba
     end
 
     def class_for_path(path)
-      'active' if path == req.path
+      'active' if req.path =~ /\A#{path}/
     end
 
     def translate_description(description)
