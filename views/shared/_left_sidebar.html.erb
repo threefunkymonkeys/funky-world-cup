@@ -1,55 +1,52 @@
-    <div class="sidebar" data-color="black" data-active-color="primary" data-image="/img/sidebar-5.jpg">
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-    	<div class="sidebar-wrapper">
-          <div class="logo">
-            <a class="logo-mini"
-              href="/">
-              <div class="logo-img">
-                  <img src="/img/fwc_logo.svg" alt="">
-              </div>
-            </a>
-            <a href="/" class="simple-text logo-normal">Funky World Cup</a>
-          </div>
-          <%= partial("shared/_user_menu.html") %>
-          <!-- TODO: Implement mobile menu from paid template -->
-          <ul class="nav">
-            <li class="nav-item <%= class_for_path("/dashboard") %>">
-                <a class="nav-link" href="/dashboard">
-                    <i class="nc-icon nc-chart-pie-35"></i>
-                    <p><%= I18n.t('.menu.dashboard') %></p>
-                </a>
-            </li>
-            <li class="nav-item <%= class_for_path("/cup-groups/fixture") %>">
-                <a class="nav-link" href="/cup-groups/fixture">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p><%= I18n.t('.menu.fixture') %></p>
-                </a>
-            </li>
-            <li class="nav-item <%= class_for_path("/users/#{current_user.id}/predictions") %>">
-              <a class="nav-link" href="/users/<%= current_user.id %>/predictions">
-                    <i class="nc-icon nc-atom"></i>
-                    <p><%= I18n.t('.menu.predictions') %></p>
-                </a>
-            </li>
-            <li class="nav-item <%= class_for_path("/cup-groups/positions") %>">
-                <a class="nav-link" href="/cup-groups/positions">
-                    <i class="nc-icon nc-notes"></i>
-                    <p><%= I18n.t('.menu.positions') %></p>
-                </a>
-            </li>
-            <li class="nav-item <%= class_for_path("/groups") %>">
-                <a class="nav-link" href="/groups">
-                    <i class="nc-icon nc-preferences-circle-rotate"></i>
-                    <p><%= I18n.t('.menu.your_groups') %></p>
-                </a>
-            </li>
-          </ul>
-    	</div>
+<div class="sidebar" data-color="black" data-active-color="primary" data-image="/img/sidebar-5.jpg">
+  <!--
+    Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+    Tip 2: you can also add an image using data-image tag
+  -->
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <a class="logo-mini"
+         href="/">
+        <div class="logo-img">
+          <img src="/img/fwc_logo.svg" alt="">
+        </div>
+      </a>
+      <a href="/" class="simple-text logo-normal">Funky World Cup</a>
     </div>
+    <%= partial("shared/_user_menu.html") %>
+    <!-- TODO: Implement mobile menu from paid template -->
+    <ul class="nav">
+      <li class="nav-item <%= class_for_path("/dashboard") %>">
+        <a class="nav-link" href="/dashboard">
+          <i class="nc-icon nc-chart-pie-35"></i>
+          <p><%= I18n.t('.menu.dashboard') %></p>
+        </a>
+      </li>
+      <li class="nav-item <%= class_for_path("/cup-groups/fixture") %>">
+        <a class="nav-link" href="/cup-groups/fixture">
+          <i class="nc-icon nc-paper-2"></i>
+          <p><%= I18n.t('.menu.fixture') %></p>
+        </a>
+      </li>
+      <li class="nav-item <%= class_for_path("/users/#{current_user.id}/predictions") %>">
+        <a class="nav-link" href="/users/<%= current_user.id %>/predictions">
+          <i class="nc-icon nc-atom"></i>
+          <p><%= I18n.t('.menu.predictions') %></p>
+        </a>
+      </li>
+      <li class="nav-item <%= class_for_path("/cup-groups/positions") %>">
+        <a class="nav-link" href="/cup-groups/positions">
+          <i class="nc-icon nc-notes"></i>
+          <p><%= I18n.t('.menu.positions') %></p>
+        </a>
+      </li>
+      <li class="nav-item <%= class_for_path("/groups") %>">
+        <a class="nav-link" href="/groups">
+          <i class="nc-icon nc-preferences-circle-rotate"></i>
+          <p><%= I18n.t('.menu.your_groups') %></p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
