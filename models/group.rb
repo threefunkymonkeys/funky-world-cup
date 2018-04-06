@@ -14,6 +14,24 @@ class Group < Sequel::Model
               .all
   end
 
+  def participants_by_rank
+    result = Hash.new
+    key    = 0
+    score  = 0
+
+    participants.each do |participant|
+      if score.zero? || score > (participant[:score] || 0)
+        score = participant[:score] || 0
+        key += 1
+      end
+
+      result[key] = Array.new unless result.has_key?(key)
+      result[key] << participant
+    end
+
+    result
+  end
+
   def rank_for(user_id)
     rank = 0
     last_rank = 0

@@ -29,54 +29,41 @@ module FunkyWorldCup
           end
 
           on ":id" do |group_id|
-            on (group = Group[group_id.to_i]) do
-              on root do
-                # when user is kicked from group refresh session and redirect
-                unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
-                  authenticate(User[current_user.id])
-                  flash[:warning] = I18n.t('.messages.group.dont_belong')
-                  res.redirect "/dashboard"
-                end
+            group = Group[group_id.to_i]
+            not_found! unless group
 
-                participants = Hash.new
-                key = 0
-                score = 0
-                group.participants.each do |participant|
-                  if score.zero? || score > (participant[:score] || 0)
-                    score = participant[:score] || 0
-                    key += 1
-                  end
-                  participants[key] = Array.new unless participants.has_key?(key)
-                  participants[key] << participant
-                end
+            on root do
+              # when user is kicked from group refresh session and redirect
+              unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
+                authenticate(User[current_user.id])
+                flash[:warning] = I18n.t('.messages.group.dont_belong')
+                res.redirect "/dashboard"
+              end
 
+              res.write view(
+                "groups/show.html",
+                group:        group,
+                participants: group.participants_by_rank,
+                prizes:       group.group_prizes,
+                url:          ENV['FWC_URL'],
+              )
+            end
+
+            on group.user_id == current_user.id do
+              on "edit" do
                 res.write view(
-                  "groups/show.html",
-                  group:        group,
-                  participants: participants,
-                  prizes:       group.group_prizes,
-                  url:          ENV['FWC_URL'],
+                  "groups/edit.html",
+                  group:  group,
+                  params: session.delete('fwc.group_params_edit') || {},
                 )
               end
 
-              on group.user_id == current_user.id do
-                on "edit" do
-                  res.write view(
-                    "groups/edit.html",
-                    group:  group,
-                    params: session.delete('fwc.group_params_edit') || {},
-                  )
-                end
-
-                on "prizes" do
-                  res.write view(
-                    "groups/prizes.html",
-                    prizes: group.group_prizes,
-                    group:  group,
-                  )
-                end
-
-                not_found!
+              on "prizes" do
+                res.write view(
+                  "groups/prizes.html",
+                  prizes: group.group_prizes,
+                  group:  group,
+                )
               end
 
               not_found!
