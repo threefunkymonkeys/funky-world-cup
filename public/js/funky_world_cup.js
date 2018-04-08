@@ -154,22 +154,18 @@ body.on('click', ".btn-predict", function(event) {
   modal.find("#match-id").val(match_id);
   modal.find("input[type=\"text\"]").val(0);
 
-  var host_td = modal.find("td.modal-host");
-  host_td.html($("<img>").attr("src", "/img/flags/" + host_flag))
-         .append($("<br>"))
-         .append($("<span>").addClass("team").text(host_name));
+  var host_td = modal.find("td.predict-host");
+  host_td.html($("<img class='flag'>").attr("src", "/img/flags/" + host_flag));
 
-  var rival_td = modal.find("td.modal-rival");
-  rival_td.html($("<img>").attr("src", "/img/flags/" + rival_flag))
-         .append($("<br>"))
-         .append($("<span>").addClass("team").text(rival_name));
+  var rival_td = modal.find("td.predict-rival");
+  rival_td.html($("<img class='flag'>").attr("src", "/img/flags/" + rival_flag));
 
   modal.on('click', "input[type=\"text\"]", function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     $(this).select();
   });
-  
+
   if(penalties) {
     modal.find(".modal-penalties").show()
     modal.find(".alert-penalties").show()
@@ -196,5 +192,3 @@ var anchor = window.location.hash
 if(anchor != "") {
   $(anchor).addClass("fwc-highlight");
 }
-
-$('.chosen-select').chosen();
