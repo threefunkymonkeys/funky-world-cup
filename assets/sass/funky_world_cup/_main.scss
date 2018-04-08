@@ -1,0 +1,31 @@
+$modal-border-color: #e9ecef;
+
+img.flag {
+  width: 70px;
+  height: auto;
+}
+
+.modal-header {
+  border-bottom: 1px solid $modal-border-color;
+
+  .modal-title {
+    margin-top: 0px !important;
+  }
+}
+
+.modal-footer {
+  border-top: 1px solid $modal-border-color;
+}
+
+.predict {
+  input[type=text].form-control {
+    text-align: center;
+  }
+
+  .matches-table {
+    .predict-host, .predict-rival {
+      text-align: center;
+      width: 35%;
+    }
+  }
+}
