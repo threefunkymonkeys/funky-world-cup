@@ -1,56 +1,61 @@
-<% if current_user.admin %>
-  <h2><%= I18n.t('.predictions.title_admin', name: user.name) %></h2>
-<% else %>
-  <h2><%= I18n.t('.predictions.title') %></h2>
-<% end %>
-<div class="panel panel-default" id="predictions-table">
-  <div class="panel-heading"></div>
-  <div class="panel-body">
+<% content_for(:title){ current_user.admin ? I18n.t('.predictions.title_admin', name: user.name) : I18n.t('.predictions.title') } %>
+
+<div class="card" id="predictions-table">
+  <div class="card-header"></div>
+  <div class="card-body table-full-width table-responsive">
     <% if predictions.any? %>
-      <table class="table table-striped table-hover ">
+      <table class="table match-table">
         <thead>
           <tr>
             <th colspan=3"><%= I18n.t('.predictions.headers.match') %></th>
-            <th><%= I18n.t('.predictions.headers.group') %></th>
-            <th><%= I18n.t('.predictions.headers.result') %></th>
-            <th><%= I18n.t('.predictions.headers.your_prediction') %></th>
-            <th><%= I18n.t('.predictions.headers.score') %></th>
+            <th class="text-center"><%= I18n.t('.predictions.headers.group') %></th>
+            <th class="text-center"><%= I18n.t('.predictions.headers.result') %></th>
+            <th class="text-center"><%= I18n.t('.predictions.headers.your_prediction') %></th>
+            <th class="text-center"><%= I18n.t('.predictions.headers.score') %></th>
           </tr>
         </thead>
         <tbody>
           <% predictions.each do |prediction| %>
             <tr>
-              <td>
-                <img src="/img/<%= "flags/#{prediction.match.host_team.flag}" %>">
-                <br>
-                <span class="team host-team"><a href="/teams/<%= prediction.match.host_team.iso_code %>"><%= prediction.match.host_team.name %></a></span>
-              </td>
-              <td>VS</td>
               <td class="team-column">
-                <img src="/img/<%= "flags/#{prediction.match.rival_team.flag}" %>">
+                <a href="/teams/<%= prediction.match.host_team.iso_code %>">
+                  <img class="flag" src="/img/flags/<%= prediction.match.host_team.flag %>">
+                </a>
                 <br>
-                <span class="team host-team"><a href="/teams/<%= prediction.match.rival_team.iso_code %>"><%= prediction.match.rival_team.name %></a></span>
+                <span class="team host-team">
+                  <%= I18n.t(".teams.#{prediction.match.host_team.iso_code}") %>
+                </span>
               </td>
-              <td>
-                <span><%= prediction.match.cup_group.name %></span>
+              <td class="text-center">VS</td>
+              <td class="team-column">
+                <a href="/teams/<%= prediction.match.rival_team.iso_code %>">
+                  <img class="flag" src="/img/flags/<%= prediction.match.rival_team.flag %>">
+                </a>
+                <br>
+                <span class="team rival-team">
+                  <%= I18n.t(".teams.#{prediction.match.rival_team.iso_code}") %>
+                </span>
               </td>
-              <td>
+              <td class="text-center">
+                <strong class="text-success"><%= prediction.match.cup_group.name %></strong>
+              </td>
+              <td class="text-center">
                 <% if prediction.match.result.nil? %>
-                  <strong class="text-warning"><%= I18n.t('.predictions.statuses.not_started') %></strong>
+                  <div class="text-warning"><%= I18n.t('.predictions.statuses.not_started') %></div>
                 <% elsif prediction.match.result.status == 'partial' %>
                   <strong class="text-primary"><%= "#{prediction.match.result.host_score} - #{prediction.match.result.rival_score}" %></strong>
                   <br>
-                  <strong class="status text-success"><%= I18n.t('.predictions.statuses.in_progress') %></strong>
+                  <div class="status text-success"><%= I18n.t('.predictions.statuses.in_progress') %></div>
                 <% else %>
                   <strong class="text-primary"><%= "#{prediction.match.result.host_score} - #{prediction.match.result.rival_score}" %></strong>
                   <br>
-                  <strong class="status text-danger"><%= I18n.t('.predictions.statuses.finished') %></strong>
+                  <div class="status text-danger"><%= I18n.t('.predictions.statuses.finished') %></div>
                 <% end  %>
               </td>
-              <td>
+              <td class="text-center">
                 <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
               </td>
-              <td>
+              <td class="text-center">
                 <strong class="score <%= prediction.prediction_score == 3 ? 'text-success' : (prediction.prediction_score == 1 ? 'text-warning' : 'text-danger')%>"><%= prediction.prediction_score %></strong>
               </td>
             </tr>
@@ -58,28 +63,28 @@
               <tr>
                 <td colspan="3">
                 </td>
-                <td>
-                  <span><%= I18n.t('.matches.penalties') %></span>
+                <td class="text-center">
+                  <strong class="text-warning"><%= I18n.t('.matches.penalties') %></strong>
                 </td>
-                <td>
+                <td class="text-center">
                   <% if prediction.match.result.nil? %>
                     <strong class="text-warning"><%= I18n.t('.predictions.statuses.not_started') %></strong>
                   <% else %>
                     <strong class="text-primary"><%= "#{prediction.match.result.host_penalties_score} - #{prediction.match.result.rival_penalties_score}" %></strong>
                   <% end  %>
                 </td>
-                <td>
+                <td class="text-center">
                   <strong class="text-primary"><%= "#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score}" %></strong>
                 </td>
-                <td>
+                <td class="text-center">
                   <strong class="score <%= prediction.match_penalties_prediction.prediction_score == 3 ? 'text-success' : (prediction.match_penalties_prediction.prediction_score == 1 ? 'text-warning' : 'text-danger')%>"><%= prediction.match_penalties_prediction.prediction_score %></strong>
                 </td>
               </tr>
             <% end %>
-          <% end %> 
+          <% end %>
             <tr>
               <td colspan="6"><strong>TOTAL</strong></td>
-              <td ><strong><%= predictions.inject(0) { |sum, prediction| sum + prediction.total_prediction_score } %></strong></td>
+              <td class="text-center"><strong><%= predictions.inject(0) { |sum, prediction| sum + prediction.total_prediction_score } %></strong></td>
             </tr>
         </tbody>
       </table>

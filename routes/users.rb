@@ -1,5 +1,7 @@
 module FunkyWorldCup
   class Users < Cuba
+    settings[:render][:layout] = "layouts/application.html"
+
     define do
       on put, ":id/toggle_rules" do |user_id|
         not_found! unless user_id == current_user.id || current_user.admin
@@ -23,9 +25,10 @@ module FunkyWorldCup
                                            .where(user_id: user_id)
                                            .order(:start_datetime)
 
-              res.write render("./views/layouts/application.html.erb") {
-                render("./views/users/predictions.html.erb", predictions: predictions, user: User[user_id])
-              }
+              res.write view("users/predictions.html",
+                predictions: predictions,
+                user: User[user_id]
+              )
             end
 
             not_found!
