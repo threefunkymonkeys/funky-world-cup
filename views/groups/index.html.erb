@@ -1,13 +1,11 @@
 <% content_for(:title) { I18n.t('.groups.title') } %>
 
 <% if groups.any? %>
-  <% groups.each_slice(3) do |group1, group2, group3| %>
-    <div class="row">
-      <%= partial("groups/_card.html", group: group1, participants: []) %>
-      <%= partial("groups/_card.html", group: group2, participants: []) if group2 %>
-      <%= partial("groups/_card.html", group: group3, participants: []) if group3 %>
-    </div>
-  <% end %>
+  <div class="row">
+    <% groups.each do |group| %>
+      <%= partial("groups/_card.html", group: group) %>
+    <% end %>
+  </div>
 <% else %>  
   <p class="text-center text-muted"><%= I18n.t('.groups.no_groups') %></p>
   <p class="text-center" >

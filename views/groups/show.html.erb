@@ -1,6 +1,5 @@
-<h2 id="group-title">
-  <%= group.name %> (<%= group.user.nickname %>)
-</h2> 
+<% content_for(:title) { "#{group.name} (#{group.user.nickname})" } %>
+
 <div id="group-controls" class="pull-right">
   <% if group.user_id == current_user.id %>
     <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm"><%= I18n.t('.actions.edit') %></a>

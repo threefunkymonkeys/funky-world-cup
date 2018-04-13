@@ -1,7 +1,28 @@
-<div class="card col-4">
-  <div class="card-header">
-    <h4 class="card-title"><%= group.name %></h4>
-  </div>
-  <div class="card-body"> 
+<div class="col-12 col-md-4 col-lg-3">
+  <div class="card group-card">
+    <div class="card-header">
+      <h4 class="card-title"><%= group.name %></h4>
+      <p class="card-category"><%= group.user.nickname %></h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="text-center col-6">
+          <h6 class="text-muted"><%= I18n.t(".groups.participants") %></h6>
+          <div class="group-stats"><%= group.users.count %></div>
+        </div>
+        <div class="text-center col-6">
+          <h6 class="text-muted"><%= I18n.t(".groups.rank") %></h6>
+          <div class="group-stats"><%= group.rank_for(current_user.id) %></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer" style="display: none">
+      <a href="/groups/<%= group.id %>">
+        <i class="nc-icon nc-bullet-list-67"></i>
+      </a>
+      <a href="/groups/<%= group.id %>">
+        <i class="nc-icon nc-money-coins"></i>
+      </a>
+    </div>
   </div>
 </div>

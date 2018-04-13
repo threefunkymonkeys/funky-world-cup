@@ -11,6 +11,8 @@ es:
     invite: Invita a tus amigos! Comparte este link con ellos.
     invite_fb: Comparte este link en Facebook!
     participants: Integrantes
+    points: Pts.
+    rank: Tu posición
     fields:
       name: Nombre
       desc: Descripción

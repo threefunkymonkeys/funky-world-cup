@@ -12,6 +12,7 @@ en:
     logout: Logout
     admin: Admin
     terms: Terms of Service
+    new_group: New Group
     mini:
       fixture: FI
       dashboard: DA
@@ -25,3 +26,4 @@ en:
       logout: LO
       admin: AD
       terms: TC
+      new_group: N

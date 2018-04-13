@@ -12,6 +12,7 @@ es:
     logout: Salir
     admin: Admin
     terms: Términos y Condiciones
+    new_group: Nuevo Grupo
     mini:
       fixture: FI
       dashboard: PA
@@ -25,3 +26,4 @@ es:
       logout: S
       admin: AD
       terms: TC
+      new_group: N

@@ -1,0 +1,19 @@
+.group-card {
+  .group-stats {
+    margin: 12px 0;
+    font-size: 24px;
+  } 
+
+  .card-body .row {
+
+    > div {
+      h6 {
+        padding: 5px 0;
+      }
+    }
+
+    div:first-child {
+      border-right: 1px dashed rgba(0,0,0,.125);
+    }
+  }
+}

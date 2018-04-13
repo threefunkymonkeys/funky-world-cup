@@ -11,6 +11,8 @@ en:
     invite: Invite your friends! Share this link with them.
     invite_fb: Send this link through Facebook!
     participants: Participants
+    points: Pts
+    rank: Your rank
     fields:
       name: Name
       desc: Description
