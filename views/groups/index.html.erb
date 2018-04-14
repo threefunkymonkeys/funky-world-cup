@@ -1,7 +1,7 @@
 <% content_for(:title) { I18n.t('.groups.title') } %>
 
 <% if groups.any? %>
-  <div class="row">
+  <div class="row" id="groups">
     <% groups.each do |group| %>
       <%= partial("groups/_card.html", group: group) %>
     <% end %>
@@ -11,4 +11,21 @@
   <p class="text-center" >
     <a class="btn btn-primary" href="/groups/new"><%= I18n.t('.actions.create_group.') %></a>
   </p>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script src="/js/v-tooltip.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    Vue.use(VTooltip)
+
+    new Vue({ el: "#groups" })
+  </script>
+<% end %>
+
+<% groups.each do |group| %>
+  <%= partial("groups/_participants_popup.html", group: group) %>
+  <%= partial("groups/_prizes_popup.html", group: group) %>
+  <% if group.user_id != current_user.id %>
+    <%= partial("groups/_leave_popup.html", group: group) %>
+  <% end %>
 <% end %>

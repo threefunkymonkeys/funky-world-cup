@@ -1,0 +1,34 @@
+<div class="card table-responsive">
+  <div class="card-header">
+    <h4 class="card-title"><%= I18n.t('.groups.participants') %></h4>
+  </div>
+  <div class="card-body" data-group="<%= group.id %>">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= I18n.t(".groups.participants_list.pos") %></th>
+          <th><%= I18n.t(".groups.participants_list.pts") %></th>
+          <th><%= I18n.t(".groups.participants_list.name") %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <% participants.each do |key, rank_for_key| %>
+        <% rank_for_key.each do |participant| %>
+          <tr> 
+            <td>#<%= key %></td>
+            <td><%=participant[:score] || 0 %></td>
+            <td>
+              <img src="<%= participant[:image] %>" class="participant-img">
+              <%= participant[:nickname] %>
+            </td>
+            <td>
+            <% if current_user.id != participant[:id] %>
+              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

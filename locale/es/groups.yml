@@ -24,3 +24,11 @@ es:
       join_group: Únete a %{name}
     leave_title: Dejar Grupo
     leave_text: Estás seguro que deseas dejar este grupo?
+    actions:
+      participants: Participantes
+      prizes: Premios
+    participants_list:
+      pos: Pos
+      pts: Pts
+      name: Nombre
+      config: Configurar

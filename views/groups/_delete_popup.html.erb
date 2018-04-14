@@ -1,9 +1,11 @@
-<div class="modal" id="modal-delete">
+<div class="modal fade" id="modal-delete">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= I18n.t('.groups.confirm_title') %></h4>
+        <h5 class="modal-title"><%= I18n.t('.groups.confirm_title') %></h5>
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">
+          <span>&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <p><%= I18n.t('.groups.confirm_text') %></p>
@@ -12,7 +14,7 @@
         <button type="button" class="btn btn-default modal-close" data-dismiss="modal"><%= I18n.t('.actions.cancel') %></button>
         <form method="post" action="/groups/<%= id %>" class="form-inline" role="form">
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-primary"><%= I18n.t('.actions.delete') %></button>
+          <button type="submit" class="btn btn-danger"><%= I18n.t('.actions.delete') %></button>
         </form>
       </div>
     </div>

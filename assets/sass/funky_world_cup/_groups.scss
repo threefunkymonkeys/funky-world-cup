@@ -16,4 +16,30 @@
       border-right: 1px dashed rgba(0,0,0,.125);
     }
   }
+
+  .group-actions {
+    > a {
+      outline: none !important;
+    }
+
+    i.fa {
+      margin: 0px 3px;
+      font-size: 18px;
+      vertical-align: middle;
+
+      &.fa-users {
+        font-size: 15px;
+        color: $color-azure;
+      }
+
+      &.fa-gift {
+        color: $color-green;
+        font-size: 22px;
+      }
+
+      &.fa-cogs, &.fa-sign-out-alt {
+        color: $color-orange;
+      }
+    }
+  }
 }

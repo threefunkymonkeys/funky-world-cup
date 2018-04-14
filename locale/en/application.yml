@@ -25,6 +25,7 @@ en:
     confirm: Confirm
     leave: Leave Group
     send: Send
+    close: Close
   common:
     group: Group
     rules: Rules

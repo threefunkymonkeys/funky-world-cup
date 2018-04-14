@@ -1,0 +1,22 @@
+<div class="card card-warning">
+  <div class="card-header">
+    <h4 class="card-title"><%= I18n.t('.prizes.title') %></h4>
+  </div>
+  <div class="card-body">
+    <% if prizes.any? %>
+      <ul class="list-group">
+      <% prizes.each do |prize| %>
+      <li class="list-group-item">
+        <span class="label label-success">#<%= prize.order %></span>
+        <span><%= prize.name %></span>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p><%= I18n.t('.prizes.no_prizes') %></p>
+    <% end %>
+    <% if group.user_id == current_user.id %>
+      <a href="/groups/<%= group.id %>/prizes" class="btn btn-success btn-full-width"><%= "#{I18n.t('.actions.edit')} #{I18n.t('.prizes.title')}" %></a>
+    <% end %>
+  </div>
+</div>

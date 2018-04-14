@@ -33,6 +33,8 @@ module FunkyWorldCup
             not_found! unless group
 
             on root do
+              not_found! unless group.user_id == current_user.id
+
               # when user is kicked from group refresh session and redirect
               unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
                 authenticate(User[current_user.id])
@@ -40,33 +42,16 @@ module FunkyWorldCup
                 res.redirect "/dashboard"
               end
 
+              params = nil
+
               res.write view(
                 "groups/show.html",
                 group:        group,
                 participants: group.participants_by_rank,
                 prizes:       group.group_prizes,
-                url:          ENV['FWC_URL'],
+                link:         "#{ENV['FWC_URL']}/groups/join/#{group.link}",
+                params:       params || {},
               )
-            end
-
-            on group.user_id == current_user.id do
-              on "edit" do
-                res.write view(
-                  "groups/edit.html",
-                  group:  group,
-                  params: session.delete('fwc.group_params_edit') || {},
-                )
-              end
-
-              on "prizes" do
-                res.write view(
-                  "groups/prizes.html",
-                  prizes: group.group_prizes,
-                  group:  group,
-                )
-              end
-
-              not_found!
             end
 
             not_found!
@@ -108,11 +93,9 @@ module FunkyWorldCup
             on group.user_id == current_user.id do
               on root do
                 attrs = req.params['group'].strip
-                if FunkyWorldCup::GroupUpdate.new(self, group).execute(attrs)
-                  res.redirect "/groups/#{group.id}"
-                else
-                  res.redirect "/groups/#{group.id}/edit"
-                end
+                FunkyWorldCup::GroupUpdate.new(self, group).execute(attrs)
+
+                res.redirect "/groups/#{group.id}"
               end
 
               on "prizes" do

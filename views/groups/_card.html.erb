@@ -16,13 +16,30 @@
         </div>
       </div>
     </div>
-    <div class="card-footer" style="display: none">
-      <a href="/groups/<%= group.id %>">
-        <i class="nc-icon nc-bullet-list-67"></i>
+    <div class="card-footer text-right group-actions">
+      <a href="#"
+         v-tooltip.top="'<%= I18n.t('.groups.actions.participants') %>'"
+         data-toggle="modal"
+         data-target="#group-<%= group.id %>-participants"
+      >
+        <i class="fa fa-users"></i>
       </a>
-      <a href="/groups/<%= group.id %>">
-        <i class="nc-icon nc-money-coins"></i>
+      <a href="#"
+         v-tooltip.top="'<%= I18n.t('.groups.actions.prizes') %>'"
+         data-toggle="modal"
+         data-target="#group-<%= group.id %>-prizes"
+      >
+        <i class="fa fa-gift"></i>
       </a>
+      <% if current_user.id == group.user_id %>
+        <a href="/groups/<%= group.id %>" v-tooltip.top="'<%= I18n.t('.groups.actions.config') %>'">
+          <i class="fa fa-cogs"></i>
+        </a>
+      <% else %>
+        <a href="#" v-tooltip.top="'<%= I18n.t('.groups.actions.leave') %>'">
+          <i class="fa fa-sign-out-alt"></i>
+        </a>
+      <% end %>
     </div>
   </div>
 </div>

@@ -24,4 +24,11 @@ en:
       join_group: Join %{name}
     leave_title: Leave Group
     leave_text: Are you sure you want to leave this group?
-
+    actions:
+      participants: Participants
+      prizes: Prizes
+      config: Configure
+    participants_list:
+      pos: Pos
+      pts: Pts
+      name: Name

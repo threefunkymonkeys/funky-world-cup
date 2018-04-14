@@ -1,0 +1,19 @@
+<div class="modal fade" id="group-<%= group.id %>-prizes">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= I18n.t('.groups.prizes') %></h5>
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= partial("groups/_prizes.html", group: group, prizes: group.group_prizes) %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default modal-close btn-block" data-dismiss="modal"><%= I18n.t('.actions.close') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
