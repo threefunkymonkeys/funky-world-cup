@@ -1,0 +1,13 @@
+.navbar-brand {
+  .logo-mini {
+    color: $light-gray;
+
+    img {
+      width: 40px;
+      height: auto;
+    }
+    .brand-name {
+      padding-left: 1rem;
+    }
+  }
+}
