@@ -1,14 +1,24 @@
-<footer class="navbar navbar-inverse"> 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <p class="pull-left"><a href="http://threefunkymonkeys.com/" class="tfm-logo"><img src="/img/3fm_footer.png" title="Three Funky Monkeys" alt="Three Funky Monkeys"></a> &copy; <%= Time.now.year %></p>
-      </div>
-      <div class="col-md-6">
-        <div id="extra-footer">
-          <%= render("views/shared/_extra_footer.html.erb") %>
-        </div>
-      </div>
+<footer class="footer footer-transparent">
+  <div
+    class="container d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center align-items-center">
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/">Company</a>
+        </li>
+        <li>
+          <a href="/">Portfolio</a>
+        </li>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright">
+      &copy; 2018 <a href="http://www.threefunkymonkeys.com">Three Funky Monkeys</a>, made with love for the FIFA World Cup
     </div>
   </div>
 </footer>

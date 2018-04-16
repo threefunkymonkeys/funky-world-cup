@@ -1,0 +1,42 @@
+.navbar-brand {
+  .logo-mini {
+    color: $light-gray;
+
+    img {
+      width: 40px;
+      height: auto;
+    }
+    .brand-name {
+      padding-left: 1rem;
+    }
+  }
+}
+
+.fixed-height {
+  height: 100%;
+  align-items: flex-start !important;
+  display: flex;
+
+  .card-wrapper {
+    height: 100%;
+    max-height: 100%;
+  }
+  .card-body {
+    max-height: 100%;
+    overflow: scroll;
+  }
+  .content {
+    overflow: scroll;
+  }
+}
+
+.full-page {
+  .content {
+    height: calc(100vh - 70px);
+    padding-top: 6vh !important;
+  }
+
+  .card {
+    height: calc(100vh - 205px);
+  }
+}

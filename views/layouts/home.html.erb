@@ -23,17 +23,82 @@
     <%= render("views/shared/_social.html.erb") %>
   </head>
   <body>
-    <div id="wrapper">
-      <%= render("views/shared/_header.html.erb") %>
-      <div id="container" class="container home-container">
-        <%= show_flash_message %>
-        <%= yield %>
+    <div>
+      <div class="wrapper wrapper-full-page">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+          <div class="container">
+            <div class="navbar-wrapper">
+              <div class="navbar-brand">
+                <a class="logo-mini" href="/">
+                  <img src="/img/fwc_logo.svg" alt="FWC Logo">
+                  <span class="brand-name">Funky World Cup</span>
+                </a>
+              </div>
+              <button class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      aria-controls="navigation-index"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar burger-lines"></span>
+                <span class="navbar-toggler-bar burger-lines"></span>
+                <span class="navbar-toggler-bar burger-lines"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse justify-content-end" id="navbar" style="display: none">
+              <ul class="navbar-nav">
+                <% if current_user %>
+                  <li class="nav-item <%= class_for_path("/dashboard") %>">
+                      <a class="nav-link" href="/dashboard">
+                          <i class="nc-icon nc-chart-pie-35"></i>
+                          <p><%= I18n.t('.menu.dashboard') %></p>
+                      </a>
+                  </li>
+                  <li class="nav-item <%= class_for_path("/cup-groups/fixture") %>">
+                      <a class="nav-link" href="/cup-groups/fixture">
+                          <i class="nc-icon nc-paper-2"></i>
+                          <p><%= I18n.t('.menu.fixture') %></p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-lock"></i> Logout
+                    </a>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-badge"></i> Register
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-mobile"></i> Login
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="full-page login-page" data-color="black">
+          <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple | black" -->
+          <div class="content">
+            <div class="container">
+              <%= yield %>
+            </div>
+          </div>
+
+          <%= partial("shared/_footer.html") %>
+
+          <div class="full-page-background"
+              style="background-image: url(/img/home_bg.jpg) "></div>
+          </div>
       </div>
-      <%= render("views/shared/_footer.html.erb") %>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/jquery.3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $(".navbar-toggler").on("click", function(){ $("#navbar").toggle() });
+    </script>
   </body>
 </html>
