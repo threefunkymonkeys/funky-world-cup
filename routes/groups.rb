@@ -78,7 +78,7 @@ module FunkyWorldCup
             group = Group.find(link: code)
             case FunkyWorldCup::JoinGroup.new(self).execute(group)
             when :success
-              res.redirect "/groups/#{group.id}"
+              res.redirect "/groups"
             when :error
               res.redirect "/dashboard"
             when :not_found
@@ -179,9 +179,9 @@ module FunkyWorldCup
               on 'leave' do
                 case FunkyWorldCup::LeaveGroup.new(self).execute(group)
                 when :success
-                  res.redirect "/"
+                  res.redirect "/groups"
                 when :error
-                  res.redirect "/groups/#{group.id}"
+                  res.redirect "/groups"
                 when :not_found
                   not_found!
                 end

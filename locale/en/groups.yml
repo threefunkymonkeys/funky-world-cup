@@ -28,6 +28,7 @@ en:
       participants: Participants
       prizes: Prizes
       config: Configure
+      leave: Leave group
     participants_list:
       pos: Pos
       pts: Pts

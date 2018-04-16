@@ -27,6 +27,8 @@ es:
     actions:
       participants: Participantes
       prizes: Premios
+      config: Configurar
+      leave: Dejar grupo
     participants_list:
       pos: Pos
       pts: Pts

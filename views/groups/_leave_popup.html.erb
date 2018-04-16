@@ -14,7 +14,7 @@
         <button type="button" class="btn btn-default modal-close" data-dismiss="modal"><%= I18n.t('.actions.cancel') %></button>
         <form method="post" action="/groups/<%= group.id %>/leave" class="form-inline" role="form">
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-primary"><%= I18n.t('.actions.leave') %></button>
+          <button type="submit" class="btn btn-danger"><%= I18n.t('.actions.leave') %></button>
         </form>
       </div>
     </div>

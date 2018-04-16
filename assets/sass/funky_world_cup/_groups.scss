@@ -37,9 +37,16 @@
         font-size: 22px;
       }
 
-      &.fa-cogs, &.fa-sign-out-alt {
+      &.fa-cogs, &.fa-sign-out {
         color: $color-orange;
       }
     }
   }
+}
+
+.participant-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  margin-right: 5px;
 }

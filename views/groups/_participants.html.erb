@@ -18,12 +18,21 @@
             <td>#<%= key %></td>
             <td><%=participant[:score] || 0 %></td>
             <td>
-              <img src="<%= participant[:image] %>" class="participant-img">
-              <%= participant[:nickname] %>
+              <% if participant[:image] %>
+                <img src="<%= participant[:image] %>" class="participant-img">
+              <% else %>
+                <img src="/img/soccer-ball.svg" class="participant-img">
+              <% end %>
+              <span><%= participant[:nickname] %></span>
             </td>
-            <td>
+            <td class="text-right">
             <% if current_user.id != participant[:id] %>
-              <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
+              <a href="#" class="btn btn-link btn-danger kick-participant"
+                 data-name="<%= participant[:nickname] %>"
+                 data-id="<%= participant[:id] %>"
+              >
+                <i class="fa fa-close"></i>
+              </a>
             <% end %>
             </td>
           </tr>

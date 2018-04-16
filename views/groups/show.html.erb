@@ -24,3 +24,24 @@
 </div>
 
 <%= partial("groups/_delete_popup.html", id: group.id) %>
+<%= partial("groups/_kick_popup.html", id: group.id) %>
+
+<% content_for :javascripts do %>
+    <script type="text/javascript">
+      $("body").on("click", ".kick-participant", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var _this    = $(this),
+            name     = _this.attr('data-name'),
+            id       = _this.attr('data-id'),
+            group_id = _this.parents(".card-body").attr('data-group');
+
+        modal = $("#modal-kick");
+        modal.find('form').attr('action', "/groups/" + group_id + "/kick/" + id);
+        modal.find('#popup-participant-name').text(name);
+
+        modal.modal('show');
+      });
+    </script>
+<% end %>

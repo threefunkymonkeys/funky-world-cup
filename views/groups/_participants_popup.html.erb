@@ -8,7 +8,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= partial("groups/_participants.html", group: group, participants: group.participants_by_rank) %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= I18n.t(".groups.participants_list.pos") %></th>
+              <th><%= I18n.t(".groups.participants_list.pts") %></th>
+              <th><%= I18n.t(".groups.participants_list.name") %></th>
+            </tr>
+          </thead>
+          <% group.participants_by_rank.each do |key, rank_for_key| %>
+            <% rank_for_key.each do |participant| %>
+              <tr>
+                <td>#<%= key %></td>
+                <td><%=participant[:score] || 0 %></td>
+                <td>
+                  <% if participant[:image] %>
+                    <img src="<%= participant[:image] %>" class="participant-img">
+                  <% else %>
+                    <img src="/img/soccer-ball.svg" class="participant-img">
+                  <% end %>
+                  <span><%= participant[:nickname] %></span>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default modal-close btn-block" data-dismiss="modal"><%= I18n.t('.actions.close') %></button>
