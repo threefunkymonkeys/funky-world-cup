@@ -16,13 +16,13 @@ module FunkyWorldCup
 
         on "tos" do
           res.write render("./views/layouts/home.html.erb") {
-            render("./views/pages/tos.html.erb")
+            render("./views/pages/tos_#{session[:locale]}.html.erb")
           }
         end
 
         on "rules" do
-          res.write render("./views/layouts/application.html.erb") {
-            render("./views/pages/rules.html.erb")
+          res.write render("./views/layouts/home.html.erb") {
+            render("./views/pages/rules_#{session[:locale]}.html.erb")
           }
         end
 
