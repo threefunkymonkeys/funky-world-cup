@@ -59,5 +59,9 @@ class Cuba
       rank = I18n.t(".common.#{rank}_of")
       "#{rank} #{part}"
     end
+
+    def prizes_to_vue_json(prizes)
+      prizes.map(&:to_hash).to_json
+    end
   end
 end

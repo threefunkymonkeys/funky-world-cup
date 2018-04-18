@@ -57,10 +57,9 @@ Cuba.define do
   session[:notifications] = current_user.get_and_read_notifications if current_user
   @@champion  ||= FunkyWorldCup.champion
 
-  authenticate(User.first)
-  #on default do
-    #res.write render("./views/pages/coming_soon.html.erb")
-  #end
+  on default do
+    res.write render("./views/pages/coming_soon.html.erb")
+  end
 
   on "groups" do
     run FunkyWorldCup::Groups
