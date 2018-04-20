@@ -4,16 +4,17 @@ module FunkyWorldCup
 
     define do
       on get, "join/:code" do |code|
-        on group = Group.find(link: code) do
-          unless current_user
-            session['fwc.join_group_code'] = code
-          end
-          res.write render("./views/layouts/join.html.erb", group: group) {
-            render("./views/groups/join.html.erb", group: group)
-          }
-        end
+        group = Group[link: code]
 
-        not_found!
+        not_found! unless group
+
+        session['fwc.join_group_code'] = code unless current_user
+
+        res.write view(
+          "groups/join.html",
+          { group: group },
+          "layouts/join.html",
+        )
       end
 
       on current_user do
@@ -75,9 +76,9 @@ module FunkyWorldCup
 
         on put do
           on "join/:code" do |code|
-            group = Group.find(link: code)
+            group = Group[link: code]
             case FunkyWorldCup::JoinGroup.new(self).execute(group)
-            when :success
+            when :success, :membership_exists
               res.redirect "/groups"
             when :error
               res.redirect "/dashboard"

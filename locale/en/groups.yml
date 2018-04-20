@@ -18,7 +18,7 @@ en:
       desc: Description
     join:
       title: Join group %{name} in Funky World Cup
-      description: Predict the result for the matches in the Brazil 2014 World Cup. Join this group and compete with your friends.
+      description: Predict the result for the matches in the World Cup. Join this group and compete with your friends.
       login_join: Login now and you will added to this group automatically
       join: Join now!
       join_group: Join %{name}

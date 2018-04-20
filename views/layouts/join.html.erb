@@ -8,13 +8,12 @@
     <meta name="description" content="<%= I18n.t('seo.description') %>">
     <meta name="keywords" content="<%= I18n.t('seo.keywords') %>">
     <meta name="author" content="Three Funky Monkeys">
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="googlebot" content="noindex">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" >
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/funky_world_cup.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,47 +21,84 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <%= render("views/shared/_analytics.html.erb") %>
-
-    <%# Facebook %>
-    <meta property="og:image" content="<%= ENV['FWC_URL']%>img/fwc_brasil_2014_landing.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1920">
-    <meta property="og:image:height" content="1080">
-    <meta property="og:image" content="<%= ENV['FWC_URL']%>img/fwc_brasil_2014.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="640">
-    <meta property="og:image:height" content="641">
-    <meta property="og:title" content="<%= I18n.t('groups.join.title', name: group.name) %>">
-    <meta property="og:description" content="<%= I18n.t('groups.join.description') %>">
-    <meta property="og:site_name" content="Funky World Cup">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="<%= ENV['FWC_URL'] %>groups/join/<%= group.link%>?lang=<%= session[:locale]%>">
-    <%# Google +%>
-    <meta itemprop="name" content="<%= I18n.t('groups.join.title', name: group.name) %>">
-    <meta itemprop="description" content="<%= I18n.t('groups.join.description') %>">
-    <meta itemprop="image" content="<%= ENV['FWC_URL'] %>img/fwc_brasil_2014.jpg">
-    <%# Twitter Card%>
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@funkyworldcup">
-    <meta name="twitter:title" content="<%= I18n.t('groups.join.title', name: group.name) %>">
-    <meta name="twitter:description" content="<%= I18n.t('groups.join.description') %>">
-    <meta name="twitter:creator" content="@3FunkyMonkeys">
-    <meta name="twitter:image:src" content="<%= ENV['FWC_URL'] %>img/fwc.png">
-    <meta name="twitter:domain" content="FunkyWorldCup.com">
+    <%= render("views/shared/_social.html.erb") %>
   </head>
   <body>
-    <div id="wrapper">
-      <%= render("views/shared/_header.html.erb") %>
-      <div id="container" class="container home-container">
-        <%= show_flash_message %>
-        <%= yield %>
+    <div>
+      <div class="wrapper wrapper-full-page">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+          <div class="container">
+            <div class="navbar-wrapper">
+              <div class="navbar-brand">
+                <a class="logo-mini" href="/">
+                  <img src="/img/fwc_logo.svg" alt="FWC Logo">
+                  <span class="brand-name">Funky World Cup</span>
+                </a>
+              </div>
+              <button class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      aria-controls="navigation-index"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar burger-lines"></span>
+                <span class="navbar-toggler-bar burger-lines"></span>
+                <span class="navbar-toggler-bar burger-lines"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse justify-content-end" id="navbar" style="display: none">
+              <ul class="navbar-nav">
+                <% if current_user %>
+                  <li class="nav-item <%= class_for_path("/dashboard") %>">
+                      <a class="nav-link" href="/dashboard">
+                          <i class="nc-icon nc-chart-pie-35"></i>
+                          <p><%= I18n.t('.menu.dashboard') %></p>
+                      </a>
+                  </li>
+                  <li class="nav-item <%= class_for_path("/cup-groups/fixture") %>">
+                      <a class="nav-link" href="/cup-groups/fixture">
+                          <i class="nc-icon nc-paper-2"></i>
+                          <p><%= I18n.t('.menu.fixture') %></p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-lock"></i> Logout
+                    </a>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-badge"></i> Register
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="nc-icon nc-mobile"></i> Login
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="full-page login-page" data-color="black">
+          <div class="content">
+            <div class="container">
+              <%= content %>
+            </div>
+          </div>
+
+          <%= partial("shared/_footer.html") %>
+
+          <div class="full-page-background"
+              style="background-image: url(/img/home_bg.jpg) "></div>
+          </div>
       </div>
-      <%= render("views/shared/_footer.html.erb") %>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/jquery.3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $(".navbar-toggler").on("click", function(){ $("#navbar").toggle() });
+    </script>
   </body>
 </html>
-
