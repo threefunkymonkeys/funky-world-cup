@@ -167,8 +167,8 @@ body.on('click', ".btn-predict", function(event) {
   });
 
   if(penalties) {
-    modal.find(".modal-penalties").show()
-    modal.find(".alert-penalties").show()
+    modal.find(".modal-penalties").show();
+    modal.find(".alert-penalties").show();
   }
 
   modal.modal('show');
