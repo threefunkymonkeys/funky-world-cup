@@ -1,6 +1,6 @@
 en:
   matches:
-    predict_title: Predict the result
+    predict_title: Enter your prediction
     warning_title: Warning
     warning_text: Wait! Check your prediction twice! Once confirmed you will not be able to change it.
     penalties: Penalties
