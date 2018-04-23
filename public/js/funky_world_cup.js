@@ -150,6 +150,7 @@ body.on('click', ".btn-predict", function(event) {
       penalties  = _this.attr("data-penalties") === "true";
 
   var modal = $("#modal-predict");
+  modal.find(".alert-penalties").hide();
 
   modal.find("#match-id").val(match_id);
   modal.find("input[type=\"text\"]").val(0);
