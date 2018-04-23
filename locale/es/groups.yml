@@ -1,7 +1,7 @@
 es:
   groups:
     title: Tus Grupos
-    no_groups: Todavía no tienes ningún grupo, puedes crear un grupo con el botón a tu derecha o esperar a que alguien te invite a uno.
+    no_groups: Todavía no tienes ningún grupo, puedes crear un grupo con el botón de abajo o esperar a que alguien te invite a uno.
     edit_title: Editar Grupo
     create_title: Crear Grupo
     confirm_title: Confirma el borrado del Grupo
@@ -11,6 +11,8 @@ es:
     invite: Invita a tus amigos! Comparte este link con ellos.
     invite_fb: Comparte este link en Facebook!
     participants: Integrantes
+    points: Pts.
+    rank: Tu posición
     fields:
       name: Nombre
       desc: Descripción
@@ -22,3 +24,13 @@ es:
       join_group: Únete a %{name}
     leave_title: Dejar Grupo
     leave_text: Estás seguro que deseas dejar este grupo?
+    actions:
+      participants: Participantes
+      prizes: Premios
+      config: Configurar
+      leave: Dejar grupo
+    participants_list:
+      pos: Pos
+      pts: Pts
+      name: Nombre
+      config: Configurar

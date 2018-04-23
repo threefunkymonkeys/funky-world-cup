@@ -1,97 +1,47 @@
-<h2 id="group-title">
-  <%= group.name %> (<%= group.user.nickname %>)
-</h2> 
-<div id="group-controls" class="pull-right">
-  <% if group.user_id == current_user.id %>
-    <a href="/groups/<%= group.id %>/edit" class="btn btn-warning pull-right btn-sm"><%= I18n.t('.actions.edit') %></a>
-    <a href="#" class="btn btn-danger pull-right btn-sm" id="delete-group"><%= I18n.t('.actions.delete') %></a>
-  <% else %>
-    <a class="btn btn-warning pull-right btn-sm" href="" id="leave-group"><%= I18n.t('.actions.leave')%></a>
-  <% end %>
-</div>
-<div class="clearfix"></div>
-<br/>
-<div class="row" style="margin-top:-20px;">
-  <div class="col-md-8">
-    <% if group.user_id == current_user.id %>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('.groups.invite') %></h3>
-      </div>
-      <div class="panel-body">
-        <form method="post" action="/groups/<%= group.id %>/reset_link">
-          <input type="hidden" name="_method" value="PUT">
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">#</span>
-              <input type="text" class="form-control" id="sharecode" value="<%= url + "groups/join/" + (group.link || "")%>">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="submit"><%= I18n.t('.actions.reset') %></button>
-              </span>
-            </div>
-          </div>
-        </form>
-        <div class="text-center">
-          <span><%= I18n.t('.groups.invite_fb')%></span>
-          <div class="fb-send" data-href="<%= url + "groups/join/" + (group.link || "")%>?lang=<%= session[:locale] %>" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-    <% end %>
+<% content_for(:title) { group.name } %>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('.groups.participants') %></h3>
-      </div>
-      <div class="panel-body" data-group="<%= group.id %>">
-        <ul class="list-group <%= group.user_id == current_user.id ? 'by-owner' : ''%>" id="group-participants-list">
-          <% participants.each do |key, rank_for_key| %>
-            <% rank_for_key.each do |participant| %>
-              <li class="list-group-item">
-                <span class="badge"><%=participant[:score] || 0 %></span>
-                <span class="label label-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span>
-                <span>
-                  <img src="<%= participant[:image] %>" class="participant-img">
-                  <%= participant[:nickname] %>
-                </span>
-                <% if group.user_id == current_user.id && current_user.id != participant[:id] %>
-                  <button type="button" class="btn btn-danger btn-xs kick-participant" data-name="<%= participant[:nickname] %>" data-id="<%= participant[:id] %>"><%= I18n.t('.actions.kick') %></button>
-                <% end %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-12 col-md-6 participants-list">
+    <%= partial("groups/_invite.html", group: group, link: link) %>
+    <%= partial("groups/_participants.html", group: group, participants: participants) %>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('.prizes.title') %></h3>
-      </div>
-      <div class="panel-body">
-        <% if prizes.any? %>
-          <ul class="list-group">
-          <% prizes.each do |prize| %>
-          <li class="list-group-item">
-            <span class="label label-success">#<%= prize.order %></span>
-            <span><%= prize.name %></span>
-          </li>
-          <% end %>
-        </ul>
-        <% else %>
-          <p><%= I18n.t('.prizes.no_prizes') %></p>
-        <% end %>
-        <% if group.user_id == current_user.id %>
-          <a href="/groups/<%= group.id %>/prizes" class="btn btn-success btn-full-width"><%= "#{I18n.t('.actions.edit')} #{I18n.t('.prizes.title')}" %></a>
-        <% end %>
+  <div class="col-12 col-md-6">
+    <%= partial("groups/_prizes.html", group: group, prizes: prizes) %>
+    <%= partial("groups/_edit.html", group: group, params: params) %>
+
+    <div class="card">
+      <div class="card-body text-center">
+        <a href="#"
+           class="btn btn-danger btn-md btn-block"
+           data-toggle="modal"
+           data-target="#modal-delete"
+        >
+          <%= I18n.t('.actions.delete') %>
+        </a>
       </div>
     </div>
   </div>
 </div>
-<% if group.user_id == current_user.id %>
-  <%= render("views/groups/_delete_popup.html.erb", id: group.id) %>
-  <%= render("views/groups/_kick_popup.html.erb", id: group.id) %>
-<% else %>
-  <%= render("views/groups/_leave_popup.html.erb", id: group.id) %>
+
+<%= partial("groups/_delete_popup.html", id: group.id) %>
+<%= partial("groups/_kick_popup.html", id: group.id) %>
+
+<% content_for :javascripts do %>
+    <script type="text/javascript">
+      $("body").on("click", ".kick-participant", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var _this    = $(this),
+            name     = _this.attr('data-name'),
+            id       = _this.attr('data-id'),
+            group_id = _this.parents(".card-body").attr('data-group');
+
+        modal = $("#modal-kick");
+        modal.find('form').attr('action', "/groups/" + group_id + "/kick/" + id);
+        modal.find('#popup-participant-name').text(name);
+
+        modal.modal('show');
+      });
+    </script>
 <% end %>

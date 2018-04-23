@@ -1,0 +1,78 @@
+<div class="card card-warning">
+  <div class="card-header">
+    <h4 class="card-title"><%= I18n.t('.prizes.title') %></h4>
+  </div>
+  <div class="card-body">
+    <form method="post" action="/groups/<%= group.id %>/prizes" id="prize-form">
+      <input type="hidden" name="_method" value="PUT">
+      <table class="table" id="prizes">
+        <tr v-for="(prize, index) in prizes">
+          <td class="prize-edit-cell">
+            <input type="text" class="form-control" v-model="prize['name']" name="prizes[]">
+          </td>
+          <td class="prize-actions-cell text-right">
+            <a href="#" class="btn-link btn-success" @click.stop="up(index)" v-if="prizes[index-1]">
+              <i class="fa fa-arrow-up"></i>
+            </a>
+            <a href="#" class="btn-link btn-success" @click.stop="down(index)" v-if="prizes[index+1]">
+              <i class="fa fa-arrow-down"></i>
+            </a>
+            <a href="#" class="btn-link btn-warning" @click.stop="remove(index)">
+              <i class="fa fa-close"></i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="prize-edit-cell">
+            <input type="text" class="form-control" v-model="newItem">
+          </td>
+          <td class="text-right prize-actions-cell">
+            <a href="#" class="btn-link btn-info" @click.stop="add">
+              <i class="fa fa-plus"></i>
+            </a>
+          </td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <div class="pull-right">
+          <button type="submit" class="btn btn-success"><%= I18n.t('.actions.save') %></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    new Vue({
+      el: '#prizes',
+      data: {
+        prizes: <%= prizes_to_vue_json(prizes) %>,
+        newItem: "",
+      },
+      methods: {
+        remove (key) {
+          this.prizes.splice(key, 1)
+        },
+        add () {
+          if (this.newItem == "") {
+            return
+          }
+          this.prizes.push({ name: this.newItem })
+          this.newItem = ""
+        },
+        up (key) {
+          let temp = this.prizes[key-1]
+          this.$set(this.prizes, key-1, this.prizes[key])
+          this.$set(this.prizes, key, temp)
+        },
+        down (key) {
+          let temp = this.prizes[key+1]
+          this.$set(this.prizes, key+1, this.prizes[key])
+          this.$set(this.prizes, key, temp)
+        }
+
+      }
+    })
+  </script>
+<% end %>

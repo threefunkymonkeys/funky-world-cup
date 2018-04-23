@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"><%= I18n.t('.groups.invite') %></h4>
+  </div>
+  <div class="card-body">
+    <form method="post" action="/groups/<%= group.id %>/reset_link">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" id="sharecode" value="<%= ERB::Util.h(link) %>">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><%= I18n.t('.actions.reset') %></button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

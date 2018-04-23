@@ -1,0 +1,49 @@
+<div class="col-12 col-md-4 col-lg-3">
+  <div class="card group-card">
+    <div class="card-header">
+      <h4 class="card-title"><%= group.name %></h4>
+      <p class="card-category"><%= group.user.nickname %></h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="text-center col-6">
+          <h6 class="text-muted"><%= I18n.t(".groups.participants") %></h6>
+          <div class="group-stats"><%= group.users.count %></div>
+        </div>
+        <div class="text-center col-6">
+          <h6 class="text-muted"><%= I18n.t(".groups.rank") %></h6>
+          <div class="group-stats"><%= group.rank_for(current_user.id) %></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-right group-actions">
+      <a href="#"
+         v-tooltip.top="'<%= I18n.t('.groups.actions.participants') %>'"
+         data-toggle="modal"
+         data-target="#group-<%= group.id %>-participants"
+      >
+        <i class="fa fa-users"></i>
+      </a>
+      <a href="#"
+         v-tooltip.top="'<%= I18n.t('.groups.actions.prizes') %>'"
+         data-toggle="modal"
+         data-target="#group-<%= group.id %>-prizes"
+      >
+        <i class="fa fa-gift"></i>
+      </a>
+      <% if current_user.id == group.user_id %>
+        <a href="/groups/<%= group.id %>" v-tooltip.top="'<%= I18n.t('.groups.actions.config') %>'">
+          <i class="fa fa-cogs"></i>
+        </a>
+      <% else %>
+        <a href="#"
+          v-tooltip.top="'<%= I18n.t('.groups.actions.leave') %>'"
+          data-toggle="modal"
+          data-target="#group-<%= group.id %>-leave"
+        >
+          <i class="fa fa-sign-out"></i>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>

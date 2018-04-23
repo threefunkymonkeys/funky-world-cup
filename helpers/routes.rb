@@ -4,6 +4,8 @@ module FunkyWorldCup::Helpers
     res.write render("./views/layouts/home.html.erb") {
       render("./views/pages/404.html.erb")
     }
+
+    halt res.finish
   end
 
   def no_content!

@@ -1,0 +1,60 @@
+.group-card {
+  .group-stats {
+    margin: 12px 0;
+    font-size: 24px;
+  } 
+
+  .card-body .row {
+
+    > div {
+      h6 {
+        padding: 5px 0;
+      }
+    }
+
+    div:first-child {
+      border-right: 1px dashed rgba(0,0,0,.125);
+    }
+  }
+
+  .group-actions {
+    > a {
+      outline: none !important;
+    }
+
+    i.fa {
+      margin: 0px 3px;
+      font-size: 18px;
+      vertical-align: middle;
+
+      &.fa-users {
+        font-size: 15px;
+        color: $color-azure;
+      }
+
+      &.fa-gift {
+        color: $color-green;
+        font-size: 22px;
+      }
+
+      &.fa-cogs, &.fa-sign-out {
+        color: $color-orange;
+      }
+    }
+  }
+}
+
+.participant-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  margin-right: 5px;
+}
+
+.prize-edit-cell {
+  width: 75%;
+}
+
+.prize-actions-cell {
+  display: table-cell !important;
+}

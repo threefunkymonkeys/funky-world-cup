@@ -1,0 +1,6 @@
+<div class="alert alert-<%= klass == :error ? "danger" : klass.to_s %> flash-message">
+  <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+    <i class="nc-icon nc-simple-remove"></i>
+  </button>
+  <span><%= message %></span>
+</div>

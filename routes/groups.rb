@@ -1,5 +1,7 @@
 module FunkyWorldCup
   class Groups < Cuba
+    settings[:render][:layout] = "layouts/application.html"
+
     define do
       on get, "join/:code" do |code|
         on group = Group.find(link: code) do
@@ -16,70 +18,40 @@ module FunkyWorldCup
 
       on current_user do
         on get do
-          calculate_user_rank
-
           on root do
             groups = current_user.groups
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/groups/index.html.erb", groups: groups)
-            }
+
+            res.write view("groups/index.html", groups: groups, url: ENV["FWC_URL"])
           end
 
           on "new" do
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/groups/new.html.erb", params: session.delete('fwc.group_params') || {})
-            }
+            res.write view("groups/new.html", params: session.delete('fwc.group_params') || {})
           end
 
           on ":id" do |group_id|
-            on (group = Group[group_id.to_i]) do
-              on root do
-                # when user is kicked from group refresh session and redirect
-                unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
-                  authenticate(User[current_user.id])
-                  flash[:warning] = I18n.t('.messages.group.dont_belong')
-                  res.redirect "/dashboard"
-                end
+            group = Group[group_id.to_i]
+            not_found! unless group
 
-                participants = Hash.new
-                key = 0
-                score = 0
-                group.participants.each do |participant|
-                  if score.zero? || score > (participant[:score] || 0)
-                    score = participant[:score] || 0
-                    key += 1
-                  end
-                  participants[key] = Array.new unless participants.has_key?(key)
-                  participants[key] << participant
-                end
+            on root do
+              not_found! unless group.user_id == current_user.id
 
-                res.write render("./views/layouts/application.html.erb") {
-                  render("./views/groups/show.html.erb",
-                        group: group,
-                        participants: participants,
-                        prizes: group.group_prizes,
-                        url: ENV['FWC_URL']
-                        )
-                }
+              # when user is kicked from group refresh session and redirect
+              unless GroupsUser.find(group_id: group_id, user_id: current_user.id)
+                authenticate(User[current_user.id])
+                flash[:warning] = I18n.t('.messages.group.dont_belong')
+                res.redirect "/dashboard"
               end
 
-              on group.user_id == current_user.id do
-                on "edit" do
-                  res.write render("./views/layouts/application.html.erb") {
-                    render("./views/groups/edit.html.erb", group: group, params: session.delete('fwc.group_params_edit') || {} )
-                  }
-                end
+              params = nil
 
-                on "prizes" do
-                  res.write render("./views/layouts/application.html.erb") {
-                    render("./views/groups/prizes.html.erb", prizes: group.group_prizes, group: group)
-                  }
-                end
-
-                not_found!
-              end
-
-              not_found!
+              res.write view(
+                "groups/show.html",
+                group:        group,
+                participants: group.participants_by_rank,
+                prizes:       group.group_prizes,
+                link:         "#{ENV['FWC_URL']}/groups/join/#{group.link}",
+                params:       params || {},
+              )
             end
 
             not_found!
@@ -106,7 +78,7 @@ module FunkyWorldCup
             group = Group.find(link: code)
             case FunkyWorldCup::JoinGroup.new(self).execute(group)
             when :success
-              res.redirect "/groups/#{group.id}"
+              res.redirect "/groups"
             when :error
               res.redirect "/dashboard"
             when :not_found
@@ -115,53 +87,50 @@ module FunkyWorldCup
           end
 
           on ":id" do |group_id|
-            on (group = Group[group_id.to_i]) do
-              on group.user_id == current_user.id do
-                on root do
-                  attrs = req.params['group'].strip
-                  if FunkyWorldCup::GroupUpdate.new(self, group).execute(attrs)
-                    res.redirect "/groups/#{group.id}"
-                  else
-                    res.redirect "/groups/#{group.id}/edit"
-                  end
-                end
+            group = Group[group_id.to_i]
+            not_found! unless group
 
-                on "prizes" do
-                  old = group.group_prizes
+            on group.user_id == current_user.id do
+              on root do
+                attrs = req.params['group'].strip
+                FunkyWorldCup::GroupUpdate.new(self, group).execute(attrs)
 
-                  new = Array.new
-                  begin
-                    FunkyWorldCup::Helpers.database.transaction(rollback: :reraise) do
-                      req.params['prizes'].each_with_index do |prize, index|
-                        GroupPrize.create(name: prize, group_id: group.id, order: index +1)
-                      end
+                res.redirect "/groups/#{group.id}"
+              end
 
-                      old.each do |prize|
-                        prize.delete
-                      end
+              on "prizes" do
+                old = group.group_prizes
+
+                new = Array.new
+                begin
+                  FunkyWorldCup::Helpers.database.transaction(rollback: :reraise) do
+                    req.params['prizes'].each_with_index do |prize, index|
+                      GroupPrize.create(name: prize, group_id: group.id, order: index +1)
                     end
-                    flash[:success] = I18n.t('.messages.prizes.list_updated')
-                    res.redirect "/groups/#{group.id}"
-                  rescue Sequel::Rollback
-                    flash[:error] = "#{I18n.t('.messages.prizes.cant_save_list')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
-                    session['fwc.pizes'] = req.params['prizes']
-                    res.redirect "/groups/#{group.id}/prizes"
-                  end
-                end
 
-                on "reset_link" do
-                  begin
-                    group.link = FunkyWorldCupApp::generate_group_link(group.id)
-                    group.save
-                    flash[:success] = I18n.t('.messages.groups.link_updated')
-                  rescue => e
-                    puts e.inspect
-                    flash[:error] = "#{I18n.t('.messages.groups.cant_update_link')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
+                    old.each do |prize|
+                      prize.delete
+                    end
                   end
+                  flash[:success] = I18n.t('.messages.prizes.list_updated')
                   res.redirect "/groups/#{group.id}"
+                rescue Sequel::Rollback
+                  flash[:error] = "#{I18n.t('.messages.prizes.cant_save_list')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
+                  session['fwc.pizes'] = req.params['prizes']
+                  res.redirect "/groups/#{group.id}/prizes"
                 end
+              end
 
-                not_found!
+              on "reset_link" do
+                begin
+                  group.link = FunkyWorldCupApp::generate_group_link(group.id)
+                  group.save
+                  flash[:success] = I18n.t('.messages.groups.link_updated')
+                rescue => e
+                  puts e.inspect
+                  flash[:error] = "#{I18n.t('.messages.groups.cant_update_link')}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
+                end
+                res.redirect "/groups/#{group.id}"
               end
 
               not_found!
@@ -210,9 +179,9 @@ module FunkyWorldCup
               on 'leave' do
                 case FunkyWorldCup::LeaveGroup.new(self).execute(group)
                 when :success
-                  res.redirect "/"
+                  res.redirect "/groups"
                 when :error
-                  res.redirect "/groups/#{group.id}"
+                  res.redirect "/groups"
                 when :not_found
                   not_found!
                 end

@@ -1,7 +1,7 @@
 en:
   groups:
     title: Your Groups
-    no_groups: You don't have and don't belong to any group yet. You can create a group with the button in the sidebar or wait until someone invite you.
+    no_groups: You don't have and don't belong to any group yet. You can create a group with the button below or wait until someone invites you.
     edit_title: Edit Group
     create_title: Create Group
     confirm_title: Confirm Group Deletion
@@ -11,6 +11,8 @@ en:
     invite: Invite your friends! Share this link with them.
     invite_fb: Send this link through Facebook!
     participants: Participants
+    points: Pts
+    rank: Your rank
     fields:
       name: Name
       desc: Description
@@ -22,4 +24,12 @@ en:
       join_group: Join %{name}
     leave_title: Leave Group
     leave_text: Are you sure you want to leave this group?
-
+    actions:
+      participants: Participants
+      prizes: Prizes
+      config: Configure
+      leave: Leave group
+    participants_list:
+      pos: Pos
+      pts: Pts
+      name: Name

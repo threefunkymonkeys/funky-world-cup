@@ -25,6 +25,7 @@ es:
     confirm: Confirmar
     leave: Dejar Grupo
     send: Enviar
+    close: Cerrar
   common:
     group: Grupo
     rules: Reglas
