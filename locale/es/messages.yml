@@ -6,6 +6,7 @@ es:
       please: Por favor
     groups:
       joined: Ya eres parte de este grupo
+      already: Ya perteneces a este grupo
       cant_join: Hubo un error al unirte al grupo
       part_of: Eres parte del grupo
       dont_belong: No perteneces a este grupo

@@ -6,6 +6,7 @@ en:
       please: Please
     groups:
       joined: You are now part of this group
+      already_in: You are already part of this group
       cant_join: There was an error joining the group, please try again
       part_of: You are now part of group
       dont_belong: You don't belong to this group
