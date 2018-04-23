@@ -25,7 +25,7 @@ class Group < Sequel::Model
         key += 1
       end
 
-      result[key] = Array.new unless result.has_key?(key)
+      result[key] ||= Array.new
       result[key] << participant
     end
 
