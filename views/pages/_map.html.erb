@@ -1,0 +1,33 @@
+<div id="world-map" style="height: 400px"></div>
+<% content_for :javascripts do %>
+  <script src="/js/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
+  <script src="/js/jquery-jvectormap-world-mill.js" type="text/javascript"></script>
+
+  <script>
+    window.$ = window.jQuery = $
+
+    const mapData = <%= map_hash.to_json %>
+
+    $('#world-map').vectorMap({
+      map: 'world_mill',
+      backgroundColor: 'transparent',
+      zoomOnScroll: false,
+      regionStyle: {
+        initial: {
+          fill: '#e4e4e4',
+          'fill-opacity': 1,
+          stroke: 'none',
+          'stroke-width': 0,
+          'stroke-opacity': 0.5
+        }
+      },
+
+      series: {
+        regions: [mapData]
+      }
+    })
+
+    let map = $("#world-map").vectorMap('get', 'mapObject');
+    map.updateSize()
+  </script>
+<% end %>
