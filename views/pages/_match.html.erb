@@ -6,8 +6,8 @@
     <span class="group"><%= I18n.t(".common.rounds.#{match.values[:name]}") %></span>
   <% end %>
   </h4>
-<table class="table table-striped table-hover matches-table">
+<table class="table table-striped match-table">
   <tbody>
-    <%= render("views/shared/_match_row.html.erb", match: match) %>
+    <%= partial("shared/_match_row_small.html", match: match) %>
   </tbody>
 </table>

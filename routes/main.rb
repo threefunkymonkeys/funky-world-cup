@@ -38,8 +38,6 @@ module FunkyWorldCup
         end
 
         on current_user do
-          @user_rank ||= UserScore.rank_for(current_user.id)
-
           on root do
             res.redirect "/dashboard"
           end
@@ -58,11 +56,16 @@ module FunkyWorldCup
               matches = Match.for_dashboard.all
             end
 
+            map_hash = FunkyWorldCup::Map.new(CupGroup.all).series_data
+
             res.write view("pages/dashboard.html",
               matches:      matches,
               winners:      winners,
               total_played: total_played || 0,
+              rank:         UserScore.rank_for(current_user.id),
+              score:        current_user.score,
               params:       session.delete('fwc.contact_form') || {},
+              map_hash:     map_hash,
             )
           end
 

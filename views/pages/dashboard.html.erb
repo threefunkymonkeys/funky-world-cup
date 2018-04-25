@@ -2,64 +2,60 @@
   <%= partial("pages/_rules_alert.html", user: current_user) %>
 <% end %>
 
-<h3><%= I18n.t('.dashboard.title') %></h3>
-<% if !matches.nil? %>
-  <div class="panel panel-default dashboard-matches">
-    <div class="panel-heading"><%= I18n.t('.dashboard.upcoming') %></div>
-    <div class="panel-body">
-      <% matches.each do |match| %>
-        <%= partial("pages/_match.html", :match => match) %>
-      <% end %>
-    </div>
-  </div>
-  <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id) %>
-<% else %>
-  <% if @user_rank <= 3 && UserContact.where(user_id: current_user.id).count == 0 %>
-    <%= render("views/pages/_winner_form.html.erb", id: current_user.id, params: params) %>
-  <% end %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default dashboard-end">
-        <div class="panel-heading"><%= I18n.t('.dashboard.winners') %></div>
-        <div class="panel-body">
-          <ul class="list-group" id="rank-list">
-            <% winners.each do |key, winners_position| %>
-              <% winners_position.each do |winner| %>
-                <li class="list-group-item label-<%= key %>-place" id="position-<%= key %>">
-                  <span class="badge"><%=winner.score || 0 %></span>
-                  <div class="rank-box">
-                    <span class="label label-<%= key == 1 ? 'success' : (key == 2 ? 'info' : 'warning') %>">#<%= key %></span>
-                  </div>
-                  <span>
-                    <a href="/users/<%= winner.user.id %>/predictions">
-                      <img src="<%= winner.user.image %>" class="participant-img">
-                      <%= winner.user.nickname %>
-                    </a>
-                  </span>
-                </li>
-              <% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card upcoming">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
+      </div>
+      <div class="card-body table-full-width table-responsive">
+        <table class="table table-striped match-table">
+          <tbody>
+            <% matches.each do |match| %>
+              <%= partial("shared/_match_row_small.html", match: match) %>
             <% end %>
-          </ul>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= I18n.t('.sidebar.score') %></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="text-center card-title"><%= score %></h1>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= I18n.t('.sidebar.rank') %></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="text-center card-title"><%= rank %></h1>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <%= partial("pages/_map.html", map_hash: map_hash) %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="panel panel-default dashboard-end-points">
-        <div class="panel-heading"><%= I18n.t('.dashboard.score') %></div>
-        <div class="panel-body">
-          <p class="text-warning"><span class="last-score"><a class="text-warning" href="/users/<%= current_user.id %>/predictions"><%= current_user.score %></a><span>/<span class="last-final-score"><%= total_played %></span></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-default dashboard-end-accuracy">
-        <div class="panel-heading"><%= I18n.t('.dashboard.accuracy') %></div>
-        <div class="panel-body">
-          <p class="text-info"><%= (current_user.score.to_f / total_played.to_f * 100).round(2) %>%</p>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+</div>
