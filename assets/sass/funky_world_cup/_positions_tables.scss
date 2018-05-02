@@ -5,5 +5,15 @@
         display: table-cell;
       }
     }
+
+    &.rank-table {
+      tbody td:last-child {
+        display: table-cell;
+      }
+
+      tbody td:first-child {
+        width: 3rem;
+      }
+    }
   }
 }

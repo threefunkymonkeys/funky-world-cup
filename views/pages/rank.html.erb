@@ -1,32 +1,47 @@
-<h2>Rank</h2>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title"></h3>
+<% content_for(:title){ I18n.t('.menu.rank')} %>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">
+      You have a score of <%= current_user.score %> and your current rank is <a href="#position-<%= @user_rank %>"><%= @user_rank %></a>
+      <a href="#" class="share-icon text-right"><i class="nc-icon nc-send"></i></a>
+    </h4>
   </div>
-  <div class="panel-body">
-    <ul class="list-group" id="rank-list">
-      <% @rank.each do |key, rank_for_key| %>
-        <% rank_for_key.each do |rank| %>
-        <li class="list-group-item" id="position-<%= key %>">
-            <span class="badge"><%=rank.score || 0 %></span>
-          <div class="rank-box">
-            <span class="label label-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span>
-          </div>
-          <span>
-            <% if FunkyWorldCup.finalized? %>
-              <a href="/users/<%= rank.user.id %>/predictions">
-                <img src="<%= rank.user.image %>" class="participant-img">
-                <%= rank.user.nickname %>
-              </a>
-            <% else %>
-              <img src="<%= rank.user.image %>" class="participant-img">
-              <%= rank.user.nickname %>
+  <div class="card-body">
+    <div class="table-full-width table-responsive">
+      <table class="table rank-table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th class="text-center">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rank.each do |key, rank_for_key| %>
+            <% rank_for_key.each do |rank| %>
+              <tr id="position-<%= key %>">
+                <td><span class="label alert alert-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span></td>
+                <td>
+                  <% if FunkyWorldCup.finalized? %>
+                    <a href="/users/<%= rank.user.id %>/predictions">
+                      <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
+                      <%= rank.user.nickname %>
+                    </a>
+                  <% else %>
+                    <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
+                    <%= rank.user.nickname %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <span class="label alert alert-info"><%=rank.score || 0 %></span>
+                </td>
+              </tr>
             <% end %>
-          </span>
-        </li>
-        <% end %>
-      <% end %>
-    </ul>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
