@@ -8,6 +8,12 @@
 
     const mapData = <%= map_hash.to_json %>
 
+    let included = function(code) {
+      keys = Object.keys(mapData.values)
+
+      return keys.indexOf(code) != -1
+    }
+
     $('#world-map').vectorMap({
       map: 'world_mill',
       backgroundColor: 'transparent',
@@ -24,10 +30,17 @@
 
       series: {
         regions: [mapData]
+      },
+
+      onRegionClick: function (evt, region) {
+        if(included(region)) {
+          window.location.href = "/teams/" + region
+        }
       }
+
     })
 
-    let map = $("#world-map").vectorMap('get', 'mapObject');
+    let map = $("#world-map").vectorMap('get', 'mapObject')
     map.updateSize()
   </script>
 <% end %>
