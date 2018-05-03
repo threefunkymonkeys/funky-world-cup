@@ -7,7 +7,7 @@
   <td class="team-column">
     <% if match.host_team %>
       <a href="/teams/<%= match.host_team.iso_code %>">
-        <img src="/img/flags/<%=match.host_team.flag %>">
+        <img class="flag" src="/img/flags/<%=match.host_team.flag %>">
       </a>
     <% else %>
       <img class="flag" src="/img/flags/missing.svg">
