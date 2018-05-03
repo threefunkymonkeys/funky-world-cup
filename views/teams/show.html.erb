@@ -1,20 +1,26 @@
-<h3 class="team-page-header">
-  <%= "#{I18n.t('.teams_page.title')} #{I18n.t(".teams.#{team.iso_code}")}" %>
-  <div class="select-team">
-    <span class="select"><%= I18n.t('.teams_page.select') %></span>
-    <select id="teams-filter" class="chosen-select">
-      <% teams.each do |v_team|%>
-        <option value="<%= v_team.iso_code %>" <%= v_team.iso_code == team.iso_code ? 'selected' : '' %>><%= I18n.t(".teams.#{v_team.iso_code}") %></option>
-      <% end %>
-    </select>
-  </div>
-</h3>
-<div class="panel panel-default dashboard-matches">
-  <div class="panel-heading"></div>
-  <div class="panel-body">
-    <% matches.each do |match| %>
-      <%= render("views/pages/_match.html.erb", :match => match) %>
-    <% end %>
+<% content_for(:title) { "#{I18n.t('.teams_page.title')} #{I18n.t(".teams.#{team.iso_code}")}" } %>
+<div class="row">
+  <div class="card col-8 ml-auto mr-auto">
+    <div class="card-header">
+      <div class="select-team row form-group">
+        <div class="col-4 ml-auto pr-0">
+          <select id="teams-filter" class="form-control">
+            <% teams.each do |v_team|%>
+              <option value="<%= v_team.iso_code %>" <%= v_team.iso_code == team.iso_code ? 'selected' : '' %>><%= I18n.t(".teams.#{v_team.iso_code}") %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-full-width table-responsive">
+      <table class="table table-striped match-table">
+        <tbody>
+          <% matches.each do |match| %>
+            <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id, redirect: req.path[1..req.path.size]) %>
