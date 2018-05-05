@@ -1,0 +1,5 @@
+es:
+  ranking:
+    title: Tenés un puntaje de %{score} y tu ranking actual es %{rank}
+    subtitle: Mirá %{groups} o <span id="open-share-modal" class="link">compartí</span> Funky World Cup!
+

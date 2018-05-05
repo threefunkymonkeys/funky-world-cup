@@ -1,11 +1,17 @@
 <% content_for(:title){ I18n.t('.menu.rank')} %>
 
+<%= partial("shared/_share_modal.html") %>
+
 <div class="card">
   <div class="card-header">
     <h4 class="card-title">
-      You have a score of <%= current_user.score %> and your current rank is <a href="#position-<%= @user_rank %>"><%= @user_rank %></a>
-      <a href="#" class="share-icon text-right"><i class="nc-icon nc-send"></i></a>
+      <% rank_link = "<a href='#position-%s'>%s</a>" % [@user_rank, @user_rank] %>
+      <%= I18n.t('.ranking.title', score: current_user.score, rank: rank_link) %>
     </h4>
+    <p class="card-category">
+    <% groups_link = "<a href='/groups'>%s</a>" % I18n.t('.menu.your_groups').downcase %>
+    <%= I18n.t('.ranking.subtitle', groups: groups_link) %>
+    </p>
   </div>
   <div class="card-body">
     <div class="table-full-width table-responsive">
@@ -44,4 +50,15 @@
     </div>
   </div>
 </div>
+<div id="fb-root"></div>
 
+<% content_for(:javascripts) do %>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/<%= session[:locale] == :en ? 'en_US' : 'es_ES' %>/sdk.js#xfbml=1&appId=<%= ENV['FACEBOOK_APP_ID'] %>&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<% end %>

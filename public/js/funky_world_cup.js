@@ -3,7 +3,7 @@ body = $("body")
 body.on('click', '#edit-prize-btn', function(event) {
   event.preventDefault();
   event.stopPropagation();
-  
+
   $("#prize-form").submit();
 });
 
@@ -15,14 +15,14 @@ body.on('click', '#new-prize-btn', function(event) {
       prize = input.val(),
       list = $("#prizes-list"),
       new_prize;
-  
+
   _this.parent().removeClass('has-error');
 
   if(prize.trim() == "") {
     _this.parent().addClass('has-error');
     return;
   }
-  
+
   $("#no-prize").hide();
   $("#edit-prize-btn").removeClass("hide")
   new_prize = $("<li>").addClass("list-group-item")
@@ -36,7 +36,7 @@ body.on('click', '#new-prize-btn', function(event) {
   list.append(new_prize);
 
   input.val("");
-  
+
   window.update_prizes_list();
 });
 
@@ -184,6 +184,13 @@ body.on('click', "#modal-predict #submit-prediction", function(event) {
 
 body.on('change', "#teams-filter", function(event){
   window.location = "/teams/" + event.target.value;
+});
+
+body.on('click', "#open-share-modal", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  $("#modal-share").modal('show');
 });
 
 // Anchor highlight

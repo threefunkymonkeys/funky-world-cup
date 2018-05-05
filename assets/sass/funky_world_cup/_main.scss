@@ -30,7 +30,7 @@ img.flag {
   }
 }
 
-.share-icon {
-  display: inline-block;
-  width: 38%;
+.link {
+  cursor: pointer;
+  @extend a
 }
