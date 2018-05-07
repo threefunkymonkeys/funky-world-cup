@@ -84,9 +84,7 @@ module FunkyWorldCup
               @rank[key] << rank
             end
 
-            res.write render("./views/layouts/application.html.erb") {
-              render("./views/pages/rank.html.erb")
-            }
+            res.write view("pages/rank.html")
           end
 
           not_found!

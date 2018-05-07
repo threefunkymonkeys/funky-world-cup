@@ -29,3 +29,8 @@ img.flag {
     }
   }
 }
+
+.link {
+  cursor: pointer;
+  @extend a
+}

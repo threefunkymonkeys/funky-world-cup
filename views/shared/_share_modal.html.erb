@@ -1,0 +1,38 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-share">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= I18n.t('.sidebar.share') %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tr>
+            <td class="w-50 text-center">
+              <a href="#" class="">
+                <a href="https://twitter.com/funkyworldcup" class="twitter-follow-button btn btn-social btn-twitter" data-show-count="false" data-size="large" data-lang="<%= session[:locale] %>">
+                  <i class="fa fa-twitter"></i>
+                  Follow @funkyworldcup</a>
+            </td>
+            <td class="w-50 text-center">
+              <a href="https://twitter.com/share" class="twitter-share-button btn btn-social btn-twitter" data-url="http://funkyworldcup.com/" data-via="funkyworldcup" data-lang="<%= session[:locale] %>" data-size="large" data-related="funkyworldcup" data-hashtags="<%= I18n.t(".sidebar.tweet_hashtag") %>" data-text="<%= I18n.t(".sidebar.tweet") %>">
+                <i class="fa fa-twitter"></i>
+                Twittear</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="w-50 text-center">
+              <div class="fb-like" data-href="http://funkyworldcup.com/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-size="large"></div>
+            </td>
+            <td class="w-50 text-center">
+              <div class="fb-share-button" data-href="http://funkyworldcup.com/" data-type="button_count" data-size="large"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

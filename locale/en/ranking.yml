@@ -1,0 +1,5 @@
+en:
+  ranking:
+    title: You have a score of %{score} and your current rank is %{rank}
+    subtitle: Check out %{groups} or <span id="open-share-modal" class="link">share</span> Funky World Cup!
+
