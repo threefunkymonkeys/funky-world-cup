@@ -103,28 +103,3 @@
     <% end %>
   </td>
 </tr>
-<tr class="mobile-info">
-  <td colspan="3">
-    <% if prediction %>
-      <strong class="text-primary"><%= I18n.t('dashboard.your_prediction')%>: <%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-      <% unless prediction.match_penalties_prediction.nil? %>
-        <strong class="text-primary"><%= "(#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score})" %></strong>
-      <% end %>
-      <% if !match.result.nil? && match.result.status == 'final' %>
-        <strong class="text-danger">
-           (<%= I18n.t('.common.score') %>: <%= prediction ? prediction.total_prediction_score : 0 %>)
-        </strong>
-      <% end %>
-    <% elsif match.host_team && match.rival_team && match.result.nil? %>
-      <button type="button"
-              class="btn btn-primary btn-xs btn-predict"
-              data-host="<%= I18n.t(".teams.#{match.host_team.iso_code}") %>"
-              data-host-flag="<%= match.host_team.flag %>"
-              data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
-              data-rival-flag="<%= match.rival_team.flag %>"
-              data-match="<%= match.id %>"
-              data-penalties="<%= match.allow_penalties? %>"
-      ><%= I18n.t('.actions.predict') %></button>
-    <% end %>
-  </td>
-</tr>
