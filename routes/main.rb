@@ -9,21 +9,15 @@ module FunkyWorldCup
         end
 
         on "disclaimer" do
-          res.write render("./views/layouts/home.html.erb") {
-            render("./views/pages/disclaimer_#{session[:locale]}.html")
-          }
+          res.write view("pages/disclaimer_#{session[:locale]}.html", {}, "layouts/home.html")
         end
 
         on "tos" do
-          res.write render("./views/layouts/home.html.erb") {
-            render("./views/pages/tos_#{session[:locale]}.html.erb")
-          }
+          res.write view("pages/tos_#{session[:locale]}.html", {}, "layouts/home.html")
         end
 
         on "rules" do
-          res.write render("./views/layouts/home.html.erb") {
-            render("./views/pages/rules_#{session[:locale]}.html.erb")
-          }
+          res.write view("pages/rules_#{session[:locale]}.html", {}, "layouts/home.html")
         end
 
         on "lang/:locale" do |locale|
@@ -91,9 +85,7 @@ module FunkyWorldCup
         end
 
         on root do
-          res.write render("./views/layouts/home.html.erb") {
-            render("./views/pages/home.html.erb")
-          }
+          res.write view("pages/home.html", {}, "layouts/home.html")
         end
 
         on "auth/:provider/callback" do |provider|

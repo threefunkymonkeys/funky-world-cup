@@ -34,3 +34,16 @@ img.flag {
   cursor: pointer;
   @extend a
 }
+
+#login {
+  color: #ffffff;
+}
+
+.btn.btn-social {
+  padding: 10px;
+
+  .fa {
+    font-size: 32px;
+    width: 32px;
+  }
+}
