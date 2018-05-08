@@ -13,7 +13,7 @@ module FunkyWorldCup
         res.write view(
           "groups/join.html",
           { group: group },
-          "layouts/join.html",
+          "layouts/home.html",
         )
       end
 

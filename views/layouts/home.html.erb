@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" >
 
     <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/funky_world_cup.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,13 +68,22 @@
                   </li>
                 <% else %>
                   <li class="nav-item">
-                    <a class="nav-link">
-                      <i class="nc-icon nc-badge"></i> Register
+                    <a class="nav-link" href="/">
+                      <i class="nc-icon nc-mobile"></i> Login
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link">
-                      <i class="nc-icon nc-mobile"></i> Login
+                  <li class="nav-item d-flex flex-row justify-content-center">
+                    <a class="lang-flag" href="/lang/es" class="nav-link">
+                      <span class="no-icon">
+                        <img src="/img/es.svg" width="24" height="16" />
+                      </span>
+                    </a>
+                  </li>
+                  <li class="nav-item d-flex flex-row justify-content-center">
+                    <a class="lang-flag" href="/lang/en" class="nav-link">
+                      <span class="no-icon">
+                        <img src="/img/gb.svg" width="24" height="16" />
+                      </span>
                     </a>
                   </li>
                 <% end %>
