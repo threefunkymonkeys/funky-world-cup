@@ -3,7 +3,7 @@
     color: $light-gray;
 
     img {
-      width: 40px;
+      width: 30px;
       height: auto;
     }
     .brand-name {
@@ -32,11 +32,31 @@
 
 .home.full-page {
   .content {
-    height: calc(100vh - 70px);
+    height: 100%;
     padding-top: 6vh !important;
   }
 
   .card {
     height: calc(100vh - 205px);
+
+    .card-body {
+      overflow: auto;
+      overflow-y: scroll;
+    }
+  }
+}
+
+#home-login {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  height: 100%;
+
+  .card-body {
+    overflow: hidden;
+    overflow-y: hidden;
+  }
+
+  .btn-social {
+    margin: 0 15px;
   }
 }
