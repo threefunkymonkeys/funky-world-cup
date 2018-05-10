@@ -50,19 +50,17 @@
               <ul class="navbar-nav">
                 <% if current_user %>
                   <li class="nav-item <%= class_for_path("/dashboard") %>">
-                      <a class="nav-link" href="/dashboard">
-                          <i class="nc-icon nc-chart-pie-35"></i>
-                          <p><%= I18n.t('.menu.dashboard') %></p>
-                      </a>
+                    <a class="nav-link" href="/dashboard">
+                      <i class="nc-icon nc-chart-pie-35"></i> <%= I18n.t('.menu.dashboard') %>
+                    </a>
                   </li>
                   <li class="nav-item <%= class_for_path("/cup-groups/fixture") %>">
-                      <a class="nav-link" href="/cup-groups/fixture">
-                          <i class="nc-icon nc-paper-2"></i>
-                          <p><%= I18n.t('.menu.fixture') %></p>
-                      </a>
+                    <a class="nav-link" href="/cup-groups/fixture">
+                      <i class="nc-icon nc-paper-2"></i> <%= I18n.t('.menu.fixture') %>
+                    </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link" href="/logout">
                       <i class="nc-icon nc-lock"></i> Logout
                     </a>
                   </li>
