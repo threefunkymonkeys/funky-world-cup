@@ -1,27 +1,17 @@
-<div id="home-description">
-  <div class="col-md-6 text-center">
-    <br>
+<div class="card col-md-6 mr-auto ml-auto" id="home-login">
+  <div class="text-center card-body">
     <h1><%= I18n.t('errors.not_found') %></h1>
     <p><%= I18n.t('errors.not_found_description') %></p>
+    <% if current_user.nil? %>
+      <hr>
+      <p><%= I18n.t('.home.text_alt') %></p>
+      <br>
+      <a class="btn btn-social btn-round btn-twitter" href="/auth/twitter">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a class="btn btn-social btn-round btn-facebook" href="/auth/facebook">
+        <i class="fa fa-facebook"></i>
+      </a>
+    <% end %>
   </div>
-  <% if current_user.nil? %>
-    <div id="login" class="col-md-4">
-      <h3 class="page-header"><%= I18n.t('.home.title') %></h3>
-      <p><%= I18n.t('.home.text') %></p>
-
-      <h4 class="page-header"><%= I18n.t('.home.login') %></h4>
-      <div class="col-md-2"></div>
-      <div id="twitter-link" class="col-md-4 social-link">
-        <a href="/auth/twitter">
-          <img src="/img/twitter.jpg" width="64" height="64" />
-        </a>
-      </div>
-      <div id="facebook-link" class="col-md-4 social-link">
-        <a href="/auth/facebook">
-          <img src="/img/facebook.jpg" width="64" height="64"/>
-        </a>
-      </div>
-      <div class="col-md-2"></div>
-    </div>
-  <% end %>
 </div>

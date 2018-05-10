@@ -2,5 +2,6 @@ en:
   home:
     title: Join Us and Play World Cup 2018!
     text: Login with Twitter or Facebook to make your predictions and join a group with your friends
+    text_alt: Login with Twitter or Facebook
     login: Sign In
     coming_soon: Coming soon...
