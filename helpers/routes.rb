@@ -1,9 +1,7 @@
 module FunkyWorldCup::Helpers
   def not_found!
     res.status = 404
-    res.write render("./views/layouts/home.html.erb") {
-      render("./views/pages/404.html.erb")
-    }
+    res.write view("pages/404.html", {}, "layouts/home.html")
 
     halt res.finish
   end

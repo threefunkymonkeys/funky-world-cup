@@ -54,6 +54,10 @@
   .card-body {
     overflow: hidden;
     overflow-y: hidden;
+
+    hr {
+      border-color: white;
+    }
   }
 
   .btn-social {
