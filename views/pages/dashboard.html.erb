@@ -1,3 +1,5 @@
+<% content_for(:title){ I18n.t('.menu.dashboard')} %>
+
 <% if current_user.show_rules? %>
   <%= partial("pages/_rules_alert.html", user: current_user) %>
 <% end %>
