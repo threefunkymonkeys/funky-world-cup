@@ -26,7 +26,7 @@
         <tbody>
           <% @rank.each do |key, rank_for_key| %>
             <% rank_for_key.each do |rank| %>
-              <tr id="position-<%= key %>">
+              <tr id="position-<%= key %>" <%= rank.user.id == current_user.id ? 'class="alert-warning"' : '' %>>
                 <td><span class="label alert alert-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span></td>
                 <td>
                   <% if FunkyWorldCup.finalized? %>
