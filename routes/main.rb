@@ -64,10 +64,11 @@ module FunkyWorldCup
           end
 
           on "rank" do
-            raw_rank = UserScore.order(Sequel.desc(:score), :id).all
-            key = 0
-            score = 0
-            @rank = Hash.new
+            @user_rank ||= UserScore.rank_for(current_user.id)
+            raw_rank   = UserScore.order(Sequel.desc(:score), :id).all
+            key        = 0
+            score      = 0
+            @rank      = Hash.new
 
             raw_rank.each do |rank|
               if score.zero? || score > rank.score
