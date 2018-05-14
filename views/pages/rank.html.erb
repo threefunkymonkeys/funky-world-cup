@@ -2,7 +2,7 @@
 
 <%= partial("shared/_share_modal.html") %>
 
-<div class="card">
+<div class="card col-8 ml-auto mr-auto">
   <div class="card-header">
     <h4 class="card-title">
       <% rank_link = "<a href='#position-%s'>%s</a>" % [@user_rank, @user_rank] %>
@@ -26,7 +26,7 @@
         <tbody>
           <% @rank.each do |key, rank_for_key| %>
             <% rank_for_key.each do |rank| %>
-              <tr id="position-<%= key %>">
+              <tr id="position-<%= key %>" <%= rank.user.id == current_user.id ? 'class="alert-warning"' : '' %>>
                 <td><span class="label alert alert-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span></td>
                 <td>
                   <% if FunkyWorldCup.finalized? %>
