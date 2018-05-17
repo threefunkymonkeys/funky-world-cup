@@ -100,9 +100,7 @@ module FunkyWorldCup
                               "name" => info['name'],
                               "image" => info['image'])
           else
-            if (user.nickname != info['nickname'] || user.image != info['image'])
-              user.update(:nickname => info['nickname'], :image => info['image'])
-            end
+            user.update(:nickname => info['nickname'], :image => info['image'])
           end
 
           if join_group_code = session.delete('fwc.join_group_code')
