@@ -2,8 +2,8 @@
 
 <div class="card" id="predictions-table">
   <div class="card-header"></div>
-  <div class="card-body table-full-width table-responsive">
-    <% if predictions.any? %>
+  <% if predictions.any? %>
+    <div class="card-body table-full-width table-responsive">
       <table class="table match-table">
         <thead>
           <tr>
@@ -88,9 +88,11 @@
             </tr>
         </tbody>
       </table>
-    <% else %>
+    </div>
+  <% else %>
+    <div class="card-body">
       <p><%= I18n.t('.predictions.no_predictions') %></p>
-    <% end  %>
-
+    </div>
+  <% end  %>
   </div>
 </div>
