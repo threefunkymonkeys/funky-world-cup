@@ -20,7 +20,7 @@ namespace :db do
     puts 'Done!'
   end
 
-  desc "Seed the database with the teams and matches for FIFA World Cup 2014"
+  desc "Seed the database with the teams and matches for FIFA World Cup"
   task :seed, [:year] do |t, args|
     env ||= ENV['RACK_ENV'] || :development
     FunkyWorldCup::Helpers.init_environment(env)
