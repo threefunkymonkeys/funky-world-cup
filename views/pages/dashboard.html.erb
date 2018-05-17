@@ -6,20 +6,54 @@
 
 <div class="row">
   <div class="col-md-6">
-    <div class="card upcoming">
-      <div class="card-header">
-        <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
+    <% if matches[:now_playing].any? %>
+      <div class="card upcoming">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t('.dashboard.now_playing') %></h4>
+        </div>
+        <div class="card-body table-full-width table-responsive">
+          <table class="table table-striped match-table">
+            <tbody>
+              <% matches[:now_playing].each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: match) %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="card-body table-full-width table-responsive">
-        <table class="table table-striped match-table">
-          <tbody>
-            <% matches.each do |match| %>
-              <%= partial("shared/_match_row_small.html", match: match) %>
-            <% end %>
-          </tbody>
-        </table>
+    <% end %>
+    <% if matches[:finalized].any? %>
+      <div class="card upcoming">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
+        </div>
+        <div class="card-body table-full-width table-responsive">
+          <table class="table table-striped match-table">
+            <tbody>
+              <% matches[:finalized].each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: match) %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    <% end %>
+    <% if matches[:upcoming].any? %>
+      <div class="card upcoming">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
+        </div>
+        <div class="card-body table-full-width table-responsive">
+          <table class="table table-striped match-table">
+            <tbody>
+              <% matches[:upcoming].each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: match) %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-md-6">
