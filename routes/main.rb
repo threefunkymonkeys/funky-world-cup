@@ -108,7 +108,7 @@ module FunkyWorldCup
               begin
                 GroupsUser.create(group_id: group.id, user_id: user.id)
                 flash[:success] = "#{I18n.t('.messages.groups.part_of')} #{group.name}"
-              rescue => e
+              rescue
                 flash[:error] = "#{I18n.t('.messages.groups.cant_join')} #{group.name}, #{I18n.t('.messages.common.please')} #{I18n.t('.messages.common.try_again')}"
               end
             else

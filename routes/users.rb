@@ -4,7 +4,7 @@ module FunkyWorldCup
 
     define do
       on put, ":id/toggle_rules" do |user_id|
-        not_found! unless user_id == current_user.id || current_user.admin
+        not_found! unless user_id.to_i == current_user.id || current_user.admin
 
         current_user.update(show_rules: !current_user.show_rules)
 
@@ -12,11 +12,11 @@ module FunkyWorldCup
       end
 
       on get do
-        calculate_user_rank
-
         on :id do |user_id|
-          on current_user && (current_user.id == user_id.to_i || current_user.admin || FunkyWorldCup.finalized?) && user = User[user_id] do
+          user = User[user_id]
+          not_found! unless user && current_user
 
+          on current_user.id == user_id.to_i || current_user.admin || FunkyWorldCup.finalized? do
             on "predictions" do
               not_found! unless root
               predictions = MatchPrediction.select(Sequel.qualify(:match_predictions, :id), :host_score, :rival_score, :prediction_score, :match_id)
@@ -70,7 +70,7 @@ module FunkyWorldCup
                       end
                     end
                     flash[:success] = I18n.t('.messages.matches.prediction_added')
-                  rescue => e
+                  rescue
                     flash[:error] = "#{I18n.t('.messages.matches.cant_predict')}, #{I18n.t('.messages.common.please')}, #{I18n.t('.messages.common.try_again')}"
                   end
                 else
