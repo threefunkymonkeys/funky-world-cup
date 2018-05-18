@@ -27,7 +27,7 @@ Cuba.use Rack::Protection
 Cuba.use Rack::MethodOverride
 
 Cuba.use OmniAuth::Builder do
-  provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+  provider :twitter,  ENV['TWITTER_KEY'],     ENV['TWITTER_SECRET'], { secure_image_url: true }
   provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
 end
 
