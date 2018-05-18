@@ -43,6 +43,8 @@ module FunkyWorldCup
           on "dashboard" do
             winners = total_played = matches = nil
 
+            session[:notifications] = current_user.get_and_read_notifications
+
             if FunkyWorldCup.finalized?
               winners      = UserScore.winners
               total_played = FunkyWorldCup.total_points

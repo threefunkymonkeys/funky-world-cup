@@ -54,8 +54,7 @@ Dir["./routes/**/*.rb"].each { |file| require file }
 
 Cuba.define do
   init_locale(req.env)
-  session[:notifications] = current_user.get_and_read_notifications if current_user
-  @@champion  ||= FunkyWorldCup.champion
+  @@champion ||= FunkyWorldCup.champion
 
   on default do
     res.write render("./views/pages/coming_soon.html.erb")
