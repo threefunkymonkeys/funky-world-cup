@@ -49,7 +49,7 @@ module FunkyWorldCup
               winners      = UserScore.winners
               total_played = FunkyWorldCup.total_points
             else
-              matches = Match.for_dashboard.all
+              matches = Match.for_dashboard
             end
 
             map_hash = FunkyWorldCup::Map.new(CupGroup.all).series_data

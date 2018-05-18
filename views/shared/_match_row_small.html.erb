@@ -20,7 +20,7 @@
   <% if match.result.nil? %>
     <td class="text-center">
       <span class="time text-success">
-        <%= match.start_datetime.strftime("%H:%M") %></br>
+        <%= match_time(match.start_datetime, match.local_timezone) %></br>
         <%= match.local_timezone %>
       </span>
     </td>
@@ -83,7 +83,7 @@
 </tr>
 <tr>
   <td colspan="4" class="match-info text-center">
-    <%= match.start_datetime.strftime("%d %^b %Y") %> -
+    <%= match_date(match.start_datetime, match.local_timezone, "%d %^b %Y") %> -
     <%= match.stadium %> - 
     <%= match.place %>
   </td>

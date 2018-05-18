@@ -1,6 +1,8 @@
 en:
   dashboard:
     title: Dashboard
+    now_playing: Now Playing
+    finalized: Finished
     upcoming: Upcoming Matches
     your_prediction: Your prediction
     winners: Winners

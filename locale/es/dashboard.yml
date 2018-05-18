@@ -1,6 +1,8 @@
 es:
   dashboard:
     title: Panel
+    now_playing: En progreso
+    finalized: Finalizados
     upcoming: Próximos Partidos
     your_prediction: Tu resultado
     winners: Ganadores

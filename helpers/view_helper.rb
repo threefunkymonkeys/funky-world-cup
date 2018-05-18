@@ -44,5 +44,13 @@ class Cuba
     def prizes_to_vue_json(prizes)
       prizes.map(&:to_hash).to_json
     end
+
+    def match_date(dt, tz, format = "%d %^b")
+      dt.to_datetime.new_offset(tz).strftime(format)
+    end
+
+    def match_time(dt, tz, format = "%H:%M")
+      dt.to_datetime.new_offset(tz).strftime(format)
+    end
   end
 end

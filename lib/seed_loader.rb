@@ -64,7 +64,7 @@ class SeedLoader
                 host_id: match['host'],
                 rival_id: match['rival'],
                 group_id: cup_group.id,
-                start_datetime: DateTime.parse(match['date']),
+                start_datetime: DateTime.parse("#{match['date']} #{match['local_timezone']}"),
                 place: match['place'],
                 stadium: match['stadium'],
                 local_timezone: match['local_timezone']
@@ -115,7 +115,7 @@ class SeedLoader
               host_code: match['host_code'],
               rival_code: match['rival_code'],
               group_id: group.id,
-              start_datetime: DateTime.parse(match['date']),
+              start_datetime: DateTime.parse("#{match['date']} #{match['local_timezone']}"),
               place: match['place'],
               stadium: match['stadium'],
               local_timezone: match['local_timezone']

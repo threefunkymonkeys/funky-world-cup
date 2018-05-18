@@ -55,36 +55,45 @@ class Match < Sequel::Model
   def self.for_dashboard
     group = CupGroup.now_playing
 
-    if group.phase == "groups"
-      start_date = min(:start_datetime).to_date
+    matches =
+      if group.phase == "groups"
+        start_date = min(:start_datetime).to_date
 
-      if Date.today < start_date #WC hasn't started yet
-        date = start_date
+        if Date.today < start_date #WC hasn't started yet
+          date = start_date
+        else
+          date = Date.today
+        end
+
+        select_all(:matches)
+          .select_append(:cup_groups__name)
+          .join(:cup_groups, :id => :group_id)
+          .where("cup_groups.phase LIKE 'groups' AND DATE(matches.start_datetime) BETWEEN ? AND ?", date - 1, date + 1)
+          .order(:start_datetime)
+
+      elsif group.phase == "final" || group.phase == "third_place"
+        ids = CupGroup.select(:id).where(:phase => ["final", "third_place"]).map(&:id)
+        Match
+          .select_all(:matches)
+          .select_append(:cup_groups__name)
+          .where(:group_id => ids)
+          .join(:cup_groups, :id => :group_id)
+          .order(:start_datetime)
+
       else
-        date = Date.today
-      end
+        Match
+          .select_all(:matches)
+          .select_append(:cup_groups__name)
+          .where(:group_id => group.id)
+          .join(:cup_groups, :id => :group_id)
+          .order(:start_datetime)
+      end.all
 
-      @@dashboard_matches = select_all(:matches).
-                              select_append(:cup_groups__name).
-                              join(:cup_groups, :id => :group_id).
-                              where("cup_groups.phase LIKE 'groups' AND DATE(matches.start_datetime) BETWEEN ? AND ?", date - 1, date + 1).
-                              order(:start_datetime)
-
-    elsif group.phase == "final" || group.phase == "third_place"
-      ids = CupGroup.select(:id).where(:phase => ["final", "third_place"]).map(&:id)
-      @@dashboard_matches = Match.select_all(:matches).
-                                  select_append(:cup_groups__name).
-                                  where(:group_id => ids).
-                                  join(:cup_groups, :id => :group_id).
-                                  order(:start_datetime)
-
-    else
-      @@dashboard_matches = Match.select_all(:matches).
-                                  select_append(:cup_groups__name).
-                                  where(:group_id => group.id).
-                                  join(:cup_groups, :id => :group_id).
-                                  order(:start_datetime)
-    end
+    {
+      now_playing: matches.select { |match| match.result && match.result.status == "partial" },
+      upcoming:    matches.select { |match| match.result.nil? },
+      finalized:   matches.select { |match| match.result && match.result.status == "final" },
+    }
   end
 
   def self.today_matches
