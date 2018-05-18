@@ -1,0 +1,23 @@
+<div class="alert alert-primary alert-with-icon dashboard-alert">
+  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" data-notify="container">
+    <i class="nc-icon nc-simple-remove"></i>
+  </button>
+  <span data-notify="icon" class="nc-icon nc-spaceship"></span>
+  <% notifications.each do |notification| %>
+    <span data-notify="message">
+      <% if notification.match_prediction %>
+        <%= I18n.t("notifications.#{notification.message}",
+              host: I18n.t(".teams.#{notification.match_prediction.match.host_team.iso_code}"),
+              rival: I18n.t(".teams.#{notification.match_prediction.match.rival_team.iso_code}")
+            ) %>
+      <% elsif notification.match_penalties_prediction %>
+        <%= I18n.t("notifications.#{notification.message}",
+              host: I18n.t(".teams.#{notification.match_penalties_prediction.match.host_team.iso_code}"),
+              rival: I18n.t(".teams.#{notification.match_penalties_prediction.match.rival_team.iso_code}")
+            ) %>
+      <% else %>
+        <strong><%= I18n.t("notifications.#{notification.message}") %></strong>
+      <% end %>
+    </span>
+  <% end %>
+</div>

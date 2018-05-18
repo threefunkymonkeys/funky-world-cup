@@ -24,7 +24,7 @@ en:
       list_updated: Prizes list was updated
       cant_save_list: There was an error saving prizes
     matches:
-      prediction_added: Your prediction was added
+      prediction_added: Your prediction has been added
       cant_predict: There was an error adding the prediction for this match
       cant_cheat: Trying to cheat? You can't
       late_prediction: You can not longer add a prediction for this match
