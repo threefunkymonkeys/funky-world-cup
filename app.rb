@@ -56,10 +56,6 @@ Cuba.define do
   init_locale(req.env)
   @@champion ||= FunkyWorldCup.champion
 
-  on default do
-    res.write render("./views/pages/coming_soon.html.erb")
-  end
-
   on "groups" do
     run FunkyWorldCup::Groups
   end
