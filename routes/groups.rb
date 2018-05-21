@@ -105,8 +105,10 @@ module FunkyWorldCup
                 new = Array.new
                 begin
                   FunkyWorldCup::Helpers.database.transaction(rollback: :reraise) do
-                    req.params['prizes'].each_with_index do |prize, index|
-                      GroupPrize.create(name: prize, group_id: group.id, order: index +1)
+                    if req.params['prizes']
+                      req.params['prizes'].each_with_index do |prize, index|
+                        GroupPrize.create(name: prize, group_id: group.id, order: index +1)
+                      end
                     end
 
                     old.each do |prize|
