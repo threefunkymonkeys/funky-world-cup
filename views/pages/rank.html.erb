@@ -2,51 +2,53 @@
 
 <%= partial("shared/_share_modal.html") %>
 
-<div class="card col-8 ml-auto mr-auto">
-  <div class="card-header">
-    <h4 class="card-title">
-      <% rank_link = "<a href='#position-%s'>%s</a>" % [@user_rank, @user_rank] %>
-      <%= I18n.t('.ranking.title', score: current_user.score, rank: rank_link) %>
-    </h4>
-    <p class="card-category">
-    <% groups_link = "<a href='/groups'>%s</a>" % I18n.t('.menu.your_groups').downcase %>
-    <%= I18n.t('.ranking.subtitle', groups: groups_link) %>
-    </p>
-  </div>
-  <div class="card-body">
-    <div class="table-full-width table-responsive">
-      <table class="table rank-table">
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Name</th>
-            <th class="text-center">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @rank.each do |key, rank_for_key| %>
-            <% rank_for_key.each do |rank| %>
-              <tr id="position-<%= key %>" <%= rank.user.id == current_user.id ? 'class="alert-warning"' : '' %>>
-                <td><span class="label alert alert-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span></td>
-                <td>
-                  <% if FunkyWorldCup.finalized? %>
-                    <a href="/users/<%= rank.user.id %>/predictions">
+<div class="row">
+  <div class="col-12 col-md-8 ml-auto mr-auto">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">
+          <% rank_link = "<a href='#position-%s'>%s</a>" % [@user_rank, @user_rank] %>
+          <%= I18n.t('.ranking.title', score: current_user.score, rank: rank_link) %>
+        </h4>
+        <p class="card-category">
+        <% groups_link = "<a href='/groups'>%s</a>" % I18n.t('.menu.your_groups').downcase %>
+        <%= I18n.t('.ranking.subtitle', groups: groups_link) %>
+        </p>
+      </div>
+      <div class="card-body table-full-width mb-0">
+        <table class="table rank-table">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Name</th>
+              <th class="text-center">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @rank.each do |key, rank_for_key| %>
+              <% rank_for_key.each do |rank| %>
+                <tr id="position-<%= key %>" <%= rank.user.id == current_user.id ? 'class="alert-warning"' : '' %>>
+                  <td><span class="label alert alert-<%= key < 3 ? 'success' : 'warning' %>">#<%= key %></span></td>
+                  <td>
+                    <% if FunkyWorldCup.finalized? %>
+                      <a href="/users/<%= rank.user.id %>/predictions">
+                        <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
+                        <%= rank.user.nickname %>
+                      </a>
+                    <% else %>
                       <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
                       <%= rank.user.nickname %>
-                    </a>
-                  <% else %>
-                    <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
-                    <%= rank.user.nickname %>
-                  <% end %>
-                </td>
-                <td class="text-center">
-                  <span class="label alert alert-info"><%=rank.score || 0 %></span>
-                </td>
-              </tr>
+                    <% end %>
+                  </td>
+                  <td class="text-center">
+                    <span class="label alert alert-info"><%=rank.score || 0 %></span>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
