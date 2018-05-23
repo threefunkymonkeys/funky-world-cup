@@ -12,7 +12,7 @@
           <h4 class="card-title"><%= I18n.t('.dashboard.now_playing') %></h4>
         </div>
         <div class="card-body table-full-width">
-          <table class="table table-striped match-table table-responsive">
+          <table class="table match-table table-responsive">
             <tbody>
               <% matches[:now_playing].each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: match) %>
@@ -28,7 +28,7 @@
           <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
         </div>
         <div class="card-body table-full-width">
-          <table class="table table-striped match-table table-responsive">
+          <table class="table match-table table-responsive">
             <tbody>
               <% matches[:finalized].each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: match) %>
@@ -44,7 +44,7 @@
           <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
         </div>
         <div class="card-body table-full-width">
-          <table class="table table-striped match-table table-responsive">
+          <table class="table match-table table-responsive">
             <tbody>
               <% matches[:upcoming].each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: match) %>
