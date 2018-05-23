@@ -55,7 +55,7 @@
       <% end %>
     </span>
   </td>
-  <td class="text-center">
+  <td class="text-center d-none d-sm-table-cell">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
       <% if !match.result.nil? && match.result.status == 'final' %>
@@ -84,7 +84,36 @@
 <tr>
   <td colspan="4" class="match-info text-center">
     <%= match_date(match.start_datetime, match.local_timezone, "%d %^b %Y") %> -
-    <%= match.stadium %> - 
-    <%= match.place %>
+    <%= match.stadium %> 
+    <span class="d-none d-sm-inline"> - <%= match.place %></span>
   </td>
 </tr>
+<% if prediction || match.predictable? %>
+  <tr class="d-table-row d-sm-none">
+    <td class="text-center match-info" colspan="3">
+      <% if prediction %>
+        <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+        <% if !match.result.nil? && match.result.status == 'final' %>
+          <br>
+          <span class="text-danger">
+            <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
+          </span>
+        <% end %>
+      <% elsif match.predictable? %>
+        <button type="button"
+                class="btn btn-info btn-sm btn-predict"
+                data-host="<%= I18n.t(".teams.#{match.host_team.iso_code}") %>"
+                data-host-flag="<%= match.host_team.flag %>"
+                data-rival="<%= I18n.t(".teams.#{match.rival_team.iso_code}") %>"
+                data-rival-flag="<%= match.rival_team.flag %>"
+                data-match="<%= defined?(match_id) ? match_id : match.id %>"
+                data-penalties="<%= match.allow_penalties? %>"
+                >
+
+            <span class="btn-label"> <i class="fa fa-check"></i> </span>
+            <%= I18n.t('.actions.predict') %>
+        </button>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
