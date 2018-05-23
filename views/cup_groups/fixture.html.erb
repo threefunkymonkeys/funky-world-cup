@@ -7,8 +7,8 @@
         <div class="card-header">
           <h4 class="card-title">Group <%= group_name %></h4>
         </div>
-        <div class="card-body table-full-width table-responsive">
-          <table class="table table-striped match-table">
+        <div class="card-body table-full-width">
+          <table class="table match-table table-responsive">
             <tbody>
               <% matches.each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
@@ -28,11 +28,18 @@
         <div class="card-header">
           <h4 class="card-title"><%= phase == 'groups' ? I18n.t('.common.group') + 's' : I18n.t(".common.#{matches.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
         </div>
-        <div class="card-body">
-          <table class="table table-striped table-hover match-table">
+        <div class="card-body table-full-width">
+          <table class="table table-striped table-hover match-table table-responsive d-none d-sm-table">
             <tbody>
               <% matches.each do |match| %>
                 <%= partial("shared/_match_row.html", match: Match[match.id]) %>
+              <% end %>
+            </tbody>
+          </table>
+          <table class="table table-hover match-table table-responsive d-table d-sm-none">
+            <tbody>
+              <% matches.each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
               <% end %>
             </tbody>
           </table>

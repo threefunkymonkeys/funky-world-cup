@@ -31,11 +31,16 @@
   }
 
   td:last-of-type {
-    display: table-cell !important;
     height: 100%;
   }
 
   span.time {
     font-weight: 600;
+  }
+}
+
+#predictions-table {
+  table tr td:last-child {
+    display: table-cell !important;
   }
 }

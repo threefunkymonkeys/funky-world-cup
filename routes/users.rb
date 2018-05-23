@@ -4,6 +4,7 @@ module FunkyWorldCup
 
     define do
       on put, ":id/toggle_rules" do |user_id|
+        not_found! unless current_user
         not_found! unless user_id.to_i == current_user.id || current_user.admin
 
         current_user.update(show_rules: !current_user.show_rules)
