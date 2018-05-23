@@ -28,7 +28,9 @@ Cuba.use Rack::MethodOverride
 
 Cuba.use OmniAuth::Builder do
   provider :twitter,  ENV['TWITTER_KEY'],     ENV['TWITTER_SECRET'], { secure_image_url: true }
-  provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
+  provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET'], {
+    callback_url: File.join(ENV["FWC_URL"], "auth", "facebook", "callback")
+  }
 end
 
 Dir["./helpers/**/*.rb"].each { |file| require file }
