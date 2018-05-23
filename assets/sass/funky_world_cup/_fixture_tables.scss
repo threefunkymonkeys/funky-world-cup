@@ -38,3 +38,9 @@
     font-weight: 600;
   }
 }
+
+#predictions-table {
+  table tr td:last-child {
+    display: table-cell !important;
+  }
+}
