@@ -1,6 +1,6 @@
 cuba -v 3.1.1
 tilt -v 2.0.1
-sequel -v 5.0.8
+sequel -v 4.49.0
 pg -v 1.0.0
 omniauth-twitter -v 1.4.0
 omniauth-facebook -v 5.0.0
