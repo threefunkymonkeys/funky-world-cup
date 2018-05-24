@@ -21,6 +21,7 @@ module FunkyWorldCupApp
 
   class Database
     def self.connect(settings)
+      Sequel::Model.plugin :def_dataset_method
       Sequel.postgres settings
     end
   end
