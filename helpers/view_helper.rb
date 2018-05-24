@@ -52,5 +52,9 @@ class Cuba
     def match_time(dt, tz, format = "%H:%M")
       dt.to_datetime.new_offset(tz).strftime(format)
     end
+
+    def csrf_token
+      "<input type='hidden' name='token' value='#{env['rack.session'][:csrf]}'>"
+    end
   end
 end

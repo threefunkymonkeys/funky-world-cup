@@ -68,7 +68,7 @@ class Match < Sequel::Model
         select_all(:matches)
           .select_append(:cup_groups__name)
           .join(:cup_groups, :id => :group_id)
-          .where("cup_groups.phase LIKE 'groups' AND DATE(matches.start_datetime) BETWEEN ? AND ?", date - 1, date + 1)
+          .where(Sequel.lit("cup_groups.phase LIKE 'groups' AND DATE(matches.start_datetime) BETWEEN ? AND ?", date - 1, date + 1))
           .order(:start_datetime)
 
       elsif group.phase == "final" || group.phase == "third_place"

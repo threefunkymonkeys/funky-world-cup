@@ -1,7 +1,7 @@
 cuba -v 3.1.1
 tilt -v 2.0.1
-sequel -v 4.9.0
-pg -v 0.17.1
+sequel -v 4.49.0
+pg -v 1.0.0
 omniauth-twitter -v 1.4.0
 omniauth-facebook -v 5.0.0
 rack-protection -v 1.5.3
@@ -12,3 +12,4 @@ clap -v 1.0.0
 eventmachine -v 1.2.5
 simple_oauth -v 0.2.0
 sass -v 3.5.5
+postmark -v 1.11.0

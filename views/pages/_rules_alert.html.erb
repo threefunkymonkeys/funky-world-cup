@@ -12,7 +12,8 @@
   <script type="text/javascript">
     $("#user-dismiss-rules").on("close.bs.alert", function () {
       $.ajax({
-        type: "PUT",
+        method: "PUT",
+        data: "token=<%= env['rack.session'][:csrf] %>",
         url: "/users/<%= user.id %>/toggle_rules"
       })
     })

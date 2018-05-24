@@ -7,6 +7,7 @@
       <div class="modal-body table-full-width table-responsiveel-dialog">
         <form method="post" action="/users/<%= current_user.id %>/predictions" id="prediction-form">
           <input type="hidden" name="match_id" id="match-id" value="">
+          <%= csrf_token %>
           <% if defined?(redirect) %>
             <input type="hidden" name="back_to" value="<%= redirect %>">
           <% end %>

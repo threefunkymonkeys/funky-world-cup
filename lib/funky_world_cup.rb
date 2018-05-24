@@ -21,6 +21,8 @@ module FunkyWorldCupApp
 
   class Database
     def self.connect(settings)
+      Sequel::Model.plugin :def_dataset_method
+      Sequel.split_symbols = true
       Sequel.postgres settings
     end
   end

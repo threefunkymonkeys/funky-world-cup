@@ -23,7 +23,7 @@ Cuba.use Rack::Static,
           urls: %w[/img /css /js /fonts]
 
 Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"]
-Cuba.use Rack::Protection
+Cuba.use Rack::Protection::AuthenticityToken, authenticity_param: "token"
 Cuba.use Rack::MethodOverride
 
 Cuba.use OmniAuth::Builder do
