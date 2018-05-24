@@ -11,6 +11,7 @@
           <div class="text-center">
             <form action="/groups/join/<%= group.link %>" method="post">
               <input type="hidden" name="_method" value="put">
+              <%= csrf_token %>
               <button type="submit" class="btn btn-success btn-lg"><%= I18n.t('groups.join.join') %></button>
             </form>
           </div>

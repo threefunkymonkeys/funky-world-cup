@@ -4,6 +4,7 @@
   <div class="card col-12 col-sm-8 col-md-6 ml-auto mr-auto">
     <div class="card-body">
       <form method="post" action="/groups">
+        <%= csrf_token %>
         <div class="form-group">
           <label class="control-label" for="name"><%= I18n.t('.groups.fields.name') %></label>
           <input class="form-control" id="name" name="group[name]" type="text" value="<%= params.has_key?('name') ? params['name'] : '' %>" required>

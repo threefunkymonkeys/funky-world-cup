@@ -5,6 +5,7 @@
   <div class="card-body" id="prizes">
     <form method="post" action="/groups/<%= group.id %>/prizes" id="prize-form">
       <input type="hidden" name="_method" value="PUT">
+      <%= csrf_token %>
       <table class="table">
         <tr v-for="(prize, index) in prizes">
           <td class="prize-edit-cell">
