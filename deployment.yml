@@ -12,4 +12,3 @@ production:
 
 staging:
   base_port: 5000
-  network: fwc
