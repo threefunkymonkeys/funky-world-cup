@@ -1,0 +1,15 @@
+---
+common:
+  name: funkyworldcup.com
+  instances: 2
+  network: 3fm
+  base_port: 3000
+  container_port: 8080
+
+production:
+  instances: 3
+  base_port: 5100
+
+staging:
+  base_port: 5000
+  network: fwc

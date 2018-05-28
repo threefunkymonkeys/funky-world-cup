@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+
+settings = YAML.load_file("#{File.dirname(__FILE__)}/../deployment.yml")
+
+DEPLOY_ENV = ENV.fetch("RACK_ENV", "staging")
+
+settings = settings["common"].merge(settings[DEPLOY_ENV])
+
+INSTANCES  = settings["instances"]
+BASE_PORT  = settings["base_port"]
+APP_NAME   = settings["name"]
+IMAGE_NAME = "#{APP_NAME}:#{DEPLOY_ENV}"
+
+begin
+    puts "Building Image for #{DEPLOY_ENV} (#{IMAGE_NAME})"
+   `docker build -f Dockerfile.#{DEPLOY_ENV} -t #{IMAGE_NAME} .`
+rescue => e
+    puts "Image build failed: #{e.message}"
+    exit 1
+end
+
+begin
+    puts "Creating / Replacing containers"
+    INSTANCES.times do |t|
+      container_name = "fwc_#{DEPLOY_ENV}_#{t+1}"
+      port = BASE_PORT + t
+
+      puts "Removing #{container_name}"
+      begin
+          `docker container stop #{container_name}`
+      rescue
+          puts "#{container_name} does not exist. Creating..."
+          exit 1
+      end
+      puts "Running #{container_name}"
+
+      running = `docker run -dit -p #{port}:#{settings["container_port"]} --name=#{container_name} --rm --network="#{settings["network"]}" -e RACK_ENV=#{DEPLOY_ENV} -v "$(pwd)"/log:/srv/http/#{APP_NAME}/log -v "$(pwd)"/config:/srv/http/#{APP_NAME}/public -v "$(pwd)"/config:/srv/http/#{APP_NAME}/config #{IMAGE_NAME}`
+      puts running
+     end
+rescue => e
+    puts "Error creating containers"
+    exit 1
+end

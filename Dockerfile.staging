@@ -1,0 +1,21 @@
+FROM ruby:2.5.1-alpine3.7
+
+# From LFHS http://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html#srvDataForServicesProvidedBySystem
+RUN apk --no-cache add make gcc libc-dev g++ ncurses postgresql-dev libffi-dev
+
+ENV PATH /usr/local/bundle/bin:$PATH
+
+ENV INSTALL_DIR /srv/http/funkyworldcup.com
+
+WORKDIR $INSTALL_DIR
+
+ADD . $INSTALL_DIR
+
+RUN gem install dep puma
+
+RUN dep install
+
+EXPOSE 8080
+
+# Run the API
+CMD puma -w 3 -e staging -v -p 8080 --redirect-stdout log/staging.access.log --redirect-stderr log/staging.error.log
