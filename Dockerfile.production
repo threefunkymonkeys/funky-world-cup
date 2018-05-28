@@ -18,4 +18,4 @@ RUN dep install
 EXPOSE 8080
 
 # Run the API
-CMD puma -w 3 -e production -v -p 8585 --redirect-stdout log/production.access.log --redirect-stderr log/production.error.log
+CMD puma -w 3 -e production -v -p 8080 --redirect-stdout log/production.access.log --redirect-stderr log/production.error.log
