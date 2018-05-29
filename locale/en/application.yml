@@ -7,8 +7,8 @@ en:
     your_groups: Your Groups
     no_groups: You don't participate in any group yet
     share: Share!
-    tweet: Predict the results of World Cup 2014 in
-    tweet_hashtag: worldcup2014,brazil2014
+    tweet: Predict the results of World Cup 2018 in
+    tweet_hashtag: worldcup2018,russia2018
     world_cup_champion: World Cup Champion!
   actions:
     create_group: Create Group
