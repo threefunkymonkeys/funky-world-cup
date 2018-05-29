@@ -32,11 +32,11 @@
                   <td>
                     <% if FunkyWorldCup.finalized? %>
                       <a href="/users/<%= rank.user.id %>/predictions">
-                        <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
+                        <%= partial("shared/_participant_img.html", image: rank.user.image, classes: ["d-none", "d-sm-inline"]) %>
                         <%= rank.user.nickname %>
                       </a>
                     <% else %>
-                      <img src="<%= rank.user.image %>" class="participant-img d-none d-sm-inline d-md-inline">
+                      <%= partial("shared/_participant_img.html", image: rank.user.image, classes: ["d-none", "d-sm-inline"]) %>
                       <%= rank.user.nickname %>
                     <% end %>
                   </td>

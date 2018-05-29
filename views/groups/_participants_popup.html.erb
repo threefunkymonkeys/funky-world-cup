@@ -22,11 +22,7 @@
                 <td>#<%= key %></td>
                 <td><%=participant[:score] || 0 %></td>
                 <td>
-                  <% if participant[:image] %>
-                    <img src="<%= participant[:image] %>" class="participant-img">
-                  <% else %>
-                    <img src="/img/soccer-ball.svg" class="participant-img">
-                  <% end %>
+                  <%= partial("shared/_participant_img.html", image: participant[:image], classes: []) %>
                   <span><%= participant[:nickname] %></span>
                 </td>
               </tr>
