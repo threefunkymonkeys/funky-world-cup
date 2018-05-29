@@ -55,7 +55,7 @@
       <% end %>
     </span>
   </td>
-  <td class="text-center d-none d-sm-table-cell">
+  <td class="text-center d-none d-sm-table-cell col-2">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
       <% if !match.result.nil? && match.result.status == 'final' %>
