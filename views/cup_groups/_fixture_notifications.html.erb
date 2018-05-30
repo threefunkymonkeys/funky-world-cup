@@ -1,0 +1,41 @@
+<div class="alert alert-primary alert-with-icon dashboard-alert fixture-notification d-none" data-notify="container" id="fixture-noedit-prediction">
+  <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+    <i class="nc-icon nc-simple-remove"></i>
+  </button>
+  <span data-notify="icon" class="nc-icon nc-bulb-63"></span>
+  <span data-notify="message">
+    <%= I18n.t(".predictions.tips.norush") %>
+  </span>
+</div>
+
+<div class="alert alert-primary alert-with-icon dashboard-alert fixture-notification d-none" data-notify="container" id="fixture-beforematch-prediction">
+  <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+    <i class="nc-icon nc-simple-remove"></i>
+  </button>
+  <span data-notify="icon" class="nc-icon nc-bulb-63"></span>
+  <span data-notify="message">
+    <%= I18n.t(".predictions.tips.noedit") %>
+  </span>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    var storage = window.localStorage;
+
+    if (storage) {
+      $(".fixture-notification").each( function () {
+        var _this = $(this);
+        var id = _this.attr("id");
+
+        var local_storage_value = storage.getItem(id);
+
+        if (!local_storage_value) {
+          _this.on("close.bs.alert", function () {
+            storage.setItem(id, true);
+          });
+          _this.removeClass("d-none");
+        }
+      })
+    }
+  </script>
+<% end %>

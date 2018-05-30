@@ -13,3 +13,6 @@ es:
       in_progress: Comenzado
       finished: Finalizado
     no_predictions: No has arriesgado ningún resultado aun. Revisa tu <a href="/dashboard">Panel</a> o el <a href="/cup-groups/fixture">Fixture</a> y comienza ahora!
+    tips:
+      noedit: Revisa tu resultado antes de confirmarlo! No podrás cambiarlo una vez que lo confirmes.
+      norush: No es necesario que arriesgues todos los resultados ahora! Podrás agregar tu predicción hasta minutos antes del partido.
