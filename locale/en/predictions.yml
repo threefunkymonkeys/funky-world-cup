@@ -13,4 +13,6 @@ en:
       in_progress: In Progress
       finished: Finished
     no_predictions: You didn't make any prediction yet. Please check your <a href="/dashboard">Dashboard</a> or the <a href="/cup-groups/fixture">Fixture</a> and make your predictions
-
+    tips:
+      noedit: Check your prediction twice! Once confirmed you will not be able to change it.
+      norush: You are not required to add all predictions at once! You will be able to predict a match minutes before it starts.

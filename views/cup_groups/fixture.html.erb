@@ -1,5 +1,7 @@
 <% content_for(:title){ I18n.t('.common.fixture') } %>
 
+<%= partial("cup_groups/_fixture_notifications.html") %>
+
 <div class="row">
   <% groups.each do |group_name, matches| %>
     <div class="col-xl-6 col-lg-12">
