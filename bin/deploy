@@ -36,7 +36,7 @@ begin
       end
       puts "Running #{container_name}"
 
-      running = `docker run -dit -p #{port}:#{settings["container_port"]} --name=#{container_name} --rm --network="#{settings["network"]}" -e RACK_ENV=#{DEPLOY_ENV} -v "$(pwd)"/log:/srv/http/#{APP_NAME}/log -v "$(pwd)"/config:/srv/http/#{APP_NAME}/public -v "$(pwd)"/config:/srv/http/#{APP_NAME}/config #{IMAGE_NAME}`
+      running = `docker run -dit -p #{port}:#{settings["container_port"]} --name=#{container_name} --rm --network="#{settings["network"]}" -e RACK_ENV=#{DEPLOY_ENV} -v "$(pwd)"/log:/srv/http/#{APP_NAME}/log -v "$(pwd)"/public:/srv/http/#{APP_NAME}/public -v "$(pwd)"/config:/srv/http/#{APP_NAME}/config #{IMAGE_NAME}`
       puts running
      end
 rescue => e
