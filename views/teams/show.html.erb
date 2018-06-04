@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="card-body table-full-width" id="matches-root">
-        <table class="table table-striped match-table table-responsive">
+        <table class="table match-table table-responsive">
           <tbody>
             <% matches.each do |match| %>
               <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
