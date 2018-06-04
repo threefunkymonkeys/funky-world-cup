@@ -84,7 +84,8 @@
 </tr>
 <tr>
   <td colspan="4" class="match-info text-center">
-    <%= match_date(match.start_datetime, match.local_timezone, "%d %^b %Y") %> -
+    <span-match-date date="<%= match.start_datetime %>"></span-match-date>
+    -
     <%= match.stadium %> 
     <span class="d-none d-sm-inline"> - <%= match.place %></span>
   </td>

@@ -231,4 +231,22 @@ Vue.component("td-match-time", {
   template: "<td class='text-center'><span class='time text-success'>{{ localTime }}<br><span v-html='localTimezone'></span></span></td>"
 });
 
+var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"];
+
+Vue.component("span-match-date", {
+  props: ["date"],
+  data: function() {
+    return {};
+  },
+  computed: {
+    localDate: function() {
+      var local = new Date(this.date);
+
+      return [local.getDate(), months[local.getMonth()]].join(" ")
+    }
+  },
+
+  template: "<span>{{ localDate }}</span>"
+});
+
 new Vue({ el: "#matches-root" });
