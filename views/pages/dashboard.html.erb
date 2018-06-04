@@ -4,7 +4,7 @@
   <%= partial("pages/_rules_alert.html", user: current_user) %>
 <% end %>
 
-<div class="row">
+<div class="row" id="matches-root">
   <div class="col-md-6">
     <% if matches[:now_playing].any? %>
       <div class="card upcoming">
@@ -47,7 +47,12 @@
           <table class="table match-table table-responsive">
             <tbody>
               <% matches[:upcoming].each do |match| %>
-                <%= partial("shared/_match_row_small.html", match: match) %>
+                <%=
+                  partial("shared/_match_row_small.html",
+                    match: match,
+                    any_predictable: matches[:upcoming].any?(&:predictable?)
+                  )
+                %>
               <% end %>
             </tbody>
           </table>

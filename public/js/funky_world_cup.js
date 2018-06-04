@@ -200,3 +200,53 @@ var anchor = window.location.hash
 if(anchor != "") {
   $(anchor).addClass("fwc-highlight");
 }
+
+// Matches time
+
+Vue.component("td-match-time", {
+  props: ["date"],
+  data: function() {
+    return {};
+  },
+  computed: {
+    localTime: function() {
+      var local = new Date(this.date);
+
+      return local.getHours() + ":" + (local.getMinutes() < 10 ? '0' : '') + local.getMinutes();
+    },
+    localTimezone: function () {
+      var offset =  new Date().getTimezoneOffset() / 60;
+      var timezone = "GMT";
+
+      if (offset > 0) {
+        timezone += "&minus;" + offset;
+      } else {
+        timezone += "+" + Match.abc(offset);
+      }
+
+      return timezone;
+    },
+  },
+
+  template: "<td class='text-center'><span class='time text-success'>{{ localTime }}<br><span v-html='localTimezone'></span></span></td>"
+});
+
+var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"];
+
+Vue.component("span-match-date", {
+  props: ["date"],
+  data: function() {
+    return {};
+  },
+  computed: {
+    localDate: function() {
+      var local = new Date(this.date);
+
+      return [local.getDate(), months[local.getMonth()]].join(" ")
+    }
+  },
+
+  template: "<span>{{ localDate }}</span>"
+});
+
+new Vue({ el: "#matches-root" });

@@ -1,6 +1,10 @@
 <% prediction = MatchPrediction.prediction_for(current_user.id, match.id) %>
+<% match_has_teams = match.host_team && match.rival_team %>
+<% any_predictable ||= false %>
+<% team_classes = match_has_teams || any_predictable ? "team-column team-column-groups" : "text-center d-table-cell" %>
+
 <tr id="match-<%= match.id %>">
-  <td class="team-column team-column-groups">
+  <td class="<%= team_classes %>">
     <% if match.host_team %>
       <a href="/teams/<%= match.host_team.iso_code %>">
         <img class="flag" src="/img/flags/<%= match.host_team.flag %>">
@@ -18,12 +22,7 @@
     </span>
   </td>
   <% if match.result.nil? %>
-    <td class="text-center">
-      <span class="time text-success">
-        <%= match_time(match.start_datetime, match.local_timezone) %></br>
-        <%= match.local_timezone %>
-      </span>
-    </td>
+    <td is="td-match-time" date="<%= match.start_datetime %>"></td>
   <% else %>
     <td class="text-center result">
       <div class="result-holder">
@@ -38,7 +37,7 @@
       </div>
     </td>
   <% end %>
-  <td class="team-column team-column-groups">
+  <td class="<%= team_classes %>">
     <% if match.rival_team %>
       <a href="/teams/<%= match.rival_team.iso_code %>">
         <img class="flag" src="/img/flags/<%= match.rival_team.flag %>">
@@ -55,6 +54,7 @@
       <% end %>
     </span>
   </td>
+<% if match_has_teams || any_predictable %>
   <td class="text-center d-none d-sm-table-cell col-2">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
@@ -80,10 +80,12 @@
       </button>
     <% end %>
   </td>
+<% end %>
 </tr>
 <tr>
   <td colspan="4" class="match-info text-center">
-    <%= match_date(match.start_datetime, match.local_timezone, "%d %^b %Y") %> -
+    <span-match-date date="<%= match.start_datetime %>"></span-match-date>
+    -
     <%= match.stadium %> 
     <span class="d-none d-sm-inline"> - <%= match.place %></span>
   </td>

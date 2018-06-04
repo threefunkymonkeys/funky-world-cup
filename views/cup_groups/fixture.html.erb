@@ -2,45 +2,139 @@
 
 <%= partial("cup_groups/_fixture_notifications.html") %>
 
-<div class="row">
-  <% groups.each do |group_name, matches| %>
-    <div class="col-xl-6 col-lg-12">
+<div id="matches-root">
+  <div class="row">
+    <% groups.each do |group_name, matches| %>
+      <div class="col-xl-6 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Group <%= group_name %></h4>
+          </div>
+          <div class="card-body table-full-width">
+            <table class="table match-table">
+              <tbody>
+                <% matches.each do |match| %>
+                  <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-12">
+      <% round_16 = phases["16_round"] %>
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Group <%= group_name %></h4>
+          <h4 class="card-title"><%= I18n.t(".common.#{round_16.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
         </div>
-        <div class="card-body table-full-width">
-          <table class="table match-table table-responsive">
-            <tbody>
-              <% matches.each do |match| %>
-                <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
-              <% end %>
-            </tbody>
-          </table>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <% first_column = round_16[0..3] %>
+                  <% any_predictable = first_column.any? { |m| m.values[:host_id] && m.values[:rival_id] } %>
+                  <% first_column.each do |match| %>
+                    <%= partial("shared/_match_row_small.html", match: Match[match.id], any_predictable: any_predictable) %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <% second_column = round_16[4..7] %>
+                  <% any_predictable = second_column.any? { |m| m.values[:host_id] && m.values[:rival_id] } %>
+                  <% second_column.each do |match| %>
+                    <%= partial("shared/_match_row_small.html", match: Match[match.id], any_predictable: any_predictable) %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  <% end %>
-</div>
-
-<div class="row">
-  <% phases.each do |phase, matches| %>
-    <div class="col-md-12">
-      <div id="phase-<%= phase %>" class="card">
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <% round_8 = phases["quarter_finals"] %>
+      <div class="card">
         <div class="card-header">
-          <h4 class="card-title"><%= phase == 'groups' ? I18n.t('.common.group') + 's' : I18n.t(".common.#{matches.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
+          <h4 class="card-title"><%= I18n.t(".common.#{round_8.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <% first_column = round_8[0..1] %>
+                  <% any_predictable = first_column.any? { |m| m.values[:host_id] && m.values[:rival_id] } %>
+                  <% round_8[0..1].each do |match| %>
+                    <%= partial("shared/_match_row_small.html", match: Match[match.id], any_predictable: any_predictable) %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <% second_column = round_8[2..3] %>
+                  <% any_predictable = second_column.any? { |m| m.values[:host_id] && m.values[:rival_id] } %>
+                  <% round_8[2..3].each do |match| %>
+                    <%= partial("shared/_match_row_small.html", match: Match[match.id], any_predictable: any_predictable) %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <% round_4 = phases["semi_finals"] %>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t(".common.#{round_4.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
         </div>
         <div class="card-body table-full-width">
-          <table class="table table-striped table-hover match-table table-responsive d-none d-sm-table">
+          <div class="row">
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <%= partial("shared/_match_row_small.html", match: Match[round_4.first.id]) %>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-6 m-0 p-0">
+              <table class="table match-table">
+                <tbody>
+                  <%= partial("shared/_match_row_small.html", match: Match[round_4.last.id]) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-6 col-lg-12">
+      <% third = phases["third_place"] %>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t(".common.#{third.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
+        </div>
+        <div class="card-body table-full-width">
+          <table class="table match-table">
             <tbody>
-              <% matches.each do |match| %>
-                <%= partial("shared/_match_row.html", match: Match[match.id]) %>
-              <% end %>
-            </tbody>
-          </table>
-          <table class="table table-hover match-table table-responsive d-table d-sm-none">
-            <tbody>
-              <% matches.each do |match| %>
+              <% third.each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
               <% end %>
             </tbody>
@@ -48,6 +142,23 @@
         </div>
       </div>
     </div>
-  <% end %>
+    <div class="col-xl-6 col-lg-12">
+      <% final = phases["final"] %>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t(".common.#{final.first.name.downcase.gsub(/ |-/,"_")}") %></h4>
+        </div>
+        <div class="card-body table-full-width">
+          <table class="table match-table">
+            <tbody>
+              <% final.each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: Match[match.id]) %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <%= render("views/shared/_prediction_modal.html.erb", id: current_user.id, redirect: 'cup-groups/fixture') %>
