@@ -18,12 +18,7 @@
     </span>
   </td>
   <% if match.result.nil? %>
-    <td class="text-center">
-      <span class="time text-success">
-        <%= match_time(match.start_datetime, match.local_timezone) %></br>
-        <%= match.local_timezone %>
-      </span>
-    </td>
+    <td is="td-match-time" date="<%= match.start_datetime %>"></td>
   <% else %>
     <td class="text-center result">
       <div class="result-holder">
