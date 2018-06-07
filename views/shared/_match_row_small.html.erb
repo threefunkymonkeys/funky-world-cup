@@ -22,7 +22,7 @@
     </span>
   </td>
   <% if match.result.nil? %>
-    <td is="td-match-time" date="<%= match.start_datetime %>"></td>
+    <td is="td-match-time" date="<%= match.start_datetime.iso8601 %>"></td>
   <% else %>
     <td class="text-center result">
       <div class="result-holder">
@@ -84,7 +84,7 @@
 </tr>
 <tr>
   <td colspan="4" class="match-info text-center">
-    <span-match-date date="<%= match.start_datetime %>"></span-match-date>
+    <span-match-date date="<%= match.start_datetime.iso8601 %>"></span-match-date>
     -
     <%= match.stadium %> 
     <span class="d-none d-sm-inline"> - <%= match.place %></span>
