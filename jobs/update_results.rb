@@ -105,6 +105,9 @@ class UpdateResultsJob < BaseJob
   end
 
   def self.notify(match, match_status)
+    host_hashtag = "##{match.host_team.name.gsub(" ", "")}"
+    rival_hashtag = "##{match.rival_team.name.gsub(" ", "")}"
+
     status = ["#{match.host_team.name} #{match.result.host_score}"]
     status << "#{match.result.rival_score} #{match.rival_team.name}"
 
@@ -117,7 +120,7 @@ class UpdateResultsJob < BaseJob
       status << "End"
     end
 
-    notification = "#{status.join(" - ")} #BR2014 #Results #Resultados"
+    notification = "#{status.join(" - ")} #RU2018 #Results #Resultados #{host_hashtag} #{rival_hashtag} #WorldCup"
 
     @@tw_notifier.notify(notification)
   end
