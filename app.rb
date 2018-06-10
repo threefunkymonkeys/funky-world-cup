@@ -11,7 +11,7 @@ require 'sass/plugin/rack'
 
 require_relative 'helpers/environment'
 
-ENV['RACK_ENV'] ||= :development
+ENV['RACK_ENV'] ||= "development"
 
 I18n.load_path += Dir['./locale/**/*.yml']
 Encoding.default_internal, Encoding.default_external = ['utf-8'] * 2
