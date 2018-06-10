@@ -8,7 +8,6 @@ require "./app"
 LOGGER= Logger.new('jobs/logs/update_results.log')
 
 class UpdateResultsJob < BaseJob
-  RESULTS_URL = 'http://www.livescore.com/worldcup2014/'
   @@tw_notifier = FunkyWorldCup::TwitterNotifier.new(
                     {:consumer_key => ENV["TWITTER_NOTIFY_KEY"],
                     :consumer_secret => ENV["TWITTER_NOTIFY_SECRET"],
@@ -27,14 +26,20 @@ class UpdateResultsJob < BaseJob
 
   def self.run
     begin
-      page = self.fix_names(Net::HTTP.get_response(URI(RESULTS_URL)).body)
-
-      info_matches = self.parse_livescore_page(page)
-      today_matches = Match.today_matches
-
-      self.parse_livescore_matches(info_matches, today_matches)
+      self.parse_livescore_matches(self.live_matches, Match.today_matches)
     rescue => e
       LOGGER.error("Failed to update results: #{e.message}")
+    end
+  end
+
+  def self.live_matches
+    livescores_url = "http://livescore-api.com/api-client/scores/live.json?key=#{ENV["LIVESCORE_API_KEY"]}&secret=#{ENV["LIVESCORE_API_SECRET"]}"
+    results = JSON.parse(Net::HTTP.get_response(URI(livescores_url)).body)
+
+    if results["success"] == true
+      results["data"]["match"]
+    else
+      []
     end
   end
 
@@ -44,26 +49,21 @@ class UpdateResultsJob < BaseJob
     page
   end
 
-  def self.parse_livescore_page(page)
-    doc = Nokogiri::HTML(page)
-    #select all tr with a match inside, discard table header lines
-    doc.css(".content .league-table tr").select { |node| node.css(".fh").any? }
-  end
-
   def self.parse_livescore_matches(info_matches, today_matches)
-    info_matches.each do |node|
-      host_name = node.css(".fh").text.gsub(/\*/, "").strip
-      rival_name = node.css(".fa").text.gsub(/\*/, "").strip
-      score = node.css(".fs").text.strip.split(" - ")
-      details_node = node.css(".fs a")
-      match_details_link = details_node.any? ? details_node.attr("href").value : nil
-      is_final = node.css(".fd").text.strip == "FT"
-      is_live = node.css(".fd").text.strip == "HT" || node.css(".fd img").any?
-      had_extra_time = node.css(".fd").text.strip == "AET"
-      not_started = score[0] == "?" && score[1] == "?"
+    info_matches.each do |match|
+      host_name = match["home_name"]
+      rival_name = match["away_name"]
+      score = match["score"].strip.split(" - ")
+
+      is_final = match["status"] == "FINISHED"
+      is_live = ["IN PLAY", "HALF TIME BREAK", "ADDED TIME", "INSUFFICIENT DATA"].include?(match["status"])
+
+      had_extra_time = match["status"] == "EXTRA TIME"
+      not_started = match["status"] == "NOT STARTED"
 
       today_matches.each do |match|
         next unless match.host_team && match.rival_team
+
         if match.host_team.name.downcase == host_name.downcase &&
             match.rival_team.name.downcase == rival_name.downcase
 
@@ -82,14 +82,9 @@ class UpdateResultsJob < BaseJob
                        match.result.status != attrs[:status].to_s)
 
                 if status == :final && had_extra_time
-                  details_doc = Nokogiri::HTML(Net::HTTP.get_response(URI("http://www.livescore.com" + match_details_link)).body)
-                  result_details = details_doc.css(".content .fs div")
-
-                  if result_details.length >= 3 #if less than 3 there wasn't any penalty kick and the result has been read
-                    pk_score = result_details[2].text.strip.gsub(/\(|\)/, "").split(" - ")
-                    attrs[:host_penalties_score] = pk_score[0]
-                    attrs[:rival_penalties_score] = pk_score[1]
-                  end
+                  pk_score = "0 - 0".split(" - ") # We still need to figure this out with the new scores API
+                  attrs[:host_penalties_score] = pk_score[0]
+                  attrs[:rival_penalties_score] = pk_score[1]
                 end
 
                 match.result.update(attrs)
