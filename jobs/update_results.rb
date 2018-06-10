@@ -1,7 +1,6 @@
 require 'eventmachine'
 require 'logger'
 require 'net/http'
-require 'nokogiri'
 require './lib/twitter_notifier'
 require "./app"
 
