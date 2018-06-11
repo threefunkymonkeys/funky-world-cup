@@ -6,7 +6,7 @@ es:
       please: Por favor
     groups:
       joined: Ya eres parte de este grupo
-      already: Ya perteneces a este grupo
+      already_in: Ya perteneces a este grupo
       cant_join: Hubo un error al unirte al grupo
       part_of: Eres parte del grupo
       dont_belong: No perteneces a este grupo
@@ -25,6 +25,7 @@ es:
       cant_save_list: No se ha podido actualizar la lista de premios
     matches:
       prediction_added: Se ha guardado el resultado
+      cant_predict: No pudimos agregar tu predicción para este partido
       cant_cheat: Tratando de hacer trampa? No se puede!
       late_prediction: Ya no puedes arriesgar para este partido
       result_updated: Partido actualizado
