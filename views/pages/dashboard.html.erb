@@ -64,7 +64,7 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card card-stats">
           <div class="card-header">
             <h4 class="card-title"><%= I18n.t('.sidebar.score') %></h4>
           </div>
@@ -72,11 +72,16 @@
             <h1 class="text-center card-title"><%= score %></h1>
           </div>
           <div class="card-footer">
+            <hr>
+            <div class="stats">
+              <i class="fa fa-percent"></i>
+              <%= I18n.t('.dashboard.out_of_points', points: total_points) %>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card">
+        <div class="card card-stats">
           <div class="card-header">
             <h4 class="card-title"><%= I18n.t('.sidebar.rank') %></h4>
           </div>
@@ -84,6 +89,11 @@
             <h1 class="text-center card-title"><%= rank %></h1>
           </div>
           <div class="card-footer">
+            <hr>
+            <div class="stats">
+              <i class="fa fa-users"></i>
+              <%= I18n.t('.dashboard.out_of_users', users: total_users) %>
+            </div>
           </div>
         </div>
       </div>

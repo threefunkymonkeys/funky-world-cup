@@ -29,3 +29,6 @@ en:
       city_not_empty: City can't be empty
       state_not_empty: State can't be empty
       country_not_empty: Country can't be empty
+
+    out_of_users: Out of %{users} users
+    out_of_points: Out of %{points} points played
