@@ -5,8 +5,15 @@ module FunkyWorldCup
   end
 
   def self.total_points
-    total = Match.count * 3
-    total += CupGroup.where(phase:'groups').invert.inner_join(Match, matches__group_id: :id).inner_join(Result, results__match_id: :matches__id).where(host_score: :rival_score).count * 3
+    total_points = 0
+    results = Result.where(status: "final")
+
+    results.each do |result|
+      total_points += 3
+      total_points += 3 if result.match.cup_group.phase != "groups" && result.host_score == result.rival_score
+    end
+
+    total_points
   end
 
   def self.champion

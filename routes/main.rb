@@ -62,6 +62,8 @@ module FunkyWorldCup
               score:        current_user.score,
               params:       session.delete('fwc.contact_form') || {},
               map_hash:     map_hash,
+              total_users:  User.count,
+              total_points: FunkyWorldCup.total_points,
             )
           end
 
