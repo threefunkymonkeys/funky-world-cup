@@ -27,7 +27,10 @@ Cuba.use Rack::Protection::AuthenticityToken, authenticity_param: "token"
 Cuba.use Rack::MethodOverride
 
 Cuba.use OmniAuth::Builder do
-  provider :twitter,  ENV['TWITTER_KEY'],     ENV['TWITTER_SECRET'], { secure_image_url: true }
+  provider :twitter,  ENV['TWITTER_KEY'],     ENV['TWITTER_SECRET'], {
+    secure_image_url: true,
+    callback_url: File.join(ENV["FWC_URL"], "auth", "twitter", "callback")
+  }
   provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET'], {
     callback_url: File.join(ENV["FWC_URL"], "auth", "facebook", "callback")
   }
