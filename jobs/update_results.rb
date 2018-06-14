@@ -42,20 +42,24 @@ class UpdateResultsJob < BaseJob
     end
   end
 
-  def self.fix_names(page)
-    page.gsub!(/Bosnia-Herzegovina/, "Bosnia and Herzegovina")
-    page.gsub!(/South Korea/, "Korea Republic")
-    page
+  def self.fix_name(name)
+    case name
+    when "Morroco"
+      "Morocco"
+    when "South Korea"
+      "Korea Republic"
+    else
+      name
+    end
   end
 
   def self.parse_livescore_matches(info_matches, today_matches)
     info_matches.each do |match|
-      host_name = match["home_name"]
-      rival_name = match["away_name"]
+      host_name = self.fix_name(match["home_name"])
+      rival_name = self.fix_name(match["away_name"])
       score = match["score"].strip.split(" - ")
 
       is_final = match["status"] == "FINISHED"
-      is_live = ["IN PLAY", "HALF TIME BREAK", "ADDED TIME", "INSUFFICIENT DATA"].include?(match["status"])
 
       had_extra_time = match["status"] == "EXTRA TIME"
       not_started = match["status"] == "NOT STARTED"
@@ -67,7 +71,7 @@ class UpdateResultsJob < BaseJob
             match.rival_team.name.downcase == rival_name.downcase
 
           unless not_started || (match.result && match.result.status == "final")
-            status = is_live ? :partial : :final
+            status = is_final ? :final : :partial
             attrs = {:host_score => score[0],
                       :rival_score => score[1],
                       :status => status}
