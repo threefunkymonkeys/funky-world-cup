@@ -1,50 +1,48 @@
-<h2><%= I18n.t("admin.dashboard.title") %></h2>
+<% content_for(:title){ I18n.t('.admin.dashboard.title')} %>
+
 <div id="admin-dashboard-counts" class="row">
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('admin.dashboard.user_count') %></h3>
+  <div class="col-8">
+    <div id="admin-dashboard-matches" class="card card-primary">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('admin.dashboard.matches') %></h4>
       </div>
-      <div class="panel-body text-primary">
-        <%= users %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('admin.dashboard.group_count') %></h3>
-      </div>
-      <div class="panel-body text-success">
-        <%= groups %>
+      <div class="card-body table-full-width" id="matches-root">
+        <table class="table match-table table-responsive">
+          <tbody>
+            <% matches.each do |match| %>
+              <%= partial("admin/_match.html", match: match) %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= I18n.t('admin.dashboard.prediction_count') %></h3>
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('admin.dashboard.user_count') %></h4>
       </div>
-      <div class="panel-body text-warning">
-        <%= predictions %>
+      <div class="card-body text-primary text-center">
+        <h2 class="mt-0"><%= users %></h2>
       </div>
     </div>
-  </div>
-  <div class="clearfix"></div>
-</div>
-<div class="clearfix"></div>
-<div id="admin-dashboard-matches" class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= I18n.t('admin.dashboard.matches') %></h3>
-  </div>
-  <div class="panel-body text-warning">
-    <table class="table table-striped table-hover matches-table">
-      <tbody>
-        <% matches.each do |match| %>
-          <%= render("views/admin/_match.html.erb", match: match) %>
-        <% end %>
-      </tbody>
-    </table>
+
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('admin.dashboard.group_count') %></h4>
+      </div>
+      <div class="card-body text-success text-center">
+        <h2 class="mt-0"><%= groups %></h2>
+      </div>
+    </div>
+
+    <div class="card card-primary">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('admin.dashboard.prediction_count') %></h4>
+      </div>
+      <div class="card-body text-warning text-center">
+        <h2 class="mt-0"><%= predictions %></h2>
+      </div>
+    </div>
   </div>
 </div>
-<div class="clearfix"></div>
