@@ -22,6 +22,10 @@ rescue => e
 end
 
 begin
+    puts "Running migrations"
+
+    `docker run -it --rm --network="#{settings["network"]}" -e FLASK_ENV=#{DEPLOY_ENV} #{IMAGE_NAME} rake db migrate`
+
     puts "Creating / Replacing containers"
     INSTANCES.times do |t|
       container_name = "fwc_#{DEPLOY_ENV}_#{t+1}"
