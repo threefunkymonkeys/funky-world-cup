@@ -1,37 +1,38 @@
 <div id="admin-match-form" class="row">
-  <div class="col-md-8">
-    <form class="form-horizontal" action="/admin/matches/<%= match.id %>/edit" method="post">
-      <input type="hidden" name="_method" value="PUT">
-      <fieldset>
-        <legend><%= I18n.t('admin.matches.match') %> #<%= match.id %></legend>
-        <div class="form-group">
-          <label for="inputHostScore" class="col-lg-4 control-label"><%= "#{I18n.t('admin.matches.score')} #{I18n.t(".teams.#{match.host_team.iso_code}")}" %></label>
-          <div class="col-lg-8">
-            <input type="text" class="form-control" id="inputHostScore" name="host_score" value="<%= match.result.host_score %>">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputRivalScore" class="col-lg-4 control-label"><%= "#{I18n.t('admin.matches.score')} #{I18n.t(".teams.#{match.rival_team.iso_code}")}" %></label>
-          <div class="col-lg-8">
-            <input type="text" class="form-control" id="inputHostScore" name="rival_score" value="<%= match.result.rival_score %>">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="select" class="col-lg-4 control-label"><%= I18n.t('admin.matches.status') %></label>
-          <div class="col-lg-8">
-            <select class="form-control" id="select" name="status">
-              <option value="partial" <%= match.result.status == 'partial' ? 'selected' : '' %> class="text-success"><%= I18n.t('admin.matches.partial') %></option>
-              <option value="final" <%= match.result.status == 'final' ? 'selected' : '' %> class="text-danger"><%= I18n.t('admin.matches.final') %></option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2 text-right">
-            <a class="btn btn-default" href="/admin/dashboard"><%= I18n.t('actions.cancel') %></a>
-            <button type="submit" class="btn btn-primary"><%= I18n.t('actions.save') %></button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
+  <div class="col-md-6 ml-auto mr-auto">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"><%= I18n.t('admin.matches.match') %> #<%= match.id %></h4>
+      </div>
+      <div class="card-body">
+        <form class="form-horizontal" action="/admin/matches/<%= match.id %>/edit" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <%= csrf_token %>
+          <fieldset>
+            <div class="form-group">
+              <label for="inputHostScore"><%= "#{I18n.t('admin.matches.score')} #{I18n.t(".teams.#{match.host_team.iso_code}")}" %></label>
+              <input type="text" class="form-control" id="inputHostScore" name="host_score" value="<%= match.result.host_score %>">
+            </div>
+            <div class="form-group">
+              <label for="inputRivalScore" ><%= "#{I18n.t('admin.matches.score')} #{I18n.t(".teams.#{match.rival_team.iso_code}")}" %></label>
+              <input type="text" class="form-control" id="inputHostScore" name="rival_score" value="<%= match.result.rival_score %>">
+            </div>
+            <div class="form-group">
+              <label for="select" ><%= I18n.t('admin.matches.status') %></label>
+              <select class="form-control" id="select" name="status">
+                <option value="partial" <%= match.result.status == 'partial' ? 'selected' : '' %> class="text-success"><%= I18n.t('admin.matches.partial') %></option>
+                <option value="final" <%= match.result.status == 'final' ? 'selected' : '' %> class="text-danger"><%= I18n.t('admin.matches.final') %></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="text-right">
+                <a class="btn btn-default" href="/admin/dashboard"><%= I18n.t('actions.cancel') %></a>
+                <button type="submit" class="btn btn-primary"><%= I18n.t('actions.save') %></button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

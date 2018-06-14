@@ -20,7 +20,7 @@ class Cuba
     end
 
     def class_for_index(index)
-     case index
+      case index
       when 0, 1
         'success'
       when 2
