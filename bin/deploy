@@ -24,7 +24,7 @@ end
 begin
     puts "Running migrations"
 
-    `docker run -it --rm --network="#{settings["network"]}" -e FLASK_ENV=#{DEPLOY_ENV} #{IMAGE_NAME} rake db migrate`
+    `docker run -it --rm --network="#{settings["network"]}" -e FLASK_ENV=#{DEPLOY_ENV} #{IMAGE_NAME} rake db:migrate`
 
     puts "Creating / Replacing containers"
     INSTANCES.times do |t|
