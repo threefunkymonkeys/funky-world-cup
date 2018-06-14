@@ -54,6 +54,9 @@ module FunkyWorldCup
 
             map_hash = FunkyWorldCup::Map.new(CupGroup.all).series_data
 
+            # refresh last seen
+            current_user.checkin
+
             res.write view("pages/dashboard.html",
               matches:      matches,
               winners:      winners,

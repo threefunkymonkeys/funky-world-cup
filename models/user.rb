@@ -24,4 +24,8 @@ class User < Sequel::Model
     notifications.update(read: true)
     user_notifications
   end
+
+  def checkin
+    self.update(last_seen: Time.now.to_i)
+  end
 end
