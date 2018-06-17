@@ -31,6 +31,18 @@ module FunkyWorldCup
           res.redirect (req.env["HTTP_REFERER"].gsub(/lang=(es|en)\&?/, "") || "/")
         end
 
+        on "matches/:id/result" do |id|
+          result = Result[match_id: id]
+
+          respond_json({ message: "Not Found" }, 404) unless result
+
+          respond_json({
+            status: result.status,
+            host_score: result.host_score,
+            rival_score: result.rival_score
+          })
+        end
+
         on current_user do
           on root do
             res.redirect "/dashboard"
