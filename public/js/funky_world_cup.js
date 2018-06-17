@@ -46,7 +46,7 @@ body.on('click', '#prizes-list .close', function(event) {
   event.stopPropagation();
   var _this = $(this);
   _this.parents(".list-group-item").remove();
-  
+
   window.update_prizes_list();
 });
 
@@ -60,7 +60,7 @@ body.on('click', '#prizes-list .up', function(event) {
   var this_parent = _this.parents(".list-group-item");
   var prev = this_parent.prev();
   this_parent.insertBefore(prev);
-  
+
   window.update_prizes_list();
 });
 
@@ -247,6 +247,77 @@ Vue.component("span-match-date", {
   },
 
   template: "<span>{{ localDate }}</span>"
+});
+
+
+Vue.component("result-holder", {
+  template: "<div class='result-holder'><strong class='status' :class='styleObject'>{{ isFinal() ? final : progress }}<br></strong><div class='result'><span class='host-result-mobile'>{{ liveHostScore }}</span> - <span class='rival-result-mobile'>{{ liveRivalScore }}</span></div></div>",
+
+  props: ["progress", "final", "status", "matchId", "hostScore", "rivalScore"],
+  data: function() {
+    return {
+      intervalId: null,
+      liveHostScore: 0,
+      liveRivalScore: 0
+    }
+  },
+  computed: {
+    statusText: function() {
+      let text = isFinal() ? this.final : this.partial
+
+      return text;
+    },
+    styleObject: function(){
+      return {
+        'text-success': this.status != 'final',
+        'text-danger': this.status == 'final'
+      }
+    }
+  },
+  methods: {
+    isFinal: function() {
+      return this.status == 'final';
+    },
+    updateResult: function(){
+      if (this.isFinal()){
+        window.clearInterval(this.intervalId);
+        return;
+      }
+      const request = {
+        url: '/matches/' + this.matchId + '/result',
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        transformResponse: (data, headers) => {
+          try {
+            return JSON.parse(data)
+          } catch (e) {
+            return []
+          }
+        }
+      };
+
+      axios.request(request).then((response) => {
+        this.liveHostScore = response.data.host_score;
+        this.liveRivalScore = response.data.rival_score;
+        this.status = response.data.status;
+      }).catch((error) => {
+        console.log("Error updating result");
+      })
+    }
+  },
+
+  created: function() {
+    if (this.hostScore)
+      this.liveHostScore = this.hostScore;
+
+    if (this.rivalScore)
+      this.liveRivalScore = this.rivalScore;
+
+    this.intervalId = window.setInterval(this.updateResult, 15000);
+  }
+
 });
 
 new Vue({ el: "#matches-root" });

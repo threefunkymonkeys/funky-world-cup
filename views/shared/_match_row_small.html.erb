@@ -25,16 +25,14 @@
     <td is="td-match-time" date="<%= match.start_datetime.iso8601 %>"></td>
   <% else %>
     <td class="text-center result">
-      <div class="result-holder">
-        <strong class="status <%= match.result.status == 'partial' ? "text-success" : "text-danger" %>">
-          <%= match.result.status == 'partial' ? I18n.t('.common.in_progress') : I18n.t('.common.finished') %><br>
-        </strong>
-        <div class="result">
-          <span class="host-result-mobile"><%= match.result.host_score %></span>
-          -
-          <span class="rival-result-mobile"><%= match.result.rival_score %></span>
-        </div>
-      </div>
+      <result-holder
+          match-id="<%= match.id %>"
+          host-score="<%= match.result.host_score %>"
+          rival-score="<%= match.result.rival_score %>"
+          progress="<%= I18n.t('.common.in_progress') %>"
+          final="<%= I18n.t('.common.finished') %>"
+          status="<%= match.result.status %>">
+      </result-holder>
     </td>
   <% end %>
   <td class="<%= team_classes %>">
@@ -86,7 +84,7 @@
   <td colspan="4" class="match-info text-center">
     <span-match-date date="<%= match.start_datetime.iso8601 %>"></span-match-date>
     -
-    <%= match.stadium %> 
+    <%= match.stadium %>
     <span class="d-none d-sm-inline"> - <%= match.place %></span>
   </td>
 </tr>
