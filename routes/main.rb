@@ -31,16 +31,29 @@ module FunkyWorldCup
           res.redirect (req.env["HTTP_REFERER"].gsub(/lang=(es|en)\&?/, "") || "/")
         end
 
-        on "matches/:id/result" do |id|
-          result = Result[match_id: id]
+        on "matches/:id" do |id|
+          match = Match[id]
 
-          respond_json({ message: "Not Found" }, 404) unless result
+          on "result" do
+            result = match.result
+            user_id = req.params["user_id"]
 
-          respond_json({
-            status: result.status,
-            host_score: result.host_score,
-            rival_score: result.rival_score
-          })
+            respond_json({ message: "Not Found" }, 404) unless result
+
+            response = {
+              status: result.status,
+              host_score: result.host_score,
+              rival_score: result.rival_score
+            }
+
+            if !user_id.nil?
+              prediction = MatchPrediction.find(match_id: id, user_id: user_id)
+
+              response[:prediction_score] = prediction.prediction_score if prediction
+            end
+
+            respond_json(response)
+          end
         end
 
         on current_user do
