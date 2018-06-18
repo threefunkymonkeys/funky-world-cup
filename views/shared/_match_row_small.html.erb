@@ -27,6 +27,7 @@
     <td class="text-center result">
       <result-holder
           match-id="<%= match.id %>"
+          user-id="<%= current_user.id %>"
           host-score="<%= match.result.host_score %>"
           rival-score="<%= match.result.rival_score %>"
           progress="<%= I18n.t('.common.in_progress') %>"
@@ -55,13 +56,16 @@
 <% if match_has_teams || any_predictable %>
   <td class="text-center d-none d-sm-table-cell col-2">
     <% if prediction %>
-      <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-      <% if !match.result.nil? && match.result.status == 'final' %>
-        <br>
-        <span class="text-danger">
-          <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
-        </span>
-      <% end %>
+        <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+        <% if match.result && match.result.status == 'final' %>
+          <div>
+            <span class='text-danger'>
+              <%= I18n.t('.common.score') %>: <%= prediction.prediction_score %>
+            </span>
+          </div>
+        <% else %>
+          <prediction-score label="<%= I18n.t('.common.score') %>"></prediction-score>
+        <% end %>
     <% elsif match.predictable? %>
       <button type="button"
               class="btn btn-info btn-sm btn-predict"
@@ -93,12 +97,11 @@
     <td class="text-center match-info" colspan="3">
       <% if prediction %>
         <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-        <% if !match.result.nil? && match.result.status == 'final' %>
-          <br>
-          <span class="text-danger">
-            <%= I18n.t('.common.score') %>: <%= prediction ? prediction.prediction_score : 0 %>
-          </span>
-        <% end %>
+        <prediction-score match-status="<%= match.result.nil? ? 'partial' : match.result %>"
+                          match-id="<%= match.id %>"
+                          user-id="<%= current_user.id %>"
+                          label="<%= I18n.t('.common.score') %>">
+        </prediction-score>
       <% elsif match.predictable? %>
         <button type="button"
                 class="btn btn-info btn-sm btn-predict"

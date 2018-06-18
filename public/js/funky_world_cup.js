@@ -249,16 +249,34 @@ Vue.component("span-match-date", {
   template: "<span>{{ localDate }}</span>"
 });
 
+Vue.component("prediction-score", {
+  template: "<div><span v-if='finished' class='text-danger'>{{ label }}: {{ score }}</span></div>",
+  props: ["label"],
+  data: function() {
+    return {}
+  },
+
+  computed: {
+    score: function() {
+      return this.$store.state.prediction_score;
+    },
+    finished: function() {
+      return this.$store.state.match_status == 'final';
+    }
+  },
+
+});
 
 Vue.component("result-holder", {
   template: "<div class='result-holder'><strong class='status' :class='styleObject'>{{ isFinal() ? final : progress }}<br></strong><div class='result'><span class='host-result-mobile'>{{ liveHostScore }}</span> - <span class='rival-result-mobile'>{{ liveRivalScore }}</span></div></div>",
 
-  props: ["progress", "final", "status", "matchId", "hostScore", "rivalScore"],
+  props: ["progress", "final", "status", "matchId", "userId", "hostScore", "rivalScore"],
   data: function() {
     return {
       intervalId: null,
       liveHostScore: 0,
-      liveRivalScore: 0
+      liveRivalScore: 0,
+      liveStatus: null
     }
   },
   computed: {
@@ -269,14 +287,14 @@ Vue.component("result-holder", {
     },
     styleObject: function(){
       return {
-        'text-success': this.status != 'final',
-        'text-danger': this.status == 'final'
+        'text-success': this.liveStatus != 'final',
+        'text-danger': this.liveStatus == 'final'
       }
     }
   },
   methods: {
     isFinal: function() {
-      return this.status == 'final';
+      return this.liveStatus == 'final';
     },
     updateResult: function(){
       if (this.isFinal()){
@@ -284,7 +302,7 @@ Vue.component("result-holder", {
         return;
       }
       const request = {
-        url: '/matches/' + this.matchId + '/result',
+        url: '/matches/' + this.matchId + '/result?user_id=' + this.userId,
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -301,7 +319,14 @@ Vue.component("result-holder", {
       axios.request(request).then((response) => {
         this.liveHostScore = response.data.host_score;
         this.liveRivalScore = response.data.rival_score;
-        this.status = response.data.status;
+        this.liveStatus = response.data.status;
+
+        if(this.isFinal()) {
+          this.$store.commit('setScore', response.data.prediction_score);
+          this.$store.commit('setMatchStatus', 'final')
+        } else {
+          this.$store.commit('setMatchStatus', this.liveStatus);
+        }
       }).catch((error) => {
         console.log("Error updating result");
       })
@@ -315,9 +340,28 @@ Vue.component("result-holder", {
     if (this.rivalScore)
       this.liveRivalScore = this.rivalScore;
 
+    if (this.status)
+      this.liveStatus = this.status;
+
     this.intervalId = window.setInterval(this.updateResult, 15000);
   }
 
 });
 
-new Vue({ el: "#matches-root" });
+const store = new Vuex.Store({
+  state: {
+    prediction_score: 35,
+    match_status: 'not_started'
+  },
+
+  mutations: {
+    setScore (state, score) {
+      state.prediction_score = score;
+    },
+    setMatchStatus(state, match_status) {
+      state.match_status = match_status;
+    }
+  }
+});
+
+new Vue({ el: "#matches-root", store });
