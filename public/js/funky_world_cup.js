@@ -276,7 +276,7 @@ Vue.component("result-holder", {
       intervalId: null,
       liveHostScore: 0,
       liveRivalScore: 0,
-      liveStatus: null
+      liveStatus: 'not_started'
     }
   },
   computed: {
@@ -343,6 +343,7 @@ Vue.component("result-holder", {
     if (this.status)
       this.liveStatus = this.status;
 
+    this.updateResult();
     this.intervalId = window.setInterval(this.updateResult, 15000);
   }
 

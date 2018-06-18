@@ -97,11 +97,15 @@
     <td class="text-center match-info" colspan="3">
       <% if prediction %>
         <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
-        <prediction-score match-status="<%= match.result.nil? ? 'partial' : match.result %>"
-                          match-id="<%= match.id %>"
-                          user-id="<%= current_user.id %>"
-                          label="<%= I18n.t('.common.score') %>">
-        </prediction-score>
+        <% if match.result && match.result.status == 'final' %>
+          <div>
+            <span class='text-danger'>
+              <%= I18n.t('.common.score') %>: <%= prediction.prediction_score %>
+            </span>
+          </div>
+        <% else %>
+          <prediction-score label="<%= I18n.t('.common.score') %>"></prediction-score>
+        <% end %>
       <% elsif match.predictable? %>
         <button type="button"
                 class="btn btn-info btn-sm btn-predict"
