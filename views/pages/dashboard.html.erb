@@ -30,7 +30,7 @@
         <div class="card-body table-full-width">
           <table class="table match-table table-responsive">
             <tbody>
-              <% matches[:finalized].each do |match| %>
+              <% matches[:finalized].reverse.each do |match| %>
                 <%= partial("shared/_match_row_small.html", match: match) %>
               <% end %>
             </tbody>
