@@ -46,7 +46,7 @@ body.on('click', '#prizes-list .close', function(event) {
   event.stopPropagation();
   var _this = $(this);
   _this.parents(".list-group-item").remove();
-  
+
   window.update_prizes_list();
 });
 
@@ -60,7 +60,7 @@ body.on('click', '#prizes-list .up', function(event) {
   var this_parent = _this.parents(".list-group-item");
   var prev = this_parent.prev();
   this_parent.insertBefore(prev);
-  
+
   window.update_prizes_list();
 });
 
@@ -249,4 +249,119 @@ Vue.component("span-match-date", {
   template: "<span>{{ localDate }}</span>"
 });
 
-new Vue({ el: "#matches-root" });
+Vue.component("prediction-score", {
+  template: "<div><span v-if='finished' class='text-danger'>{{ label }}: {{ score }}</span></div>",
+  props: ["label"],
+  data: function() {
+    return {}
+  },
+
+  computed: {
+    score: function() {
+      return this.$store.state.prediction_score;
+    },
+    finished: function() {
+      return this.$store.state.match_status == 'final';
+    }
+  },
+
+});
+
+Vue.component("result-holder", {
+  template: "<div class='result-holder'><strong class='status' :class='styleObject'>{{ isFinal() ? final : progress }}<br></strong><div class='result'><span class='host-result-mobile'>{{ liveHostScore }}</span> - <span class='rival-result-mobile'>{{ liveRivalScore }}</span></div></div>",
+
+  props: ["progress", "final", "status", "matchId", "userId", "hostScore", "rivalScore"],
+  data: function() {
+    return {
+      intervalId: null,
+      liveHostScore: 0,
+      liveRivalScore: 0,
+      liveStatus: null
+    }
+  },
+  computed: {
+    statusText: function() {
+      let text = isFinal() ? this.final : this.partial
+
+      return text;
+    },
+    styleObject: function(){
+      return {
+        'text-success': this.liveStatus != 'final',
+        'text-danger': this.liveStatus == 'final'
+      }
+    }
+  },
+  methods: {
+    isFinal: function() {
+      return this.liveStatus == 'final';
+    },
+    updateResult: function(){
+      if (this.isFinal()){
+        window.clearInterval(this.intervalId);
+        return;
+      }
+      const request = {
+        url: '/matches/' + this.matchId + '/result?user_id=' + this.userId,
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        transformResponse: (data, headers) => {
+          try {
+            return JSON.parse(data)
+          } catch (e) {
+            return []
+          }
+        }
+      };
+
+      axios.request(request).then((response) => {
+        this.liveHostScore = response.data.host_score;
+        this.liveRivalScore = response.data.rival_score;
+        this.liveStatus = response.data.status;
+
+        if(this.isFinal()) {
+          this.$store.commit('setScore', response.data.prediction_score);
+          this.$store.commit('setMatchStatus', 'final')
+        } else {
+          this.$store.commit('setMatchStatus', this.liveStatus);
+        }
+      }).catch((error) => {
+        console.log("Error updating result");
+      })
+    }
+  },
+
+  created: function() {
+    if (this.hostScore)
+      this.liveHostScore = this.hostScore;
+
+    if (this.rivalScore)
+      this.liveRivalScore = this.rivalScore;
+
+    if (this.status)
+      this.liveStatus = this.status;
+
+    this.intervalId = window.setInterval(this.updateResult, 15000);
+  }
+
+});
+
+const store = new Vuex.Store({
+  state: {
+    prediction_score: 35,
+    match_status: 'not_started'
+  },
+
+  mutations: {
+    setScore (state, score) {
+      state.prediction_score = score;
+    },
+    setMatchStatus(state, match_status) {
+      state.match_status = match_status;
+    }
+  }
+});
+
+new Vue({ el: "#matches-root", store });
