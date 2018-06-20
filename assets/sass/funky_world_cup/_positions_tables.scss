@@ -17,3 +17,17 @@
     }
   }
 }
+
+@media (max-width: 320px){
+  .card {
+    .table {
+      &.rank-table tr, .alert {
+        font-size: 11px !important;
+      }
+
+      .alert {
+        padding: 8px 13px;
+      }
+    }
+  }
+}
