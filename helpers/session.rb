@@ -26,5 +26,13 @@ module FunkyWorldCup
       res.redirect "/" unless current_user
       @user_rank ||= UserScore.rank_for(current_user.id)
     end
+
+    def check_session
+      unless user_authenticated?
+        session['fwc.return_to'] = req.path
+        res.redirect "/"
+        halt res.finish
+      end
+    end
   end
 end

@@ -63,22 +63,27 @@ Cuba.define do
   @@champion ||= FunkyWorldCup.champion
 
   on "groups" do
+    check_session
     run FunkyWorldCup::Groups
   end
 
   on "cup-groups" do
+    check_session
     run FunkyWorldCup::CupGroups
   end
 
   on "users" do
+    check_session
     run FunkyWorldCup::Users
   end
 
   on "admin" do
+    check_session
     run FunkyWorldCup::Admin
   end
 
   on "teams" do
+    check_session
     run FunkyWorldCup::Teams
   end
 

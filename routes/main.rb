@@ -125,7 +125,11 @@ module FunkyWorldCup
 
           authenticate(user)
 
-          res.redirect "/dashboard"
+          redirect_path = session.fetch("fwc.return_to", "/dashboard")
+
+          session.delete("fwc.return_to")
+
+          res.redirect redirect_path
         end
 
         on "auth/failure" do
