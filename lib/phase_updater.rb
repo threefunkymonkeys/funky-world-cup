@@ -1,8 +1,9 @@
 module FunkyWorldCup
   class PhaseUpdater
     def self.check(match)
-      return unless match.winner
-
+      unless match.groups_phase?
+        return unless match.winner
+      end
 
       case match.cup_group.phase
       when "groups"
