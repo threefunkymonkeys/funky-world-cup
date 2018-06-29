@@ -58,6 +58,11 @@
   <td class="text-center d-none d-sm-table-cell col-2">
     <% if prediction %>
       <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+
+      <% if prediction.match_penalties_prediction %>
+        <br/>
+        <strong class="text-info text-center">(<%= "#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score}" %>)</strong>
+      <% end %>
       <% if !match.result.nil? && match.result.status == 'final' %>
         <br>
         <span class="text-danger">
@@ -86,7 +91,7 @@
   <td colspan="4" class="match-info text-center">
     <span-match-date date="<%= match.start_datetime.iso8601 %>"></span-match-date>
     -
-    <%= match.stadium %> 
+    <%= match.stadium %>
     <span class="d-none d-sm-inline"> - <%= match.place %></span>
   </td>
 </tr>
@@ -95,6 +100,9 @@
     <td class="text-center match-info" colspan="3">
       <% if prediction %>
         <strong class="text-primary"><%= "#{prediction.host_score} - #{prediction.rival_score}" %></strong>
+        <% if prediction.match_penalties_prediction %>
+          / <strong class="text-info text-center">(<%= "#{prediction.match_penalties_prediction.host_score} - #{prediction.match_penalties_prediction.rival_score}" %>)</strong>
+        <% end %>
         <% if !match.result.nil? && match.result.status == 'final' %>
           <br>
           <span class="text-danger">
