@@ -18,6 +18,14 @@
               <input type="text" class="form-control" id="inputHostScore" name="rival_score" value="<%= match.result.rival_score %>">
             </div>
             <div class="form-group">
+              <label for="inputHostPenaltyScore" ><%= "#{I18n.t('admin.matches.penalties_score')} #{I18n.t(".teams.#{match.host_team.iso_code}")}" %></label>
+              <input type="text" class="form-control" id="inputHostPenaltyScore" name="host_penalties_score" value="<%= match.result.host_penalties_score %>">
+            </div>
+            <div class="form-group">
+              <label for="inputRivalPenaltyScore" ><%= "#{I18n.t('admin.matches.penalties_score')} #{I18n.t(".teams.#{match.rival_team.iso_code}")}" %></label>
+              <input type="text" class="form-control" id="inputRivalPenaltyScore" name="rival_penalties_score" value="<%= match.result.rival_penalties_score %>">
+            </div>
+            <div class="form-group">
               <label for="select" ><%= I18n.t('admin.matches.status') %></label>
               <select class="form-control" id="select" name="status">
                 <option value="partial" <%= match.result.status == 'partial' ? 'selected' : '' %> class="text-success"><%= I18n.t('admin.matches.partial') %></option>
