@@ -22,22 +22,6 @@
         </div>
       </div>
     <% end %>
-    <% if matches[:finalized].any? %>
-      <div class="card upcoming">
-        <div class="card-header">
-          <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
-        </div>
-        <div class="card-body table-full-width">
-          <table class="table match-table table-responsive">
-            <tbody>
-              <% matches[:finalized].reverse.each do |match| %>
-                <%= partial("shared/_match_row_small.html", match: match) %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    <% end %>
     <% if matches[:upcoming].any? %>
       <div class="card upcoming">
         <div class="card-header">
@@ -53,6 +37,22 @@
                     any_predictable: matches[:upcoming].any?(&:predictable?)
                   )
                 %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+    <% if matches[:finalized].any? %>
+      <div class="card upcoming">
+        <div class="card-header">
+          <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
+        </div>
+        <div class="card-body table-full-width">
+          <table class="table match-table table-responsive">
+            <tbody>
+              <% matches[:finalized].reverse.each do |match| %>
+                <%= partial("shared/_match_row_small.html", match: match) %>
               <% end %>
             </tbody>
           </table>
