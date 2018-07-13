@@ -67,6 +67,7 @@ module FunkyWorldCup
               map_hash:     map_hash,
               total_users:  User.count,
               total_points: FunkyWorldCup.total_points,
+              champion: champion,
             )
           end
 

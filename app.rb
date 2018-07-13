@@ -60,8 +60,6 @@ Dir["./routes/**/*.rb"].each { |file| require file }
 Cuba.define do
   init_locale(req.env)
 
-  @@champion ||= FunkyWorldCup.champion
-
   on "groups" do
     check_session
     run FunkyWorldCup::Groups

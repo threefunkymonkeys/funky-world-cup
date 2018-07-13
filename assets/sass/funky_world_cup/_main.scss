@@ -3,6 +3,11 @@ $modal-border-color: #e9ecef;
 img.flag {
   width: 70px;
   height: 47px;
+
+  &.champion-flag {
+    width: 90px;
+    height: auto;
+  }
 }
 
 .modal-header {

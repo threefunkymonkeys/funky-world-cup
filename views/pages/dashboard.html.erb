@@ -6,53 +6,147 @@
 
 <div class="row" id="matches-root">
   <div class="col-md-6">
-    <% if matches[:now_playing].any? %>
-      <div class="card upcoming">
-        <div class="card-header">
-          <h4 class="card-title"><%= I18n.t('.dashboard.now_playing') %></h4>
+    <% if matches %>
+      <% if matches[:now_playing].any? %>
+        <div class="card upcoming">
+          <div class="card-header">
+            <h4 class="card-title"><%= I18n.t('.dashboard.now_playing') %></h4>
+          </div>
+          <div class="card-body table-full-width">
+            <table class="table match-table table-responsive">
+              <tbody>
+                <% matches[:now_playing].each do |match| %>
+                  <%= partial("shared/_match_row_small.html", match: match) %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="card-body table-full-width">
-          <table class="table match-table table-responsive">
-            <tbody>
-              <% matches[:now_playing].each do |match| %>
-                <%= partial("shared/_match_row_small.html", match: match) %>
-              <% end %>
-            </tbody>
-          </table>
+      <% end %>
+      <% if matches[:upcoming].any? %>
+        <div class="card upcoming">
+          <div class="card-header">
+            <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
+          </div>
+          <div class="card-body table-full-width">
+            <table class="table match-table table-responsive">
+              <tbody>
+                <% matches[:upcoming].each do |match| %>
+                  <%=
+                    partial("shared/_match_row_small.html",
+                      match: match,
+                      any_predictable: matches[:upcoming].any?(&:predictable?)
+                    )
+                  %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+      <% if matches[:finalized].any? %>
+        <div class="card upcoming">
+          <div class="card-header">
+            <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
+          </div>
+          <div class="card-body table-full-width">
+            <table class="table match-table table-responsive">
+              <tbody>
+                <% matches[:finalized].reverse.each do |match| %>
+                  <%= partial("shared/_match_row_small.html", match: match) %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="card">
+        <div class="card-header text-center">
+          <h4 class="card-title"><%= I18n.t('.dashboard.champion') %></h4>
+          <hr>
+        </div>
+        <div class="card-body text-center">
+          <p>
+            <a href="/teams/<%= champion.iso_code %>">
+              <img class="flag champion-flag" src="/img/flags/<%= champion.flag %>">
+            </a>
+          </p>
+          <h5><%= I18n.t(".teams.#{champion.iso_code}") %></h5>
         </div>
       </div>
-    <% end %>
-    <% if matches[:upcoming].any? %>
-      <div class="card upcoming">
-        <div class="card-header">
-          <h4 class="card-title"><%= I18n.t('.dashboard.upcoming') %></h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-stats">
+            <div class="card-header">
+              <h4 class="card-title"><%= I18n.t('.sidebar.score') %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="text-center card-title"><%= score %></h1>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="stats">
+                <i class="fa fa-percent"></i>
+                <%= I18n.t('.dashboard.out_of_points', points: total_points) %>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body table-full-width">
-          <table class="table match-table table-responsive">
-            <tbody>
-              <% matches[:upcoming].each do |match| %>
-                <%=
-                  partial("shared/_match_row_small.html",
-                    match: match,
-                    any_predictable: matches[:upcoming].any?(&:predictable?)
-                  )
-                %>
-              <% end %>
-            </tbody>
-          </table>
+        <div class="col-md-6">
+          <div class="card card-stats">
+            <div class="card-header">
+              <h4 class="card-title"><%= I18n.t('.sidebar.rank') %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="text-center card-title"><a href="/rank#position-<%= rank %>"><%= rank %></a></h1>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="stats">
+                <i class="fa fa-users"></i>
+                <%= I18n.t('.dashboard.out_of_users', users: total_users) %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    <% end %>
-    <% if matches[:finalized].any? %>
-      <div class="card upcoming">
-        <div class="card-header">
-          <h4 class="card-title"><%= I18n.t('.dashboard.finalized') %></h4>
+
+      <div class="card">
+        <div class="card-header text-center">
+          <h4 class="card-title"><%= I18n.t('.dashboard.winners') %></h4>
+          <hr>
         </div>
-        <div class="card-body table-full-width">
-          <table class="table match-table table-responsive">
+        <div class="card-body table-full-width mb-0">
+          <table class="table rank-table">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Name</th>
+                <th class="text-center">Score</th>
+              </tr>
+            </thead>
             <tbody>
-              <% matches[:finalized].reverse.each do |match| %>
-                <%= partial("shared/_match_row_small.html", match: match) %>
+              <% winners.each do |key, rank_for_key| %>
+                <% rank_for_key.each do |rank| %>
+                  <tr id="position-<%= key %>" <%= rank.user.id == current_user.id ? 'class="alert-warning"' : '' %>>
+                    <td><span class="label alert alert-<%= key < 2 ? 'success' : 'warning' %>">#<%= key %></span></td>
+                    <td>
+                      <% if FunkyWorldCup.finalized? %>
+                        <a href="/users/<%= rank.user.id %>/predictions">
+                          <%= partial("shared/_participant_img.html", image: rank.user.image, classes: ["d-none", "d-sm-inline"]) %>
+                          <%= rank.user.nickname %>
+                        </a>
+                      <% else %>
+                        <%= partial("shared/_participant_img.html", image: rank.user.image, classes: ["d-none", "d-sm-inline"]) %>
+                        <%= rank.user.nickname %>
+                      <% end %>
+                    </td>
+                    <td class="text-center">
+                      <span class="label alert alert-info"><%=rank.score || 0 %></span>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
@@ -62,42 +156,44 @@
   </div>
 
   <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card card-stats">
-          <div class="card-header">
-            <h4 class="card-title"><%= I18n.t('.sidebar.score') %></h4>
+    <% unless champion %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-stats">
+            <div class="card-header">
+              <h4 class="card-title"><%= I18n.t('.sidebar.score') %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="text-center card-title"><%= score %></h1>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="stats">
+                <i class="fa fa-percent"></i>
+                <%= I18n.t('.dashboard.out_of_points', points: total_points) %>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <h1 class="text-center card-title"><%= score %></h1>
-          </div>
-          <div class="card-footer">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-percent"></i>
-              <%= I18n.t('.dashboard.out_of_points', points: total_points) %>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-stats">
+            <div class="card-header">
+              <h4 class="card-title"><%= I18n.t('.sidebar.rank') %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="text-center card-title"><%= rank %></h1>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="stats">
+                <i class="fa fa-users"></i>
+                <%= I18n.t('.dashboard.out_of_users', users: total_users) %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card card-stats">
-          <div class="card-header">
-            <h4 class="card-title"><%= I18n.t('.sidebar.rank') %></h4>
-          </div>
-          <div class="card-body">
-            <h1 class="text-center card-title"><%= rank %></h1>
-          </div>
-          <div class="card-footer">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-users"></i>
-              <%= I18n.t('.dashboard.out_of_users', users: total_users) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% end %>
 
     <div class="row">
       <div class="col-md-12">
