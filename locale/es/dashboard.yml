@@ -32,3 +32,4 @@ es:
 
     out_of_users: De %{users} usuarios
     out_of_points: De %{points} puntos jugados
+    champion: Campeón del Mundial

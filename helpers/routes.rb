@@ -12,4 +12,8 @@ module FunkyWorldCup::Helpers
     res.status = 204
     halt res.finish
   end
+
+  def champion
+    session[:champion] ||= FunkyWorldCup.champion
+  end
 end
